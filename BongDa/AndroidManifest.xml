@@ -17,8 +17,7 @@
         android:theme="@android:style/Theme.Translucent.NoTitleBar" >
         <activity
             android:name="com.app.bongda.SplashActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" >
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
