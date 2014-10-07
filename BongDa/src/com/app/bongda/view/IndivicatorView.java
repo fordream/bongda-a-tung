@@ -9,8 +9,10 @@ import android.widget.LinearLayout;
 
 public class IndivicatorView extends LinearLayout {
 
-	public IndivicatorView(Context context) {
+	private int res;
+	public IndivicatorView(Context context, int res) {
 		super(context);
+		this.res = res;
 		init();
 	}
 
@@ -27,5 +29,6 @@ public class IndivicatorView extends LinearLayout {
 	private void init() {
 		LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflater.inflate(R.layout.indivicator, this);
+		findViewById(R.id.imageView1).setBackgroundResource(res);
 	}
 }

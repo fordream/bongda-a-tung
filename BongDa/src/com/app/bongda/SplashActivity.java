@@ -19,10 +19,11 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 		setContentView(R.layout.tabexampleslide);
 		getTabHost().setOnTabChangedListener(this);
 
-		addTab(HomeActivity.class, "Home", "Home", 0);
-		addTab(HomeActivity.class, "M1", "M1", 0);
-		addTab(HomeActivity.class, "M2", "M2", 0);
-		addTab(HomeActivity.class, "M3", "M3", 0);
+		addTab(HomeActivity.class, "Home", "Home", R.drawable.menu_1);
+		addTab(HomeActivity.class, "M1", "M1", R.drawable.menu_2);
+		addTab(HomeActivity.class, "M2", "M2", R.drawable.menu_3);
+		addTab(HomeActivity.class, "M3", "M3", R.drawable.menu_4);
+		addTab(HomeActivity.class, "M3", "M3", R.drawable.menu_5);
 	}
 
 	@Override
@@ -36,15 +37,8 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 		TabSpec firstTabSpec = tabHost.newTabSpec(tabSpect);
 		Intent intent = new Intent(this, activity);
 		intent.putExtra("type", type);
-		firstTabSpec.setIndicator(new IndivicatorView(this)).setContent(intent);
-		tabHost.addTab(firstTabSpec);
-	}
-
-	public void addTab(Class<?> activity, String tabSpect, View indicator) {
-		TabHost tabHost = getTabHost();
-		TabSpec firstTabSpec = tabHost.newTabSpec(tabSpect);
-		firstTabSpec.setIndicator(new IndivicatorView(this)).setContent(
-				new Intent(this, activity));
+		firstTabSpec.setIndicator(new IndivicatorView(this, type)).setContent(
+				intent);
 		tabHost.addTab(firstTabSpec);
 	}
 
