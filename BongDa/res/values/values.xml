@@ -2,16 +2,5 @@
 <resources>
 
     <string name="app_name">BongDa</string>
-    <string name="home">Home</string>
-    <string name="search">Search</string>
-    <string name="back">Back</string>
-    <string name="menu">Menu</string>
-    <string name="loading">Loading...</string>
-    <string name="blank"></string>
-    <string name="sharecontact">コンタクトリスト</string>
-    <string name="facebook_register">Facebookで会員登録</string>
-    <string name="twitter_register">Twitterで会員登録</string>
-    <string name="forgot_header">パスワードを忘れた</string>
-    <string name="message">受信メッセージ</string>
 
 </resources>
