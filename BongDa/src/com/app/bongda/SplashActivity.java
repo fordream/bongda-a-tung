@@ -2,8 +2,10 @@ package com.app.bongda;
 
 import android.app.Activity;
 import android.app.TabActivity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
@@ -12,6 +14,13 @@ import android.widget.TabHost.TabSpec;
 import com.app.bongda.view.IndivicatorView;
 
 public class SplashActivity extends TabActivity implements OnTabChangeListener {
+	private static final String CHANGETAG = "CHANGETAG";
+	public static final void changTab(int index, Context context){
+		Intent intent = new Intent(CHANGETAG);
+		intent.putExtra("index", index);
+		context.sendBroadcast(intent);
+		
+	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -24,6 +33,26 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 		addTab(X4Activity.class, "M3", "M3", R.drawable.menu_4);
 		addTab(X5Activity.class, "M3", "M3", R.drawable.menu_5);
 	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		registerReceiver(broadcastReceiver, new IntentFilter(CHANGETAG));
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		unregisterReceiver(broadcastReceiver);
+	}
+
+	private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			int index = intent.getIntExtra("index", 0);
+			getTabHost().setCurrentTab(index);
+		}
+	};
 
 	@Override
 	public void onTabChanged(String tabId) {
