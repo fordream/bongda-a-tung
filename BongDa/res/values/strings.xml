@@ -1,5 +1,13 @@
 <resources>
 
     <string name="setting">DANH SÁCH CHỨC NĂNG</string>
+    <string name="setting_txt1">Live Score</string>
+    <string name="setting_txt2">Chọn giải đấu</string>
+    <string name="setting_txt3">Các trận quan tâm</string>
+    <string name="setting_txt4">Bảng xếp hạng</string>
+    <string name="setting_txt5">Game dự đoán</string>
+    <string name="setting_txt6">Nhận định của chuyên gia</string>
+    <string name="setting_txt7">Máy tính dự đoán</string>
+    <string name="setting_txt8">Phong độ các đội</string>
 
 </resources>

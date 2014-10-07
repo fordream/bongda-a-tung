@@ -3,6 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
+
+    <com.app.bongda.view.HeaderView
+        android:id="@+id/headerView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+    </com.app.bongda.view.HeaderView>
+
+    <ListView
+        android:id="@+id/x5listview"
+        android:divider="@null"
+        android:listSelector="@drawable/transfer"
+        android:dividerHeight="@dimen/dimen_0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        
+        android:orientation="vertical" >
+    </ListView>
 
 </LinearLayout>
