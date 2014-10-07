@@ -1,5 +1,7 @@
 package com.app.bongda;
 
+import com.app.bongda.view.IndivicatorView;
+
 import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Context;
@@ -18,7 +20,9 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 		getTabHost().setOnTabChangedListener(this);
 
 		addTab(HomeActivity.class, "Home", "Home", 0);
-
+		addTab(HomeActivity.class, "M1", "M1", 0);
+		addTab(HomeActivity.class, "M2", "M2", 0);
+		addTab(HomeActivity.class, "M3", "M3", 0);
 	}
 
 	@Override
@@ -32,14 +36,14 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 		TabSpec firstTabSpec = tabHost.newTabSpec(tabSpect);
 		Intent intent = new Intent(this, activity);
 		intent.putExtra("type", type);
-		firstTabSpec.setIndicator(indicator).setContent(intent);
+		firstTabSpec.setIndicator(new IndivicatorView(this)).setContent(intent);
 		tabHost.addTab(firstTabSpec);
 	}
 
 	public void addTab(Class<?> activity, String tabSpect, View indicator) {
 		TabHost tabHost = getTabHost();
 		TabSpec firstTabSpec = tabHost.newTabSpec(tabSpect);
-		firstTabSpec.setIndicator(indicator).setContent(
+		firstTabSpec.setIndicator(new IndivicatorView(this)).setContent(
 				new Intent(this, activity));
 		tabHost.addTab(firstTabSpec);
 	}
