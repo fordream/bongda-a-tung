@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/LinearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/dimen_10dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical" >
+
+                <ImageView
+                    android:id="@+id/ImageView03"
+                    android:layout_width="@dimen/dimen_22dp"
+                    android:layout_height="@dimen/dimen_15dp"
+                    android:background="@drawable/s" />
+
+                <org.acv.bynal.views.BaseBoldTextView
+                    android:id="@+id/BaseBoldTextView02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dimen_3dp"
+                    android:text="BYNAL WOMAN とは"
+                    android:textColor="#990033"
+                    android:textSize="@dimen/dimen_15dp" />
+            </LinearLayout>
+
+            <org.acv.bynal.views.BaseTextView
+                android:id="@+id/BaseTextView02"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimen_5dp"
+                android:layout_marginTop="@dimen/dimen_5dp"
+                android:text="女性の夢をカタチにする場所 です。\n\nBYNAL WOMAN(バイナルウーマン)は、一人でも多くの女性が思い切り夢にチャレンジできるように、 夢や目標をカタチにしたいと思っている女性と、その女性たちの夢や目標に共感し応援・支援したいと思っている人たちを、 ウェブを中心にマッチングさせることで、夢や目標の実現に向けてバックアップさせていただくクラウドファンディングサービスです。 "
+                android:textColor="#666666"
+                android:textSize="@dimen/dimen_13dp" />
+
+            <ImageView
+                android:id="@+id/ImageView04"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/dimen_192dp"
+                android:background="@drawable/s2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_5dp"
+            android:layout_marginTop="@dimen/dimen_5dp"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical" >
+
+                <ImageView
+                    android:id="@+id/ImageView01"
+                    android:layout_width="@dimen/dimen_22dp"
+                    android:layout_height="@dimen/dimen_15dp"
+                    android:background="@drawable/s" />
+
+                <org.acv.bynal.views.BaseBoldTextView
+                    android:id="@+id/BaseBoldTextView01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dimen_3dp"
+                    android:text="BYNAL WOMAN ができること"
+                    android:textColor="#990033"
+                    android:textSize="@dimen/dimen_15dp" />
+            </LinearLayout>
+
+            <org.acv.bynal.views.BaseTextView
+                android:id="@+id/BaseTextView01"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimen_5dp"
+                android:layout_marginTop="@dimen/dimen_5dp"
+                android:text="BYNAL WOMAN(バイナルウーマン)を運営する(株)BYNALは、 “女性の夢”を、日本のみならず世界中の人に発信していくために、 いまや世界の情報の中心地である“シンガポール”に拠点をおき、世界展開を視野に、 イベントコンサルティングやキャスティングなども行っております。 そのため、様々なイベント、セミナー、ショーなどの開催、テレビ、雑誌などの各メディアとも連携により、 世界中に発信していくことが可能です。 2013年10月、シンガポールで開催された5万人規模のアジア最大級のファッションショー 「FIDe Fashion Weeks 2013」とのコラボレーションも果たしました。 "
+                android:textColor="#666666"
+                android:textSize="@dimen/dimen_13dp" />
+
+            <ImageView
+                android:id="@+id/ImageView02"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/dimen_148dp"
+                android:background="@drawable/s3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="@dimen/dimen_22dp"
+                    android:layout_height="@dimen/dimen_15dp"
+                    android:background="@drawable/s" />
+
+                <org.acv.bynal.views.BaseBoldTextView
+                    android:id="@+id/baseBoldTextView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dimen_3dp"
+                    android:text="BYNAL WOMANのルール"
+                    android:textColor="#990033"
+                    android:textSize="@dimen/dimen_15dp" />
+            </LinearLayout>
+
+            <org.acv.bynal.views.BaseTextView
+                android:id="@+id/baseTextView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_5dp"
+                android:text="プロジェクト掲載期間内にプレゼンターが設定した目標金額の100%を超えた場合“のみ”、プロジェクトは成立となります。 掲載料は無料ですが、支援総額の20%がBYNAL WOMANの手数料（クレジットカード決済手数料は弊社負担）として発生し、 残りの80%を支援金額として受け取ることができます。\nもし、プロジェクトがプレゼンターが設定した目標金額に届かず、不成立の場合は、 支援された総額はそのままエンジェルに返金され、弊社への手数料も発生しません。 その他手数料は一切ありません。 "
+                android:textColor="#666666"
+                android:textSize="@dimen/dimen_13dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_20dp"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

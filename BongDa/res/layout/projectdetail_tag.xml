@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+	<ListView
+        android:id="@+id/listview_tag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@drawable/list_divider"
+        android:dividerHeight="2dp"
+        android:layout_above="@+id/tagpost_footer" >
+    </ListView>
+
+    <LinearLayout
+        android:id="@+id/tagpost_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dimen_76dp" >
+
+        <org.acv.bynal.views.BaseEditText
+            android:id="@+id/tagpost_footer_text"
+            android:layout_width="@dimen/dimen_220dp"
+            android:layout_height="@dimen/dimen_40dp"
+            android:background="@drawable/tag_textarea"
+            android:ems="1"
+            android:gravity="top"
+            android:padding="@dimen/dimen_10dp"
+            android:text=""
+            android:textSize="@dimen/dimen_10dp" >
+        </org.acv.bynal.views.BaseEditText>
+
+        <org.acv.bynal.views.BaseBoldTextView
+            android:id="@+id/tagpost_footer_btn"
+            android:layout_width="@dimen/dimen_70dp"
+            android:layout_height="@dimen/dimen_40dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:background="@drawable/btn_red"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:text="送信"
+            android:textSize="@dimen/dimen_10dp" />
+    </LinearLayout>
+
+</RelativeLayout>

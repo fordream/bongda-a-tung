@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:gravity="center|top"
+    android:orientation="vertical" >
+
+    <ListView
+        android:id="@+id/sharecontact_list"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sharcontact_listheight"
+        android:layout_above="@+id/dj"
+        android:layout_alignParentTop="true"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:listSelector="@null" >
+
+    </ListView>
+
+    <LinearLayout
+        android:id="@+id/dj"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <org.acv.bynal.views.BaseBoldTextView
+            android:layout_width="@dimen/dimen_270dp"
+            android:layout_height="@dimen/sharcontact_textheight"
+            android:layout_marginTop="10dp"
+            android:gravity="center|left"
+            android:text="コンタクト追加"
+            android:textColor="#333333"
+            android:textSize="@dimen/sharcontact_textsize"
+            android:textStyle="bold" />
+
+        <org.acv.bynal.views.BaseEditText
+            android:id="@+id/sharecontact_email"
+            style="@style/bynal_edit_text_height_27"
+            android:layout_width="@dimen/dimen_270dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:singleLine="true"
+            android:text="" >
+        </org.acv.bynal.views.BaseEditText>
+
+        <org.acv.bynal.views.BaseBoldTextView
+            android:layout_width="@dimen/dimen_270dp"
+            android:layout_height="@dimen/sharcontact_textheight"
+            android:gravity="center|left"
+            android:text="内容"
+            android:textColor="#333333"
+            android:textSize="@dimen/sharcontact_textsize"
+            android:textStyle="bold" />
+
+        <org.acv.bynal.views.BaseEditText
+            android:id="@+id/sharecontact_title"
+            style="@style/bynal_edit_text_height_27_area"
+            android:layout_width="@dimen/dimen_270dp"
+            android:layout_height="@dimen/dimen_80dp"
+            android:ems="10"
+            android:gravity="top|left"
+            android:paddingRight="10dp"
+            android:text="" />
+
+        <org.acv.bynal.views.BaseTextView
+            android:id="@+id/sharecontact_btn"
+            android:layout_width="@dimen/sharcontact_textwidth_button"
+            android:layout_height="@dimen/sharcontact_textheight_button"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/sharecongtact1"
+            android:gravity="center" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <LinearLayout
+        android:id="@+id/reportdetail_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="5dp" >
+        <org.acv.bynal.views.BaseTextView
+         	    android:id="@+id/reportdetail_title_txt"
+         	    android:layout_width="@dimen/dimen_300dp"
+         	    android:layout_height="@dimen/dimen_20dp"
+         	    android:gravity="left"
+         	    android:text="title" />
+        <org.acv.bynal.views.BaseTextView
+         	    android:id="@+id/reportdetail_postdate_txt"
+         	    android:layout_width="@dimen/dimen_300dp"
+         	    android:layout_height="@dimen/dimen_20dp"
+         	    android:gravity="left"
+         	    android:text="post date" />
+		<ScrollView
+	        android:id="@+id/desc_detail"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent" >
+	
+	        <LinearLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
+	            android:gravity="center"
+	            android:orientation="vertical" >
+	
+	            <RelativeLayout
+					android:layout_width="fill_parent" 
+					android:layout_height="fill_parent"
+				    android:id="@+id/reportdetail_desc_txt"
+				    android:animationCache="false">
+				</RelativeLayout>
+	        </LinearLayout>
+	    </ScrollView>
+	    <ImageView
+		    android:id="@+id/image_hr"
+		    android:layout_width="@dimen/dimen_300dp"
+		    android:layout_height="@dimen/dimen_20dp"
+		    android:visibility="visible"
+		    android:scaleType="fitXY"
+		    android:src="@drawable/home_m3" />
+    </LinearLayout>    
+
+	<ListView
+	    android:id="@+id/listview_reportdetail"
+	    android:layout_width="fill_parent"
+	    android:layout_height="match_parent"
+	    android:layout_above="@+id/reportdetail_footer"
+	    android:layout_below="@+id/reportdetail_top"
+	    android:divider="@null">
+
+    </ListView>
+
+    <LinearLayout
+        android:id="@+id/reportdetail_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="5dp" >
+
+        <org.acv.bynal.views.BaseEditText
+            android:id="@+id/reportdetail_footer_text"
+            android:layout_width="@dimen/dimen_300dp"
+            android:layout_height="@dimen/dimen_50dp"
+            android:background="@drawable/messagepost_1"
+            android:ems="10"
+            android:gravity="top"
+            android:textSize="@dimen/dimen_15dp"
+            android:padding="@dimen/dimen_10dp"
+            android:text="" >
+        </org.acv.bynal.views.BaseEditText>
+
+        <org.acv.bynal.views.BaseTextView
+            android:id="@+id/reportdetail_footer_btn"
+            android:layout_width="@dimen/dimen_135dp"
+            android:layout_height="@dimen/dimen_30dp"
+            android:textSize="@dimen/dimen_15dp"
+            android:layout_marginBottom="@dimen/dimen_5dp"
+            android:layout_marginTop="@dimen/dimen_5dp"
+            android:background="@drawable/btn_red"
+            android:text="コメントする"
+            android:gravity="center" />
+    </LinearLayout>
+</RelativeLayout>

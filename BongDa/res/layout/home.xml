@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:scrollbarSize="0dp"
+    android:scrollbars="none" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <org.acv.bynal.views.BaseTextView
+            android:id="@+id/textviewhostproject"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_46dp"
+            android:background="@drawable/home_1"
+            android:gravity="center|left" />
+
+        <com.acv.libs.base.BaseViewPager
+            android:id="@+id/pagerhostproject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <org.acv.bynal.views.BaseTextView
+            android:id="@+id/home_m3"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_16dp"
+            android:background="@drawable/home_m3"
+            android:gravity="center|left" />
+
+        <org.acv.bynal.views.BaseTextView
+            android:id="@+id/textviewnewproject"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_46dp"
+            android:background="@drawable/home_2"
+            android:gravity="center|left" />
+
+        <com.acv.libs.base.BaseViewPager2
+            android:id="@+id/pagernewproject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp" />
+    </LinearLayout>
+
+</ScrollView>

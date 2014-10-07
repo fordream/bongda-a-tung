@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_230dp"
+    android:orientation="vertical" >
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/baseviewpager_pager2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_230dp" >
+    </android.support.v4.view.ViewPager>
+    <!--
+    <com.acv.libs.viewpagerindicator.CirclePageIndicator
+        android:id="@+id/baseviewpager_indicator2"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:padding="20dip" />    -->
+
+</RelativeLayout>

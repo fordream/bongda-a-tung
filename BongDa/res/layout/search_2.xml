@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+   	<LinearLayout
+   	    android:layout_width="@dimen/dimen_300dp"
+   	    android:layout_height="wrap_content"
+   	    android:background="#ffffff"
+   	    android:layout_marginLeft="@dimen/dimen_10dp"
+   	    android:layout_marginRight="@dimen/dimen_10dp"
+   	    android:layout_marginTop="@dimen/dimen_12dp"
+   	    android:orientation="horizontal" >
+		<LinearLayout
+   	    	android:layout_width="@dimen/dimen_42dp"
+   	        android:layout_height="@dimen/dimen_35dp">
+			<ImageView
+			    android:id="@+id/imageView1"
+			    android:layout_width="@dimen/dimen_25dp"
+			    android:layout_height="@dimen/dimen_15dp"
+			    android:layout_marginTop="@dimen/dimen_10dp"
+			    android:layout_marginLeft="@dimen/dimen_6dp"
+			    android:visibility="gone"
+			    android:src="@drawable/icon_setting_a" />
+			<ImageView
+			    android:id="@+id/imageView1_2"
+			    android:layout_width="@dimen/dimen_25dp"
+			    android:layout_height="@dimen/dimen_17dp"
+			    android:layout_marginTop="@dimen/dimen_9dp"
+			    android:layout_marginLeft="@dimen/dimen_6dp"
+			    android:visibility="visible"
+			    android:src="@drawable/icon_setting_b" />
+		</LinearLayout>
+   	    <EditText
+   	        android:id="@+id/txtSearch"
+   	        android:layout_width="@dimen/dimen_215dp"
+   	        android:layout_height="@dimen/dimen_35dp"
+   	        android:background="@drawable/search_bg"
+   	        android:ems="10"
+   	        android:singleLine="true"
+   	        android:inputType="text"
+   	        android:paddingLeft="10dp"
+   	        android:scaleType="fitXY"
+   	        android:paddingRight="0dp" 
+   	        android:hint="全体から検索"
+   	        android:textColorHint="#636363"
+   	        android:textSize="@dimen/dimen_11dp"
+   	        android:imeOptions="actionSearch">
+
+   	        <requestFocus />
+   	    </EditText>
+
+   	    <ImageView
+   	        android:id="@+id/imageView2"
+   	        android:layout_width="@dimen/dimen_42dp"
+   	        android:layout_height="@dimen/dimen_35dp"
+   	        android:scaleType="fitXY"
+   	        android:src="@drawable/search_btn" />
+
+   	</LinearLayout>
+    <LinearLayout
+   	    android:layout_width="match_parent"
+   	    android:layout_height="match_parent"
+   	    android:layout_marginLeft="@dimen/dimen_10dp"
+   	    android:layout_marginRight="@dimen/dimen_10dp"
+   	    android:orientation="vertical" >
+   	    <ListView 
+	    android:id="@+id/listview"
+	    android:layout_width="match_parent"
+	    android:dividerHeight="2dp"
+    	android:divider="@drawable/list_divider"
+        android:layout_height="wrap_content">
+	
+		</ListView>
+   	</LinearLayout>
+    
+</LinearLayout>    

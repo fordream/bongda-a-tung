@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="10dip"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/postmesage_m1"
+        android:layout_width="@dimen/dimen_300dp"
+        android:layout_height="wrap_content"
+        android:gravity="center|top"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/postmesage_avatar1"
+            android:layout_width="@dimen/dimen_50dp"
+            android:layout_height="@dimen/dimen_50dp" >
+
+            <ImageView
+                android:id="@+id/postmesage_avatar_img"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/message_2" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/postmesage_left"
+            android:layout_width="@dimen/dimen_14dp"
+            android:layout_height="@dimen/dimen_22dp"
+            android:background="@drawable/messagepost_left_1" />
+
+        <LinearLayout
+            android:id="@+id/postmesage_m2"
+            android:layout_width="@dimen/dimen_230dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/message_message_3"
+            android:orientation="vertical"
+            android:padding="10dp" >
+
+            <org.acv.bynal.views.BaseBoldTextView
+                android:id="@+id/postmesage_textview1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="BaseBoldTextView"
+                android:textColor="#333333"
+                android:textSize="@dimen/dimen_17dp"
+                android:textStyle="bold" />
+
+            <org.acv.bynal.views.BaseTextView
+                android:id="@+id/postmesage_textview2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimen_5dp"
+                android:text="BaseTextView"
+                android:textColor="#333333"
+                android:textSize="@dimen/dimen_14dp" />
+
+            <org.acv.bynal.views.BaseTextView
+                android:id="@+id/postmesage_textview3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="BaseTextView"
+                android:textColor="#333333"
+                android:textSize="@dimen/dimen_15dp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/postmesage_right"
+            android:layout_width="@dimen/dimen_14dp"
+            android:layout_height="@dimen/dimen_22dp"
+            android:background="@drawable/messagepost_right_1" />
+
+        <RelativeLayout
+            android:id="@+id/postmesage_avatar2"
+            android:layout_width="@dimen/dimen_50dp"
+            android:layout_height="@dimen/dimen_50dp" >
+
+            <ImageView
+                android:id="@+id/postmesage_avatar_img2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/message_2" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

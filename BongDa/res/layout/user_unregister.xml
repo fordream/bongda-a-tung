@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:gravity="center|top"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:id="@+id/login_main_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+				android:layout_width="fill_parent" 
+				android:layout_height="fill_parent"
+			    android:id="@+id/credit_display"
+			    android:animationCache="false">
+			</RelativeLayout>
+            <org.acv.bynal.views.BaseBoldTextView
+                android:id="@+id/profile_user_btnunregister"
+                android:visibility="visible"
+                android:layout_width="@dimen/dimen_197dp"
+                android:layout_height="@dimen/dimen_37dp"
+                android:background="@drawable/btn_grey"
+                android:gravity="center"
+                android:textStyle="bold"
+	         	android:textColor="#ffffff"
+	         	android:textSize="@dimen/dimen_15dp"
+	         	android:layout_marginBottom="@dimen/dimen_20dp"
+                android:text="退会手続きを行う" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

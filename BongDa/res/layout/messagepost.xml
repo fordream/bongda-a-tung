@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <ListView
+        android:id="@+id/messagepost_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/messagepost_footer"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:listSelector="@drawable/transfer" >
+    </ListView>
+
+    <LinearLayout
+        android:id="@+id/messagepost_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="5dp" >
+
+        <org.acv.bynal.views.BaseEditText
+            android:id="@+id/messagepost_footer_text"
+            android:layout_width="@dimen/dimen_300dp"
+            android:layout_height="@dimen/dimen_90dp"
+            android:background="@drawable/messagepost_1"
+            android:gravity="top"
+            android:padding="@dimen/dimen_10dp"
+            android:text=""
+            
+            android:textSize="@dimen/dimen_20dp" >
+        </org.acv.bynal.views.BaseEditText>
+
+        <org.acv.bynal.views.BaseTextView
+            android:id="@+id/messagepost_footer_btn"
+            android:layout_width="@dimen/dimen_135dp"
+            android:layout_height="@dimen/dimen_37dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:background="@drawable/messagepost_2"
+            android:gravity="center"
+            android:textSize="@dimen/dimen_20dp" >
+        </org.acv.bynal.views.BaseTextView>
+    </LinearLayout>
+
+</RelativeLayout>
