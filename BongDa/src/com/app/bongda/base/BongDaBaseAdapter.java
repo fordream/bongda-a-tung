@@ -8,10 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 public abstract class BongDaBaseAdapter extends BaseAdapter {
 	private List<Object> data = new ArrayList<Object>();
-
+	public void setText(View convertView, int textview01, String time) {
+		((TextView)convertView.findViewById(textview01)).setText(time);
+	}
 	public BongDaBaseAdapter() {
 		super();
 	}

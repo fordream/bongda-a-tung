@@ -6,70 +6,91 @@
     android:gravity="center"
     android:orientation="vertical" >
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/TextView01"
-            android:layout_width="@dimen/dimen_225dp"
-            android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/dimen_5dp"
-            android:text="Large Text"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#ffffff"
-            android:textSize="@dimen/dimen_8dp" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_5dp" >
 
         <ImageView
             android:id="@+id/ImageView02"
-            android:layout_width="@dimen/dimen_50dp"
-            android:layout_height="@dimen/dimen_30dp"
+            android:layout_width="@dimen/header_button_size"
+            android:layout_height="@dimen/header_button_size"
+            android:layout_toLeftOf="@+id/ImageView01"
             android:background="@drawable/setting_s7" />
 
         <ImageView
             android:id="@+id/ImageView01"
-            android:layout_width="@dimen/dimen_50dp"
-            android:layout_height="@dimen/dimen_30dp"
+            android:layout_width="@dimen/header_button_size"
+            android:layout_height="@dimen/header_button_size"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dimen_5dp"
+            android:layout_marginLeft="@dimen/dimen_5dp"
             android:background="@drawable/catalogue2_14" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/TextView01"
+            style="@style/bongda_text_item_small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <ImageView
-            android:id="@+id/ImageView04"
-            android:layout_width="@dimen/dimen_25dp"
-            android:layout_height="@dimen/dimen_25dp"
-            android:src="@drawable/menu_home_m7" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_5dp"
+        android:layout_marginTop="@dimen/dimen_5dp" >
 
         <ImageView
             android:id="@+id/ImageView03"
-            android:layout_width="@dimen/dimen_50dp"
-            android:layout_height="@dimen/dimen_30dp"
+            android:layout_width="@dimen/dimen_40dp"
+            android:layout_height="@dimen/dimen_40dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
             android:background="@drawable/home_p3" />
 
         <TextView
             android:id="@+id/TextView02"
-            android:layout_width="@dimen/dimen_225dp"
+            style="@style/bongda_text_item_small"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/dimen_5dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/ImageView03"
+            android:gravity="right"
             android:text="Large Text"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#ffffff"
             android:textSize="@dimen/dimen_8dp" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/TextView023"
+            style="@style/bongda_text_item_small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/ImageView03"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/textView1"
+        style="@style/bongda_text_item_small"
         android:layout_width="@dimen/dimen_225dp"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/dimen_5dp"
+        android:gravity="center"
         android:text="Large Text"
-        android:textColor="#ffffff"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="@dimen/dimen_8dp" />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        style="@style/line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_5dp"
+        android:orientation="vertical" >
+    </TextView>
 
 </LinearLayout>

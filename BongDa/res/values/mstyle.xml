@@ -13,4 +13,8 @@
         <item name="android:textSize">@dimen/dimen_14dp</item>
     </style>
 
+    <style name="bongda_text_item_small" parent="@style/bongda_text_item">
+        <item name="android:textSize">@dimen/dimen_10dp</item>
+    </style>
+
 </resources>
