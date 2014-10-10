@@ -12,15 +12,14 @@
         android:background="@drawable/setting_s1" />
 
     <TextView
+        style="@style/bongda_text_item"
         android:id="@+id/textView1"
         android:background="@drawable/setting_item_bg"
         android:layout_width="@dimen/dimen_250dp"
         android:layout_marginLeft="@dimen/dimen_5dp"
-        android:paddingLeft="@dimen/dimen_10dp"
         android:gravity="center|left"
         android:layout_height="@dimen/dimen_40dp"
         android:text="Large Text"
-        android:textSize="@dimen/dimen_13dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </LinearLayout>

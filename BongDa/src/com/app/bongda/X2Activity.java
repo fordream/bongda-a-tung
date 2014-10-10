@@ -9,6 +9,7 @@ import com.app.bongda.base.BaseActivtiy;
 import com.app.bongda.fragment.CountryFragment;
 import com.app.bongda.fragment.DanhSachGiaiDauFragment;
 import com.app.bongda.fragment.PhongDoDoiDauFragment;
+import com.app.bongda.model.Country;
 
 public class X2Activity extends BaseActivtiy {
 //Chcon giai dau
@@ -28,7 +29,8 @@ public class X2Activity extends BaseActivtiy {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view,
 				int position, long id) {
-			showFragment(new DanhSachGiaiDauFragment(listGiaiDau));
+			Country country = (Country)parent.getItemAtPosition(position);
+			showFragment(new DanhSachGiaiDauFragment(country,listGiaiDau));
 		}
 	};
 	

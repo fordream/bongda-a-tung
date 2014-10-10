@@ -10,6 +10,28 @@
         android:layout_height="wrap_content" >
     </com.app.bongda.view.HeaderView>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="@dimen/dimen_10dp"
+        android:paddingTop="@dimen/dimen_10dp" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="@dimen/dimen_30dp"
+            android:layout_height="@dimen/dimen_20dp"
+            android:background="@drawable/vietnam" />
+
+        <TextView
+            android:id="@+id/danhsachgiaidau_txtname"
+            style="@style/bongda_text_item"
+            android:layout_width="@dimen/dimen_260dp"
+            android:layout_height="wrap_content"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </LinearLayout>
+
     <ListView
         android:id="@+id/danhsachgiaidau_listview"
         android:layout_width="match_parent"

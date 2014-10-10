@@ -20,29 +20,6 @@ public class LiveScoreFragment extends BaseFragment {
 		this.onItemClickListener = onItemClickListener;
 	}
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		View view = super.onCreateView(inflater, container, savedInstanceState);
-		/**
-		 * init header view
-		 */
-		HeaderView headerView = (HeaderView) view
-				.findViewById(R.id.headerView1);
-		headerView.setTextHeader(R.string.cacnuoc);
-		/** init data */
-		ListView listView = (ListView) view.findViewById(R.id.listView1);
-		listView.setOnItemClickListener(onItemClickListener);
-		countryAdapter.addItem("");
-		countryAdapter.addItem("");
-		countryAdapter.addItem("");
-		countryAdapter.addItem("");
-		countryAdapter.addItem("");
-
-		listView.setAdapter(countryAdapter);
-		return view;
-	}
-
 	private CountryAdapter countryAdapter = new CountryAdapter();
 
 	private class CountryAdapter extends BongDaBaseAdapter {
@@ -52,10 +29,35 @@ public class LiveScoreFragment extends BaseFragment {
 			return R.layout.country_item;
 		}
 
+		@Override
+		public void showData(Object item, View convertView) {
+			// TODO Auto-generated method stub
+			
+		}
+
 	}
 
 	@Override
 	public int getLayout() {
 		return R.layout.country;
+	}
+
+	@Override
+	public void onInitCreateView(View view) {
+		/** init data */
+		ListView listView = (ListView) view.findViewById(R.id.listView1);
+		listView.setOnItemClickListener(onItemClickListener);
+
+		listView.setAdapter(countryAdapter);
+	}
+
+	@Override
+	public void onInitData() {
+		countryAdapter.addItem("");
+		countryAdapter.addItem("");
+		countryAdapter.addItem("");
+		countryAdapter.addItem("");
+		countryAdapter.addItem("");
+		countryAdapter.notifyDataSetChanged();
 	}
 }

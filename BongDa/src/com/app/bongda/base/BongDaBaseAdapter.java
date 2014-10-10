@@ -48,8 +48,11 @@ public abstract class BongDaBaseAdapter extends BaseAdapter {
 					.inflate(getLayout(), null);
 		}
 
+		showData(getItem(position), convertView);
 		return convertView;
 	}
+
+	public abstract void showData(Object item, View convertView);
 
 	public abstract int getLayout();
 

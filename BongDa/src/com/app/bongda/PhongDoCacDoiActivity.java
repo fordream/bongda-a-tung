@@ -9,7 +9,9 @@ import com.app.bongda.base.BaseActivtiy;
 import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.fragment.CountryFragment;
 import com.app.bongda.fragment.DanhSachGiaiDauFragment;
-import com.app.bongda.fragment.TySoFragment;
+import com.app.bongda.fragment.PhongDoFragment;
+import com.app.bongda.model.Country;
+import com.app.bongda.model.GiaiDau;
 
 public class PhongDoCacDoiActivity extends BaseActivtiy {
 	ICallbackAPI callbackAPI;
@@ -34,8 +36,8 @@ public class PhongDoCacDoiActivity extends BaseActivtiy {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
-
-			showFragment(new DanhSachGiaiDauFragment(giaidauOnItemClickListener));
+			Country country = (Country)parent.getItemAtPosition(position);
+			showFragment(new DanhSachGiaiDauFragment(country,giaidauOnItemClickListener));
 
 		}
 	};
@@ -45,8 +47,9 @@ public class PhongDoCacDoiActivity extends BaseActivtiy {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
-
-			showFragment(new TySoFragment(null));
+			GiaiDau giaiDau = (GiaiDau)parent.getItemAtPosition(position);
+			
+			showFragment(new PhongDoFragment(giaiDau,null));
 
 		}
 	};

@@ -12,14 +12,26 @@ public abstract class BaseFragment extends Fragment {
 		super();
 	}
 
+	private int time = 0;
+
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	final public View onCreateView(LayoutInflater inflater,
+			ViewGroup container, Bundle savedInstanceState) {
+		View view = super.onCreateView(inflater, container, savedInstanceState);
 		if (getLayout() != 0) {
-			return inflater.inflate(getLayout(), null);
+			view = inflater.inflate(getLayout(), null);
 		}
-		return super.onCreateView(inflater, container, savedInstanceState);
+		onInitCreateView(view);
+		if (time == 0) {
+			onInitData();
+			time++;
+		}
+		return view;
 	}
+
+	public abstract void onInitCreateView(View view);
+
+	public abstract void onInitData();
 
 	public abstract int getLayout();
 

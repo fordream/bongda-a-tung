@@ -13,5 +13,7 @@
     <string name="danhsachgiaidau">dach sach giai dau</string>
     <string name="cacnuoc">Cac nuoc</string>
     <string name="tyso">Ty so</string>
+    <string name="quocgia">Quoc Gia</string>
+    <string name="phongdo">Phong Do</string>
 
 </resources>

@@ -1,23 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#123123"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dimen_10dp"
+        android:paddingTop="@dimen/dimen_10dp" >
+
+        <TextView
+            android:id="@+id/textView1"
+            style="@style/bongda_text_item"
+            android:layout_width="@dimen/dimen_260dp"
+            android:layout_height="wrap_content"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="@dimen/dimen_10dp"
+            android:layout_height="@dimen/dimen_16dp"
+            android:src="@drawable/bongda1" />
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="@dimen/dimen_225dp"
+        style="@style/line"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/dimen_5dp"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#ffffff"
-        android:textSize="@dimen/dimen_8dp" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="@dimen/dimen_25dp"
-        android:layout_height="@dimen/dimen_25dp"
-        android:src="@drawable/menu_home_m7" />
+        android:orientation="vertical" >
+    </TextView>
 
 </LinearLayout>
