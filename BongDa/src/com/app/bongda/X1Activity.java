@@ -32,7 +32,7 @@ public class X1Activity extends BaseActivtiy {
 			
 			// phong do doi dau
 			
-			// xem tuong thuat
+			// xem tuong thuat a
 			showFragment(new TuongThuatTranLiveScoreFragment(liveScoreTuongThuatOnItemClickListener));
 		}
 	};
