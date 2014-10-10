@@ -9,9 +9,9 @@
     <string name="setting_txt6">Nhận định của chuyên gia</string>
     <string name="setting_txt7">Máy tính dự đoán</string>
     <string name="setting_txt8">Phong độ các đội</string>
-    
     <string name="bangxephang">@string/setting_txt4</string>
     <string name="danhsachgiaidau">dach sach giai dau</string>
     <string name="cacnuoc">Cac nuoc</string>
+    <string name="tyso">Ty so</string>
 
 </resources>

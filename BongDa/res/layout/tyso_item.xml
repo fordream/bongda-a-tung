@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dimen_10dp"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/TextView01"
+            android:layout_width="@dimen/dimen_225dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dimen_5dp"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/dimen_8dp" />
+
+        <ImageView
+            android:id="@+id/ImageView02"
+            android:layout_width="@dimen/dimen_50dp"
+            android:layout_height="@dimen/dimen_30dp"
+            android:background="@drawable/setting_s7" />
+
+        <ImageView
+            android:id="@+id/ImageView01"
+            android:layout_width="@dimen/dimen_50dp"
+            android:layout_height="@dimen/dimen_30dp"
+            android:background="@drawable/catalogue2_14" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/ImageView04"
+            android:layout_width="@dimen/dimen_25dp"
+            android:layout_height="@dimen/dimen_25dp"
+            android:src="@drawable/menu_home_m7" />
+
+        <ImageView
+            android:id="@+id/ImageView03"
+            android:layout_width="@dimen/dimen_50dp"
+            android:layout_height="@dimen/dimen_30dp"
+            android:background="@drawable/home_p3" />
+
+        <TextView
+            android:id="@+id/TextView02"
+            android:layout_width="@dimen/dimen_225dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dimen_5dp"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/dimen_8dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="@dimen/dimen_225dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dimen_5dp"
+        android:text="Large Text"
+        android:textColor="#ffffff"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="@dimen/dimen_8dp" />
+
+</LinearLayout>

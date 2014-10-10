@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
@@ -13,10 +12,10 @@ import com.app.bongda.base.BaseFragment;
 import com.app.bongda.base.BongDaBaseAdapter;
 import com.app.bongda.view.HeaderView;
 
-public class DanhSachGiaiDauFragment extends BaseFragment {
+public class TySoFragment extends BaseFragment {
 	OnItemClickListener onItemClickListener;
 
-	public DanhSachGiaiDauFragment(OnItemClickListener onItemClickListener) {
+	public TySoFragment(OnItemClickListener onItemClickListener) {
 		super();
 		this.onItemClickListener = onItemClickListener;
 	}
@@ -30,10 +29,9 @@ public class DanhSachGiaiDauFragment extends BaseFragment {
 		 */
 		HeaderView headerView = (HeaderView) view
 				.findViewById(R.id.headerView1);
-		headerView.setTextHeader(R.string.danhsachgiaidau);
+		headerView.setTextHeader(R.string.tyso);
 		/** init data */
-		ListView listView = (ListView) view
-				.findViewById(R.id.danhsachgiaidau_listview);
+		ListView listView = (ListView) view.findViewById(R.id.tyso_listview);
 		listView.setOnItemClickListener(onItemClickListener);
 		countryAdapter.addItem("");
 		countryAdapter.addItem("");
@@ -51,13 +49,13 @@ public class DanhSachGiaiDauFragment extends BaseFragment {
 
 		@Override
 		public int getLayout() {
-			return R.layout.danhsachgiaidau_item;
+			return R.layout.tyso_item;
 		}
 
 	}
 
 	@Override
 	public int getLayout() {
-		return R.layout.danhsachgiaidau;
+		return R.layout.tyso;
 	}
 }

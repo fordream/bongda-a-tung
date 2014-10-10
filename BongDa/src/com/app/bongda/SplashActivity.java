@@ -11,6 +11,7 @@ import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
 
+import com.app.bongda.util.ByUtils;
 import com.app.bongda.view.IndivicatorView;
 
 public class SplashActivity extends TabActivity implements OnTabChangeListener {
@@ -60,6 +61,8 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 			} else if (index == 7) {
 				// phong do cac doi
 				// country -> cac giai dau -> phong do
+				startActivity(new Intent(SplashActivity.this,
+						PhongDoCacDoiActivity.class));
 			} else if (index == 6) {
 				// May tinh du doan
 				// chua co
@@ -95,6 +98,16 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 
 	protected Activity getActivity() {
 		return this;
+	}
+
+	@Override
+	public void startActivity(Intent intent) {
+		startActivityForResult(intent, ByUtils.REQUEST);
+	}
+
+	@Override
+	public void startActivityForResult(Intent intent, int requestCode) {
+		super.startActivityForResult(intent, ByUtils.REQUEST);
 	}
 
 }

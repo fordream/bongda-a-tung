@@ -52,7 +52,7 @@ public class X1Activity extends BaseActivtiy {
 			}
 		};
 		
-		CallAPI();
+//		CallAPI();
 		showFragment(new LiveScoreFragment(liveScoreOnItemClickListener));
 	}
 	
