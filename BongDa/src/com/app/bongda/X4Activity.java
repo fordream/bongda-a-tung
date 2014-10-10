@@ -10,6 +10,7 @@ import com.app.bongda.fragment.BangXepHangFragment;
 import com.app.bongda.fragment.CountryFragment;
 import com.app.bongda.fragment.DanhSachGiaiDauFragment;
 import com.app.bongda.model.Country;
+import com.app.bongda.model.GiaiDau;
 
 public class X4Activity extends BaseActivtiy {
 	// bang xep hang
@@ -27,7 +28,9 @@ public class X4Activity extends BaseActivtiy {
 							@Override
 							public void onItemClick(AdapterView<?> parent,
 									View view, int position, long id) {
-								showBangXephang();
+								GiaiDau dau = (GiaiDau) parent
+										.getItemAtPosition(position);
+								showFragment(new BangXepHangFragment(dau, null));
 							}
 
 						}));
@@ -36,12 +39,4 @@ public class X4Activity extends BaseActivtiy {
 		}));
 	}
 
-	private void showDanhSachGiaiDau() {
-
-	}
-
-	private void showBangXephang() {
-		showFragment(new BangXepHangFragment(null));
-
-	}
 }
