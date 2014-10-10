@@ -12,10 +12,10 @@ import com.app.bongda.base.BaseFragment;
 import com.app.bongda.base.BongDaBaseAdapter;
 import com.app.bongda.view.HeaderView;
 
-public class CountryFragment extends BaseFragment {
+public class PhongDoDoiDauFragment extends BaseFragment {
 	OnItemClickListener onItemClickListener;
 
-	public CountryFragment(OnItemClickListener onItemClickListener) {
+	public PhongDoDoiDauFragment(OnItemClickListener onItemClickListener) {
 		super();
 		this.onItemClickListener = onItemClickListener;
 	}

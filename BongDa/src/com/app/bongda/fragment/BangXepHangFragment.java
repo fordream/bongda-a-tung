@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
@@ -12,10 +13,10 @@ import com.app.bongda.base.BaseFragment;
 import com.app.bongda.base.BongDaBaseAdapter;
 import com.app.bongda.view.HeaderView;
 
-public class CountryFragment extends BaseFragment {
+public class BangXepHangFragment extends BaseFragment {
 	OnItemClickListener onItemClickListener;
 
-	public CountryFragment(OnItemClickListener onItemClickListener) {
+	public BangXepHangFragment(OnItemClickListener onItemClickListener) {
 		super();
 		this.onItemClickListener = onItemClickListener;
 	}
@@ -29,7 +30,8 @@ public class CountryFragment extends BaseFragment {
 		 */
 		HeaderView headerView = (HeaderView) view
 				.findViewById(R.id.headerView1);
-		headerView.setTextHeader(R.string.cacnuoc);
+		headerView.setTextHeader(R.string.bangxephang);
+
 		/** init data */
 		ListView listView = (ListView) view.findViewById(R.id.listView1);
 		listView.setOnItemClickListener(onItemClickListener);

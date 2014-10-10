@@ -7,16 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public abstract class BaseFragment extends Fragment {
-	private BaseFragment parent;
-
-	public void setParent(BaseFragment parent) {
-		this.parent = parent;
-	}
-
-	public BaseFragment(BaseFragment parent) {
-		super();
-		this.parent = parent;
-	}
 
 	public BaseFragment() {
 		super();

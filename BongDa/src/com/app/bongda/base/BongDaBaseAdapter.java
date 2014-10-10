@@ -10,10 +10,19 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 public abstract class BongDaBaseAdapter extends BaseAdapter {
-	private List<?> data = new ArrayList<Object>();
+	private List<Object> data = new ArrayList<Object>();
 
 	public BongDaBaseAdapter() {
 		super();
+	}
+
+	public void addItem(Object string) {
+		data.add(string);
+	}
+
+	public void clear() {
+		data.clear();
+		notifyDataSetChanged();
 	}
 
 	@Override

@@ -77,13 +77,13 @@ public class X5Activity extends Activity implements OnItemClickListener {
 		} else if (position == 3) {
 			SplashActivity.changTab(3, this);
 		} else if (position == 4) {
-
+			SplashActivity.changTab(4, this);
 		} else if (position == 5) {
-
+			SplashActivity.changTab(5, this);
 		} else if (position == 6) {
-
+			SplashActivity.changTab(6, this);
 		} else if (position == 7) {
-
+			SplashActivity.changTab(7, this);
 		}
 
 	}

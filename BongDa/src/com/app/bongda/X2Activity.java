@@ -1,15 +1,55 @@
 package com.app.bongda;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 
-public class X2Activity extends Activity {
+import com.app.bongda.base.BaseActivtiy;
+import com.app.bongda.fragment.CountryFragment;
+import com.app.bongda.fragment.DanhSachGiaiDauFragment;
+import com.app.bongda.fragment.PhongDoDoiDauFragment;
 
+public class X2Activity extends BaseActivtiy {
+//Chcon giai dau
+	// coountry -> chon giai dau-> tuogn thuat(giong ben live)
+	//
+	//                          -> phong do doi dau   
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.x2);
+		
+		
+		
+		showFragment(new CountryFragment(clickListenerCountry));
 	}
+	
+	private OnItemClickListener clickListenerCountry = new OnItemClickListener() {
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view,
+				int position, long id) {
+			showFragment(new DanhSachGiaiDauFragment(listGiaiDau));
+		}
+	};
+	
+	private OnItemClickListener listGiaiDau = new OnItemClickListener() {
 
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			showFragment(new PhongDoDoiDauFragment(phongdoonItemClickListener));
+			
+			//TuongThuatTranFragment
+		}
+	};
+	
+	private OnItemClickListener phongdoonItemClickListener = new OnItemClickListener() {
+
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			
+		}
+	};
 
 }

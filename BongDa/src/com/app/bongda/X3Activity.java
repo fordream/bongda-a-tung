@@ -1,14 +1,14 @@
 package com.app.bongda;
 
-import android.app.Activity;
 import android.os.Bundle;
 
-public class X3Activity extends Activity {
+import com.app.bongda.base.BaseActivtiy;
+
+public class X3Activity extends BaseActivtiy {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.x3);
 	}
 
 

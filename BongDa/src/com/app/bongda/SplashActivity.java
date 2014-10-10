@@ -15,12 +15,14 @@ import com.app.bongda.view.IndivicatorView;
 
 public class SplashActivity extends TabActivity implements OnTabChangeListener {
 	private static final String CHANGETAG = "CHANGETAG";
-	public static final void changTab(int index, Context context){
+
+	public static final void changTab(int index, Context context) {
 		Intent intent = new Intent(CHANGETAG);
 		intent.putExtra("index", index);
 		context.sendBroadcast(intent);
-		
+
 	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,6 +34,8 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 		addTab(X3Activity.class, "M2", "M2", R.drawable.menu_3);
 		addTab(X4Activity.class, "M3", "M3", R.drawable.menu_4);
 		addTab(X5Activity.class, "M3", "M3", R.drawable.menu_5);
+
+		getTabHost().setCurrentTab(4);
 	}
 
 	@Override
@@ -50,7 +54,22 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			int index = intent.getIntExtra("index", 0);
-			getTabHost().setCurrentTab(index);
+
+			if (index <= 3) {
+				getTabHost().setCurrentTab(index);
+			} else if (index == 7) {
+				// phong do cac doi
+				// country -> cac giai dau -> phong do
+			} else if (index == 6) {
+				// May tinh du doan
+				// chua co
+			} else if (index == 5) {
+				// nhan dinh cua chuyen gia
+				// crash
+			} else if (index == 4) {
+				// game du doan
+				// chua co
+			}
 		}
 	};
 
