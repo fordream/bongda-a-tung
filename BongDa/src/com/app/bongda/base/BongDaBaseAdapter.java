@@ -12,9 +12,11 @@ import android.widget.TextView;
 
 public abstract class BongDaBaseAdapter extends BaseAdapter {
 	private List<Object> data = new ArrayList<Object>();
+
 	public void setText(View convertView, int textview01, String time) {
-		((TextView)convertView.findViewById(textview01)).setText(time);
+		((TextView) convertView.findViewById(textview01)).setText(time);
 	}
+
 	public BongDaBaseAdapter() {
 		super();
 	}
@@ -52,10 +54,15 @@ public abstract class BongDaBaseAdapter extends BaseAdapter {
 		}
 
 		showData(getItem(position), convertView);
+		showData(position, getItem(position), convertView);
 		return convertView;
 	}
 
 	public abstract void showData(Object item, View convertView);
+
+	public void showData(int position, Object item, View convertView) {
+
+	}
 
 	public abstract int getLayout();
 

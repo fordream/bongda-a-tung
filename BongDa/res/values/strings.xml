@@ -15,5 +15,15 @@
     <string name="tyso">Ty so</string>
     <string name="quocgia">Quoc Gia</string>
     <string name="phongdo">Phong Do</string>
+    <string name="stt">STT</string>
+    <string name="tendoi">Ten doi</string>
+    <string name="pts">PTS</string>
+    <string name="gp">GP</string>
+    <string name="w">W</string>
+    <string name="d">D</string>
+    <string name="l">L</string>
+    <string name="gf">GF</string>
+    <string name="ga">GA</string>
+    <string name="_congtru">+/-</string>
 
 </resources>
