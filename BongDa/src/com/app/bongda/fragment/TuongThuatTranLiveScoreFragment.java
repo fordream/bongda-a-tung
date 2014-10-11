@@ -27,12 +27,11 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 
 		@Override
 		public int getLayout() {
-			return R.layout.country_item;
+			return R.layout.tuongthuattructiep_item;
 		}
 
 		@Override
 		public void showData(Object item, View convertView) {
-			// TODO Auto-generated method stub
 			
 		}
 
@@ -40,7 +39,7 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 
 	@Override
 	public int getLayout() {
-		return R.layout.country;
+		return R.layout.tuongthuattructiep;
 	}
 
 	@Override
@@ -51,6 +50,9 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 		HeaderView headerView = (HeaderView) view
 				.findViewById(R.id.headerView1);
 		headerView.setTextHeader(R.string.cacnuoc);
+		headerView.findViewById(R.id.Button02).setVisibility(View.VISIBLE);
+		headerView.findViewById(R.id.Button03).setVisibility(View.VISIBLE);
+		headerView.findViewById(R.id.Button04).setVisibility(View.VISIBLE);
 		/** init data */
 		ListView listView = (ListView) view.findViewById(R.id.listView1);
 		listView.setOnItemClickListener(onItemClickListener);

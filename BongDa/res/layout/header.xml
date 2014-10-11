@@ -35,7 +35,7 @@
 
         <Button
             android:id="@+id/Button01"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_width="@dimen/header_button_size"
             android:layout_height="@dimen/header_button_size"
             android:text="Button" />
