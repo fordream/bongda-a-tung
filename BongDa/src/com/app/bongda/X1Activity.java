@@ -12,16 +12,19 @@ import android.widget.AdapterView.OnItemClickListener;
 import com.app.bongda.base.BaseActivtiy;
 import com.app.bongda.callback.APICaller;
 import com.app.bongda.callback.APICaller.ICallbackAPI;
+import com.app.bongda.fragment.BangXepHangFragment;
 import com.app.bongda.fragment.DuDoanKetQuaFragment;
 import com.app.bongda.fragment.LiveScoreFragment;
 import com.app.bongda.fragment.PhongDoDoiDauFragment;
 import com.app.bongda.fragment.TuongThuatTranLiveScoreFragment;
 import com.app.bongda.fragment.TyLeDuDoanFragment;
+import com.app.bongda.inter.CallBackListenner;
+import com.app.bongda.model.GiaiDau;
 import com.app.bongda.model.LiveScore;
 import com.app.bongda.util.ByUtils;
 import com.app.bongda.util.CommonAndroid;
 
-public class X1Activity extends BaseActivtiy {
+public class X1Activity extends BaseX1X2Activity {
 	Context context;
 	ICallbackAPI callbackAPI;
 	// live score
@@ -54,7 +57,7 @@ public class X1Activity extends BaseActivtiy {
 		};
 		
 //		CallAPI();
-		showFragment(new LiveScoreFragment(liveScoreOnItemClickListener));
+		showLiveScore(null);
 	}
 	
 	public void CallAPI(){
@@ -63,33 +66,5 @@ public class X1Activity extends BaseActivtiy {
 		
 	}
 	
-	OnItemClickListener liveScoreOnItemClickListener = new OnItemClickListener() {
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) {
-			LiveScore liveScore = (LiveScore)parent.getItemAtPosition(position);
-			
-			// phong do doi dau
-			
-			// xem tuong thuat a
-			if(!liveScore.isHeader()){
-				showFragment(new TuongThuatTranLiveScoreFragment(liveScoreTuongThuatOnItemClickListener));
-			}
-		}
-	};
-	
-	OnItemClickListener liveScoreTuongThuatOnItemClickListener = new OnItemClickListener() {
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) {
-			//									-> ty le du doan
-			//			showFragment(new TyLeDuDoanFragment(null));
-			//									-> du doan ket qua
-			//			showFragment(new DuDoanKetQuaFragment(null));
-			//                                  -> phong do doi dau
-			showFragment(new PhongDoDoiDauFragment(null));
-		}
-	};
-
 
 }

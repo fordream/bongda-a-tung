@@ -11,7 +11,7 @@ import com.app.bongda.fragment.DanhSachGiaiDauFragment;
 import com.app.bongda.fragment.PhongDoDoiDauFragment;
 import com.app.bongda.model.Country;
 
-public class X2Activity extends BaseActivtiy {
+public class X2Activity extends BaseX1X2Activity {
 //Chcon giai dau
 	// coountry -> chon giai dau-> tuogn thuat(giong ben live)
 	//
@@ -39,7 +39,9 @@ public class X2Activity extends BaseActivtiy {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
-			showFragment(new PhongDoDoiDauFragment(phongdoonItemClickListener));
+			// data
+			showLiveScore(parent.getItemAtPosition(position));
+			//showFragment(new PhongDoDoiDauFragment(phongdoonItemClickListener));
 			
 			//TuongThuatTranFragment
 		}

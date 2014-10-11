@@ -1,24 +1,25 @@
 package com.app.bongda.fragment;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.app.bongda.R;
 import com.app.bongda.base.BaseFragment;
 import com.app.bongda.base.BongDaBaseAdapter;
+import com.app.bongda.inter.CallBackListenner;
 import com.app.bongda.model.LiveScore;
-import com.app.bongda.model.PhongDo;
 import com.app.bongda.view.HeaderView;
 
 public class LiveScoreFragment extends BaseFragment {
 	OnItemClickListener onItemClickListener;
+	CallBackListenner callBackListenner;
 
-	public LiveScoreFragment(OnItemClickListener onItemClickListener) {
+	public LiveScoreFragment(OnItemClickListener onItemClickListener,
+			CallBackListenner callBackListenner) {
 		super();
+		this.callBackListenner = callBackListenner;
 		this.onItemClickListener = onItemClickListener;
 	}
 
@@ -33,22 +34,44 @@ public class LiveScoreFragment extends BaseFragment {
 
 		@Override
 		public void showData(Object item, View convertView) {
-			LiveScore liveScore = (LiveScore)item;
-			convertView.findViewById(R.id.livescore_header).setVisibility(View.GONE);
-			convertView.findViewById(R.id.livescore_main).setVisibility(View.GONE);
-			
-			if(liveScore.isHeader()){
-				convertView.findViewById(R.id.livescore_header).setVisibility(View.VISIBLE);
-			}else{
-				convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
+			final LiveScore liveScore = (LiveScore) item;
+			convertView.findViewById(R.id.livescore_header).setVisibility(
+					View.GONE);
+			convertView.findViewById(R.id.livescore_main).setVisibility(
+					View.GONE);
+
+			if (liveScore.isHeader()) {
+				convertView.findViewById(R.id.livescore_header).setVisibility(
+						View.VISIBLE);
+			} else {
+				convertView.findViewById(R.id.livescore_main).setVisibility(
+						View.VISIBLE);
 			}
-			
-			setText(convertView,R.id.textView1, liveScore.getName());
-			
-			setText(convertView,R.id.TextView01, liveScore.getTime());
-			setText(convertView,R.id.TextView02, liveScore.getName());
-			setText(convertView,R.id.TextView023, liveScore.getName2());
-			setText(convertView,R.id.tv1, liveScore.getDate());
+
+			setText(convertView, R.id.textView1, liveScore.getName());
+
+			setText(convertView, R.id.TextView01, liveScore.getTime());
+			setText(convertView, R.id.TextView02, liveScore.getName());
+			setText(convertView, R.id.TextView023, liveScore.getName2());
+			setText(convertView, R.id.tv1, liveScore.getDate());
+
+			convertView.findViewById(R.id.imageView2).setOnClickListener(
+					new OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							callBackListenner.onCallBackListenner(0, liveScore);
+						}
+					});
+
+
+
+			convertView.findViewById(R.id.ImageView01).setOnClickListener(
+					new OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							callBackListenner.onCallBackListenner(2, liveScore);
+						}
+					});
 		}
 
 	}
@@ -75,20 +98,33 @@ public class LiveScoreFragment extends BaseFragment {
 
 	@Override
 	public void onInitData() {
-		countryAdapter.addItem(new LiveScore(true,"", "Eanglish", "ManCity", "11/10","4:10"));
-		countryAdapter.addItem(new LiveScore(false,"", "MU", "ManCity", "11/10","4:10"));
-		countryAdapter.addItem(new LiveScore(false,"", "MU", "ManCity", "11/10","4:10"));
-		countryAdapter.addItem(new LiveScore(false,"", "MU", "ManCity", "11/10","4:10"));
-		countryAdapter.addItem(new LiveScore(false,"", "MU", "ManCity", "11/10","4:10"));
-		
-		countryAdapter.addItem(new LiveScore(true,"", "Eanglish", "ManCity", "11/10","4:10"));
-		countryAdapter.addItem(new LiveScore(false,"", "MU", "ManCity", "11/10","4:10"));
-		countryAdapter.addItem(new LiveScore(true,"", "Eanglish", "ManCity", "11/10","4:10"));
-		countryAdapter.addItem(new LiveScore(false,"", "MU", "ManCity", "11/10","4:10"));
-		countryAdapter.addItem(new LiveScore(true,"", "Eanglish", "ManCity", "11/10","4:10"));
-		countryAdapter.addItem(new LiveScore(false,"", "MU", "ManCity", "11/10","4:10"));
-		countryAdapter.addItem(new LiveScore(true,"", "Eanglish", "ManCity", "11/10","4:10"));
-		countryAdapter.addItem(new LiveScore(false,"", "MU", "ManCity", "11/10","4:10"));
+		countryAdapter.addItem(new LiveScore(true, "", "Eanglish", "ManCity",
+				"11/10", "4:10"));
+		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
+				"11/10", "4:10"));
+		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
+				"11/10", "4:10"));
+		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
+				"11/10", "4:10"));
+		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
+				"11/10", "4:10"));
+
+		countryAdapter.addItem(new LiveScore(true, "", "Eanglish", "ManCity",
+				"11/10", "4:10"));
+		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
+				"11/10", "4:10"));
+		countryAdapter.addItem(new LiveScore(true, "", "Eanglish", "ManCity",
+				"11/10", "4:10"));
+		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
+				"11/10", "4:10"));
+		countryAdapter.addItem(new LiveScore(true, "", "Eanglish", "ManCity",
+				"11/10", "4:10"));
+		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
+				"11/10", "4:10"));
+		countryAdapter.addItem(new LiveScore(true, "", "Eanglish", "ManCity",
+				"11/10", "4:10"));
+		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
+				"11/10", "4:10"));
 		countryAdapter.notifyDataSetChanged();
 	}
 }
