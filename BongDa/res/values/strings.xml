@@ -25,5 +25,6 @@
     <string name="gf">GF</string>
     <string name="ga">GA</string>
     <string name="_congtru">+/-</string>
+    <string name="livescore">@string/setting_txt1</string>
 
 </resources>

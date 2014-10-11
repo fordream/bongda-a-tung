@@ -17,6 +17,7 @@ import com.app.bongda.fragment.LiveScoreFragment;
 import com.app.bongda.fragment.PhongDoDoiDauFragment;
 import com.app.bongda.fragment.TuongThuatTranLiveScoreFragment;
 import com.app.bongda.fragment.TyLeDuDoanFragment;
+import com.app.bongda.model.LiveScore;
 import com.app.bongda.util.ByUtils;
 import com.app.bongda.util.CommonAndroid;
 
@@ -66,11 +67,14 @@ public class X1Activity extends BaseActivtiy {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
+			LiveScore liveScore = (LiveScore)parent.getItemAtPosition(position);
 			
 			// phong do doi dau
 			
 			// xem tuong thuat a
-			showFragment(new TuongThuatTranLiveScoreFragment(liveScoreTuongThuatOnItemClickListener));
+			if(!liveScore.isHeader()){
+				showFragment(new TuongThuatTranLiveScoreFragment(liveScoreTuongThuatOnItemClickListener));
+			}
 		}
 	};
 	
