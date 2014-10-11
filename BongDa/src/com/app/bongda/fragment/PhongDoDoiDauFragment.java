@@ -26,20 +26,19 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 
 		@Override
 		public int getLayout() {
-			return R.layout.country_item;
+			return R.layout.phongdodoidau_item;
 		}
 
 		@Override
 		public void showData(Object item, View convertView) {
-			// TODO Auto-generated method stub
-			
+
 		}
 
 	}
 
 	@Override
 	public int getLayout() {
-		return R.layout.country;
+		return R.layout.phongdodoidau;
 	}
 
 	@Override
@@ -49,21 +48,10 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 		 */
 		HeaderView headerView = (HeaderView) view
 				.findViewById(R.id.headerView1);
-		headerView.setTextHeader(R.string.cacnuoc);
-		/** init data */
-		ListView listView = (ListView) view.findViewById(R.id.listView1);
-		listView.setOnItemClickListener(onItemClickListener);
-
-		listView.setAdapter(countryAdapter);
+		headerView.setTextHeader(R.string.xemphongdo);
 	}
 
 	@Override
 	public void onInitData() {
-		countryAdapter.addItem("");
-		countryAdapter.addItem("");
-		countryAdapter.addItem("");
-		countryAdapter.addItem("");
-		countryAdapter.addItem("");
-		countryAdapter.notifyDataSetChanged();
 	}
 }

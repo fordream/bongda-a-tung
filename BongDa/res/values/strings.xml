@@ -26,5 +26,7 @@
     <string name="ga">GA</string>
     <string name="_congtru">+/-</string>
     <string name="livescore">@string/setting_txt1</string>
+    <string name="xemphongdo">XEM PHONG DO</string>
+    <string name="ketqua5trangannhat">Key QUa 5 Tran Gan Nhat</string>
 
 </resources>
