@@ -1,5 +1,9 @@
 package com.app.bongda.fragment;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView.OnItemClickListener;
@@ -8,8 +12,13 @@ import android.widget.ListView;
 import com.app.bongda.R;
 import com.app.bongda.base.BaseFragment;
 import com.app.bongda.base.BongDaBaseAdapter;
+import com.app.bongda.callback.APICaller;
+import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.inter.CallBackListenner;
+import com.app.bongda.model.GiaiDau;
 import com.app.bongda.model.LiveScore;
+import com.app.bongda.util.ByUtils;
+import com.app.bongda.util.CommonAndroid;
 import com.app.bongda.view.HeaderView;
 
 public class LiveScoreFragment extends BaseFragment {
@@ -96,35 +105,70 @@ public class LiveScoreFragment extends BaseFragment {
 		listView.setAdapter(countryAdapter);
 	}
 
+	ICallbackAPI callbackAPI;
+	@SuppressWarnings("unused")
 	@Override
 	public void onInitData() {
-		countryAdapter.addItem(new LiveScore(true, "", "Eanglish", "ManCity",
-				"11/10", "4:10"));
-		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
-				"11/10", "4:10"));
-		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
-				"11/10", "4:10"));
-		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
-				"11/10", "4:10"));
-		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
-				"11/10", "4:10"));
+//		countryAdapter.addItem(new LiveScore(true, "", "Eanglish", "ManCity",
+//				"11/10", "4:10"));
+//		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
+//				"11/10", "4:10"));
+//		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
+//				"11/10", "4:10"));
+//		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
+//				"11/10", "4:10"));
+//		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
+//				"11/10", "4:10"));
+//
+//		countryAdapter.addItem(new LiveScore(true, "", "Eanglish", "ManCity",
+//				"11/10", "4:10"));
+//		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
+//				"11/10", "4:10"));
+//		countryAdapter.addItem(new LiveScore(true, "", "Eanglish", "ManCity",
+//				"11/10", "4:10"));
+//		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
+//				"11/10", "4:10"));
+//		countryAdapter.addItem(new LiveScore(true, "", "Eanglish", "ManCity",
+//				"11/10", "4:10"));
+//		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
+//				"11/10", "4:10"));
+//		countryAdapter.addItem(new LiveScore(true, "", "Eanglish", "ManCity",
+//				"11/10", "4:10"));
+//		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
+//				"11/10", "4:10"));
+//		countryAdapter.notifyDataSetChanged();
+		callbackAPI = new ICallbackAPI() {
+			@Override
+			public void onSuccess(String response) {
+				String string_temp = CommonAndroid.parseXMLAction(response);
+				if(!string_temp.equalsIgnoreCase("")){
+					CommonAndroid.showDialog(getActivity(), "data2:" + string_temp , null);
+					Log.e("data",string_temp);
+					try {
+						JSONArray jsonarray = new JSONArray(string_temp);
+						for (int i = 0; i < jsonarray.length(); i++) {
+//							countryAdapter.addItem(new GiaiDau(jsonarray.getJSONObject(i).getString("iID_MaGiai"), jsonarray.getJSONObject(i).getString("sTenGiai")));
+						}
+						countryAdapter.notifyDataSetChanged();
+					} catch (JSONException e) {
+					}
+					
+				}
+				
+			}
 
-		countryAdapter.addItem(new LiveScore(true, "", "Eanglish", "ManCity",
-				"11/10", "4:10"));
-		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
-				"11/10", "4:10"));
-		countryAdapter.addItem(new LiveScore(true, "", "Eanglish", "ManCity",
-				"11/10", "4:10"));
-		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
-				"11/10", "4:10"));
-		countryAdapter.addItem(new LiveScore(true, "", "Eanglish", "ManCity",
-				"11/10", "4:10"));
-		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
-				"11/10", "4:10"));
-		countryAdapter.addItem(new LiveScore(true, "", "Eanglish", "ManCity",
-				"11/10", "4:10"));
-		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
-				"11/10", "4:10"));
-		countryAdapter.notifyDataSetChanged();
+			@Override
+			public void onError(String message) {
+			}
+		};
+		String maGiaiDau = null;
+		if(maGiaiDau == null){
+			new APICaller(getActivity()).callApi("", true,
+					callbackAPI, ByUtils.wsFootBall_Lives);
+		}else{
+			new APICaller(getActivity()).callApi("", true,
+					callbackAPI, (ByUtils.wsFootBall_Lives_Theo_Giai).replace("magiai", maGiaiDau));
+		}
+		
 	}
 }
