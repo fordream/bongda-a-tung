@@ -1,10 +1,11 @@
 package com.app.bongda.model;
 
 public class LiveScore extends PhongDo {
-	public LiveScore(boolean isHeader, String id, String name, String name2,
+	public LiveScore(boolean isHeader, String id, String giai, String name, String name2,
 			String date, String time) {
 		super(id, name, name2, date, time);
 		this.isHeader = isHeader;
+		this.sTenGiai = giai;
 	}
 	public LiveScore(boolean isHeader, String sTenGiai,String sTenDoiNha,String sTenDoiKhach,int iCN_BanThang_DoiNha,int iCN_BanThang_DoiKhach,int iCN_BanThang_DoiNha_HT,int iCN_BanThang_DoiKhach_HT) {
 		super(null,sTenDoiNha,sTenDoiKhach,null,null);
