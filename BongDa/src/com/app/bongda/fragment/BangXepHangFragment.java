@@ -1,5 +1,8 @@
 package com.app.bongda.fragment;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,8 +16,13 @@ import android.widget.TextView;
 import com.app.bongda.R;
 import com.app.bongda.base.BaseFragment;
 import com.app.bongda.base.BongDaBaseAdapter;
+import com.app.bongda.callback.APICaller;
+import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.model.BangXepHang;
 import com.app.bongda.model.GiaiDau;
+import com.app.bongda.model.LiveScore;
+import com.app.bongda.util.ByUtils;
+import com.app.bongda.util.CommonAndroid;
 import com.app.bongda.view.HeaderView;
 
 public class BangXepHangFragment extends BaseFragment {
@@ -92,32 +100,69 @@ public class BangXepHangFragment extends BaseFragment {
 				.setText(dau.getName());
 	}
 
+	ICallbackAPI callbackAPI;
 	@Override
 	public void onInitData() {
-		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-				"8", "1", "2", "22", "11", "12"));
-		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-				"8", "1", "2", "22", "11", "12"));
-		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-				"8", "1", "2", "22", "11", "12"));
-		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-				"8", "1", "2", "22", "11", "12"));
-		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-				"8", "1", "2", "22", "11", "12"));
-		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-				"8", "1", "2", "22", "11", "12"));
-		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-				"8", "1", "2", "22", "11", "12"));
-		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-				"8", "1", "2", "22", "11", "12"));
-		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-				"8", "1", "2", "22", "11", "12"));
-		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-				"8", "1", "2", "22", "11", "12"));
-		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-				"8", "1", "2", "22", "11", "12"));
-		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-				"8", "1", "2", "22", "11", "12"));
+		callbackAPI = new ICallbackAPI() {
+			@Override
+			public void onSuccess(String response) {
+				String string_temp = CommonAndroid.parseXMLAction(response);
+				if(!string_temp.equalsIgnoreCase("")){
+//					CommonAndroid.showDialog(getActivity(), "data2:" + string_temp , null);
+					try {
+						JSONArray jsonarray = new JSONArray(string_temp);
+						for (int i = 0; i < jsonarray.length(); i++) {
+							countryAdapter.addItem(new BangXepHang(
+									jsonarray.getJSONObject(i).getString("sViTri"), 
+									jsonarray.getJSONObject(i).getString("sTenDoi"), 
+									jsonarray.getJSONObject(i).getString("sSoTranDau"), 
+									jsonarray.getJSONObject(i).getString("sDiem"), 
+									jsonarray.getJSONObject(i).getString("sSoTranThang"), 
+									jsonarray.getJSONObject(i).getString("sSoTranHoa"),  
+									jsonarray.getJSONObject(i).getString("sSoTranThua"),  
+									jsonarray.getJSONObject(i).getString("sBanThang"), 
+									jsonarray.getJSONObject(i).getString("sBanThua"), 
+									jsonarray.getJSONObject(i).getString("sHeSo")));
+						}
+						countryAdapter.notifyDataSetChanged();
+					} catch (JSONException e) {
+					}
+					
+				}
+				
+			}
+
+			@Override
+			public void onError(String message) {
+			}
+		};
+		String maGiaiDau = null;
+			new APICaller(getActivity()).callApi("", true,
+					callbackAPI, (ByUtils.wsFootBall_BangXepHang).replace("bangxephangId", dau.getId()));
+//		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
+//				"8", "1", "2", "22", "11", "12"));
+//		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
+//				"8", "1", "2", "22", "11", "12"));
+//		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
+//				"8", "1", "2", "22", "11", "12"));
+//		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
+//				"8", "1", "2", "22", "11", "12"));
+//		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
+//				"8", "1", "2", "22", "11", "12"));
+//		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
+//				"8", "1", "2", "22", "11", "12"));
+//		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
+//				"8", "1", "2", "22", "11", "12"));
+//		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
+//				"8", "1", "2", "22", "11", "12"));
+//		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
+//				"8", "1", "2", "22", "11", "12"));
+//		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
+//				"8", "1", "2", "22", "11", "12"));
+//		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
+//				"8", "1", "2", "22", "11", "12"));
+//		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
+//				"8", "1", "2", "22", "11", "12"));
 		countryAdapter.notifyDataSetChanged();
 	}
 }
