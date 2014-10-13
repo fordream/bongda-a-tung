@@ -25,46 +25,18 @@ import com.app.bongda.util.ByUtils;
 import com.app.bongda.util.CommonAndroid;
 
 public class X1Activity extends BaseX1X2Activity {
-	Context context;
-//	ICallbackAPI callbackAPI;
+
 	// live score
 	// live cac tran -> xem truong thuat -> ty le du doan
-	//									 -> du doan ket qua
-	//                                   -> phong do doi dau
-	//               -> phong do doi dau
+	// -> du doan ket qua
+	// -> phong do doi dau
+	// -> phong do doi dau
+	private int count = 0;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		context = this;
-//		callbackAPI = new ICallbackAPI() {
-//			@Override
-//			public void onSuccess(String response) {
-//				String string_temp = CommonAndroid.parseXMLAction(response);
-//				CommonAndroid.showDialog(context, "data:" + string_temp , null);
-//				
-//				try {
-//					JSONObject jsonObject = new JSONObject(string_temp);
-//					
-//				} catch (JSONException e) {
-////					CommonAndroid.showDialog(context, e.getMessage() , null);
-//				}
-//				
-//			}
-//
-//			@Override
-//			public void onError(String message) {
-//			}
-//		};
-		
-//		CallAPI();
 		showLiveScore(null);
 	}
-	
-//	public void CallAPI(){
-//		new APICaller(this).callApi("", true,
-//				callbackAPI, ByUtils.wsFootBall_Quocgia);
-//		
-//	}
-	
 
 }

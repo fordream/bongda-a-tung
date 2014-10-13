@@ -210,15 +210,15 @@ public class LiveScoreFragment extends BaseFragment {
 			public void onError(String message) {
 			}
 		};
-		String maGiaiDau = null;
-		// if(maGiaiDau == null){
-		new APICaller(getActivity()).callApi("", true, callbackAPI,
-				ByUtils.wsFootBall_Lives);
-		// }else{
-		// new APICaller(getActivity()).callApi("", true,
-		// callbackAPI, (ByUtils.wsFootBall_Lives_Theo_Giai).replace("magiai",
-		// maGiaiDau));
-		// }
+		String maGiaiDau = data == null ? null : data.getId();
+		if (maGiaiDau == null) {
+			new APICaller(getActivity()).callApi("", true, callbackAPI,
+					ByUtils.wsFootBall_Lives);
+		} else {
+			new APICaller(getActivity()).callApi("", true, callbackAPI,
+					(ByUtils.wsFootBall_Lives_Theo_Giai).replace("magiai",
+							maGiaiDau));
+		}
 
 	}
 }
