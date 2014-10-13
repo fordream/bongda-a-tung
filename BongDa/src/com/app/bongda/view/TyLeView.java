@@ -5,9 +5,11 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.TextView;
 
-public class TyLeView extends View {
+public class TyLeView extends TextView {
 	private float per = 0.5f;
 
 	public void setPer(float per) {
@@ -22,11 +24,13 @@ public class TyLeView extends View {
 	private void init() {
 		setWillNotDraw(false);
 		paint.setColor(Color.RED);
+		setGravity(Gravity.BOTTOM);
 	}
 
 	public TyLeView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		init();
+
 	}
 
 	public TyLeView(Context context, AttributeSet attrs, int defStyle) {
@@ -41,7 +45,9 @@ public class TyLeView extends View {
 		super.onDraw(canvas);
 		int width = getWidth();
 		int height = getHeight();
-		canvas.drawRect((int)(width*0.25),(int) (height *(1.0- per)), (int)(width*0.75),height, paint);
+		canvas.drawRect((int) (width * 0.25), (int) (height * (1.0 - per)),
+				(int) (width * 0.75), height, paint);
+		
 		invalidate();
 
 	}
