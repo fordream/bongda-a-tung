@@ -13,7 +13,7 @@ import com.app.bongda.fragment.PhongDoFragment;
 import com.app.bongda.model.Country;
 import com.app.bongda.model.GiaiDau;
 
-public class PhongDoCacDoiActivity extends BaseActivtiy {
+public class PhongDoCacDoiActivity extends BaseX1X2Activity {
 	ICallbackAPI callbackAPI;
 
 	// live score
@@ -28,29 +28,30 @@ public class PhongDoCacDoiActivity extends BaseActivtiy {
 		super.onCreate(savedInstanceState);
 
 		// CallAPI();
-		showFragment(new CountryFragment(countryOnItemClickListener));
+//		showFragment(new CountryFragment(countryOnItemClickListener));
+		showCountry();
 	}
 
-	private OnItemClickListener countryOnItemClickListener = new OnItemClickListener() {
-
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) {
-			Country country = (Country)parent.getItemAtPosition(position);
-			showFragment(new DanhSachGiaiDauFragment(country,giaidauOnItemClickListener));
-
-		}
-	};
-
-	private OnItemClickListener giaidauOnItemClickListener = new OnItemClickListener() {
-
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) {
-			GiaiDau giaiDau = (GiaiDau)parent.getItemAtPosition(position);
-			
-			showFragment(new PhongDoFragment(giaiDau,null));
-
-		}
-	};
+//	private OnItemClickListener countryOnItemClickListener = new OnItemClickListener() {
+//
+//		@Override
+//		public void onItemClick(AdapterView<?> parent, View view, int position,
+//				long id) {
+//			Country country = (Country)parent.getItemAtPosition(position);
+//			showFragment(new DanhSachGiaiDauFragment(country,giaidauOnItemClickListener));
+//
+//		}
+//	};
+//
+//	private OnItemClickListener giaidauOnItemClickListener = new OnItemClickListener() {
+//
+//		@Override
+//		public void onItemClick(AdapterView<?> parent, View view, int position,
+//				long id) {
+//			GiaiDau giaiDau = (GiaiDau)parent.getItemAtPosition(position);
+//			
+//			showFragment(new PhongDoFragment(giaiDau,null));
+//
+//		}
+//	};
 }

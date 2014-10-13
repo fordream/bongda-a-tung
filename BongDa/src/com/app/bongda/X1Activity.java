@@ -26,7 +26,7 @@ import com.app.bongda.util.CommonAndroid;
 
 public class X1Activity extends BaseX1X2Activity {
 	Context context;
-	ICallbackAPI callbackAPI;
+//	ICallbackAPI callbackAPI;
 	// live score
 	// live cac tran -> xem truong thuat -> ty le du doan
 	//									 -> du doan ket qua
@@ -36,35 +36,35 @@ public class X1Activity extends BaseX1X2Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		context = this;
-		callbackAPI = new ICallbackAPI() {
-			@Override
-			public void onSuccess(String response) {
-				String string_temp = CommonAndroid.parseXMLAction(response);
-				CommonAndroid.showDialog(context, "data:" + string_temp , null);
-				
-				try {
-					JSONObject jsonObject = new JSONObject(string_temp);
-					
-				} catch (JSONException e) {
-//					CommonAndroid.showDialog(context, e.getMessage() , null);
-				}
-				
-			}
-
-			@Override
-			public void onError(String message) {
-			}
-		};
+//		callbackAPI = new ICallbackAPI() {
+//			@Override
+//			public void onSuccess(String response) {
+//				String string_temp = CommonAndroid.parseXMLAction(response);
+//				CommonAndroid.showDialog(context, "data:" + string_temp , null);
+//				
+//				try {
+//					JSONObject jsonObject = new JSONObject(string_temp);
+//					
+//				} catch (JSONException e) {
+////					CommonAndroid.showDialog(context, e.getMessage() , null);
+//				}
+//				
+//			}
+//
+//			@Override
+//			public void onError(String message) {
+//			}
+//		};
 		
 //		CallAPI();
 		showLiveScore(null);
 	}
 	
-	public void CallAPI(){
-		new APICaller(this).callApi("", true,
-				callbackAPI, ByUtils.wsFootBall_Quocgia);
-		
-	}
+//	public void CallAPI(){
+//		new APICaller(this).callApi("", true,
+//				callbackAPI, ByUtils.wsFootBall_Quocgia);
+//		
+//	}
 	
 
 }

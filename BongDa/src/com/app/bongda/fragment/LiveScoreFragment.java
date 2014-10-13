@@ -24,12 +24,14 @@ import com.app.bongda.view.HeaderView;
 public class LiveScoreFragment extends BaseFragment {
 	OnItemClickListener onItemClickListener;
 	CallBackListenner callBackListenner;
+	GiaiDau data;
 
 	public LiveScoreFragment(OnItemClickListener onItemClickListener,
-			CallBackListenner callBackListenner) {
+			CallBackListenner callBackListenner, GiaiDau data) {
 		super();
 		this.callBackListenner = callBackListenner;
 		this.onItemClickListener = onItemClickListener;
+		this.data = data;
 	}
 
 	private CountryAdapter countryAdapter = new CountryAdapter();
@@ -72,8 +74,6 @@ public class LiveScoreFragment extends BaseFragment {
 						}
 					});
 
-
-
 			convertView.findViewById(R.id.ImageView01).setOnClickListener(
 					new OnClickListener() {
 						@Override
@@ -106,80 +106,104 @@ public class LiveScoreFragment extends BaseFragment {
 	}
 
 	ICallbackAPI callbackAPI;
+
 	@SuppressWarnings("unused")
 	@Override
 	public void onInitData() {
-//		countryAdapter.addItem(new LiveScore(true, "", "Eanglish", "ManCity",
-//				"11/10", "4:10"));
-//		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
-//				"11/10", "4:10"));
-//		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
-//				"11/10", "4:10"));
-//		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
-//				"11/10", "4:10"));
-//		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
-//				"11/10", "4:10"));
-//
-//		countryAdapter.addItem(new LiveScore(true, "", "Eanglish", "ManCity",
-//				"11/10", "4:10"));
-//		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
-//				"11/10", "4:10"));
-//		countryAdapter.addItem(new LiveScore(true, "", "Eanglish", "ManCity",
-//				"11/10", "4:10"));
-//		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
-//				"11/10", "4:10"));
-//		countryAdapter.addItem(new LiveScore(true, "", "Eanglish", "ManCity",
-//				"11/10", "4:10"));
-//		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
-//				"11/10", "4:10"));
-//		countryAdapter.addItem(new LiveScore(true, "", "Eanglish", "ManCity",
-//				"11/10", "4:10"));
-//		countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
-//				"11/10", "4:10"));
-//		countryAdapter.notifyDataSetChanged();
+		// countryAdapter.addItem(new LiveScore(true, "", "Eanglish", "ManCity",
+		// "11/10", "4:10"));
+		// countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
+		// "11/10", "4:10"));
+		// countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
+		// "11/10", "4:10"));
+		// countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
+		// "11/10", "4:10"));
+		// countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
+		// "11/10", "4:10"));
+		//
+		// countryAdapter.addItem(new LiveScore(true, "", "Eanglish", "ManCity",
+		// "11/10", "4:10"));
+		// countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
+		// "11/10", "4:10"));
+		// countryAdapter.addItem(new LiveScore(true, "", "Eanglish", "ManCity",
+		// "11/10", "4:10"));
+		// countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
+		// "11/10", "4:10"));
+		// countryAdapter.addItem(new LiveScore(true, "", "Eanglish", "ManCity",
+		// "11/10", "4:10"));
+		// countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
+		// "11/10", "4:10"));
+		// countryAdapter.addItem(new LiveScore(true, "", "Eanglish", "ManCity",
+		// "11/10", "4:10"));
+		// countryAdapter.addItem(new LiveScore(false, "", "MU", "ManCity",
+		// "11/10", "4:10"));
+		// countryAdapter.notifyDataSetChanged();
 		callbackAPI = new ICallbackAPI() {
 			@Override
 			public void onSuccess(String response) {
 				String string_temp = CommonAndroid.parseXMLAction(response);
-				if(!string_temp.equalsIgnoreCase("")){
-//					CommonAndroid.showDialog(getActivity(), "data2:" + string_temp , null);
-//					Log.e("data",string_temp);
+				if (!string_temp.equalsIgnoreCase("")) {
+					// CommonAndroid.showDialog(getActivity(), "data2:" +
+					// string_temp , null);
+					// Log.e("data",string_temp);
 					try {
 						JSONArray jsonarray = new JSONArray(string_temp);
 						for (int i = 0; i < jsonarray.length(); i++) {
-//							countryAdapter.addItem(new LiveScore(true,
-//									jsonarray.getJSONObject(i).getString("sTenGiai"), 
-//									jsonarray.getJSONObject(i).getString("sTenDoiNha"),
-//									jsonarray.getJSONObject(i).getString("sTenDoiKhach"),
-//									jsonarray.getJSONObject(i).getInt("iCN_BanThang_DoiNha"),
-//									jsonarray.getJSONObject(i).getInt("iCN_BanThang_DoiKhach"),
-//									jsonarray.getJSONObject(i).getInt("iCN_BanThang_DoiNha_HT"),
-//									jsonarray.getJSONObject(i).getInt("iCN_BanThang_DoiKhach_HT")));
-							String HT = jsonarray.getJSONObject(i).getInt("iCN_BanThang_DoiNha_HT") + "-" + jsonarray.getJSONObject(i).getInt("iCN_BanThang_DoiKhach_HT");
-							if(i== 0){
-								countryAdapter.addItem(new LiveScore(true,jsonarray.getJSONObject(i).getString("sTenGiai"), jsonarray.getJSONObject(i).getString("sTenDoiNha"), 
-										jsonarray.getJSONObject(i).getString("sTenDoiKhach"),
-										HT, "4:10"));
-							}else if(i> 0){
-								if((jsonarray.getJSONObject(i).getString("sTenGiai")).equalsIgnoreCase(jsonarray.getJSONObject(i-1).getString("sTenGiai"))){
-									countryAdapter.addItem(new LiveScore(false,jsonarray.getJSONObject(i).getString("sTenGiai"), jsonarray.getJSONObject(i).getString("sTenDoiNha"), 
-											jsonarray.getJSONObject(i).getString("sTenDoiKhach"),
+							// countryAdapter.addItem(new LiveScore(true,
+							// jsonarray.getJSONObject(i).getString("sTenGiai"),
+							// jsonarray.getJSONObject(i).getString("sTenDoiNha"),
+							// jsonarray.getJSONObject(i).getString("sTenDoiKhach"),
+							// jsonarray.getJSONObject(i).getInt("iCN_BanThang_DoiNha"),
+							// jsonarray.getJSONObject(i).getInt("iCN_BanThang_DoiKhach"),
+							// jsonarray.getJSONObject(i).getInt("iCN_BanThang_DoiNha_HT"),
+							// jsonarray.getJSONObject(i).getInt("iCN_BanThang_DoiKhach_HT")));
+							String HT = jsonarray.getJSONObject(i).getInt(
+									"iCN_BanThang_DoiNha_HT")
+									+ "-"
+									+ jsonarray.getJSONObject(i).getInt(
+											"iCN_BanThang_DoiKhach_HT");
+							if (i == 0) {
+								countryAdapter.addItem(new LiveScore(true,
+										jsonarray.getJSONObject(i).getString(
+												"sTenGiai"), jsonarray
+												.getJSONObject(i).getString(
+														"sTenDoiNha"),
+										jsonarray.getJSONObject(i).getString(
+												"sTenDoiKhach"), HT, "4:10"));
+							} else if (i > 0) {
+								if ((jsonarray.getJSONObject(i)
+										.getString("sTenGiai"))
+										.equalsIgnoreCase(jsonarray
+												.getJSONObject(i - 1)
+												.getString("sTenGiai"))) {
+									countryAdapter.addItem(new LiveScore(false,
+											jsonarray.getJSONObject(i)
+													.getString("sTenGiai"),
+											jsonarray.getJSONObject(i)
+													.getString("sTenDoiNha"),
+											jsonarray.getJSONObject(i)
+													.getString("sTenDoiKhach"),
 											HT, "4:10"));
-								}else{
-									countryAdapter.addItem(new LiveScore(true,jsonarray.getJSONObject(i).getString("sTenGiai"), jsonarray.getJSONObject(i).getString("sTenDoiNha"), 
-											jsonarray.getJSONObject(i).getString("sTenDoiKhach"),
+								} else {
+									countryAdapter.addItem(new LiveScore(true,
+											jsonarray.getJSONObject(i)
+													.getString("sTenGiai"),
+											jsonarray.getJSONObject(i)
+													.getString("sTenDoiNha"),
+											jsonarray.getJSONObject(i)
+													.getString("sTenDoiKhach"),
 											HT, "4:10"));
 								}
-								
+
 							}
-							
+
 						}
 						countryAdapter.notifyDataSetChanged();
 					} catch (JSONException e) {
 					}
-					
+
 				}
-				
+
 			}
 
 			@Override
@@ -187,13 +211,14 @@ public class LiveScoreFragment extends BaseFragment {
 			}
 		};
 		String maGiaiDau = null;
-//		if(maGiaiDau == null){
-			new APICaller(getActivity()).callApi("", true,
-					callbackAPI, ByUtils.wsFootBall_Lives);
-//		}else{
-//			new APICaller(getActivity()).callApi("", true,
-//					callbackAPI, (ByUtils.wsFootBall_Lives_Theo_Giai).replace("magiai", maGiaiDau));
-//		}
-		
+		// if(maGiaiDau == null){
+		new APICaller(getActivity()).callApi("", true, callbackAPI,
+				ByUtils.wsFootBall_Lives);
+		// }else{
+		// new APICaller(getActivity()).callApi("", true,
+		// callbackAPI, (ByUtils.wsFootBall_Lives_Theo_Giai).replace("magiai",
+		// maGiaiDau));
+		// }
+
 	}
 }

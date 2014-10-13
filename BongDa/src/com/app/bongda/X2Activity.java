@@ -20,40 +20,40 @@ public class X2Activity extends BaseX1X2Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+		showCountry();
 		
-		
-		showFragment(new CountryFragment(clickListenerCountry));
+//		showFragment(new CountryFragment(clickListenerCountry));
 	}
 	
-	private OnItemClickListener clickListenerCountry = new OnItemClickListener() {
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view,
-				int position, long id) {
-			Country country = (Country)parent.getItemAtPosition(position);
-			showFragment(new DanhSachGiaiDauFragment(country,listGiaiDau));
-		}
-	};
-	
-	private OnItemClickListener listGiaiDau = new OnItemClickListener() {
-
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) {
-			// data
-			showLiveScore(parent.getItemAtPosition(position));
-			//showFragment(new PhongDoDoiDauFragment(phongdoonItemClickListener));
-			
-			//TuongThuatTranFragment
-		}
-	};
-	
-	private OnItemClickListener phongdoonItemClickListener = new OnItemClickListener() {
-
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) {
-			
-		}
-	};
+//	private OnItemClickListener clickListenerCountry = new OnItemClickListener() {
+//		@Override
+//		public void onItemClick(AdapterView<?> parent, View view,
+//				int position, long id) {
+//			Country country = (Country)parent.getItemAtPosition(position);
+//			showFragment(new DanhSachGiaiDauFragment(country,listGiaiDau));
+//		}
+//	};
+//	
+//	private OnItemClickListener listGiaiDau = new OnItemClickListener() {
+//
+//		@Override
+//		public void onItemClick(AdapterView<?> parent, View view, int position,
+//				long id) {
+//			// data
+//			showLiveScore(parent.getItemAtPosition(position));
+//			//showFragment(new PhongDoDoiDauFragment(phongdoonItemClickListener));
+//			
+//			//TuongThuatTranFragment
+//		}
+//	};
+//	
+//	private OnItemClickListener phongdoonItemClickListener = new OnItemClickListener() {
+//
+//		@Override
+//		public void onItemClick(AdapterView<?> parent, View view, int position,
+//				long id) {
+//			
+//		}
+//	};
 
 }
