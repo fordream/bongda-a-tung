@@ -1,15 +1,13 @@
 package com.app.bongda.fragment;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
+import android.widget.LinearLayout;
 
 import com.app.bongda.R;
 import com.app.bongda.base.BaseFragment;
 import com.app.bongda.base.BongDaBaseAdapter;
+import com.app.bongda.view.BangXepHangItemView;
 import com.app.bongda.view.HeaderView;
 
 public class PhongDoDoiDauFragment extends BaseFragment {
@@ -40,7 +38,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 	public int getLayout() {
 		return R.layout.phongdodoidau;
 	}
-
+	LinearLayout phongdodoidau_bangephang_listitem;
 	@Override
 	public void onInitCreateView(View view) {
 		/**
@@ -49,9 +47,16 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 		HeaderView headerView = (HeaderView) view
 				.findViewById(R.id.headerView1);
 		headerView.setTextHeader(R.string.xemphongdo);
+	
+		phongdodoidau_bangephang_listitem = (LinearLayout)view.findViewById(R.id.phongdodoidau_bangephang_listitem);
+		phongdodoidau_bangephang_listitem.removeAllViews();
+		
 	}
 
 	@Override
 	public void onInitData() {
+		for(int i = 0; i < 6; i ++){
+			phongdodoidau_bangephang_listitem.addView(new BangXepHangItemView(getActivity()));
+		}
 	}
 }

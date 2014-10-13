@@ -1,24 +1,27 @@
 package com.app.bongda.fragment;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.app.bongda.R;
 import com.app.bongda.base.BaseFragment;
 import com.app.bongda.base.BongDaBaseAdapter;
+import com.app.bongda.inter.CallBackListenner;
+import com.app.bongda.model.GiaiDau;
 import com.app.bongda.view.HeaderView;
 
 public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 	OnItemClickListener onItemClickListener;
+	CallBackListenner backListenner;
 
 	public TuongThuatTranLiveScoreFragment(
-			OnItemClickListener onItemClickListener) {
+			OnItemClickListener onItemClickListener,
+			CallBackListenner backListenner) {
 		super();
 		this.onItemClickListener = onItemClickListener;
+		this.backListenner = backListenner;
 	}
 
 	private CountryAdapter countryAdapter = new CountryAdapter();
@@ -32,7 +35,7 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 
 		@Override
 		public void showData(Object item, View convertView) {
-			
+
 		}
 
 	}
@@ -49,7 +52,7 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 		 */
 		HeaderView headerView = (HeaderView) view
 				.findViewById(R.id.headerView1);
-		headerView.setTextHeader(R.string.cacnuoc);
+		headerView.setTextHeader(R.string.tuongthuattran);
 		headerView.findViewById(R.id.Button02).setVisibility(View.VISIBLE);
 		headerView.findViewById(R.id.Button03).setVisibility(View.VISIBLE);
 		headerView.findViewById(R.id.Button04).setVisibility(View.VISIBLE);
@@ -58,7 +61,27 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 		listView.setOnItemClickListener(onItemClickListener);
 
 		listView.setAdapter(countryAdapter);
+
+		view.findViewById(R.id.imageView2).setOnClickListener(clickListener);
+		headerView.findViewById(R.id.Button02).setOnClickListener(clickListener);
+		headerView.findViewById(R.id.Button03).setOnClickListener(clickListener);
+		headerView.findViewById(R.id.Button04).setOnClickListener(clickListener);
 	}
+	
+	View.OnClickListener clickListener = new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			if(v.getId() == R.id.imageView2){
+				backListenner.onCallBackListenner(1, new GiaiDau("1", "aaaa"));
+			}else if(v.getId() == R.id.Button02){
+				backListenner.onCallBackListenner(2, null);
+			}else if(v.getId() == R.id.Button03){
+				backListenner.onCallBackListenner(3, null);
+			}else if(v.getId() == R.id.Button04){
+				backListenner.onCallBackListenner(4, null);
+			}
+		}
+	};
 
 	@Override
 	public void onInitData() {

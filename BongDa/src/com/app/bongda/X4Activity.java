@@ -28,8 +28,7 @@ public class X4Activity extends BaseActivtiy {
 							@Override
 							public void onItemClick(AdapterView<?> parent,
 									View view, int position, long id) {
-								GiaiDau dau = (GiaiDau) parent
-										.getItemAtPosition(position);
+								GiaiDau dau = (GiaiDau) parent.getItemAtPosition(position);
 								showFragment(new BangXepHangFragment(dau, null));
 							}
 

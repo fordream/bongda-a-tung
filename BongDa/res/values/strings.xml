@@ -28,5 +28,16 @@
     <string name="livescore">@string/setting_txt1</string>
     <string name="xemphongdo">XEM PHONG DO</string>
     <string name="ketqua5trangannhat">Key QUa 5 Tran Gan Nhat</string>
+    <string name="bangephang2doi">bang xep hang 2 doi</string>
+    <string name="sannha">san nha</string>
+    <string name="sankhach">San khach</string>
+    <string name="sotrangibansannha">So tran ghi ban san nha</string>
+    <string name="sotranghibansankhach">So tran ghi ban san khach</string>
+    <string name="soghibansankhach">So tran ghi ban san khach</string>
+    <string name="sotrankhongghibansankhach">So tran khong ghi ban san khach</string>
+    <string name="sotranlotluonsannha">So tran lot luon san nha</string>
+    <string name="tylelotluonsannhatrungbinh">TY le lot luoi san nha trung binh</string>
+    <string name="tuongthuattran">Tuong Thuat Tran</string>
+    <string name="tyledudoan">Ty le du doan</string>
 
 </resources>

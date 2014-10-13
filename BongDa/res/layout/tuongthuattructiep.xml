@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:orientation="vertical" >
 
     <com.app.bongda.view.HeaderView
@@ -10,13 +11,139 @@
         android:layout_height="wrap_content" >
     </com.app.bongda.view.HeaderView>
 
-    <ListView
-        android:id="@+id/listView1"
-        android:listSelector="@drawable/transfer"
-        android:dividerHeight="0dp"
-        android:divider="#123456"
+    <LinearLayout
+        android:background="@android:color/darker_gray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dimen_10dp"
+        android:paddingTop="@dimen/dimen_10dp" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="@dimen/dimen_30dp"
+            android:layout_height="@dimen/dimen_20dp"
+            android:background="@drawable/vietnam" />
+
+        <TextView
+            android:id="@+id/textView1"
+            style="@style/bongda_text_item"
+            android:layout_width="@dimen/dimen_260dp"
+            android:layout_height="wrap_content"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="@dimen/dimen_30dp"
+            android:layout_height="@dimen/dimen_30dp"
+            android:background="@drawable/catalogue2_08" />
+    </LinearLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/l1"
+            android:layout_width="@dimen/dimen_70dp"
+            android:layout_height="@dimen/dimen_70dp"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="@dimen/dimen_50dp"
+                android:layout_height="@dimen/dimen_50dp"
+                android:background="@drawable/button_forgot__xml" />
+
+            <TextView
+                android:id="@+id/TextView01"
+                style="@style/bongda_text_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="MU"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/l2"
+            android:layout_toRightOf="@+id/l1"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/TextView03"
+                style="@style/bongda_text_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="90&apos;"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/textView1"
+                style="@style/bongda_text_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="2-1"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/TextView04"
+                style="@style/bongda_text_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="HT 0-1"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l2"
+            android:layout_width="@dimen/dimen_70dp"
+            android:layout_height="@dimen/dimen_70dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/ImageView01"
+                android:layout_width="@dimen/dimen_50dp"
+                android:layout_height="@dimen/dimen_50dp"
+                android:background="@drawable/button_forgot__xml" />
+
+            <TextView
+                android:id="@+id/TextView02"
+                style="@style/bongda_text_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="MU"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        style="@style/line"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+       />
+
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="#123456"
+        android:dividerHeight="0dp"
+        android:listSelector="@drawable/transfer" >
     </ListView>
 
 </LinearLayout>

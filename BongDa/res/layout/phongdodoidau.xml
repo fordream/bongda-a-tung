@@ -10,45 +10,205 @@
         android:layout_height="wrap_content" >
     </com.app.bongda.view.HeaderView>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimen_5dp" >
+        android:layout_height="match_parent" >
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_5dp"
+            android:orientation="vertical" >
 
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="@dimen/dimen_50dp"
-                android:layout_height="@dimen/dimen_50dp"
-                android:background="@drawable/button_forgot__xml" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="@dimen/dimen_50dp"
-                android:layout_height="@dimen/dimen_50dp"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/button_forgot__xml" />
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="@dimen/dimen_50dp"
+                    android:layout_height="@dimen/dimen_50dp"
+                    android:background="@drawable/button_forgot__xml" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="@dimen/dimen_50dp"
+                    android:layout_height="@dimen/dimen_50dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/button_forgot__xml" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/imageView2"
+                    android:layout_toRightOf="@+id/imageView1"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        style="@style/bongda_text_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/ketqua5trangannhat"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center" >
+
+                        <TextView
+                            android:id="@+id/TextView01"
+                            style="@style/bongda_text_item"
+                            android:layout_width="@dimen/dimen_20dp"
+                            android:layout_height="@dimen/dimen_20dp"
+                            android:gravity="center"
+                            android:padding="@dimen/dimen_0dp"
+                            android:text="W"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <TextView
+                            android:id="@+id/TextView01"
+                            style="@style/bongda_text_item"
+                            android:layout_width="@dimen/dimen_20dp"
+                            android:layout_height="@dimen/dimen_20dp"
+                            android:gravity="center"
+                            android:padding="@dimen/dimen_0dp"
+                            android:text="W"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <TextView
+                            android:id="@+id/TextView01"
+                            style="@style/bongda_text_item"
+                            android:layout_width="@dimen/dimen_20dp"
+                            android:layout_height="@dimen/dimen_20dp"
+                            android:gravity="center"
+                            android:padding="@dimen/dimen_0dp"
+                            android:text="W"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <TextView
+                            android:id="@+id/TextView01"
+                            style="@style/bongda_text_item"
+                            android:layout_width="@dimen/dimen_20dp"
+                            android:layout_height="@dimen/dimen_20dp"
+                            android:gravity="center"
+                            android:padding="@dimen/dimen_0dp"
+                            android:text="W"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <TextView
+                            android:id="@+id/TextView01"
+                            style="@style/bongda_text_item"
+                            android:layout_width="@dimen/dimen_20dp"
+                            android:layout_height="@dimen/dimen_20dp"
+                            android:gravity="center"
+                            android:padding="@dimen/dimen_0dp"
+                            android:text="W"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center" >
+
+                        <TextView
+                            android:id="@+id/TextView05"
+                            style="@style/bongda_text_item"
+                            android:layout_width="@dimen/dimen_20dp"
+                            android:layout_height="@dimen/dimen_20dp"
+                            android:gravity="center"
+                            android:padding="@dimen/dimen_0dp"
+                            android:text="W"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <TextView
+                            android:id="@+id/TextView05"
+                            style="@style/bongda_text_item"
+                            android:layout_width="@dimen/dimen_20dp"
+                            android:layout_height="@dimen/dimen_20dp"
+                            android:gravity="center"
+                            android:padding="@dimen/dimen_0dp"
+                            android:text="W"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <TextView
+                            android:id="@+id/TextView05"
+                            style="@style/bongda_text_item"
+                            android:layout_width="@dimen/dimen_20dp"
+                            android:layout_height="@dimen/dimen_20dp"
+                            android:gravity="center"
+                            android:padding="@dimen/dimen_0dp"
+                            android:text="W"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <TextView
+                            android:id="@+id/TextView05"
+                            style="@style/bongda_text_item"
+                            android:layout_width="@dimen/dimen_20dp"
+                            android:layout_height="@dimen/dimen_20dp"
+                            android:gravity="center"
+                            android:padding="@dimen/dimen_0dp"
+                            android:text="W"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <TextView
+                            android:id="@+id/TextView05"
+                            style="@style/bongda_text_item"
+                            android:layout_width="@dimen/dimen_20dp"
+                            android:layout_height="@dimen/dimen_20dp"
+                            android:gravity="center"
+                            android:padding="@dimen/dimen_0dp"
+                            android:text="W"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <TextView
+                style="@style/bongda_text_item"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_45dp"
+                android:background="#123456"
+                android:gravity="center"
+                android:text="@string/bangephang2doi"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <com.app.bongda.view.BangXepHangItemView
+                android:id="@+id/bangXepHangItemView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            </com.app.bongda.view.BangXepHangItemView>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/phongdodoidau_bangephang_listitem"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/imageView2"
-                android:layout_toRightOf="@+id/imageView1"
                 android:orientation="vertical" >
-
-                <TextView
-                    android:id="@+id/textView1"
-                    style="@style/bongda_text_item"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/ketqua5trangannhat"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
             </LinearLayout>
-        </RelativeLayout>
-    </LinearLayout>
+
+            <com.app.bongda.view.PhongDodoiItemView
+                android:id="@+id/phongDodoiItemView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            </com.app.bongda.view.PhongDodoiItemView>
+
+            <com.app.bongda.view.PhongDodoiItemView
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:id="@+id/phongDodoiItemView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            </com.app.bongda.view.PhongDodoiItemView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40dp" >
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
