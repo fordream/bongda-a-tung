@@ -22,15 +22,49 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" >
 
-            <com.app.bongda.view.TyLeView
-                android:id="@+id/tyLeView1"
+            <RelativeLayout
                 android:layout_width="@dimen/dimen_100dp"
-                android:layout_height="fill_parent" />
+                android:layout_height="match_parent" >
 
-            <com.app.bongda.view.TyLeView
-                android:id="@+id/tyLeView2"
+                <com.app.bongda.view.TyLeView
+                    android:id="@+id/tyLeView1"
+                    android:layout_width="@dimen/dimen_100dp"
+                    android:layout_height="fill_parent" />
+
+                <TextView
+                    android:id="@+id/TextView01"
+                    style="@style/bongda_text_item"
+                    android:layout_width="@dimen/dimen_100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center"
+                    android:text="50%"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="@dimen/dimen_100dp"
-                android:layout_height="fill_parent" />
+                android:layout_height="match_parent" >
+
+                <com.app.bongda.view.TyLeView
+                    android:id="@+id/tyLeView2"
+                    android:layout_width="@dimen/dimen_100dp"
+                    android:layout_height="fill_parent" />
+
+                <TextView
+                    android:id="@+id/TextView02"
+                    style="@style/bongda_text_item"
+                    android:layout_width="@dimen/dimen_100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center"
+                    android:text="50%"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            </RelativeLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -49,7 +83,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center" >
+                android:gravity="center" android:layout_marginBottom="@dimen/dimen_30dp">
 
                 <TextView
                     android:id="@+id/textView1"
