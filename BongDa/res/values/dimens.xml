@@ -1,6 +1,7 @@
+
 <resources>
 
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="header_button_size">@dimen/dimen_25dp</dimen>
-
+	<dimen name="size_button_live_score">@dimen/dimen_20dp</dimen>
 </resources>
