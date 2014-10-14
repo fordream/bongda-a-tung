@@ -30,7 +30,11 @@ public class BaseX1X2Activity extends BaseActivtiy {
 				// -> du doan ket qua
 				// showFragment(new DuDoanKetQuaFragment(null));
 				// -> phong do doi dau
-				showFragment(new PhongDoDoiDauFragment(null));
+				LiveScore liveScore = (LiveScore) parent
+						.getItemAtPosition(position);
+				GiaiDau dau = new GiaiDau(liveScore.getId(),
+						liveScore.getName());
+				showFragment(new PhongDoDoiDauFragment(dau,null));
 			}
 		};
 
@@ -41,7 +45,7 @@ public class BaseX1X2Activity extends BaseActivtiy {
 				if (position == 1) {
 					showBangXemHang((GiaiDau) data);
 				} else if (position == 2) {
-					showFragment(new PhongDoDoiDauFragment(null));
+					showFragment(new PhongDoDoiDauFragment((GiaiDau) data,null));
 				} else if (position == 3) {
 					showFragment(new DuDoanKetQuaFragment(null));
 				} else if (position == 4) {
@@ -65,8 +69,8 @@ public class BaseX1X2Activity extends BaseActivtiy {
 		showFragment(new DanhSachGiaiDauFragment(country, listGiaiDau));
 	}
 
-	public void showPhongDoDoiDauFragment() {
-		showFragment(new PhongDoDoiDauFragment(null));
+	public void showPhongDoDoiDauFragment(GiaiDau giaiDau) {
+		showFragment(new PhongDoDoiDauFragment(giaiDau,null));
 	}
 
 	public void showBangXepHangFragment(GiaiDau giaiDau) {
@@ -111,7 +115,9 @@ public class BaseX1X2Activity extends BaseActivtiy {
 					// showFragment(new BangXepHangFragment(dau, null));
 					showBangXemHang(dau);
 				} else if (position == 2) {
-					showPhongDoDoiDauFragment();
+					GiaiDau dau = new GiaiDau(liveScore.getId(),
+							liveScore.getName());
+					showPhongDoDoiDauFragment(dau);
 				}
 			}
 		};
