@@ -25,12 +25,13 @@
             android:layout_height="@dimen/dimen_20dp"
             android:background="@drawable/vietnam" />
 
+
         <RelativeLayout
             android:layout_width="@dimen/dimen_240dp"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/phongdo_text"
+                android:id="@+id/textTenTran"
                 style="@style/bongda_text_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -49,6 +50,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textSize="@dimen/dimen_10dp" />
         </RelativeLayout>
+
 
         <ImageView
             android:id="@+id/imageView1s"
