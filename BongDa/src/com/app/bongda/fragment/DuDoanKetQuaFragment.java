@@ -26,12 +26,11 @@ public class DuDoanKetQuaFragment extends BaseFragment {
 
 		@Override
 		public int getLayout() {
-			return R.layout.country_item;
+			return R.layout.dudoanketqua_item;
 		}
 
 		@Override
 		public void showData(Object item, View convertView) {
-			// TODO Auto-generated method stub
 			
 		}
 
@@ -39,11 +38,17 @@ public class DuDoanKetQuaFragment extends BaseFragment {
 
 	@Override
 	public int getLayout() {
-		return R.layout.country;
+		return R.layout.dudoanketqua;
 	}
 
 	@Override
 	public void onInitCreateView(View view) {
+		/**
+		 * init header view
+		 */
+		HeaderView headerView = (HeaderView) view
+				.findViewById(R.id.headerView1);
+		headerView.setTextHeader(R.string.dudoanketqua);
 		/** init data */
 		ListView listView = (ListView) view.findViewById(R.id.listView1);
 		listView.setOnItemClickListener(onItemClickListener);
