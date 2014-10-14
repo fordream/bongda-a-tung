@@ -11,7 +11,7 @@
     </com.app.bongda.view.HeaderView>
 
     <LinearLayout
-        android:background="#123456"
+        android:background="#cccccc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -32,6 +32,13 @@
             android:text="Large Text"
             android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#999999"
+      />
 
     <ListView
         android:id="@+id/bangxephang_listview"

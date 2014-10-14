@@ -1,5 +1,6 @@
 package com.app.bongda;
 
+import com.app.bongda.view.HeaderView;
 import com.app.bongda.view.SettingItemView;
 
 import android.app.Activity;
@@ -29,6 +30,8 @@ public class X5Activity extends Activity implements OnItemClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.x5);
 
+		HeaderView headerView =(HeaderView)findViewById(R.id.headerView1);
+		headerView.hiddenProgressbar();
 		ListView listView = (ListView) findViewById(R.id.x5listview);
 
 		listView.setAdapter(new BaseAdapter() {

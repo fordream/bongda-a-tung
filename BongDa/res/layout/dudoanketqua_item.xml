@@ -15,8 +15,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingBottom="@dimen/dimen_5dp"
-            android:paddingTop="@dimen/dimen_5dp" >
+            android:paddingBottom="@dimen/dimen_2dp"
+            android:paddingTop="@dimen/dimen_2dp" >
 
             <ImageView
                 android:id="@+id/imageView1"
@@ -34,8 +34,8 @@
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="@dimen/dimen_40dp"
-                android:layout_height="@dimen/dimen_40dp"
+                android:layout_width="@dimen/dimen_25dp"
+                android:layout_height="@dimen/dimen_25dp"
                 android:src="@drawable/catalogue2_08" />
         </LinearLayout>
 

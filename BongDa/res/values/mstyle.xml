@@ -2,7 +2,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="line">
-        <item name="android:background">#123456</item>
+        <item name="android:background">#cccccc</item>
         <item name="android:height">1dp</item>
     </style>
 

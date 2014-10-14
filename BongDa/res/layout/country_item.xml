@@ -34,11 +34,11 @@
             android:src="@drawable/bongda1" />
     </LinearLayout>
 
-    <TextView
+    <ImageView
         style="@style/line"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="1dp"
         android:orientation="vertical" >
-    </TextView>
+    </ImageView>
 
 </LinearLayout>
