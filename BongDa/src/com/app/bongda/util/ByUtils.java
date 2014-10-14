@@ -66,6 +66,6 @@ public class ByUtils {
 	/**
 	 * 
 	 */
-	public static final boolean USEGROUPVIEW = true;
+	public static final boolean USEGROUPVIEW = false;
 
 }

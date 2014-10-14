@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
+import com.app.bongda.MBaseGroupActivity.FRAGMENT;
 import com.app.bongda.base.BaseFragmentActivity;
 import com.app.bongda.fragment.BangXepHangFragment;
 import com.app.bongda.fragment.CountryFragment;
@@ -16,6 +17,7 @@ import com.app.bongda.fragment.PhongDoDoiDauFragment;
 import com.app.bongda.fragment.TuongThuatTranLiveScoreFragment;
 import com.app.bongda.fragment.TyLeDuDoanFragment;
 import com.app.bongda.inter.CallBackListenner;
+import com.app.bongda.model.BaseItem;
 import com.app.bongda.model.Country;
 import com.app.bongda.model.GiaiDau;
 import com.app.bongda.model.LiveScore;
@@ -25,7 +27,14 @@ public class MActivity extends BaseFragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		FRAGMENT fRAGMENT = (FRAGMENT) getIntent().getExtras().getSerializable(
+				"FRAGMENT");
+		BaseItem baseItem = (BaseItem) getIntent().getExtras().getParcelable(
+				"BaseItem");
 
+		if (fRAGMENT == FRAGMENT.COUNTRY) {
+			showCountry();
+		}
 	}
 
 	private void showFragment(Fragment danhSachGiaiDauFragment) {
