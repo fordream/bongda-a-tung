@@ -10,6 +10,8 @@ import com.app.bongda.base.BaseFragment;
 import com.app.bongda.base.BongDaBaseAdapter;
 import com.app.bongda.inter.CallBackListenner;
 import com.app.bongda.model.GiaiDau;
+import com.app.bongda.model.TuongThuatTran;
+import com.app.bongda.util.CommonAndroid;
 import com.app.bongda.view.HeaderView;
 
 public class TuongThuatTranLiveScoreFragment extends BaseFragment {
@@ -56,22 +58,20 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 		headerView.findViewById(R.id.Button02).setVisibility(View.VISIBLE);
 		headerView.findViewById(R.id.Button03).setVisibility(View.VISIBLE);
 		headerView.findViewById(R.id.Button04).setVisibility(View.VISIBLE);
-		/** init data */
-		ListView listView = (ListView) view.findViewById(R.id.listView1);
-		listView.setOnItemClickListener(onItemClickListener);
-
-		listView.setAdapter(countryAdapter);
-
-		view.findViewById(R.id.imageView2).setOnClickListener(clickListener);
+		view.findViewById(R.id.imageView1s).setOnClickListener(clickListener);
 		headerView.findViewById(R.id.Button02).setOnClickListener(clickListener);
 		headerView.findViewById(R.id.Button03).setOnClickListener(clickListener);
 		headerView.findViewById(R.id.Button04).setOnClickListener(clickListener);
+		/** init data */
+		ListView listView = (ListView) view.findViewById(R.id.listView1);
+		listView.setAdapter(countryAdapter);
+		listView.setOnItemClickListener(onItemClickListener);
 	}
 	
 	View.OnClickListener clickListener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			if(v.getId() == R.id.imageView2){
+			if(v.getId() == R.id.imageView1s){
 				backListenner.onCallBackListenner(1, new GiaiDau("1", "aaaa"));
 			}else if(v.getId() == R.id.Button02){
 				backListenner.onCallBackListenner(2, null);
@@ -85,11 +85,16 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 
 	@Override
 	public void onInitData() {
-		countryAdapter.addItem("");
-		countryAdapter.addItem("");
-		countryAdapter.addItem("");
-		countryAdapter.addItem("");
-		countryAdapter.addItem("");
+		
+		countryAdapter.addItem(new TuongThuatTran(true, "1", "1"));
+		countryAdapter.addItem(new TuongThuatTran(true, "1", "1"));
+		countryAdapter.addItem(new TuongThuatTran(false, "1", "1"));
+		countryAdapter.addItem(new TuongThuatTran(true, "1", "1"));
+		countryAdapter.addItem(new TuongThuatTran(true, "1", "1"));
+		countryAdapter.addItem(new TuongThuatTran(false, "1", "1"));
+		countryAdapter.addItem(new TuongThuatTran(true, "1", "1"));
+		countryAdapter.addItem(new TuongThuatTran(true, "1", "1"));
+		countryAdapter.addItem(new TuongThuatTran(true, "1", "1"));
 		countryAdapter.notifyDataSetChanged();
 	}
 }
