@@ -1,0 +1,60 @@
+10-14 09:14:00.536: E/quocgia(5606): 0:ten==Anh:::maquocgia==ANH
+10-14 09:14:00.540: E/quocgia(5606): 1:ten==Argentina:::maquocgia==ARGENTINA
+10-14 09:14:00.541: E/quocgia(5606): 2:ten==Australia:::maquocgia==AUS
+10-14 09:14:00.541: E/quocgia(5606): 3:ten==Austria:::maquocgia==AO
+10-14 09:14:00.541: E/quocgia(5606): 4:ten==Belarus:::maquocgia==BELARUS
+10-14 09:14:00.542: E/quocgia(5606): 5:ten==Bi:::maquocgia==BI
+10-14 09:14:00.542: E/quocgia(5606): 6:ten==Brazil:::maquocgia==BRAZIL
+10-14 09:14:00.542: E/quocgia(5606): 7:ten==Bulgaria:::maquocgia==BUL
+10-14 09:14:00.542: E/quocgia(5606): 8:ten==Chile:::maquocgia==CHILE
+10-14 09:14:00.542: E/quocgia(5606): 9:ten==China:::maquocgia==CHINA
+10-14 09:14:00.543: E/quocgia(5606): 10:ten==Colombia:::maquocgia==COLOMBIA
+10-14 09:14:00.543: E/quocgia(5606): 11:ten==Concacaf:::maquocgia==CONCACAF
+10-14 09:14:00.543: E/quocgia(5606): 12:ten==Costa Rica:::maquocgia==COSTA RICA
+10-14 09:14:00.543: E/quocgia(5606): 13:ten==croatia:::maquocgia==CRO
+10-14 09:14:00.544: E/quocgia(5606): 14:ten==cyprus:::maquocgia==SIP
+10-14 09:14:00.544: E/quocgia(5606): 15:ten==czechia:::maquocgia==SEC
+10-14 09:14:00.544: E/quocgia(5606): 16:ten==Dan Mach:::maquocgia==DAN MACH
+10-14 09:14:00.544: E/quocgia(5606): 17:ten==Đức:::maquocgia==DUC
+10-14 09:14:00.544: E/quocgia(5606): 18:ten==Egypt:::maquocgia==EGY
+10-14 09:14:00.545: E/quocgia(5606): 19:ten==estonia:::maquocgia==ESTONIA
+10-14 09:14:00.545: E/quocgia(5606): 20:ten==Eurocups:::maquocgia==EUROCUPS
+10-14 09:14:00.545: E/quocgia(5606): 21:ten==finland:::maquocgia==FINLAND
+10-14 09:14:00.545: E/quocgia(5606): 22:ten==Greece:::maquocgia==GREECE
+10-14 09:14:00.545: E/quocgia(5606): 23:ten==holland:::maquocgia==HAL
+10-14 09:14:00.546: E/quocgia(5606): 24:ten==Hungary:::maquocgia==HUN
+10-14 09:14:00.546: E/quocgia(5606): 25:ten==Iceland:::maquocgia==ICE
+10-14 09:14:00.546: E/quocgia(5606): 26:ten==Ireland:::maquocgia==IRE
+10-14 09:14:00.547: E/quocgia(5606): 27:ten==Israel:::maquocgia==ISR
+10-14 09:14:00.549: E/quocgia(5606): 28:ten==Japan:::maquocgia==JPN
+10-14 09:14:00.549: E/quocgia(5606): 29:ten==Korea:::maquocgia==KOR
+10-14 09:14:00.550: E/quocgia(5606): 30:ten==Latvia:::maquocgia==LAT
+10-14 09:14:00.550: E/quocgia(5606): 31:ten==Lithuania:::maquocgia==LIT
+10-14 09:14:00.550: E/quocgia(5606): 32:ten==Mexico:::maquocgia==MEX
+10-14 09:14:00.550: E/quocgia(5606): 33:ten==Norway:::maquocgia==NAUY
+10-14 09:14:00.551: E/quocgia(5606): 34:ten==Paraguay:::maquocgia==PARAGUAY
+10-14 09:14:00.551: E/quocgia(5606): 35:ten==peru:::maquocgia==PERU
+10-14 09:14:00.551: E/quocgia(5606): 36:ten==Pháp:::maquocgia==PHAP
+10-14 09:14:00.551: E/quocgia(5606): 37:ten==Poland:::maquocgia==POLAND
+10-14 09:14:00.551: E/quocgia(5606): 38:ten==Portugal:::maquocgia==BDN
+10-14 09:14:00.552: E/quocgia(5606): 39:ten==Romania:::maquocgia==ROMANIA
+10-14 09:14:00.552: E/quocgia(5606): 40:ten==Russia:::maquocgia==NGA
+10-14 09:14:00.552: E/quocgia(5606): 41:ten==Saudi Arabia:::maquocgia==SAUDI ARABIA
+10-14 09:14:00.555: E/quocgia(5606): 42:ten==Scotland:::maquocgia==SCO
+10-14 09:14:00.555: E/quocgia(5606): 43:ten==Serbia:::maquocgia==SERBIA
+10-14 09:14:00.555: E/quocgia(5606): 44:ten==Singapore:::maquocgia==SIN
+10-14 09:14:00.556: E/quocgia(5606): 45:ten==Slovakia:::maquocgia==SLOVAKIA
+10-14 09:14:00.556: E/quocgia(5606): 46:ten==Slovenia:::maquocgia==SLOVENIA
+10-14 09:14:00.556: E/quocgia(5606): 47:ten==South Africa:::maquocgia==NAM PHI
+10-14 09:14:00.557: E/quocgia(5606): 48:ten==Sweden:::maquocgia==THUY DIEN
+10-14 09:14:00.557: E/quocgia(5606): 49:ten==Switzerland:::maquocgia==THUY SI
+10-14 09:14:00.557: E/quocgia(5606): 50:ten==Tây Ban Nha:::maquocgia==TBN
+10-14 09:14:00.557: E/quocgia(5606): 51:ten==Turkey:::maquocgia==TNK
+10-14 09:14:00.557: E/quocgia(5606): 52:ten==UAE:::maquocgia==UAE
+10-14 09:14:00.558: E/quocgia(5606): 53:ten==Ukraine:::maquocgia==UKRAINE
+10-14 09:14:00.558: E/quocgia(5606): 54:ten==Uruguay:::maquocgia==URUGUAY
+10-14 09:14:00.559: E/quocgia(5606): 55:ten==USA:::maquocgia==USA
+10-14 09:14:00.559: E/quocgia(5606): 56:ten==Venezuela:::maquocgia==VENEZUELA
+10-14 09:14:00.559: E/quocgia(5606): 57:ten==World:::maquocgia==WORLD
+10-14 09:14:00.559: E/quocgia(5606): 58:ten==World Cup:::maquocgia==WORLD CUP
+10-14 09:14:00.560: E/quocgia(5606): 59:ten==Ý:::maquocgia==Y
