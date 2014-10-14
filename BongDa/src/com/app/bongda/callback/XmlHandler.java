@@ -36,7 +36,7 @@ public class XmlHandler extends DefaultHandler
         throws SAXException
     {
         super.endElement(s, s1, s2);
-        if ((s1.equals("wsFootBall_QuocgiaResult") || s1.equals("wsFootBall_Giai_Theo_QuocGiaResult") || s1.equals("wsFootBall_BangXepHangResult") || s1.equals("wsFootBall_LivesResult") || s1.equals("wsFootBall_Lives_Theo_GiaiResult") || s1.equals("wsFootBall_Phong_DoResult") || s1.equals("wsFootBall_Nhan_Dinh_Chuyen_Gia_Theo_TranResult")) && builder != null)
+        if ((s1.equals("wsFootBall_ChiTiet_TranResult") || s1.equals("wsFootBall_QuocgiaResult") || s1.equals("wsFootBall_Giai_Theo_QuocGiaResult") || s1.equals("wsFootBall_BangXepHangResult") || s1.equals("wsFootBall_LivesResult") || s1.equals("wsFootBall_Lives_Theo_GiaiResult") || s1.equals("wsFootBall_Phong_DoResult") || s1.equals("wsFootBall_Nhan_Dinh_Chuyen_Gia_Theo_TranResult")) && builder != null)
         {
             result = builder.toString();
             builder = null;
@@ -58,7 +58,7 @@ public class XmlHandler extends DefaultHandler
         throws SAXException
     {
         super.startElement(s, s1, s2, attributes);
-        if ((s1.equals("wsFootBall_QuocgiaResult") || s1.equals("wsFootBall_Giai_Theo_QuocGiaResult") || s1.equals("wsFootBall_BangXepHangResult") || s1.equals("wsFootBall_LivesResult") || s1.equals("wsFootBall_Lives_Theo_GiaiResult") || s1.equals("wsFootBall_Phong_DoResult") || s1.equals("wsFootBall_Nhan_Dinh_Chuyen_Gia_Theo_TranResult")) && builder != null)
+        if ((s1.equals("wsFootBall_ChiTiet_TranResult") || s1.equals("wsFootBall_QuocgiaResult") || s1.equals("wsFootBall_Giai_Theo_QuocGiaResult") || s1.equals("wsFootBall_BangXepHangResult") || s1.equals("wsFootBall_LivesResult") || s1.equals("wsFootBall_Lives_Theo_GiaiResult") || s1.equals("wsFootBall_Phong_DoResult") || s1.equals("wsFootBall_Nhan_Dinh_Chuyen_Gia_Theo_TranResult")) && builder != null)
         {
             result = builder.toString();
             builder = null;

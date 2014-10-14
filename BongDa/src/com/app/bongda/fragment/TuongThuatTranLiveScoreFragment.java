@@ -1,5 +1,7 @@
 package com.app.bongda.fragment;
 
+import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -26,6 +28,7 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 	OnItemClickListener onItemClickListener;
 	CallBackListenner backListenner;
 	GiaiDau dau;
+	View view;
 	public TuongThuatTranLiveScoreFragment(GiaiDau dau,
 			OnItemClickListener onItemClickListener,
 			CallBackListenner backListenner) {
@@ -77,7 +80,8 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 		listView.setAdapter(countryAdapter);
 		listView.setOnItemClickListener(onItemClickListener);
 
-		((TextView) view.findViewById(R.id.textTenTran)).setText(dau.getName());
+		this.view = view;
+//		((TextView) view.findViewById(R.id.textTenTran)).setText(dau.getName());
 
 	}
 	
@@ -100,6 +104,19 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 
 	ICallbackAPI callbackAPI;
 	private String iID_MaTran;
+	public int iCN_BanThang_DoiKhach;
+    public int iCN_BanThang_DoiKhach_HT;
+    public int iCN_BanThang_DoiNha;
+    public int iCN_BanThang_DoiNha_HT;
+    private int iID_MaDoiKhach;
+    private int iID_MaDoiNha;
+    public int iID_MaGiai;
+    public int iPhut;
+    private boolean isInFront;
+    private ListView listView;
+    public String sTenDoiKhach;
+    public String sTenDoiNha;
+    public String sTenGiai;
 	@Override
 	public void onInitData() {
 
@@ -109,20 +126,26 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 		callbackAPI = new ICallbackAPI() {
 			@Override
 			public void onSuccess(String response) {
-//				CommonAndroid.showDialog(getActivity(), "data2:" + response , null);
-//				String string_temp = CommonAndroid.parseXMLAction(response);
-//				if(!string_temp.equalsIgnoreCase("")){
-//					CommonAndroid.showDialog(getActivity(), "data2:" + string_temp , null);
-//					try {
-//						JSONArray jsonarray = new JSONArray(string_temp);
-//						for (int i = 0; i < jsonarray.length(); i++) {
-//							//parse
-//						}
-//						countryAdapter.notifyDataSetChanged();
-//					} catch (JSONException e) {
-//					}
-//					
-//				}
+				CommonAndroid.showDialog(getActivity(), "data2:" + response , null);
+				String string_temp = CommonAndroid.parseXMLAction(response);
+				if(!string_temp.equalsIgnoreCase("")){
+					try {
+						JSONArray jsonarray = new JSONArray(string_temp);
+						Log.e("data", string_temp);
+						for (int i = 0; i < jsonarray.length(); i++) {
+							//parse
+							sTenGiai = jsonarray.getJSONObject(i).getString("sTenGiai");
+							sTenDoiNha = jsonarray.getJSONObject(i).getString("sTenDoiNha");
+							sTenDoiKhach = jsonarray.getJSONObject(i).getString("sTenDoiKhach");
+						}
+						((TextView) view.findViewById(R.id.textTenTran)).setText(sTenGiai);
+						((TextView) view.findViewById(R.id.TextView01)).setText(sTenDoiNha);
+						((TextView) view.findViewById(R.id.TextView02)).setText(sTenDoiKhach);
+						countryAdapter.notifyDataSetChanged();
+					} catch (JSONException e) {
+					}
+					
+				}
 				
 			}
 
