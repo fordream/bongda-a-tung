@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/darker_gray"
+        android:background="#999999"
         android:orientation="vertical" >
 
         <LinearLayout
@@ -15,8 +15,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingBottom="@dimen/dimen_5dp"
-            android:paddingTop="@dimen/dimen_5dp" >
+            android:paddingBottom="@dimen/dimen_2dp"
+            android:paddingTop="@dimen/dimen_2dp" >
 
             <ImageView
                 android:id="@+id/imageView1"
@@ -27,16 +27,17 @@
             <TextView
                 android:id="@+id/textView1"
                 style="@style/bongda_text_item"
-                android:layout_width="@dimen/dimen_220dp"
+                android:layout_width="@dimen/dimen_240dp"
                 android:layout_height="wrap_content"
                 android:text="Large Text"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="@dimen/dimen_40dp"
-                android:layout_height="@dimen/dimen_40dp"
-                android:src="@drawable/catalogue2_08" />
+                android:layout_width="@dimen/dimen_25dp"
+                android:layout_height="@dimen/dimen_25dp"
+                android:src="@drawable/game_dudoan_recovered_14" />
         </LinearLayout>
 
         <ImageView
@@ -63,46 +64,68 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:background="@android:color/black"
                 android:gravity="center"
                 android:padding="0dp"
-                android:text="FT"
+                android:text="@string/keo"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:textSize="@dimen/dimen_10dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_alignParentRight="true" >
+                android:layout_alignParentRight="true"
+                android:gravity="center" >
 
-                <ImageView
+                <ImageView  android:layout_marginRight="@dimen/dimen_5dp"
                     android:id="@+id/imageView3"
                     android:layout_width="@dimen/dimen_20dp"
                     android:layout_height="@dimen/dimen_20dp"
-                    android:background="@drawable/catalogue2_12" />
+                    android:background="@drawable/game_dudoan_recovered_23" />
+
+                <TextView
+                    android:id="@+id/TextView08"
+                    style="@style/bongda_text_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="0dp"
+                    android:text="3-0"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/dimen_10dp" />
 
                 <ImageView
-                    android:id="@+id/imageView3"
                     android:layout_width="@dimen/dimen_20dp"
                     android:layout_height="@dimen/dimen_20dp"
                     android:layout_marginLeft="@dimen/dimen_5dp"
                     android:layout_marginRight="@dimen/dimen_5dp"
-                    android:background="@drawable/catalogue2_10" />
+                    android:background="@drawable/game_dudoan_recovered_25" />
+
+                <TextView
+                    android:id="@+id/TextView07"
+                    style="@style/bongda_text_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="0dp"
+                    android:text="3-2"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/dimen_10dp" />
 
                 <ImageView
-                    android:id="@+id/imageView3"
                     android:layout_width="@dimen/dimen_20dp"
+                    android:layout_marginLeft="@dimen/dimen_5dp"
                     android:layout_height="@dimen/dimen_20dp"
-                    android:background="@drawable/catalogue2_14" />
+                    android:background="@drawable/game_dudoan_recovered_18" />
 
                 <ImageView
-                    android:id="@+id/imageView3"
                     android:layout_width="@dimen/dimen_20dp"
                     android:layout_height="@dimen/dimen_20dp"
                     android:layout_marginLeft="@dimen/dimen_5dp"
                     android:layout_marginRight="@dimen/dimen_5dp"
-                    android:background="@drawable/catalogue2_06" />
+                    android:background="@drawable/game_dudoan_recovered_20" />
             </LinearLayout>
 
             <TextView
@@ -112,12 +135,10 @@
                 android:layout_height="fill_parent"
                 android:layout_alignParentLeft="true"
                 android:layout_alignTop="@+id/TextView04"
-                android:background="@android:color/black"
                 android:gravity="center"
                 android:padding="0dp"
                 android:text="Live"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@android:color/black"
                 android:textSize="@dimen/dimen_10dp" />
         </RelativeLayout>
 
@@ -147,7 +168,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/TextView01"
-                android:text="Large Text"
+                android:text="Liverpool"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
@@ -157,7 +178,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/TextView01"
-                android:text="Large Text"
+                android:text="manchesterunited"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </RelativeLayout>
     </LinearLayout>

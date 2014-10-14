@@ -11,59 +11,107 @@
         android:layout_height="wrap_content" >
     </com.app.bongda.view.HeaderView>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#999999"
+        android:gravity="center"
+        android:paddingBottom="@dimen/dimen_5dp"
+        android:paddingTop="@dimen/dimen_5dp" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="@dimen/dimen_30dp"
+            android:layout_height="@dimen/dimen_20dp"
+            android:background="@drawable/vietnam" />
+
+        <RelativeLayout
+            android:layout_width="@dimen/dimen_220dp"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/phongdo_text"
+                style="@style/bongda_text_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Large Text"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/TextView03"
+                style="@style/bongda_text_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/phongdo_text"
+                android:text="Thời gian : 19-05-2014"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="@dimen/dimen_10dp" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/imageView1s"
+            android:layout_width="@dimen/dimen_25dp"
+            android:layout_height="@dimen/dimen_25dp"
+            android:background="@drawable/game_dudoan_recovered_14" />
+    </LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
         <LinearLayout
-            android:layout_width="@dimen/dimen_200dp"
+            android:layout_width="@dimen/dimen_300dp"
             android:layout_height="wrap_content"
             android:layout_above="@+id/llii"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" >
 
             <RelativeLayout
-                android:layout_width="@dimen/dimen_100dp"
+                android:layout_width="@dimen/dimen_150dp"
                 android:layout_height="match_parent" >
 
                 <com.app.bongda.view.TyLeView
                     android:id="@+id/tyLeView1"
-                    android:layout_width="@dimen/dimen_100dp"
+                    android:layout_width="match_parent"
                     android:layout_height="fill_parent" />
 
                 <TextView
                     android:id="@+id/TextView01"
                     style="@style/bongda_text_item"
-                    android:layout_width="@dimen/dimen_100dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
                     android:gravity="center"
                     android:text="50%"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/dimen_20dp" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="@dimen/dimen_100dp"
+                android:layout_width="@dimen/dimen_150dp"
                 android:layout_height="match_parent" >
 
                 <com.app.bongda.view.TyLeView
                     android:id="@+id/tyLeView2"
-                    android:layout_width="@dimen/dimen_100dp"
+                    android:layout_width="match_parent"
                     android:layout_height="fill_parent" />
 
                 <TextView
                     android:id="@+id/TextView02"
                     style="@style/bongda_text_item"
-                    android:layout_width="@dimen/dimen_100dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
                     android:gravity="center"
                     android:text="50%"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/dimen_20dp" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -78,29 +126,30 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#123456" />
+                android:background="#cc6600" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center" android:layout_marginBottom="@dimen/dimen_30dp">
+                android:layout_marginBottom="@dimen/dimen_30dp"
+                android:gravity="center" >
 
                 <TextView
                     android:id="@+id/textView1"
                     style="@style/bongda_text_item"
-                    android:layout_width="@dimen/dimen_100dp"
+                    android:layout_width="@dimen/dimen_150dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Large Text"
+                    android:text="Manchester united"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <TextView
                     android:id="@+id/textView2"
                     style="@style/bongda_text_item"
-                    android:layout_width="@dimen/dimen_100dp"
+                    android:layout_width="@dimen/dimen_150dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Large Text"
+                    android:text="Everton"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
             </LinearLayout>
         </LinearLayout>

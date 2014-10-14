@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dimen_50dp"
+    android:layout_height="@dimen/dimen_45dp"
     android:gravity="center"
     android:orientation="horizontal" >
 
@@ -14,12 +14,12 @@
     <TextView
         style="@style/bongda_text_item"
         android:id="@+id/textView1"
-        android:background="@drawable/setting_item_bg"
         android:layout_width="@dimen/dimen_250dp"
         android:layout_marginLeft="@dimen/dimen_5dp"
         android:gravity="center|left"
         android:layout_height="@dimen/dimen_40dp"
         android:text="Large Text"
+        android:background="#cccccc"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </LinearLayout>

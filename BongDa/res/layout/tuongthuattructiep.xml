@@ -55,7 +55,7 @@
                 android:id="@+id/imageView1"
                 android:layout_width="@dimen/dimen_50dp"
                 android:layout_height="@dimen/dimen_50dp"
-                android:background="@drawable/button_forgot__xml" />
+                android:background="@drawable/button_m1" />
 
             <TextView
                 android:id="@+id/TextView01"
@@ -116,7 +116,7 @@
                 android:id="@+id/ImageView01"
                 android:layout_width="@dimen/dimen_50dp"
                 android:layout_height="@dimen/dimen_50dp"
-                android:background="@drawable/button_forgot__xml" />
+                android:background="@drawable/button_m1" />
 
             <TextView
                 android:id="@+id/TextView02"

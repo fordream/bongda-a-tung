@@ -87,7 +87,7 @@
                 android:layout_height="@dimen/dimen_40dp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/home_p3" />
+                android:background="@drawable/group122" />
 
             <TextView
                 android:id="@+id/TextView02"

@@ -3,6 +3,7 @@ package com.app.bongda.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -28,5 +29,9 @@ public class HeaderView extends LinearLayout {
 
 	public void setTextHeader(int bangxephang) {
 		((TextView) findViewById(R.id.textView1)).setText(bangxephang);
+	}
+
+	public void hiddenProgressbar() {
+		findViewById(R.id.Button01).setVisibility(View.GONE);
 	}
 }
