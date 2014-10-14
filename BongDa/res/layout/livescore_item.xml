@@ -8,11 +8,11 @@
         android:id="@+id/livescore_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#123456"
+        android:background="#999999"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingBottom="@dimen/dimen_10dp"
-        android:paddingTop="@dimen/dimen_10dp" >
+        android:paddingBottom="@dimen/dimen_5dp"
+        android:paddingTop="@dimen/dimen_5dp" >
 
         <ImageView
             android:id="@+id/imageView1"
@@ -23,19 +23,20 @@
         <TextView
             android:id="@+id/textView1"
             style="@style/bongda_text_item"
-            android:layout_width="@dimen/dimen_220dp"
+            android:layout_width="@dimen/dimen_240dp"
             android:layout_height="wrap_content"
             android:text="Large Text"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="@dimen/dimen_40dp"
-            android:layout_height="@dimen/dimen_40dp"
-            android:src="@drawable/catalogue2_08" />
+            android:layout_width="@dimen/dimen_25dp"
+            android:layout_height="@dimen/dimen_25dp"
+            android:src="@drawable/game_dudoan_recovered_14" />
     </LinearLayout>
 
     <LinearLayout
+        android:background="@android:color/white"
         android:id="@+id/livescore_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -87,7 +88,7 @@
                 android:layout_height="@dimen/dimen_40dp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/home_p3" />
+                android:background="@drawable/group122" />
 
             <TextView
                 android:id="@+id/TextView02"
