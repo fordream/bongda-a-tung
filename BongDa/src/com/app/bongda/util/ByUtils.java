@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 public class ByUtils {
+
 	public static final String BASESERVER = "http://210.245.94.14:84/Services/wsfootball.asmx";
 	public static final String wsFootBall_BangXepHang = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsFootBall_BangXepHang xmlns=\"http://tempuri.org/\">      <iID_MaGiai>bangxephangId</iID_MaGiai>    </wsFootBall_BangXepHang>  </soap:Body></soap:Envelope>";
 	public static final String wsFootBall_FocusMatch = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsFootBall_Tran_Quan_Tam xmlns=\"http://tempuri.org/\">    \t<sMaTran>%d</sMaTran>    </wsFootBall_Tran_Quan_Tam>  </soap:Body></soap:Envelope>";
@@ -32,8 +33,8 @@ public class ByUtils {
 		// File file = new File(path);
 		try {
 			String fileList[] = am.list("64");
-//			CommonAndroid.toast(context, fileList.length + "  "
-//					+ (getContryBitmap(context, fileList[0]) == null));
+			// CommonAndroid.toast(context, fileList.length + "  "
+			// + (getContryBitmap(context, fileList[0]) == null));
 		} catch (Exception exception) {
 		}
 
@@ -61,5 +62,10 @@ public class ByUtils {
 			return BitmapFactory.decodeStream(istr);
 		return null;
 	}
+
+	/**
+	 * 
+	 */
+	public static final boolean USEGROUPVIEW = true;
 
 }
