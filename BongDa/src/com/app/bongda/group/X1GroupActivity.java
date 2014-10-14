@@ -1,7 +1,7 @@
 package com.app.bongda.group;
 
-import com.app.bongda.base.BaseGroupActivity;
+import com.app.bongda.MBaseGroupActivity;
 
-public class X1GroupActivity extends BaseGroupActivity {
+public class X1GroupActivity extends MBaseGroupActivity {
 
 }

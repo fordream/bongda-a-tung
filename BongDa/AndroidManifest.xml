@@ -48,6 +48,8 @@
         </activity>
         <activity android:name=".group.X4GroupActivity" >
         </activity>
+        <activity android:name=".group.MActivity" >
+        </activity>
     </application>
 
 </manifest>

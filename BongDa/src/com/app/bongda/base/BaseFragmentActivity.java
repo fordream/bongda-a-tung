@@ -3,6 +3,8 @@
  */
 package com.app.bongda.base;
 
+import com.app.bongda.R;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -31,12 +33,7 @@ public class BaseFragmentActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-
+		setContentView(R.layout.mactivity);
 	}
 
 	/**
@@ -60,6 +57,7 @@ public class BaseFragmentActivity extends FragmentActivity {
 	}
 
 	public void changeFragemt(int res, Fragment fragment) {
+		res = R.id.mactivity_main;
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		fragmentManager.beginTransaction().replace(res, fragment).commit();
 	}
