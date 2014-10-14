@@ -27,7 +27,7 @@
             android:background="@drawable/vietnam" />
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/textTenTran"
             style="@style/bongda_text_item"
             android:layout_width="@dimen/dimen_260dp"
             android:layout_height="wrap_content"

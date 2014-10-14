@@ -20,7 +20,7 @@ import com.app.bongda.model.LiveScore;
 
 public class BaseX1X2Activity extends BaseActivtiy {
 
-	public void showTuongThuatTranLiveScoreFragment() {
+	public void showTuongThuatTranLiveScoreFragment(GiaiDau giaiDau) {
 		OnItemClickListener liveScoreTuongThuatOnItemClickListener = new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -53,7 +53,7 @@ public class BaseX1X2Activity extends BaseActivtiy {
 				}
 			}
 		};
-		showFragment(new TuongThuatTranLiveScoreFragment(
+		showFragment(new TuongThuatTranLiveScoreFragment(giaiDau,
 				liveScoreTuongThuatOnItemClickListener, callBackListenner));
 	}
 
@@ -101,7 +101,9 @@ public class BaseX1X2Activity extends BaseActivtiy {
 
 				// xem tuong thuat a
 				if (!liveScore.isHeader()) {
-					showTuongThuatTranLiveScoreFragment();
+					GiaiDau dau = new GiaiDau(liveScore.getId(),
+							liveScore.getName());
+					showTuongThuatTranLiveScoreFragment((GiaiDau) dau);
 				}
 			}
 		};

@@ -193,20 +193,21 @@ public class LiveScoreFragment extends BaseFragment {
 			                String sTenDoiNha = array.get(i).getString("sTenDoiNha");
 			                String sTenDoiKhach = array.get(i).getString("sTenDoiKhach");
 			                int iTrangThai = Integer.parseInt(array.get(i).getString("iTrangThai"));
+			                String iID_MaTran = array.get(i).getString("iID_MaTran");
 			                Log.e("kkk",sTenGiai +":" +iTrangThai + ":" +sTenDoiNha);
 							if (i == 0) {
-								countryAdapter.addItem(new LiveScore(true,iID_MaGiai, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, "4:10"));
-								countryAdapter.addItem(new LiveScore(false,iID_MaGiai, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, "4:10"));
+								countryAdapter.addItem(new LiveScore(true,iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, "4:10"));
+								countryAdapter.addItem(new LiveScore(false,iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, "4:10"));
 								
 							} else if (i > 0) {
 								if ((array.get(i)
 										.getString("sTenGiai"))
 										.equalsIgnoreCase(array.get(i - 1)
 												.getString("sTenGiai"))) {
-									countryAdapter.addItem(new LiveScore(false,iID_MaGiai, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, "4:10"));
+									countryAdapter.addItem(new LiveScore(false,iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, "4:10"));
 								} else {
-									countryAdapter.addItem(new LiveScore(true,iID_MaGiai, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, "4:10"));
-									countryAdapter.addItem(new LiveScore(false,iID_MaGiai, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, "4:10"));
+									countryAdapter.addItem(new LiveScore(true,iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, "4:10"));
+									countryAdapter.addItem(new LiveScore(false,iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, "4:10"));
 									
 								}
 			            }
