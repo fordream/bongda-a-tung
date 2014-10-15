@@ -98,7 +98,7 @@ public class LiveScoreFragment extends BaseFragment {
 		        	setText(convertView, R.id.TextView01,liveScore.iPhut()  + " '");//time
 		        }
 			}else{
-				convertView.findViewById(R.id.TextView03).setVisibility(View.VISIBLE);//live
+				convertView.findViewById(R.id.TextView03).setVisibility(View.GONE);//live
 				convertView.findViewById(R.id.ImageView031).setVisibility(View.VISIBLE);
 				convertView.findViewById(R.id.TextView02_ketqua).setVisibility(View.GONE);
 				setText(convertView, R.id.TextView01,liveScore.getTime());//time
