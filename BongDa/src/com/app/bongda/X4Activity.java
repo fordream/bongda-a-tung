@@ -40,7 +40,7 @@ public class X4Activity extends BaseX1X2Activity {
 //		}));
 	}
 	
-	public void showDanhSachGiaiDau(Country country){
+	public void showDanhSachGiaiDau222(Country country){
 		 OnItemClickListener listGiaiDau = new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position,

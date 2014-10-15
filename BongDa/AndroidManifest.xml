@@ -50,6 +50,11 @@
         </activity>
         <activity android:name=".group.MActivity" >
         </activity>
+         <activity
+            android:name=".NhanDinhChuyenGiaActivity"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>
