@@ -17,7 +17,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_5dp"
             android:orientation="vertical" >
 
             <RelativeLayout
@@ -163,9 +162,9 @@
             <TextView
                 style="@style/bongda_text_item"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_45dp"
-                android:background="#123456"
-                android:gravity="center"
+                android:layout_height="@dimen/dimen_30dp"
+                android:background="#999999"
+                android:gravity="center|left"
                 android:text="@string/bangephang2doi"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -189,17 +188,16 @@
             </com.app.bongda.view.PhongDodoiItemView>
 
             <com.app.bongda.view.PhongDodoiItemView
-                android:layout_marginTop="@dimen/dimen_10dp"
                 android:id="@+id/phongDodoiItemView2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10dp" >
             </com.app.bongda.view.PhongDodoiItemView>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_40dp" >
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 

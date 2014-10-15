@@ -42,5 +42,10 @@
     <string name="dudoanketqua">DỰ ĐOÁN KẾT QUẢ</string>
     <string name="keo">Kèo</string>
     <string name="nhandinhchuyengia">Nhận định chuyên gia</string>
+    
+    <color name="cccccc">#cccccc</color>
+    
+    <dimen name="height_phongdo">@dimen/dimen_40dp</dimen>
+    <dimen name="width_phongdo">@dimen/dimen_70dp</dimen>
 
 </resources>
