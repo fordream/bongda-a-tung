@@ -11,6 +11,10 @@ import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
 
+import com.app.bongda.group.X1GroupActivity;
+import com.app.bongda.group.X2GroupActivity;
+import com.app.bongda.group.X3GroupActivity;
+import com.app.bongda.group.X4GroupActivity;
 import com.app.bongda.util.ByUtils;
 import com.app.bongda.view.IndivicatorView;
 
@@ -30,13 +34,22 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 		setContentView(R.layout.tabexampleslide);
 		getTabHost().setOnTabChangedListener(this);
 
-		addTab(X1Activity.class, "Home", "Home", R.drawable.menu_1);
-		addTab(X2Activity.class, "M1", "M1", R.drawable.menu_2);
-		addTab(X3Activity.class, "M2", "M2", R.drawable.menu_3);
-		addTab(X4Activity.class, "M3", "M3", R.drawable.menu_4);
+		if (ByUtils.USEGROUPVIEW) {
+			addTab(X1GroupActivity.class, "Home", "Home", R.drawable.menu_1);
+			addTab(X2GroupActivity.class, "M1", "M1", R.drawable.menu_2);
+			addTab(X3GroupActivity.class, "M2", "M2", R.drawable.menu_3);
+			addTab(X4GroupActivity.class, "M3", "M3", R.drawable.menu_4);
+		} else {
+			addTab(X1Activity.class, "Home", "Home", R.drawable.menu_1);
+			addTab(X2Activity.class, "M1", "M1", R.drawable.menu_2);
+			addTab(X3Activity.class, "M2", "M2", R.drawable.menu_3);
+			addTab(X4Activity.class, "M3", "M3", R.drawable.menu_4);
+		}
+
 		addTab(X5Activity.class, "M3", "M3", R.drawable.menu_5);
 
 		getTabHost().setCurrentTab(4);
+		// ByUtils.getFilePath(this);
 	}
 
 	@Override
