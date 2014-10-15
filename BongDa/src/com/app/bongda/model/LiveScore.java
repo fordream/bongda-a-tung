@@ -2,10 +2,15 @@ package com.app.bongda.model;
 
 public class LiveScore extends PhongDo {
 	public LiveScore(boolean isHeader, String id, String giai, String name, String name2,
-			String date, String time) {
-		super(id, name, name2, date, time);
+			String ht, String phut ,String thoigian, String iC0, String tiso, int trangthai) {
+		super(id, name, name2, iC0, thoigian);
 		this.isHeader = isHeader;
 		this.sTenGiai = giai;
+		this.iTrangThai = trangthai;
+		this.iPhut = phut;
+		this.iTiso = tiso;
+		this.HT = ht;
+		this.sThoiGian = thoigian;
 	}
 	public LiveScore(boolean isHeader, String sTenGiai,String sTenDoiNha,String sTenDoiKhach,int iCN_BanThang_DoiNha,int iCN_BanThang_DoiKhach,int iCN_BanThang_DoiNha_HT,int iCN_BanThang_DoiKhach_HT) {
 		super(null,sTenDoiNha,sTenDoiKhach,null,null);
@@ -27,6 +32,11 @@ public class LiveScore extends PhongDo {
 	private int iCN_BanThang_DoiKhach;
 	private int iCN_BanThang_DoiNha_HT;
 	private int iCN_BanThang_DoiKhach_HT;
+	private int iTrangThai;
+	private String iPhut;
+	private String iTiso;
+	private String HT;
+	private String sThoiGian;
 
 	public boolean isHeader() {
 		return isHeader;
@@ -58,6 +68,24 @@ public class LiveScore extends PhongDo {
 	
 	public int iCN_BanThang_DoiKhach_HT() {
 		return iCN_BanThang_DoiKhach_HT;
+	}
+	
+	public int iTrangThai() {
+		return iTrangThai;
+	}
+	
+	public String iPhut() {
+		return iPhut;
+	}
+	
+	public String iTiso() {
+		return iTiso;
+	}
+	public String iHT() {
+		return HT;
+	}
+	public String sThoiGian(){
+		return sThoiGian;
 	}
 	
 }

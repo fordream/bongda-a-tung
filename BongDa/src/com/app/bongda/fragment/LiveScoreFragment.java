@@ -66,10 +66,55 @@ public class LiveScoreFragment extends BaseFragment {
 
 			setText(convertView, R.id.textView1, liveScore.sTenGiai());
 
-			setText(convertView, R.id.TextView01, liveScore.getTime());
+			int status = 0;
+			status = liveScore.iTrangThai();
+			if(status >= 2){
+				convertView.findViewById(R.id.TextView03).setVisibility(View.VISIBLE);//live
+				convertView.findViewById(R.id.TextView02_ketqua).setVisibility(View.VISIBLE);
+				setText(convertView, R.id.TextView02_ketqua,liveScore.iTiso());//tiso
+				convertView.findViewById(R.id.ImageView031).setVisibility(View.GONE);
+				setText(convertView, R.id.tv1, liveScore.iHT());
+				if (status == 5)
+		        {
+					setText(convertView, R.id.TextView01,"FT");//time
+					convertView.findViewById(R.id.TextView03).setVisibility(View.GONE);//live
+		        }
+				else if (status == 3)
+		        {
+					setText(convertView, R.id.TextView01,"HT");//time
+		        }
+				else if (status >= 10)
+		        {
+					  setText(convertView, R.id.TextView01,getResources().getString(R.string.hoanthidau));
+					  convertView.findViewById(R.id.TextView02_ketqua).setVisibility(View.GONE);
+					  convertView.findViewById(R.id.TextView03).setVisibility(View.GONE);//live
+					  convertView.findViewById(R.id.ImageView031).setVisibility(View.VISIBLE);
+					  java.util.Date localDate1 = new java.util.Date(1000L * Integer.valueOf(liveScore.getDate()));
+					  Object[] arrayOfObject1 = new Object[2];
+					  arrayOfObject1[0] = Integer.valueOf(localDate1.getDate());
+					  arrayOfObject1[1] = Integer.valueOf(1 + localDate1.getMonth());
+					  setText(convertView, R.id.tv1, String.format("%d/%d", arrayOfObject1));
+		        }else{
+		        	setText(convertView, R.id.TextView01,liveScore.iPhut()  + " '");//time
+		        }
+			}else{
+				convertView.findViewById(R.id.TextView03).setVisibility(View.VISIBLE);//live
+				convertView.findViewById(R.id.ImageView031).setVisibility(View.VISIBLE);
+				convertView.findViewById(R.id.TextView02_ketqua).setVisibility(View.GONE);
+				setText(convertView, R.id.TextView01,liveScore.getTime());//time
+		        int j = Integer.valueOf(liveScore.getDate());
+		        java.util.Date localDate2 = new java.util.Date(1000L * j);
+		        System.currentTimeMillis();
+		        new java.sql.Date(j * 1000);
+		        Object[] arrayOfObject2 = new Object[2];
+		        arrayOfObject2[0] = Integer.valueOf(localDate2.getDate());
+		        arrayOfObject2[1] = Integer.valueOf(1 + localDate2.getMonth());
+		        setText(convertView, R.id.tv1, String.format("%d/%d", arrayOfObject2));
+			}
+//			setText(convertView, R.id.TextView01, liveScore.getTime());
 			setText(convertView, R.id.TextView02, liveScore.getName());
 			setText(convertView, R.id.TextView023, liveScore.getName2());
-			setText(convertView, R.id.tv1, liveScore.getDate());
+//			setText(convertView, R.id.tv1, liveScore.getDate());
 
 			convertView.findViewById(R.id.imageView2).setOnClickListener(
 					new OnClickListener() {
@@ -194,20 +239,24 @@ public class LiveScoreFragment extends BaseFragment {
 			                String sTenDoiKhach = array.get(i).getString("sTenDoiKhach");
 			                int iTrangThai = Integer.parseInt(array.get(i).getString("iTrangThai"));
 			                String iID_MaTran = array.get(i).getString("iID_MaTran");
+			                String iC0 = array.get(i).getString("iC0");//ngay thi dau
+			                String iPhut = array.get(i).getString("iPhut");
+			                String sThoiGian = array.get(i).getString("sThoiGian");//thoi gian thi dau
+			                String tiso = array.get(i).getString("iCN_BanThang_DoiNha") +  " - " + array.get(i).getString("iCN_BanThang_DoiKhach");
 			                Log.e("kkk",sTenGiai +":" +iTrangThai + ":" +sTenDoiNha);
 							if (i == 0) {
-								countryAdapter.addItem(new LiveScore(true,iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, "4:10"));
-								countryAdapter.addItem(new LiveScore(false,iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, "4:10"));
+								countryAdapter.addItem(new LiveScore(true,iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut ,sThoiGian, iC0, tiso,iTrangThai));
+								countryAdapter.addItem(new LiveScore(false,iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut ,sThoiGian, iC0, tiso, iTrangThai));
 								
 							} else if (i > 0) {
 								if ((array.get(i)
 										.getString("sTenGiai"))
 										.equalsIgnoreCase(array.get(i - 1)
 												.getString("sTenGiai"))) {
-									countryAdapter.addItem(new LiveScore(false,iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, "4:10"));
+									countryAdapter.addItem(new LiveScore(false,iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut ,sThoiGian, iC0, tiso, iTrangThai));
 								} else {
-									countryAdapter.addItem(new LiveScore(true,iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, "4:10"));
-									countryAdapter.addItem(new LiveScore(false,iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, "4:10"));
+									countryAdapter.addItem(new LiveScore(true,iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut ,sThoiGian, iC0, tiso, iTrangThai));
+									countryAdapter.addItem(new LiveScore(false,iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut ,sThoiGian, iC0, tiso, iTrangThai));
 									
 								}
 			            }
