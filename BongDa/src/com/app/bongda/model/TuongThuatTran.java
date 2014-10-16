@@ -1,15 +1,26 @@
 package com.app.bongda.model;
 
 public class TuongThuatTran extends BaseItem {
-	private boolean isDoi1;
+	private int isDoi;
+	private String sThoigian;
+	private int sTrangthai;
 
-	public TuongThuatTran(boolean isDoi1, String id, String name) {
+	public TuongThuatTran(int doi, String id, String thoigian, String name, int status) {
 		super(id, name);
-		this.isDoi1 = isDoi1;
+		this.isDoi = doi;
+		this.sThoigian = thoigian;
+		this.sTrangthai = status;
 	}
 
-	public boolean isDoi1() {
-		return isDoi1;
+	public int isDoi() {
+		return isDoi;
+	}
+	
+	public String isThoigian() {
+		return sThoigian;
 	}
 
+	public int isTrangthai() {
+		return sTrangthai;
+	}
 }
