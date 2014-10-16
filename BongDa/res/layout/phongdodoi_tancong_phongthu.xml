@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_phongdo"
+        android:background="#999999" >
+
+        <TextView
+            android:id="@+id/TextView01"
+            style="@style/bongda_text_item_phongdo"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="#de5300"
+            android:gravity="center"
+            android:text="Man city"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            style="@style/bongda_text_item_phongdo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@+id/TextView01"
+            android:gravity="left"
+            android:text="@string/khanangtancongphongthu"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_phongdo" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/LinearLayout01" >
+
+            <TextView
+                android:id="@+id/TextView06"
+                style="@style/bongda_text_item_phongdo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/tancong"
+                android:textColor="#d57f42"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout01"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true" >
+
+            <TextView
+                android:id="@+id/TextView07"
+                style="@style/bongda_text_item_phongdo"
+                android:layout_width="@dimen/width_phongdo"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/TextView05"
+                style="@style/bongda_text_item_phongdo"
+                android:layout_width="@dimen/width_phongdo"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_phongdo"
+        android:background="@color/cccccc" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/LinearLayout02" >
+
+            <TextView
+                android:id="@+id/TextView09"
+                style="@style/bongda_text_item_phongdo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/tyleghibantrungbinh"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout02"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true" >
+
+            <TextView
+                android:id="@+id/TextView10"
+                style="@style/bongda_text_item_phongdo"
+                android:layout_width="@dimen/width_phongdo"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/sannha"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/TextView08"
+                style="@style/bongda_text_item_phongdo"
+                android:layout_width="@dimen/width_phongdo"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/sankhach"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_phongdo" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/m11" >
+
+            <TextView
+                android:id="@+id/TextView04"
+                style="@style/bongda_text_item_phongdo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/sotrankhongghiban"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/m11"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true" >
+
+            <TextView
+                android:id="@+id/TextView03"
+                style="@style/bongda_text_item_phongdo"
+                android:layout_width="@dimen/width_phongdo"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/sannha"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/TextView02"
+                style="@style/bongda_text_item_phongdo"
+                android:layout_width="@dimen/width_phongdo"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/sankhach"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_phongdo"
+        android:background="@color/cccccc" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/m112" >
+
+            <TextView
+                style="@style/bongda_text_item_phongdo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/sotranghiban"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/m112"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true" >
+
+            <TextView
+                style="@style/bongda_text_item_phongdo"
+                android:layout_width="@dimen/width_phongdo"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/sannha"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                style="@style/bongda_text_item_phongdo"
+                android:layout_width="@dimen/width_phongdo"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/sankhach"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_phongdo" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/m11o" >
+
+            <TextView
+                style="@style/bongda_text_item_phongdo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/hieusobanthang"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/m11o"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true" >
+
+            <TextView
+                style="@style/bongda_text_item_phongdo"
+                android:layout_width="@dimen/width_phongdo"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/sannha"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                style="@style/bongda_text_item_phongdo"
+                android:layout_width="@dimen/width_phongdo"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/sankhach"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_phongdo"
+            android:background="@color/cccccc" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/m11" >
+
+                <TextView
+                    android:id="@+id/TextView11"
+                    style="@style/bongda_text_item_phongdo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/phongthu"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#d57f42" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/m11"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true" >
+
+                <TextView
+                    android:id="@+id/TextView03"
+                    style="@style/bongda_text_item_phongdo"
+                    android:layout_width="@dimen/width_phongdo"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/TextView02"
+                    style="@style/bongda_text_item_phongdo"
+                    android:layout_width="@dimen/width_phongdo"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_phongdo" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/LinearLayout04" >
+
+                <TextView
+                    android:id="@+id/TextView16"
+                    style="@style/bongda_text_item_phongdo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/tylelotluoitrungbinh"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearLayout04"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true" >
+
+                <TextView
+                    android:id="@+id/TextView17"
+                    style="@style/bongda_text_item_phongdo"
+                    android:layout_width="@dimen/width_phongdo"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/sannha"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/TextView15"
+                    style="@style/bongda_text_item_phongdo"
+                    android:layout_width="@dimen/width_phongdo"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/sankhach"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_phongdo"
+            android:background="@color/cccccc" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/LinearLayout05" >
+
+                <TextView
+                    android:id="@+id/TextView19"
+                    style="@style/bongda_text_item_phongdo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/sotrankhonglotluoi"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearLayout05"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true" >
+
+                <TextView
+                    android:id="@+id/TextView20"
+                    style="@style/bongda_text_item_phongdo"
+                    android:layout_width="@dimen/width_phongdo"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/sannha"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/TextView18"
+                    style="@style/bongda_text_item_phongdo"
+                    android:layout_width="@dimen/width_phongdo"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/sankhach"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_phongdo" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/LinearLayout05" >
+
+                <TextView
+                    android:id="@+id/TextView19"
+                    style="@style/bongda_text_item_phongdo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/sotrankhonglotluoi"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearLayout05"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true" >
+
+                <TextView
+                    android:id="@+id/TextView20"
+                    style="@style/bongda_text_item_phongdo"
+                    android:layout_width="@dimen/width_phongdo"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/sannha"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/TextView18"
+                    style="@style/bongda_text_item_phongdo"
+                    android:layout_width="@dimen/width_phongdo"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/sankhach"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_phongdo"
+            android:background="@color/cccccc" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/LinearLayout04" >
+
+                <TextView
+                    android:id="@+id/TextView16"
+                    style="@style/bongda_text_item_phongdo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/hieusobanthua"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearLayout04"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true" >
+
+                <TextView
+                    android:id="@+id/TextView17"
+                    style="@style/bongda_text_item_phongdo"
+                    android:layout_width="@dimen/width_phongdo"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/sannha"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/TextView15"
+                    style="@style/bongda_text_item_phongdo"
+                    android:layout_width="@dimen/width_phongdo"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/sankhach"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

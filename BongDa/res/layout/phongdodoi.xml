@@ -31,7 +31,7 @@
             android:layout_centerInParent="true"
             android:layout_toLeftOf="@+id/TextView01"
             android:gravity="left"
-            android:text="Man city"
+            android:text="@string/phongdotinhtrentongsotran"
             android:textAppearance="?android:attr/textAppearanceLarge" />
     </RelativeLayout>
 
@@ -185,7 +185,6 @@
             android:layout_toLeftOf="@+id/m11" >
 
             <TextView
-                android:id="@+id/TextView04"
                 style="@style/bongda_text_item_phongdo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -201,7 +200,6 @@
             android:layout_alignParentRight="true" >
 
             <TextView
-                android:id="@+id/TextView03"
                 style="@style/bongda_text_item_phongdo"
                 android:layout_width="@dimen/width_phongdo"
                 android:layout_height="match_parent"
@@ -210,7 +208,6 @@
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
-                android:id="@+id/TextView02"
                 style="@style/bongda_text_item_phongdo"
                 android:layout_width="@dimen/width_phongdo"
                 android:layout_height="match_parent"

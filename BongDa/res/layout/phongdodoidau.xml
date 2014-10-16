@@ -25,14 +25,18 @@
 
                 <ImageView
                     android:id="@+id/imageView1"
-                    android:layout_width="@dimen/dimen_50dp"
-                    android:layout_height="@dimen/dimen_50dp"
+                    android:layout_marginTop="@dimen/dimen_5dp"
+                    android:layout_marginLeft="@dimen/dimen_5dp"
+                    android:layout_width="@dimen/dimen_75dp"
+                    android:layout_height="@dimen/dimen_75dp"
                     android:background="@drawable/bongda1" />
 
                 <ImageView
                     android:id="@+id/imageView2"
-                    android:layout_width="@dimen/dimen_50dp"
-                    android:layout_height="@dimen/dimen_50dp"
+                          android:layout_marginTop="@dimen/dimen_5dp"
+                    android:layout_marginRight="@dimen/dimen_5dp"
+                    android:layout_width="@dimen/dimen_75dp"
+                    android:layout_height="@dimen/dimen_75dp"
                     android:layout_alignParentRight="true"
                     android:background="@drawable/bongda1" />
 
@@ -54,8 +58,9 @@
                         android:textAppearance="?android:attr/textAppearanceLarge" />
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/dimen_125dp"
+                        android:layout_height="@dimen/dimen_25dp"
+                        android:background="@drawable/nam_tran_gan_nhat_bg1"
                         android:gravity="center" >
 
                         <TextView
@@ -106,8 +111,11 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_5dp"
+                        android:layout_marginBottom="@dimen/dimen_5dp"
+                        android:layout_width="@dimen/dimen_125dp"
+                        android:layout_height="@dimen/dimen_25dp"
+                        android:background="@drawable/nam_tran_gan_nhat_bg2"
                         android:gravity="center" >
 
                         <TextView
@@ -193,6 +201,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_10dp" >
             </com.app.bongda.view.PhongDodoiItemView>
+
+            <com.app.bongda.view.PhongDodoiItemTanCongPhongThuView
+                android:id="@+id/phongDodoiItemTanCongPhongThuView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+            </com.app.bongda.view.PhongDodoiItemTanCongPhongThuView>
+
+            <com.app.bongda.view.PhongDodoiItemTanCongPhongThuView
+                android:id="@+id/phongDodoiItemTanCongPhongThuView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+            </com.app.bongda.view.PhongDodoiItemTanCongPhongThuView>
 
             <LinearLayout
                 android:layout_width="match_parent"

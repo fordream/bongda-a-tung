@@ -47,5 +47,16 @@
     
     <dimen name="height_phongdo">@dimen/dimen_40dp</dimen>
     <dimen name="width_phongdo">@dimen/dimen_70dp</dimen>
+    <string name="phongdotinhtrentongsotran">Phong độ tính trên tổng số trận</string>
+    <string name="khanangtancongphongthu">Khả năng tấn công / phòng thủ</string>
+    <string name="tancong">Tấn công</string>
+    <string name="tyleghibantrungbinh">Tỷ lệ ghi bản trung bình</string>
+    <string name="sotrankhongghiban">Số trận không ghi bàn</string>
+    <string name="sotranghiban">Số trận ghi bàn</string>
+    <string name="hieusobanthang">Hiệu số bàn thắng</string>
+    <string name="phongthu">Phòng thủ</string>
+    <string name="tylelotluoitrungbinh">Tỷ lệ lọt lưới trung bình</string>
+    <string name="sotrankhonglotluoi">Số trận không lọt lưới</string>
+    <string name="hieusobanthua">Hiệu số bàn thua</string>
 
 </resources>
