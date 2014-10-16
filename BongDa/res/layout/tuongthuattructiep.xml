@@ -48,6 +48,7 @@
                 android:layout_toRightOf="@+id/phongdo_text"
                 android:text="Thời gian : 19-05-2014"
                 android:textAppearance="?android:attr/textAppearanceLarge"
+                android:visibility="gone"
                 android:textSize="@dimen/dimen_10dp" />
         </RelativeLayout>
 
@@ -95,6 +96,7 @@
             android:orientation="vertical" >
 
             <TextView
+                 android:id="@+id/tuongthuat_time"
                 style="@style/bongda_text_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -104,7 +106,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/tuongthuat_tiso"
                 style="@style/bongda_text_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -115,7 +117,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/TextView04"
+                android:id="@+id/tuongthuat_ht"
                 style="@style/bongda_text_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

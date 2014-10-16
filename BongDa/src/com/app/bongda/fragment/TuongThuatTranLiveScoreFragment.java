@@ -131,14 +131,14 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 
 	ICallbackAPI callbackAPI;
 	private String iID_MaTran;
-	public int iCN_BanThang_DoiKhach;
-    public int iCN_BanThang_DoiKhach_HT;
-    public int iCN_BanThang_DoiNha;
-    public int iCN_BanThang_DoiNha_HT;
+	public String iCN_BanThang_DoiKhach;
+    public String iCN_BanThang_DoiKhach_HT;
+    public String iCN_BanThang_DoiNha;
+    public String iCN_BanThang_DoiNha_HT;
     private int iID_MaDoiKhach;
     private int iID_MaDoiNha;
     public int iID_MaGiai;
-    public int iPhut;
+    public String iPhut;
     private boolean isInFront;
     private ListView listView;
     public String sTenDoiKhach;
@@ -164,14 +164,27 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 							sTenGiai = jsonarray.getJSONObject(i).getString("sTenGiai");
 							sTenDoiNha = jsonarray.getJSONObject(i).getString("sTenDoiNha");
 							sTenDoiKhach = jsonarray.getJSONObject(i).getString("sTenDoiKhach");
+							iCN_BanThang_DoiNha = jsonarray.getJSONObject(i).getString("iCN_BanThang_DoiNha");
+							iCN_BanThang_DoiKhach = jsonarray.getJSONObject(i).getString("iCN_BanThang_DoiKhach");
+							iCN_BanThang_DoiNha_HT= jsonarray.getJSONObject(i).getString("iCN_BanThang_DoiNha_HT");
+							iCN_BanThang_DoiKhach_HT = jsonarray.getJSONObject(i).getString("iCN_BanThang_DoiKhach_HT");
+							iPhut = jsonarray.getJSONObject(i).getString("iPhut") + "'";
 							loadItem(jsonarray.getJSONObject(i),"sThongTin_DoiNha",1);//GOAL_HOME
 							loadItem(jsonarray.getJSONObject(i),"sThongTin_DoiKhach",2);//GOAL_AWAY
 							loadItem(jsonarray.getJSONObject(i),"sThongTinThe_DoiNha",3);//YELLOW_CARD_HOME
 							loadItem(jsonarray.getJSONObject(i),"sThongTinThe_DoiKhach",4);//YELLOW_CARD_AWAY
 						}
+						String HT = "";
+						StringBuilder stringbuilder1 = new StringBuilder("HT ");
+						HT = stringbuilder1.append(iCN_BanThang_DoiNha_HT).append(" - ").append(iCN_BanThang_DoiKhach_HT).toString();
+				        
+						String Banthang = (new StringBuilder()).append(iCN_BanThang_DoiNha).append(" - ").append(iCN_BanThang_DoiKhach).toString();
 						((TextView) view.findViewById(R.id.textTenTran)).setText(sTenGiai);
 						((TextView) view.findViewById(R.id.TextView01)).setText(sTenDoiNha);
 						((TextView) view.findViewById(R.id.TextView02)).setText(sTenDoiKhach);
+						((TextView) view.findViewById(R.id.tuongthuat_time)).setText(iPhut);
+						((TextView) view.findViewById(R.id.tuongthuat_tiso)).setText(Banthang);
+						((TextView) view.findViewById(R.id.tuongthuat_ht)).setText(HT);
 						countryAdapter.notifyDataSetChanged();
 					} catch (JSONException e) {
 					}
