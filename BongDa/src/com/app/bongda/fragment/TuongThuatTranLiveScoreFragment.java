@@ -158,7 +158,7 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 				if(!string_temp.equalsIgnoreCase("")){
 					try {
 						JSONArray jsonarray = new JSONArray(string_temp);
-						CommonAndroid.showDialog(getActivity(), "data2:" + string_temp , null);
+//						CommonAndroid.showDialog(getActivity(), "data2:" + string_temp , null);
 						for (int i = 0; i < jsonarray.length(); i++) {
 							//parse
 							sTenGiai = jsonarray.getJSONObject(i).getString("sTenGiai");
@@ -193,14 +193,6 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 
 		
 //		countryAdapter.addItem(new TuongThuatTran(true, "1", "1"));
-//		countryAdapter.addItem(new TuongThuatTran(true, "1", "1"));
-//		countryAdapter.addItem(new TuongThuatTran(false, "1", "1"));
-//		countryAdapter.addItem(new TuongThuatTran(true, "1", "1"));
-//		countryAdapter.addItem(new TuongThuatTran(true, "1", "1"));
-//		countryAdapter.addItem(new TuongThuatTran(false, "1", "1"));
-//		countryAdapter.addItem(new TuongThuatTran(true, "1", "1"));
-//		countryAdapter.addItem(new TuongThuatTran(true, "1", "1"));
-//		countryAdapter.addItem(new TuongThuatTran(true, "1", "1"));
 		countryAdapter.notifyDataSetChanged();
 	}
 	
@@ -227,7 +219,7 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 		                for(int i= 0; i < temp1.length;i++ ){
 		                	String temp2[];
 		                	temp2 = temp1[i].split(" ");
-		                	Log.e("KKKKKKKK", "KKKKKKKKKK11" + temp2[0] + ":::" + temp2[1]);
+//		                	Log.e("KKKKKKKK", "KKKKKKKKKK11" + temp2[0] + ":::" + temp2[1]);
 		                	countryAdapter.addItem(new TuongThuatTran(doi, null , temp2[0] ,temp2[1], status));
 		                }
 	                }else{
@@ -242,69 +234,6 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 				e.printStackTrace();
 			}
         }	
-           
-//                if (i < as.length){
-//                	//goto _L4
-//                	while (true)
-//                    {
-//                      continue;
-//                      try
-//                      {
-//                    	  String s2;
-//                          int j;
-//                          s2 = as[i];
-//                          j = s2.indexOf(" ");
-////                        localMatchDetailItem.status = paramSTATUS;
-//                        if (j > 0)
-//                          localMatchDetailItem.minutes = Integer.parseInt(str1.substring(0, j));
-//                        for (localMatchDetailItem.name = str1.substring(j + 1); ; localMatchDetailItem.name = "")
-//                        {
-//                          this.listItem.add(localMatchDetailItem);
-//                          break;
-////                          localMatchDetailItem.minutes = Integer.parseInt(str1);
-//                        }
-//                      }
-//                      catch (Exception localException)
-//                      {
-//                        i++;
-//                      }
-//                    }
-//                }
 
-        
-//
-//_L10:
-//        if (i < as.length) goto _L4; else goto _L2
-//_L2:
-//        return;
-//        JSONException jsonexception;
-//        jsonexception;
-//        jsonexception.printStackTrace();
-//        s1 = null;
-//          goto _L5
-//_L4:
-//        String s2;
-//        int j;
-//        MatchDetailItem matchdetailitem;
-//        s2 = as[i];
-//        j = s2.indexOf(" ");
-//        matchdetailitem = new MatchDetailItem();
-//        matchdetailitem.status = status;
-//        if (j <= 0) goto _L7; else goto _L6
-//_L6:
-//        matchdetailitem.minutes = Integer.parseInt(s2.substring(0, j));
-//        matchdetailitem.name = s2.substring(j + 1);
-//_L9:
-//        listItem.add(matchdetailitem);
-//        break MISSING_BLOCK_LABEL_169;
-//_L7:
-//        matchdetailitem.minutes = Integer.parseInt(s2);
-//        matchdetailitem.name = "";
-//        if (true) goto _L9; else goto _L8
-//_L8:
-//        Exception exception;
-//        exception;
-//        i++;
-//          goto _L10
     }
 }
