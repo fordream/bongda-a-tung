@@ -2,7 +2,7 @@ package com.app.bongda.model;
 
 public class LiveScore extends PhongDo {
 	public LiveScore(boolean isHeader, String id, String giai, String name, String name2,
-			String ht, String phut ,String thoigian, String iC0, String tiso, int trangthai) {
+			String ht, String phut ,String thoigian, String iC0, String tiso, int trangthai, String magiai, String madoinha, String madoikhach) {
 		super(id, name, name2, iC0, thoigian);
 		this.isHeader = isHeader;
 		this.sTenGiai = giai;
@@ -11,6 +11,9 @@ public class LiveScore extends PhongDo {
 		this.iTiso = tiso;
 		this.HT = ht;
 		this.sThoiGian = thoigian;
+		this.sMaGiai = magiai;
+		this.sMaDoiNha = madoinha;
+		this.sMaDoiKhach = madoikhach;
 	}
 	public LiveScore(boolean isHeader, String sTenGiai,String sTenDoiNha,String sTenDoiKhach,int iCN_BanThang_DoiNha,int iCN_BanThang_DoiKhach,int iCN_BanThang_DoiNha_HT,int iCN_BanThang_DoiKhach_HT) {
 		super(null,sTenDoiNha,sTenDoiKhach,null,null);
@@ -37,6 +40,10 @@ public class LiveScore extends PhongDo {
 	private String iTiso;
 	private String HT;
 	private String sThoiGian;
+	
+	private String sMaGiai;
+	private String sMaDoiNha;
+	private String sMaDoiKhach;
 
 	public boolean isHeader() {
 		return isHeader;
@@ -88,4 +95,15 @@ public class LiveScore extends PhongDo {
 		return sThoiGian;
 	}
 	
+	public String magiai(){
+		return sMaGiai;
+	}
+	
+	public String madoinha(){
+		return sMaDoiNha;
+	}
+	
+	public String madoikhach(){
+		return sMaDoiKhach;
+	}
 }

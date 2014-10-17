@@ -1,5 +1,6 @@
 package com.app.bongda;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -34,7 +35,8 @@ public class BaseX1X2Activity extends BaseActivtiy {
 				LiveScore liveScore = (LiveScore) parent
 						.getItemAtPosition(position);
 				GiaiDau dau = new GiaiDau(liveScore.getId(),
-						liveScore.getName());
+						liveScore.getName() , liveScore.magiai(), liveScore.madoinha(), liveScore.madoikhach());
+				
 				showFragment(new PhongDoDoiDauFragment(dau,null));
 			}
 		};
@@ -63,7 +65,12 @@ public class BaseX1X2Activity extends BaseActivtiy {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				showLiveScore((GiaiDau) parent.getItemAtPosition(position));
+				LiveScore liveScore = (LiveScore) parent
+						.getItemAtPosition(position);
+				GiaiDau dau = new GiaiDau(liveScore.getId(),
+						liveScore.getName() , liveScore.magiai(), liveScore.madoinha(), liveScore.madoikhach());
+//				showLiveScore((GiaiDau) parent.getItemAtPosition(position));
+				showLiveScore(dau);
 			}
 		};
 
@@ -102,8 +109,11 @@ public class BaseX1X2Activity extends BaseActivtiy {
 
 				// xem tuong thuat a
 				if (!liveScore.isHeader()) {
+//					GiaiDau dau = new GiaiDau(liveScore.getId(),
+//							liveScore.getName());
 					GiaiDau dau = new GiaiDau(liveScore.getId(),
-							liveScore.getName());
+							liveScore.getName() , liveScore.magiai(), liveScore.madoinha(), liveScore.madoikhach());
+					Log.e("liveScore.magiai()", liveScore.magiai());
 					showTuongThuatTranLiveScoreFragment((GiaiDau) dau);
 				}
 			}
@@ -119,7 +129,7 @@ public class BaseX1X2Activity extends BaseActivtiy {
 					showBangXemHang(dau);
 				} else if (position == 2) {
 					GiaiDau dau = new GiaiDau(liveScore.getId(),
-							liveScore.getName());
+							liveScore.getName() , liveScore.magiai(), liveScore.madoinha(), liveScore.madoikhach());
 					showPhongDoDoiDauFragment(dau);
 				}
 			}

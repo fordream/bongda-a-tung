@@ -243,20 +243,23 @@ public class LiveScoreFragment extends BaseFragment {
 			                String iPhut = array.get(i).getString("iPhut");
 			                String sThoiGian = array.get(i).getString("sThoiGian");//thoi gian thi dau
 			                String tiso = array.get(i).getString("iCN_BanThang_DoiNha") +  " - " + array.get(i).getString("iCN_BanThang_DoiKhach");
-			                Log.e("kkk",sTenGiai +":" +iTrangThai + ":" +sTenDoiNha);
+			                String sMaGiai = array.get(i).getString("sMaGiai");
+			                String sMaDoiNha = array.get(i).getString("sMaDoiNha");
+			                String sMaDoiKhach = array.get(i).getString("sMaDoiKhach");
+//			                Log.e("kkk",sTenGiai +":" +iTrangThai + ":" +sTenDoiNha);
 							if (i == 0) {
-								countryAdapter.addItem(new LiveScore(true,iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut ,sThoiGian, iC0, tiso,iTrangThai));
-								countryAdapter.addItem(new LiveScore(false,iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut ,sThoiGian, iC0, tiso, iTrangThai));
+								countryAdapter.addItem(new LiveScore(true,iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut ,sThoiGian, iC0, tiso,iTrangThai , sMaGiai, sMaDoiNha, sMaDoiKhach));
+								countryAdapter.addItem(new LiveScore(false,iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut ,sThoiGian, iC0, tiso, iTrangThai, sMaGiai, sMaDoiNha, sMaDoiKhach));
 								
 							} else if (i > 0) {
 								if ((array.get(i)
 										.getString("sTenGiai"))
 										.equalsIgnoreCase(array.get(i - 1)
 												.getString("sTenGiai"))) {
-									countryAdapter.addItem(new LiveScore(false,iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut ,sThoiGian, iC0, tiso, iTrangThai));
+									countryAdapter.addItem(new LiveScore(false,iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut ,sThoiGian, iC0, tiso, iTrangThai, sMaGiai, sMaDoiNha, sMaDoiKhach));
 								} else {
-									countryAdapter.addItem(new LiveScore(true,iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut ,sThoiGian, iC0, tiso, iTrangThai));
-									countryAdapter.addItem(new LiveScore(false,iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut ,sThoiGian, iC0, tiso, iTrangThai));
+									countryAdapter.addItem(new LiveScore(true,iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut ,sThoiGian, iC0, tiso, iTrangThai, sMaGiai, sMaDoiNha, sMaDoiKhach));
+									countryAdapter.addItem(new LiveScore(false,iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut ,sThoiGian, iC0, tiso, iTrangThai, sMaGiai, sMaDoiNha, sMaDoiKhach));
 									
 								}
 			            }

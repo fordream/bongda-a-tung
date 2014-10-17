@@ -20,11 +20,11 @@ import com.app.bongda.view.HeaderView;
 
 public class PhongDoDoiDauFragment extends BaseFragment {
 	OnItemClickListener onItemClickListener;
-	GiaiDau giaiDau;
+	GiaiDau giaidau;
 	public PhongDoDoiDauFragment(GiaiDau giaiDau,OnItemClickListener onItemClickListener) {
 		super();
 		this.onItemClickListener = onItemClickListener;
-		this.giaiDau = giaiDau;
+		this.giaidau = giaiDau;
 	}
 
 	private CountryAdapter countryAdapter = new CountryAdapter();
@@ -92,16 +92,19 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 				CommonAndroid.showDialog(getActivity(), "data3err:" + message , null);
 			}
 		};
-		iID_MaTran = 32456;
-		Object aobj[] = new Object[1];
-        aobj[0] = Integer.valueOf(iID_MaTran);
-        String param = String.format(ByUtils.wsFootBall_Phong_Do, aobj);
-        
-		new APICaller(getActivity()).callApi("", true,
-					callbackAPI, param);
-		CommonAndroid.showDialog(getActivity(), "data33:" + param , null);
-		for(int i = 0; i < 6; i ++){
-			phongdodoidau_bangephang_listitem.addView(new BangXepHangItemView(getActivity()));
-		}
+//		iID_MaTran = 32456;
+//		Object aobj[] = new Object[1];
+//        aobj[0] = Integer.valueOf(iID_MaTran);
+//        String magiai = "";//giaidau.magiai();
+//        String madoinha = giaidau.madoinha();
+//        String madoikhach = giaidau.madoikhach();
+//        String param = String.format(ByUtils.wsFootBall_Phong_Do_ChiTiet, magiai, madoinha, madoikhach);
+//        
+//		new APICaller(getActivity()).callApi("", true,
+//					callbackAPI, param);
+//		CommonAndroid.showDialog(getActivity(), "data33:" + param , null);
+//		for(int i = 0; i < 6; i ++){
+//			phongdodoidau_bangephang_listitem.addView(new BangXepHangItemView(getActivity()));
+//		}
 	}
 }
