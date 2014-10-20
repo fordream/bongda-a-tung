@@ -52,9 +52,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="@string/tancong"
-                android:textColor="#d57f42"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#d57f42" />
         </LinearLayout>
 
         <LinearLayout
@@ -275,7 +274,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
-                android:layout_toLeftOf="@+id/m11" >
+                android:layout_toLeftOf="@+id/m11x1" >
 
                 <TextView
                     android:id="@+id/TextView11"
@@ -289,13 +288,13 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/m11"
+                android:id="@+id/m11x1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true" >
 
                 <TextView
-                    android:id="@+id/TextView03"
+                    android:id="@+id/TextView03x2"
                     style="@style/bongda_text_item_phongdo"
                     android:layout_width="@dimen/width_phongdo"
                     android:layout_height="match_parent"
@@ -303,7 +302,7 @@
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <TextView
-                    android:id="@+id/TextView02"
+                    android:id="@+id/TextView02x3"
                     style="@style/bongda_text_item_phongdo"
                     android:layout_width="@dimen/width_phongdo"
                     android:layout_height="match_parent"
@@ -413,10 +412,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
-                android:layout_toLeftOf="@+id/LinearLayout05" >
+                android:layout_toLeftOf="@+id/LinearLayout05x5" >
 
                 <TextView
-                    android:id="@+id/TextView19"
+                    android:id="@+id/TextView19x4"
                     style="@style/bongda_text_item_phongdo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -426,13 +425,13 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/LinearLayout05"
+                android:id="@+id/LinearLayout05x5"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true" >
 
                 <TextView
-                    android:id="@+id/TextView20"
+                    android:id="@+id/TextView20v6"
                     style="@style/bongda_text_item_phongdo"
                     android:layout_width="@dimen/width_phongdo"
                     android:layout_height="match_parent"
@@ -441,7 +440,7 @@
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <TextView
-                    android:id="@+id/TextView18"
+                    android:id="@+id/TextView18v7"
                     style="@style/bongda_text_item_phongdo"
                     android:layout_width="@dimen/width_phongdo"
                     android:layout_height="match_parent"
@@ -460,10 +459,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
-                android:layout_toLeftOf="@+id/LinearLayout04" >
+                android:layout_toLeftOf="@+id/LinearLayout04x9" >
 
                 <TextView
-                    android:id="@+id/TextView16"
+                    android:id="@+id/TextView16x8"
                     style="@style/bongda_text_item_phongdo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -473,13 +472,13 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/LinearLayout04"
+                android:id="@+id/LinearLayout04x9"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true" >
 
                 <TextView
-                    android:id="@+id/TextView17"
+                    android:id="@+id/TextView17x10"
                     style="@style/bongda_text_item_phongdo"
                     android:layout_width="@dimen/width_phongdo"
                     android:layout_height="match_parent"
