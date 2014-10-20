@@ -232,14 +232,20 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 	                	temp1 = s3.split(",");
 		                for(int i= 0; i < temp1.length;i++ ){
 		                	String temp2[];
-		                	temp2 = temp1[i].split(" ");
-//		                	Log.e("KKKKKKKK", "KKKKKKKKKK11" + temp2[0] + ":::" + temp2[1]);
-		                	countryAdapter.addItem(new TuongThuatTran(doi, null , temp2[0] ,temp2[1], status));
+		                	int k = temp1[i].indexOf(" ");
+		                	if(k > 0){
+			                	temp2 = temp1[i].split(" ");
+	//		                	Log.e("KKKKKKKK", "KKKKKKKKKK11" + temp2[0] + ":::" + temp2[1]);
+			                	countryAdapter.addItem(new TuongThuatTran(doi, null , temp2[0] ,temp2[1], status));
+		                	}
 		                }
 	                }else{
 	                	String temp2[];
-	                	temp2 = s3.split(" ");
-	                	countryAdapter.addItem(new TuongThuatTran(doi, null , temp2[0] ,temp2[1], status));
+	                	int k = s3.indexOf(" ");
+	                	if(k > 0){
+	                		temp2 = s3.split(" ");
+	                		countryAdapter.addItem(new TuongThuatTran(doi, null , temp2[0] ,temp2[1], status));
+	                	}
 	                }
 	                
 	            }    

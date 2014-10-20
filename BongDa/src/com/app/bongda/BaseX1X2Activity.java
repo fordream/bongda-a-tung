@@ -116,7 +116,7 @@ public class BaseX1X2Activity extends BaseActivtiy {
 //							liveScore.getName());
 					GiaiDau dau = new GiaiDau(liveScore.getId(),
 							liveScore.getName() , liveScore.magiai(), liveScore.madoinha(), liveScore.madoikhach());
-					Log.e("liveScore.magiai()", liveScore.magiai());
+//					Log.e("liveScore.magiai()", liveScore.magiai());
 					showTuongThuatTranLiveScoreFragment(dau);
 				}
 			}
