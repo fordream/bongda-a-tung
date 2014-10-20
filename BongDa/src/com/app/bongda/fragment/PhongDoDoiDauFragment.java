@@ -93,18 +93,25 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 			}
 		};
 //		iID_MaTran = 32456;
-//		Object aobj[] = new Object[1];
-//        aobj[0] = Integer.valueOf(iID_MaTran);
-//        String magiai = "";//giaidau.magiai();
-//        String madoinha = giaidau.madoinha();
-//        String madoikhach = giaidau.madoikhach();
-//        String param = String.format(ByUtils.wsFootBall_Phong_Do_ChiTiet, magiai, madoinha, madoikhach);
-//        
-//		new APICaller(getActivity()).callApi("", true,
-//					callbackAPI, param);
+//        String magiai 		= giaidau.magiai();
+//        String madoinha 	= giaidau.madoinha();
+//        String madoikhach 	= giaidau.madoikhach();
+//        String param = (ByUtils.wsFootBall_Phong_Do_ChiTiet).replace("magiai",
+//        		magiai);
+//        param = param.replace("madoinha",madoinha);
+//        param = param.replace("madoikhach",madoikhach);
+        
+        String iID_MaTran = giaidau.getId();
+//		Log.e("KKKKKKKKKKKKK", "===" + dau.magiai() + "::" + dau.madoinha() + ":" + dau.madoikhach());
+		Object aobj[] = new Object[1];
+        aobj[0] = Integer.valueOf(iID_MaTran);
+        String param = String.format(ByUtils.wsFootBall_Phong_Do, aobj);
+        
+		new APICaller(getActivity()).callApi("", true,
+					callbackAPI, param);
 //		CommonAndroid.showDialog(getActivity(), "data33:" + param , null);
-//		for(int i = 0; i < 6; i ++){
-//			phongdodoidau_bangephang_listitem.addView(new BangXepHangItemView(getActivity()));
-//		}
+		for(int i = 0; i < 6; i ++){
+			phongdodoidau_bangephang_listitem.addView(new BangXepHangItemView(getActivity()));
+		}
 	}
 }

@@ -48,6 +48,7 @@ public class BaseX1X2Activity extends BaseActivtiy {
 				if (position == 1) {
 					showBangXemHang((GiaiDau) data);
 				} else if (position == 2) {
+//					Log.e("KKKKKKKKKKKKK22", "===" + ((GiaiDau) data).magiai() + "::" + ((GiaiDau) data).madoinha() + ":" + ((GiaiDau) data).madoikhach());
 					showFragment(new PhongDoDoiDauFragment((GiaiDau) data,null));
 				} else if (position == 3) {
 					showFragment(new DuDoanKetQuaFragment(null));
@@ -114,7 +115,7 @@ public class BaseX1X2Activity extends BaseActivtiy {
 					GiaiDau dau = new GiaiDau(liveScore.getId(),
 							liveScore.getName() , liveScore.magiai(), liveScore.madoinha(), liveScore.madoikhach());
 					Log.e("liveScore.magiai()", liveScore.magiai());
-					showTuongThuatTranLiveScoreFragment((GiaiDau) dau);
+					showTuongThuatTranLiveScoreFragment(dau);
 				}
 			}
 		};

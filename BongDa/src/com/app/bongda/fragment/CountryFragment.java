@@ -82,7 +82,7 @@ public class CountryFragment extends BaseFragment {
 						JSONArray jsonarray = new JSONArray(string_temp);
 						for (int i = 0; i < jsonarray.length(); i++) {
 							countryAdapter.addItem(new Country(jsonarray.getJSONObject(i).getString("iID_MaQuocGia"), jsonarray.getJSONObject(i).getString("sTenQuocGia")));
-							Log.e("quocgia",i +":ten==" + jsonarray.getJSONObject(i).getString("sTenQuocGia") + ":::maquocgia==" + jsonarray.getJSONObject(i).getString("sMaQuocGia"));
+							Log.e("quocgia",i +":ten==" + jsonarray.getJSONObject(i).getString("sTenQuocGia") + ":::maquocgia==" + jsonarray.getJSONObject(i).getString("sLogo"));
 						}
 						countryAdapter.notifyDataSetChanged();
 					} catch (JSONException e) {

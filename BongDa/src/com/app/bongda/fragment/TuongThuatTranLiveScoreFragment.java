@@ -117,14 +117,14 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 		public void onClick(View v) {
 
 			if(v.getId() == R.id.imageView1s){
-				backListenner.onCallBackListenner(1, new GiaiDau("1", "aaaa"));
+				backListenner.onCallBackListenner(1, dau /*new GiaiDau("1", "aaaa")*/);
 
 			}else if(v.getId() == R.id.Button02){
-				backListenner.onCallBackListenner(2, null);
+				backListenner.onCallBackListenner(2, dau/*null*/);
 			}else if(v.getId() == R.id.Button03){
-				backListenner.onCallBackListenner(3, null);
+				backListenner.onCallBackListenner(3, dau/*null*/);
 			}else if(v.getId() == R.id.Button04){
-				backListenner.onCallBackListenner(4, null);
+				backListenner.onCallBackListenner(4, dau/*null*/);
 			}
 		}
 	};
@@ -198,6 +198,7 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 			}
 		};
 		iID_MaTran = dau.getId();
+//		Log.e("KKKKKKKKKKKKK", "===" + dau.magiai() + "::" + dau.madoinha() + ":" + dau.madoikhach());
 		Object aobj[] = new Object[1];
         aobj[0] = Integer.valueOf(iID_MaTran);
         String param = String.format(ByUtils.wsFootBall_MatchDetail, aobj);
