@@ -9,7 +9,7 @@
         android:targetSdkVersion="10" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -51,11 +51,14 @@
         </activity>
         <activity android:name=".group.MActivity" >
         </activity>
-         <activity
+        <activity
             android:name=".NhanDinhChuyenGiaActivity"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale"
             android:screenOrientation="portrait" >
         </activity>
+
+        <service android:name=".service.BongDaService" android:enabled="true" android:exported="true">
+        </service>
     </application>
 
 </manifest>
