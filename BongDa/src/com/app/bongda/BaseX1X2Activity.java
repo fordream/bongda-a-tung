@@ -66,11 +66,13 @@ public class BaseX1X2Activity extends BaseActivtiy {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				LiveScore liveScore = (LiveScore) parent
+//				LiveScore liveScore = (LiveScore) parent
+//						.getItemAtPosition(position);
+//				GiaiDau dau = new GiaiDau(liveScore.getId(),
+//						liveScore.getName() , liveScore.magiai(), liveScore.madoinha(), liveScore.madoikhach());
+				
+				GiaiDau dau= (GiaiDau)parent
 						.getItemAtPosition(position);
-				GiaiDau dau = new GiaiDau(liveScore.getId(),
-						liveScore.getName() , liveScore.magiai(), liveScore.madoinha(), liveScore.madoikhach());
-//				showLiveScore((GiaiDau) parent.getItemAtPosition(position));
 				showLiveScore(dau);
 			}
 		};
