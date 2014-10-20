@@ -3,6 +3,7 @@ package com.app.bongda.fragment;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
@@ -70,46 +71,51 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 			@Override
 			public void onSuccess(String response) {
 				CommonAndroid.showDialog(getActivity(), "data2:" + response , null);
-				String string_temp = CommonAndroid.parseXMLAction(response);
+				/*String string_temp = CommonAndroid.parseXMLAction(response);
 				if(!string_temp.equalsIgnoreCase("")){
-					CommonAndroid.showDialog(getActivity(), "data2:" + string_temp , null);
 					try {
 						JSONArray jsonarray = new JSONArray(string_temp);
 						for (int i = 0; i < jsonarray.length(); i++) {
 							//parse
+							String bNhanDinhChuyenGia = jsonarray.get(i).toString();
+							Log.e("kkk",i + "::"+ bNhanDinhChuyenGia );
+							
 						}
 						countryAdapter.notifyDataSetChanged();
 					} catch (JSONException e) {
-						CommonAndroid.showDialog(getActivity(), "data2json:" + e.getMessage() , null);
+//						CommonAndroid.showDialog(getActivity(), "data2json:" + e.getMessage() , null);
 					}
 					
-				}
+				}*/
 				
 			}
 
 			@Override
 			public void onError(String message) {
 				CommonAndroid.showDialog(getActivity(), "data3err:" + message , null);
+				Log.e("ERR",message);
 			}
 		};
 //		iID_MaTran = 32456;
-//        String magiai 		= giaidau.magiai();
-//        String madoinha 	= giaidau.madoinha();
-//        String madoikhach 	= giaidau.madoikhach();
-//        String param = (ByUtils.wsFootBall_Phong_Do_ChiTiet).replace("magiai",
-//        		magiai);
-//        param = param.replace("madoinha",madoinha);
-//        param = param.replace("madoikhach",madoikhach);
+        String magiai 		= giaidau.magiai();
+        String madoinha 	= giaidau.madoinha();
+        String madoikhach 	= giaidau.madoikhach();
+        String param2 = (ByUtils.wsFootBall_Phong_Do_ChiTiet).replace("magiai",
+        		magiai);
+        param2 = param2.replace("madoinha",madoinha);
+        param2 = param2.replace("madoikhach",madoikhach);
         
         String iID_MaTran = giaidau.getId();
-//		Log.e("KKKKKKKKKKKKK", "===" + dau.magiai() + "::" + dau.madoinha() + ":" + dau.madoikhach());
+		Log.e("KKKKKKKKKKKKK", "===" + giaidau.magiai() + "::" + giaidau.madoinha() + ":" + giaidau.madoikhach());
 		Object aobj[] = new Object[1];
         aobj[0] = Integer.valueOf(iID_MaTran);
         String param = String.format(ByUtils.wsFootBall_Phong_Do, aobj);
         
 		new APICaller(getActivity()).callApi("", true,
-					callbackAPI, param);
-//		CommonAndroid.showDialog(getActivity(), "data33:" + param , null);
+					callbackAPI, param2);
+//		CommonAndroid.showDialog(getActivity(), "data33:" + param2 , null);
+		Log.e("param2--",param2);
+		Log.e("param--",param);
 		for(int i = 0; i < 6; i ++){
 			phongdodoidau_bangephang_listitem.addView(new BangXepHangItemView(getActivity()));
 		}

@@ -227,6 +227,11 @@ public class LiveScoreFragment extends BaseFragment {
 						});
 						
 						for (int i = 0; i < array.size();i++){
+							String bNhanDinhChuyenGia = array.get(i).getString("bNhanDinhChuyenGia");
+							String bGameDuDoan = array.get(i).getString("bGameDuDoan");
+							String bDaCapNhapVaoBXH = array.get(i).getString("bDaCapNhapVaoBXH");
+							Log.e("kkk",i + "::"+ bNhanDinhChuyenGia +":" +bGameDuDoan + ":" +bDaCapNhapVaoBXH);
+							
 //							String kk = array.get(i).getString("sTenGiai");
 							String HT = "";
 							StringBuilder stringbuilder1 = new StringBuilder("HT ");
