@@ -138,7 +138,7 @@ public class BangXepHangFragment extends BaseFragment {
 		};
 		String maGiaiDau = null;
 			new APICaller(getActivity()).callApi("", true,
-					callbackAPI, (ByUtils.wsFootBall_BangXepHang).replace("bangxephangId", dau.getId()));
+					callbackAPI, (ByUtils.wsFootBall_BangXepHang).replace("bangxephangId", dau.idmagiai()));
 //		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
 //				"8", "1", "2", "22", "11", "12"));
 //		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",

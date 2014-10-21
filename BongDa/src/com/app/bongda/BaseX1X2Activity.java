@@ -35,7 +35,7 @@ public class BaseX1X2Activity extends BaseActivtiy {
 				LiveScore liveScore = (LiveScore) parent
 						.getItemAtPosition(position);
 				GiaiDau dau = new GiaiDau(liveScore.getId(),
-						liveScore.getName() , liveScore.magiai(), liveScore.madoinha(), liveScore.madoikhach());
+						liveScore.getName() , liveScore.magiai(), liveScore.madoinha(), liveScore.madoikhach(),liveScore.idmagiai());
 				
 				showFragment(new PhongDoDoiDauFragment(dau,null));
 			}
@@ -115,7 +115,7 @@ public class BaseX1X2Activity extends BaseActivtiy {
 //					GiaiDau dau = new GiaiDau(liveScore.getId(),
 //							liveScore.getName());
 					GiaiDau dau = new GiaiDau(liveScore.getId(),
-							liveScore.getName() , liveScore.magiai(), liveScore.madoinha(), liveScore.madoikhach());
+							liveScore.getName() , liveScore.magiai(), liveScore.madoinha(), liveScore.madoikhach(),liveScore.idmagiai());
 //					Log.e("liveScore.magiai()", liveScore.magiai());
 					showTuongThuatTranLiveScoreFragment(dau);
 				}
@@ -132,7 +132,7 @@ public class BaseX1X2Activity extends BaseActivtiy {
 					showBangXemHang(dau);
 				} else if (position == 2) {
 					GiaiDau dau = new GiaiDau(liveScore.getId(),
-							liveScore.getName() , liveScore.magiai(), liveScore.madoinha(), liveScore.madoikhach());
+							liveScore.getName() , liveScore.magiai(), liveScore.madoinha(), liveScore.madoikhach(),liveScore.idmagiai());
 					showPhongDoDoiDauFragment(dau);
 				}
 			}

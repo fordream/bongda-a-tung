@@ -31,7 +31,7 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 	OnItemClickListener onItemClickListener;
 	CallBackListenner backListenner;
 	GiaiDau dau;
-	View view;
+	public static View view;
 	public TuongThuatTranLiveScoreFragment(GiaiDau dau,
 			OnItemClickListener onItemClickListener,
 			CallBackListenner backListenner) {
