@@ -21,11 +21,11 @@ public class BongDaService extends Service {
 		return bongDaBinder;
 	}
 
-	public boolean getReload() {
-		return preferencesSetting.getBoolean("reload", false);
+	public long getReload() {
+		return preferencesSetting.getLong("mreload", -1);
 	}
 
-	public void setReload(boolean isReload) {
-		preferencesSetting.edit().putBoolean("reload", isReload).commit();
+	public void setReload(long isReload) {
+		preferencesSetting.edit().putLong("mreload", isReload).commit();
 	}
 }

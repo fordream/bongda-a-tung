@@ -1,7 +1,12 @@
 package com.app.bongda.base;
 
+import com.app.bongda.service.BongDaServiceManager;
+
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +32,50 @@ public abstract class BaseFragment extends Fragment {
 			time++;
 		}
 		return view;
+	}
+
+	private Handler handler;
+
+	public void onCallReloadData() {
+		Log.e("onCallReloadData", "onCallReloadData" + getClass().getName());
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		handler = new Handler() {
+			@Override
+			public void dispatchMessage(Message msg) {
+				long time = BongDaServiceManager.getInstance()
+						.getBongDaService().getReload();
+				if (time != -1) {
+					onCallReloadData();
+				}
+
+				startReload();
+			}
+		};
+		startReload();
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		if (handler != null)
+			handler.removeMessages(0);
+	}
+
+	final private void startReload() {
+		long time = BongDaServiceManager.getInstance().getBongDaService()
+				.getReload();
+
+		if (time == -1) {
+			time = 5000;
+		}
+
+		if (handler != null) {
+			handler.sendEmptyMessageDelayed(0, time);
+		}
 	}
 
 	public abstract void onInitCreateView(View view);
