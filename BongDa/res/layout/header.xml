@@ -51,6 +51,15 @@
             android:layout_marginRight="@dimen/dimen_5dp"
             android:background="@drawable/button_m1"
             android:text="" />
+
+        <Button
+            android:visibility="gone"
+            android:id="@+id/x"
+            android:layout_width="@dimen/header_button_size"
+            android:layout_height="@dimen/header_button_size"
+            android:layout_marginRight="@dimen/dimen_5dp"
+            android:background="@drawable/button_x_xml" />
+
     </LinearLayout>
 
     <Button

@@ -1,5 +1,5 @@
 <resources>
-
+	<string name="msetting">THIẾT ĐẶT THÔNG SÔ</string>
     <string name="setting">DANH SÁCH CHỨC NĂNG</string>
     <string name="setting_txt1">Live Score</string>
     <string name="setting_txt2">Chọn giải đấu</string>
@@ -58,5 +58,6 @@
     <string name="tylelotluoitrungbinh">Tỷ lệ lọt lưới trung bình</string>
     <string name="sotrankhonglotluoi">Số trận không lọt lưới</string>
     <string name="hieusobanthua">Hiệu số bàn thua</string>
+    <string name="check_for_reload">Check for endable reload</string>
 
 </resources>

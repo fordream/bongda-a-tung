@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.app.bongda.R;
+import com.app.bongda.dialog.SettingDialog;
 
 public class HeaderView extends LinearLayout {
 
@@ -25,6 +26,13 @@ public class HeaderView extends LinearLayout {
 		LayoutInflater inflater = (LayoutInflater) getContext()
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflater.inflate(R.layout.header, this);
+
+		findViewById(R.id.button2).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				new SettingDialog(getContext()).show();
+			}
+		});
 	}
 
 	public void setTextHeader(int bangxephang) {
@@ -33,5 +41,15 @@ public class HeaderView extends LinearLayout {
 
 	public void hiddenProgressbar() {
 		findViewById(R.id.Button01).setVisibility(View.GONE);
+	}
+
+	public void hiddenSetting() {
+		findViewById(R.id.button2).setVisibility(View.GONE);
+
+	}
+
+	public void setOnClickListenerX(View.OnClickListener onClickListener) {
+		findViewById(R.id.x).setVisibility(View.VISIBLE);
+		findViewById(R.id.x).setOnClickListener(onClickListener);
 	}
 }

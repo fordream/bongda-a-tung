@@ -29,7 +29,6 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 		Intent intent = new Intent(CHANGETAG);
 		intent.putExtra("index", index);
 		context.sendBroadcast(intent);
-
 	}
 
 	@Override
