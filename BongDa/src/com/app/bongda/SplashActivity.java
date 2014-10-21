@@ -7,6 +7,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
+import android.view.animation.AnimationUtils;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
@@ -34,21 +38,46 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 		setContentView(R.layout.tabexampleslide);
 		getTabHost().setOnTabChangedListener(this);
 
-		if (ByUtils.USEGROUPVIEW) {
-			addTab(X1GroupActivity.class, "Home", "Home", R.drawable.menu_1);
-			addTab(X2GroupActivity.class, "M1", "M1", R.drawable.menu_2);
-			addTab(X3GroupActivity.class, "M2", "M2", R.drawable.menu_3);
-			addTab(X4GroupActivity.class, "M3", "M3", R.drawable.menu_4);
-		} else {
-			addTab(X1Activity.class, "Home", "Home", R.drawable.menu_1);
-			addTab(X2Activity.class, "M1", "M1", R.drawable.menu_2);
-			addTab(X3Activity.class, "M2", "M2", R.drawable.menu_3);
-			addTab(X4Activity.class, "M3", "M3", R.drawable.menu_4);
-		}
+		Animation animation = AnimationUtils.loadAnimation(getContext(),
+				R.anim.splash);
 
-		addTab(X5Activity.class, "M3", "M3", R.drawable.menu_5);
+		animation.setAnimationListener(new AnimationListener() {
 
-		getTabHost().setCurrentTab(4);
+			@Override
+			public void onAnimationStart(Animation animation) {
+
+			}
+
+			@Override
+			public void onAnimationRepeat(Animation animation) {
+
+			}
+
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				getTabHost().setVisibility(View.VISIBLE);
+				getTabHost().startAnimation(
+						AnimationUtils.loadAnimation(getContext(),
+								R.anim.rotate));
+				if (ByUtils.USEGROUPVIEW) {
+					addTab(X1GroupActivity.class, "Home", "Home",
+							R.drawable.menu_1);
+					addTab(X2GroupActivity.class, "M1", "M1", R.drawable.menu_2);
+					addTab(X3GroupActivity.class, "M2", "M2", R.drawable.menu_3);
+					addTab(X4GroupActivity.class, "M3", "M3", R.drawable.menu_4);
+				} else {
+					addTab(X1Activity.class, "Home", "Home", R.drawable.menu_1);
+					addTab(X2Activity.class, "M1", "M1", R.drawable.menu_2);
+					addTab(X3Activity.class, "M2", "M2", R.drawable.menu_3);
+					addTab(X4Activity.class, "M3", "M3", R.drawable.menu_4);
+				}
+
+				addTab(X5Activity.class, "M3", "M3", R.drawable.menu_5);
+				getTabHost().setCurrentTab(4);
+			}
+		});
+		findViewById(R.id.ic_logo).startAnimation(animation);
+
 	}
 
 	@Override
