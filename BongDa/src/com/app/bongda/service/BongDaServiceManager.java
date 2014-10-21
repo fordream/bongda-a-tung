@@ -7,9 +7,19 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 
 public class BongDaServiceManager {
+	private static BongDaServiceManager instance = new BongDaServiceManager();
+
+	private BongDaServiceManager() {
+
+	}
+
+	public static BongDaServiceManager getInstance() {
+		return instance;
+	}
+
 	private Context mContext;
 
-	public BongDaServiceManager(Context context) {
+	public void init(Context context) {
 		mContext = context;
 	}
 

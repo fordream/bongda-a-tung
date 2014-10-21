@@ -49,7 +49,6 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 		addTab(X5Activity.class, "M3", "M3", R.drawable.menu_5);
 
 		getTabHost().setCurrentTab(4);
-		// ByUtils.getFilePath(this);
 	}
 
 	@Override
