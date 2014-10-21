@@ -40,7 +40,7 @@ public abstract class BaseFragment extends Fragment {
 	private APICaller apiCaller;
 
 	final public void onCallReloadData() {
-		Log.e("onCallReloadData", "onCallReloadData" + getClass().getName());
+		
 		if (apiCaller != null && !apiCaller.isOnProgess()) {
 			apiCaller.callApi("", false, new ICallbackAPI() {
 
@@ -66,11 +66,11 @@ public abstract class BaseFragment extends Fragment {
 	}
 
 	public void onReloadSuccess(String response) {
-
+		Log.e("onCallReloadData", "onReloadSuccess" + getClass().getName());
 	}
 
 	public void onReloadError(String message) {
-
+		Log.e("onCallReloadData", "onReloadSuccess" + getClass().getName());
 	}
 
 	public String getCallReloadDataStr() {
