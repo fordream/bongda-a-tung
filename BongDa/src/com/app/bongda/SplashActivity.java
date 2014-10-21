@@ -57,7 +57,7 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 				getTabHost().setVisibility(View.VISIBLE);
 				getTabHost().startAnimation(
 						AnimationUtils.loadAnimation(getContext(),
-								R.anim.rotate));
+								R.anim.splash));
 				if (ByUtils.USEGROUPVIEW) {
 					addTab(X1GroupActivity.class, "Home", "Home",
 							R.drawable.menu_1);

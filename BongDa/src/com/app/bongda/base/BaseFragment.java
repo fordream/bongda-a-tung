@@ -1,7 +1,5 @@
 package com.app.bongda.base;
 
-import com.app.bongda.service.BongDaServiceManager;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,6 +8,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.app.bongda.callback.APICaller;
+import com.app.bongda.callback.APICaller.ICallbackAPI;
+import com.app.bongda.service.BongDaServiceManager;
 
 public abstract class BaseFragment extends Fragment {
 
@@ -35,14 +37,52 @@ public abstract class BaseFragment extends Fragment {
 	}
 
 	private Handler handler;
+	private APICaller apiCaller;
 
-	public void onCallReloadData() {
+	final public void onCallReloadData() {
 		Log.e("onCallReloadData", "onCallReloadData" + getClass().getName());
+		if (apiCaller != null && !apiCaller.isOnProgess()) {
+			apiCaller.callApi("", false, new ICallbackAPI() {
+
+				@Override
+				public void onSuccess(String response) {
+					try {
+						onReloadSuccess(response);
+					} catch (Exception exception) {
+
+					}
+				}
+
+				@Override
+				public void onError(String message) {
+					try {
+						onReloadError(message);
+					} catch (Exception exception) {
+
+					}
+				}
+			}, getCallReloadDataStr());
+		}
+	}
+
+	public void onReloadSuccess(String response) {
+
+	}
+
+	public void onReloadError(String message) {
+
+	}
+
+	public String getCallReloadDataStr() {
+		return "";
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
+
+		apiCaller = new APICaller(getActivity());
+
 		handler = new Handler() {
 			@Override
 			public void dispatchMessage(Message msg) {
@@ -61,8 +101,9 @@ public abstract class BaseFragment extends Fragment {
 	@Override
 	public void onPause() {
 		super.onPause();
-		if (handler != null)
+		if (handler != null) {
 			handler.removeMessages(0);
+		}
 	}
 
 	final private void startReload() {

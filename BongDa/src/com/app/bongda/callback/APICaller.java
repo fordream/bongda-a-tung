@@ -8,6 +8,11 @@ import com.app.bongda.R;
 import android.content.Context;
 
 public class APICaller {
+	private boolean isOnProgess = false;
+
+	public boolean isOnProgess() {
+		return isOnProgess;
+	}
 
 	/**
 	 * Call Api
@@ -25,7 +30,8 @@ public class APICaller {
 	}
 
 	public void callApi(final String api, boolean useDialog,
-			final ICallbackAPI callbackAPI, Map<String, String> sendData) {
+			final ICallbackAPI callbackAPI, String sendData) {
+		isOnProgess = true;
 		ExeCallBack exeCallBack = new ExeCallBack();
 		exeCallBack.setExeCallBackOption(new ExeCallBackOption(context,
 				useDialog, R.string.loading, null));
@@ -39,55 +45,24 @@ public class APICaller {
 			@Override
 			public void onError(String errorMessage) {
 				super.onError(errorMessage);
-				if (callbackAPI != null)
+				if (callbackAPI != null) {
 					callbackAPI.onError(errorMessage);
+				}
+				isOnProgess = false;
 			}
 
 			@Override
 			public void onSuccess(String response) {
 				super.onSuccess(response);
-				if (callbackAPI != null)
+				if (callbackAPI != null) {
 					callbackAPI.onSuccess(response);
+				}
+
+				isOnProgess = false;
 			}
 
 		};
-		if (sendData != null) {
-			Set<String> keys = sendData.keySet();
-			for (String key : keys) {
-				callBack.addParam(key, sendData.get(key));
-			}
-		}
 
-		exeCallBack.executeAsynCallBack(callBack);
-	}
-	
-	public void callApi(final String api, boolean useDialog,
-			final ICallbackAPI callbackAPI,String sendData) {
-		ExeCallBack exeCallBack = new ExeCallBack();
-		exeCallBack.setExeCallBackOption(new ExeCallBackOption(context,
-				useDialog, R.string.loading, null));
-		ResClientCallBack callBack = new ResClientCallBack() {
-
-			@Override
-			public String getApiName() {
-				return api;
-			}
-
-			@Override
-			public void onError(String errorMessage) {
-				super.onError(errorMessage);
-				if (callbackAPI != null)
-					callbackAPI.onError(errorMessage);
-			}
-
-			@Override
-			public void onSuccess(String response) {
-				super.onSuccess(response);
-				if (callbackAPI != null)
-					callbackAPI.onSuccess(response);
-			}
-
-		};
 		if (sendData != null) {
 			callBack.addParam(sendData);
 		}
