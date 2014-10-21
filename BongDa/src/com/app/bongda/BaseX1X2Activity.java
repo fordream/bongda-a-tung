@@ -126,8 +126,10 @@ public class BaseX1X2Activity extends BaseActivtiy {
 			public void onCallBackListenner(int position, Object data) {
 				LiveScore liveScore = (LiveScore) data;
 				if (position == 0) {
+//					GiaiDau dau = new GiaiDau(liveScore.getId(),
+//							liveScore.getName());
 					GiaiDau dau = new GiaiDau(liveScore.getId(),
-							liveScore.getName());
+							liveScore.getName() , liveScore.magiai(), liveScore.madoinha(), liveScore.madoikhach(),liveScore.idmagiai());
 					// showFragment(new BangXepHangFragment(dau, null));
 					showBangXemHang(dau);
 				} else if (position == 2) {
