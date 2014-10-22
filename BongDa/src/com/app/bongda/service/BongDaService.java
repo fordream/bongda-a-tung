@@ -1,5 +1,11 @@
 package com.app.bongda.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.app.bongda.callback.APICaller;
+import com.app.bongda.callback.APICaller.ICallbackAPI;
+
 import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,5 +33,18 @@ public class BongDaService extends Service {
 
 	public void setReload(long isReload) {
 		preferencesSetting.edit().putLong("mreload", isReload).commit();
+	}
+
+	private Map<Long, APICaller> map = new HashMap<Long, APICaller>();
+
+	public void callApi(long currentTime, ICallbackAPI callbackAPI, String wsfootballQuocgia) {
+		APICaller apiCaller = map.get(new Long(currentTime));
+		if (apiCaller == null) {
+			apiCaller = new APICaller(this);
+			map.put(new Long(currentTime), apiCaller);
+			apiCaller.setICallBack(callbackAPI);
+			apiCaller.callApi("", false, callbackAPI, wsfootballQuocgia);
+		} else {
+		}
 	}
 }

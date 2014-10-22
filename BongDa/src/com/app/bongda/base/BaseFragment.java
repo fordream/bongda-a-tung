@@ -14,6 +14,11 @@ import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.service.BongDaServiceManager;
 
 public abstract class BaseFragment extends Fragment {
+	private long currentTime = System.currentTimeMillis();
+
+	public long getCurrentTime() {
+		return currentTime;
+	}
 
 	public BaseFragment() {
 		super();
@@ -40,7 +45,7 @@ public abstract class BaseFragment extends Fragment {
 	private APICaller apiCaller;
 
 	final public void onCallReloadData() {
-		
+
 		if (apiCaller != null && !apiCaller.isOnProgess()) {
 			apiCaller.callApi("", false, new ICallbackAPI() {
 

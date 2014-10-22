@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.app.bongda.R;
+import com.app.bongda.callback.APICaller.ICallbackAPI;
 
 import android.content.Context;
 
@@ -29,12 +30,11 @@ public class APICaller {
 		context = mContext;
 	}
 
-	public void callApi(final String api, boolean useDialog,
-			final ICallbackAPI callbackAPI, String sendData) {
+	public void callApi(final String api, boolean useDialog, final ICallbackAPI callbackAPI, String sendData) {
 		isOnProgess = true;
+		this.callbackAPI = callbackAPI;
 		ExeCallBack exeCallBack = new ExeCallBack();
-		exeCallBack.setExeCallBackOption(new ExeCallBackOption(context,
-				useDialog, R.string.loading, null));
+		exeCallBack.setExeCallBackOption(new ExeCallBackOption(context, useDialog, R.string.loading, null));
 		ResClientCallBack callBack = new ResClientCallBack() {
 
 			@Override
@@ -68,5 +68,11 @@ public class APICaller {
 		}
 
 		exeCallBack.executeAsynCallBack(callBack);
+	}
+
+	private ICallbackAPI callbackAPI;
+
+	public void setICallBack(ICallbackAPI callbackAPI) {
+		this.callbackAPI = callbackAPI;
 	}
 }
