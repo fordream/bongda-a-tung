@@ -9,10 +9,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewStub;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.app.bongda.R;
 import com.app.bongda.base.BaseFragment;
@@ -178,6 +182,7 @@ public class LiveScoreFragment extends BaseFragment {
 //							JSONArray jsonarray = new JSONArray(string_temp);
 
 							ArrayList<JSONObject> array = new ArrayList<JSONObject>();
+							array.clear();
 							JSONArray jsonArray = new JSONArray(string_temp);
 							for (int i = 0; i < jsonArray.length(); i++) {
 								try {
@@ -187,7 +192,7 @@ public class LiveScoreFragment extends BaseFragment {
 									e.printStackTrace();
 								}
 							}
-
+							Collections.emptyList();
 							Collections.sort(array, new Comparator<JSONObject>() {
 
 								@Override
@@ -272,4 +277,5 @@ public class LiveScoreFragment extends BaseFragment {
 			};
 
 	}
+    
 }
