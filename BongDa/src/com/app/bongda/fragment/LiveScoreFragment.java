@@ -175,7 +175,7 @@ public class LiveScoreFragment extends BaseFragment {
 						// string_temp , null);
 						// Log.e("data",string_temp);
 						try {
-							JSONArray jsonarray = new JSONArray(string_temp);
+//							JSONArray jsonarray = new JSONArray(string_temp);
 
 							ArrayList<JSONObject> array = new ArrayList<JSONObject>();
 							JSONArray jsonArray = new JSONArray(string_temp);
