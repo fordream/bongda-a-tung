@@ -199,13 +199,14 @@ public class LiveScoreFragment extends BaseFragment {
 			public void run() {
 				if (CommonUtil.listQuanTam == null)
 	            {
-	                CommonUtil.listQuanTam = new ArrayList();
+	                CommonUtil.listQuanTam = new ArrayList<String>();
+	                CommonUtil.getdata(getActivity());
 	            }
-	            
-				if (difference > 10) {
+	            if (difference > 10) {
 					if (CommonUtil.listQuanTam.contains(liveScore.getId()))
 		            {
 		                CommonUtil.listQuanTam.remove(liveScore.getId());
+		                CommonUtil.savedata(getActivity());
 		                countryAdapter.notifyDataSetChanged();
 		                Log.e("KKKKKKKKKK", "A*" + CommonUtil.listQuanTam.toString() );
 		            }
@@ -215,6 +216,7 @@ public class LiveScoreFragment extends BaseFragment {
 					if (!CommonUtil.listQuanTam.contains(liveScore.getId()))
 		            {
 		                CommonUtil.listQuanTam.add(liveScore.getId());
+		                CommonUtil.savedata(getActivity());
 		                countryAdapter.notifyDataSetChanged();
 		                Log.e("KKKKKKKKKK", "B*" + CommonUtil.listQuanTam.toString() );
 		            }
@@ -270,11 +272,13 @@ public class LiveScoreFragment extends BaseFragment {
 						// Log.e("data",string_temp);
 						try {
 //							JSONArray jsonarray = new JSONArray(string_temp);
-							Log.e("KKK","kkk"+ "*****"+ CommonUtil.listQuanTam.toString());
 							
 							ArrayList<JSONObject> array = new ArrayList<JSONObject>();
 							array.clear();
 							JSONArray jsonArray = new JSONArray(string_temp);
+							CommonUtil.getdata(getActivity());
+							Log.e("KKK","kkk"+ "*****"+ CommonUtil.listQuanTam.toString());
+							
 							for (int i = 0; i < jsonArray.length(); i++) {
 								try {
 									if(TypeView != null){
