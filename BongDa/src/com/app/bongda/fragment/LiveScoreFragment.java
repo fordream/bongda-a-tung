@@ -3,19 +3,25 @@ package com.app.bongda.fragment;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.bongda.R;
@@ -29,22 +35,24 @@ import com.app.bongda.model.LiveScore;
 import com.app.bongda.service.BongDaServiceManager;
 import com.app.bongda.util.ByUtils;
 import com.app.bongda.util.CommonAndroid;
+import com.app.bongda.util.CommonUtil;
 import com.app.bongda.view.HeaderView;
 
 public class LiveScoreFragment extends BaseFragment {
 	OnItemClickListener onItemClickListener;
 	CallBackListenner callBackListenner;
 	GiaiDau data;
-
-	public LiveScoreFragment(OnItemClickListener onItemClickListener, CallBackListenner callBackListenner, GiaiDau data) {
+	String TypeView;
+	private MyTouchListener mOnTouchListener;
+	public LiveScoreFragment(OnItemClickListener onItemClickListener, CallBackListenner callBackListenner, GiaiDau data, String type) {
 		super();
 		this.callBackListenner = callBackListenner;
 		this.onItemClickListener = onItemClickListener;
 		this.data = data;
+		this.TypeView = type;
 	}
 
 	private CountryAdapter countryAdapter = new CountryAdapter();
-
 	private class CountryAdapter extends BongDaBaseAdapter {
 
 		@Override
@@ -53,11 +61,27 @@ public class LiveScoreFragment extends BaseFragment {
 		}
 
 		@Override
-		public void showData(Object item, View convertView) {
+		public void showData(int position,Object item, View convertView) {
 			final LiveScore liveScore = (LiveScore) item;
+			if(TypeView != null){
+				if (TypeView.equalsIgnoreCase("quantam") && !CommonUtil.listQuanTam.contains(liveScore.getId()))
+	            {
+					convertView.findViewById(R.id.livescore_header).setVisibility(View.GONE);
+					convertView.findViewById(R.id.livescore_main).setVisibility(View.GONE);
+					return;
+	            }
+			}
+			
 			convertView.findViewById(R.id.livescore_header).setVisibility(View.GONE);
 			convertView.findViewById(R.id.livescore_main).setVisibility(View.GONE);
 
+			//show tran quan tam
+			if (CommonUtil.listQuanTam.contains(liveScore.getId()))
+            {
+				convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
+			}else{
+				convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
+			}
 			if (liveScore.isHeader()) {
 				convertView.findViewById(R.id.livescore_header).setVisibility(View.VISIBLE);
 			} else {
@@ -124,6 +148,14 @@ public class LiveScoreFragment extends BaseFragment {
 					callBackListenner.onCallBackListenner(2, liveScore);
 				}
 			});
+			mOnTouchListener = new MyTouchListener(liveScore);
+			convertView.setOnTouchListener(mOnTouchListener);
+		}
+
+		@Override
+		public void showData(Object item, View convertView) {
+			// TODO Auto-generated method stub
+			
 		}
 
 	}
@@ -133,19 +165,69 @@ public class LiveScoreFragment extends BaseFragment {
 		return R.layout.livesocre;
 	}
 
+
+    private int action_down_x = 0;
+    private int action_up_x = 0;
+    public static int difference = 0;
+    ListView listView;
 	@Override
 	public void onInitCreateView(View view) {
 		/**
 		 * init header view
 		 */
 		HeaderView headerView = (HeaderView) view.findViewById(R.id.headerView1);
-		headerView.setTextHeader(R.string.livescore);
+		if(TypeView == null){
+			headerView.setTextHeader(R.string.livescore);
+		}else{
+			if(TypeView.equalsIgnoreCase("quantam")){
+				headerView.setTextHeader(R.string.tranquantam);
+			}else{
+				headerView.setTextHeader(R.string.livescore);
+			}
+		}
 		/** init data */
-		ListView listView = (ListView) view.findViewById(R.id.listView1);
-		listView.setOnItemClickListener(onItemClickListener);
-
+		listView = (ListView) view.findViewById(R.id.listView1);
 		listView.setAdapter(countryAdapter);
+		
+
 	}
+	
+	private void calcuateDifference(final LiveScore liveScore) {
+		getActivity().runOnUiThread(new Runnable() {
+
+			@Override
+			public void run() {
+				if (CommonUtil.listQuanTam == null)
+	            {
+	                CommonUtil.listQuanTam = new ArrayList();
+	            }
+	            
+				if (difference > 10) {
+					if (CommonUtil.listQuanTam.contains(liveScore.getId()))
+		            {
+		                CommonUtil.listQuanTam.remove(liveScore.getId());
+		                countryAdapter.notifyDataSetChanged();
+		                Log.e("KKKKKKKKKK", "A*" + CommonUtil.listQuanTam.toString() );
+		            }
+					Toast.makeText(getActivity(), "Remove favorite", Toast.LENGTH_LONG).show();
+				}
+				if (difference < -10) {
+					if (!CommonUtil.listQuanTam.contains(liveScore.getId()))
+		            {
+		                CommonUtil.listQuanTam.add(liveScore.getId());
+		                countryAdapter.notifyDataSetChanged();
+		                Log.e("KKKKKKKKKK", "B*" + CommonUtil.listQuanTam.toString() );
+		            }
+					Toast.makeText(getActivity(), "Add to Favorite", Toast.LENGTH_LONG).show();
+				}
+				action_down_x = 0;
+				action_up_x = 0;
+				difference = 0;
+				
+			}
+		});
+	}
+
 
 	ICallbackAPI callbackAPI;
 
@@ -155,14 +237,21 @@ public class LiveScoreFragment extends BaseFragment {
 
 		String maGiaiDau = data == null ? null : data.getId();
 		if (maGiaiDau == null) {
-			// new APICaller(getActivity()).callApi("", true, callbackAPI,
-			// ByUtils.wsFootBall_Lives);
-			BongDaServiceManager.getInstance().getBongDaService().callApi(getCurrentTime(), callbackAPI, ByUtils.wsFootBall_Lives);
+			 
+			if(TypeView == null){
+				BongDaServiceManager.getInstance().getBongDaService().callApi(getCurrentTime(), callbackAPI, ByUtils.wsFootBall_Lives);
+			}else{
+				new APICaller(getActivity()).callApi("", true, callbackAPI,
+						 ByUtils.wsFootBall_Lives);
+			}
 		} else {
-			BongDaServiceManager.getInstance().getBongDaService().callApi(getCurrentTime(), callbackAPI, (ByUtils.wsFootBall_Lives_Theo_Giai).replace("magiai", maGiaiDau));
-			// new APICaller(getActivity()).callApi("", true, callbackAPI,
-			// (ByUtils.wsFootBall_Lives_Theo_Giai).replace("magiai",
-			// maGiaiDau));
+			if(TypeView == null){
+				BongDaServiceManager.getInstance().getBongDaService().callApi(getCurrentTime(), callbackAPI, (ByUtils.wsFootBall_Lives_Theo_Giai).replace("magiai", maGiaiDau));
+			}else{
+				 new APICaller(getActivity()).callApi("", true, callbackAPI,
+				 (ByUtils.wsFootBall_Lives_Theo_Giai).replace("magiai",
+				 maGiaiDau));
+			}
 		}
 	}
 
@@ -173,6 +262,7 @@ public class LiveScoreFragment extends BaseFragment {
 			callbackAPI = new ICallbackAPI() {
 				@Override
 				public void onSuccess(String response) {
+					countryAdapter.clear();
 					String string_temp = CommonAndroid.parseXMLAction(response);
 					if (!string_temp.equalsIgnoreCase("")) {
 						// CommonAndroid.showDialog(getActivity(), "data2:" +
@@ -180,13 +270,26 @@ public class LiveScoreFragment extends BaseFragment {
 						// Log.e("data",string_temp);
 						try {
 //							JSONArray jsonarray = new JSONArray(string_temp);
-
+							Log.e("KKK","kkk"+ "*****"+ CommonUtil.listQuanTam.toString());
+							
 							ArrayList<JSONObject> array = new ArrayList<JSONObject>();
 							array.clear();
 							JSONArray jsonArray = new JSONArray(string_temp);
 							for (int i = 0; i < jsonArray.length(); i++) {
 								try {
-									array.add(jsonArray.getJSONObject(i));
+									if(TypeView != null){
+										if(TypeView.equalsIgnoreCase("quantam")){
+											String matran = jsonArray.getJSONObject(i).getString("iID_MaTran");
+											if (CommonUtil.listQuanTam.contains(matran)){
+												array.add(jsonArray.getJSONObject(i));
+											}
+										}else{
+											array.add(jsonArray.getJSONObject(i));
+										}
+									}else{
+										array.add(jsonArray.getJSONObject(i));
+									}
+									
 								} catch (JSONException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
@@ -277,5 +380,38 @@ public class LiveScoreFragment extends BaseFragment {
 			};
 
 	}
-    
+	
+	class MyTouchListener implements OnTouchListener
+    {
+		LiveScore liveScore;
+		public MyTouchListener(LiveScore liveScore1) {
+			// TODO Auto-generated constructor stub
+			this.liveScore = liveScore1;
+		}
+
+		@Override
+		public boolean onTouch(View v, MotionEvent event) {
+			
+			int action = event.getAction();
+			switch (action) {
+			case MotionEvent.ACTION_DOWN:
+				action_down_x = (int) event.getX();
+				break;
+			case MotionEvent.ACTION_MOVE:
+				Log.e("action", "ACTION_MOVE - ");
+				action_up_x = (int) event.getX();
+				difference = action_down_x - action_up_x;
+				break;
+			case MotionEvent.ACTION_UP:
+				Log.e("action", "ACTION_UP - ");
+				if(difference == 0){
+					callBackListenner.onCallBackListenner(3, liveScore);
+				}else{
+					calcuateDifference(liveScore);
+				}
+				break;
+			}
+			return true;
+		}
+    }
 }

@@ -36,7 +36,7 @@ public class X1Activity extends BaseX1X2Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		showLiveScore(null);
+		showLiveScore(null,null);
 	}
 
 }

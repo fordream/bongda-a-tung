@@ -79,6 +79,7 @@
                     android:layout_width="@dimen/size_button_live_score"
                     android:layout_height="@dimen/size_button_live_score"
                     android:layout_marginRight="@dimen/dimen_5dp"
+                    android:visibility="gone"
                     android:background="@drawable/game_dudoan_recovered_20" />
             </LinearLayout>
 

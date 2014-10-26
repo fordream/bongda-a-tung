@@ -83,7 +83,7 @@ public class MActivity extends BaseFragmentActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				showLiveScore((GiaiDau) parent.getItemAtPosition(position));
+				showLiveScore((GiaiDau) parent.getItemAtPosition(position),"giaidau");
 			}
 		};
 
@@ -110,7 +110,7 @@ public class MActivity extends BaseFragmentActivity {
 		showFragment(new CountryFragment(clickListenerCountry));
 	}
 
-	public void showLiveScore(GiaiDau data) {
+	public void showLiveScore(GiaiDau data, String type) {
 		OnItemClickListener liveScoreOnItemClickListener = new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -146,7 +146,7 @@ public class MActivity extends BaseFragmentActivity {
 		};
 
 		showFragment(new LiveScoreFragment(liveScoreOnItemClickListener,
-				callBackListenner, data));
+				callBackListenner, data, type));
 	}
 
 	public void showBangXemHang(GiaiDau dau) {

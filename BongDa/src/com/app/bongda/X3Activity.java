@@ -9,6 +9,7 @@ public class X3Activity extends BaseX1X2Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		showLiveScore(null, "quantam");
 	}
 
 
