@@ -44,12 +44,59 @@
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/dimen_12dp" />
 
-                <Button
+                <CheckBox
                     android:id="@+id/setting_reload"
-                    android:layout_width="@dimen/dimen_75dp"
+                    android:layout_width="@dimen/dimen_100dp"
+                    android:layout_height="@dimen/dimen_25dp"
+                    android:background="@drawable/xml_offeritemlayout"
+                    android:button="@drawable/transfer"
                     android:text="not reload"
-                    android:layout_height="wrap_content" />
+                    android:textSize="@dimen/dimen_13dp" />
             </LinearLayout>
+
+            <RadioGroup
+                android:id="@+id/radioGroup1"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen_35dp"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/radio0"
+                    android:layout_width="@dimen/dimen_100dp"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/xml_offeritemlayout"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:paddingRight="@dimen/dimen_10dp"
+                    android:text="@string/thecao"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/dimen_13dp" />
+
+                <RadioButton
+                    android:id="@+id/radi1"
+                    android:layout_width="@dimen/dimen_100dp"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/xml_offeritemlayout"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:paddingRight="@dimen/dimen_10dp"
+                    android:text="@string/tinnhansms"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/dimen_13dp" />
+
+                <RadioButton
+                    android:id="@+id/radio2"
+                    android:layout_width="@dimen/dimen_100dp"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/xml_offeritemlayout"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:paddingRight="@dimen/dimen_10dp"
+                    android:text="@string/appstore"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/dimen_13dp" />
+            </RadioGroup>
         </LinearLayout>
     </LinearLayout>
 
