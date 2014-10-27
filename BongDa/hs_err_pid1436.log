@@ -1,0 +1,94 @@
+#
+# An unexpected error has been detected by Java Runtime Environment:
+#
+#  Internal Error (434C41535326494C453041525345520E4350500AB6), pid=1436, tid=5916
+#
+# Java VM: Java HotSpot(TM) Client VM (1.6.0-b105 mixed mode)
+# If you would like to submit a bug report, please visit:
+#   http://java.sun.com/webapps/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00327800):  JavaThread "Unknown thread" [_thread_in_vm, id=5916]
+
+Stack: [0x00330000,0x00380000)
+[error occurred during error reporting, step 110, id 0xc00000fd]
+
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [javaw.exe+0xc07c]
+C  [javaw.exe+0x7d35]
+C  [kernel32.dll+0x53c45]
+C  [ntdll.dll+0x637f5]
+C  [ntdll.dll+0x637c8]
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+VM state:not at safepoint (not fully initilizated)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ def new generation   total 960K, used 0K [0x036e0000, 0x037e0000, 0x03bc0000)
+  eden space 896K,   0% used [0x036e0000, 0x036e0000, 0x037c0000)
+  from space 64K,   0% used [0x037c0000, 0x037c0000, 0x037d0000)
+  to   space 64K,   0% used [0x037d0000, 0x037d0000, 0x037e0000)
+ tenured generation   total 4096K, used 0K [0x03bc0000, 0x03fc0000, 0x076e0000)
+   the space 4096K,   0% used [0x03bc0000, 0x03bc0000, 0x03bc0200, 0x03fc0000)
+ compacting perm gen  total 12288K, used 100K [0x076e0000, 0x082e0000, 0x0b6e0000)
+   the space 12288K,   0% used [0x076e0000, 0x076f9058, 0x076f9200, 0x082e0000)
+No shared spaces configured.
+
+Dynamic libraries:
+0x00400000 - 0x00423000 	C:\Program Files\Java\jre1.6.0\bin\javaw.exe
+0x77430000 - 0x7756c000 	C:\Windows\SYSTEM32\ntdll.dll
+0x76930000 - 0x76a04000 	C:\Windows\system32\kernel32.dll
+0x757a0000 - 0x757ea000 	C:\Windows\system32\KERNELBASE.dll
+0x77580000 - 0x77620000 	C:\Windows\system32\ADVAPI32.dll
+0x77270000 - 0x7731c000 	C:\Windows\system32\msvcrt.dll
+0x76610000 - 0x76629000 	C:\Windows\SYSTEM32\sechost.dll
+0x76dc0000 - 0x76e61000 	C:\Windows\system32\RPCRT4.dll
+0x76e70000 - 0x76f39000 	C:\Windows\system32\USER32.dll
+0x76520000 - 0x7656e000 	C:\Windows\system32\GDI32.dll
+0x75880000 - 0x7588a000 	C:\Windows\system32\LPK.dll
+0x76570000 - 0x7660d000 	C:\Windows\system32\USP10.dll
+0x758a0000 - 0x758bf000 	C:\Windows\system32\IMM32.DLL
+0x76c60000 - 0x76d2c000 	C:\Windows\system32\MSCTF.dll
+0x7c340000 - 0x7c396000 	C:\Program Files\Java\jre1.6.0\bin\msvcr71.dll
+0x6d7c0000 - 0x6da07000 	C:\Program Files\Java\jre1.6.0\bin\client\jvm.dll
+0x71260000 - 0x71292000 	C:\Windows\system32\WINMM.dll
+0x754b0000 - 0x754fc000 	C:\Windows\system32\apphelp.dll
+0x6d310000 - 0x6d318000 	C:\Program Files\Java\jre1.6.0\bin\hpi.dll
+0x76510000 - 0x76515000 	C:\Windows\system32\PSAPI.DLL
+0x6d770000 - 0x6d77c000 	C:\Program Files\Java\jre1.6.0\bin\verify.dll
+0x6d3b0000 - 0x6d3cf000 	C:\Program Files\Java\jre1.6.0\bin\java.dll
+0x6d7b0000 - 0x6d7bf000 	C:\Program Files\Java\jre1.6.0\bin\zip.dll
+
+VM Arguments:
+jvm_args: -Dfile.encoding=Cp1252 -Xbootclasspath:C:\Users\teli\android-sdks\platforms\android-14\android.jar
+java_command: com.app.bongda.util.CommonAndroid$FONT
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=C:/Program Files/Java/jre1.6.0/bin/client;C:/Program Files/Java/jre1.6.0/bin;C:/Program Files/Java/jre1.6.0/lib/i386;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\TortoiseSVN\bin;F:\setup\eclipse;
+USERNAME=teli
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=x86 Family 6 Model 69 Stepping 1, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows NT 6.1 Build 7601 Service Pack 1
+
+CPU:total 4 family 6, cmov, cx8, fxsr, mmx, sse, sse2
+
+Memory: 4k page, physical 2016624k(843660k free), swap 4033248k(2428572k free)
+
+vm_info: Java HotSpot(TM) Client VM (1.6.0-b105) for windows-x86, built on Nov 29 2006 00:48:48 by "java_re" with unknown MS VC++:1310
+

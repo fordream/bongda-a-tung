@@ -56,13 +56,19 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dimen_5dp" >
 
                 <FrameLayout
                     android:layout_width="@dimen/dimen_300dp"
-                    android:layout_marginTop="@dimen/dimen_34dp"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/dimen_34dp"
                     android:background="@drawable/setting_bg_item" >
+
+                    <com.app.bongda.view.ThecaoView
+                        android:id="@+id/thecaoview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
                 </FrameLayout>
 
                 <RadioGroup
@@ -108,7 +114,6 @@
                         android:textColor="@android:color/black"
                         android:textSize="@dimen/dimen_13dp" />
                 </RadioGroup>
-
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>

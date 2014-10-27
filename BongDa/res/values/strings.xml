@@ -64,5 +64,10 @@
     <string name="thecao">Thẻ cào</string>
     <string name="tinnhansms">Tin nhắn SMS</string>
     <string name="appstore">App Store</string>
+    <string name="nhamang">Nhà mạng :</string>
+    <string name="sothe">Số thẻ :</string>
+    <string name="soseri">"Số sê ri : "</string>
+    <string name="lamlai">Làm lại</string>
+    <string name="nap">Nạp</string>
 
 </resources>
