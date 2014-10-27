@@ -54,49 +54,62 @@
                     android:textSize="@dimen/dimen_13dp" />
             </LinearLayout>
 
-            <RadioGroup
-                android:id="@+id/radioGroup1"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dimen_35dp"
-                android:orientation="horizontal" >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
 
-                <RadioButton
-                    android:id="@+id/radio0"
-                    android:layout_width="@dimen/dimen_100dp"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/xml_offeritemlayout"
-                    android:button="@null"
-                    android:checked="true"
-                    android:gravity="center"
-                    android:paddingRight="@dimen/dimen_10dp"
-                    android:text="@string/thecao"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/dimen_13dp" />
+                <FrameLayout
+                    android:layout_width="@dimen/dimen_300dp"
+                    android:layout_marginTop="@dimen/dimen_34dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/setting_bg_item" >
+                </FrameLayout>
 
-                <RadioButton
-                    android:id="@+id/radi1"
-                    android:layout_width="@dimen/dimen_100dp"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/xml_offeritemlayout"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:paddingRight="@dimen/dimen_10dp"
-                    android:text="@string/tinnhansms"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/dimen_13dp" />
+                <RadioGroup
+                    android:id="@+id/radioGroup1"
+                    android:layout_width="@dimen/dimen_300dp"
+                    android:layout_height="@dimen/dimen_35dp"
+                    android:orientation="horizontal" >
 
-                <RadioButton
-                    android:id="@+id/radio2"
-                    android:layout_width="@dimen/dimen_100dp"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/xml_offeritemlayout"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:paddingRight="@dimen/dimen_10dp"
-                    android:text="@string/appstore"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/dimen_13dp" />
-            </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/radio0"
+                        android:layout_width="@dimen/dimen_100dp"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/xml_offeritemlayout"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:paddingRight="@dimen/dimen_10dp"
+                        android:text="@string/thecao"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/dimen_13dp" />
+
+                    <RadioButton
+                        android:id="@+id/radi1"
+                        android:layout_width="@dimen/dimen_100dp"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/xml_offeritemlayout"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:paddingRight="@dimen/dimen_10dp"
+                        android:text="@string/tinnhansms"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/dimen_13dp" />
+
+                    <RadioButton
+                        android:id="@+id/radio2"
+                        android:layout_width="@dimen/dimen_100dp"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/xml_offeritemlayout"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:paddingRight="@dimen/dimen_10dp"
+                        android:text="@string/appstore"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/dimen_13dp" />
+                </RadioGroup>
+
+            </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
 

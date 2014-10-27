@@ -1095,8 +1095,7 @@ public class CommonAndroid {
 			}
             txt = xmlhandler.getResult();
             
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
+		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 		return txt;
