@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_5dp"
+        android:layout_marginTop="@dimen/dimen_5dp"
+        android:textColor="@android:color/black"
+        android:paddingLeft="@dimen/dimen_5dp"
+        android:text="SMS 10.000 vnđ\b10.000 xu\bĐầu số 7897"
+        android:textSize="@dimen/dimen_13dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="@dimen/dimen_150dp"
+        android:layout_height="@dimen/dimen_35dp"
+        android:background="@drawable/a_button_xml"
+        android:gravity="center"
+        android:text="@string/nap"
+        android:textSize="@dimen/dimen_15dp" 
+        
+        android:layout_marginBottom="@dimen/dimen_5dp"/>
+
+</LinearLayout>

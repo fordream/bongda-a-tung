@@ -69,5 +69,12 @@
     <string name="soseri">"Số sê ri : "</string>
     <string name="lamlai">Làm lại</string>
     <string name="nap">Nạp</string>
+    <string name="tinnhan_header">Chỉ hỗ trợ nạp SMS qua các nhà mạng:\n
+        -Vietel: Tối đa 150k/ thuê bao/ ngày\n
+        -Vinaphone: Tối đa 100k/ thuê bao/ ngày\n
+        -Mobiphone: Tối đa 300k/ thuê bao/ ngày\n\n
+        Nạp từ 2 thuê bao khác nhau tính riêng rẽ.\n
+        Cú pháp: TYSO24H NAP Username 1038
+        </string>
 
 </resources>

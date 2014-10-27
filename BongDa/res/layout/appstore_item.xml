@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dimen_150dp"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/dimen_15dp"
+        
+        android:layout_marginBottom="@dimen/dimen_15dp"
+        android:layout_width="@dimen/dimen_120dp"
+        android:layout_height="@dimen/dimen_120dp"
+        android:background="@drawable/a_button_xml" >
+
+        <TextView
+            android:layout_marginLeft="@dimen/dimen_1dp"
+            android:layout_marginRight="@dimen/dimen_1dp"
+            android:id="@+id/textView1"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dimen_35dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="@dimen/dimen_5dp"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="#6fda28"
+            android:textSize="@dimen/dimen_13dp" />
+
+        <TextView
+            android:id="@+id/TextView01"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dimen_35dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/dimen_13dp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</LinearLayout>
