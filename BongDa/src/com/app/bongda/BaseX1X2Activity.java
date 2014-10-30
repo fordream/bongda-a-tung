@@ -53,7 +53,7 @@ public class BaseX1X2Activity extends BaseActivtiy {
 				} else if (position == 3) {
 					showFragment(new DuDoanKetQuaFragment(null));
 				} else if (position == 4) {
-					showFragment(new TyLeDuDoanFragment(null));
+					showFragment(new TyLeDuDoanFragment((GiaiDau) data,null));
 				}
 			}
 		};

@@ -27,6 +27,7 @@ public class ByUtils {
 	public static final String wsFootBall_Phong_Do_ChiTiet = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsFootBall_Phong_Do_ChiTiet xmlns=\"http://tempuri.org/\">    	<sMaGiai>magiai</sMaGiai>        	<sMaDoiNha>madoinha</sMaDoiNha>        	<sMaDoiKhach>madoikhach</sMaDoiKhach>    </wsFootBall_Phong_Do_ChiTiet>  </soap:Body></soap:Envelope>";
 	
 	public static final String wsFootBall_Lives_dudoan = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsFootBall_Lives_Co_GameDuDoan xmlns=\"http://tempuri.org/\" />  </soap:Body></soap:Envelope>";
+	public static final String wsFootBall_Lives_TyLeDuDoan = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsFootBall_Lives_TyLeDuDoan xmlns=\"http://tempuri.org/\">      <iID_MaTran>matran</iID_MaTran>    </wsFootBall_Lives_TyLeDuDoan>  </soap:Body></soap:Envelope>";
 	
 	public static final int REQUEST = 1000;
 
