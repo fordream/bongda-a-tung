@@ -63,11 +63,46 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 		
 	}
 
-	ICallbackAPI callbackAPI;
-	private int iID_MaTran;
+	ICallbackAPI callbackAPI, callbackAPI_Chitiet ;
+	private String iID_MaDoiNha;
+	private String iID_MaDoiKhach;
+	private String iID_MaGiai;
 	@Override
 	public void onInitData() {
 		callbackAPI = new ICallbackAPI() {
+			@Override
+			public void onSuccess(String response) {
+//				CommonAndroid.showDialog(getActivity(), "data2:" + response , null);
+				String string_temp = CommonAndroid.parseXMLAction(response);
+				if(!string_temp.equalsIgnoreCase("")){
+					try {
+						JSONArray jsonarray = new JSONArray(string_temp);
+						for (int i = 0; i < jsonarray.length(); i++) {
+							//parse
+							String callbackAPI = jsonarray.get(i).toString();
+							Log.e("callbackAPI",i + "::"+ callbackAPI );
+							iID_MaDoiNha = jsonarray.getJSONObject(i).getString("iID_MaDoiNha");
+							iID_MaDoiKhach = jsonarray.getJSONObject(i).getString("iID_MaDoiKhach");
+							iID_MaGiai = jsonarray.getJSONObject(i).getString("iID_MaGiai");
+						}
+						if(!iID_MaGiai.equalsIgnoreCase("") && !iID_MaDoiNha.equalsIgnoreCase("")  && !iID_MaDoiKhach.equalsIgnoreCase("")){
+							PhongDoChiTiet();
+						}
+					} catch (JSONException e) {
+//						CommonAndroid.showDialog(getActivity(), "data2json:" + e.getMessage() , null);
+					}
+					
+				}
+				
+			}
+
+			@Override
+			public void onError(String message) {
+				CommonAndroid.showDialog(getActivity(), "data3err:" + message , null);
+				Log.e("ERR",message);
+			}
+		};
+		callbackAPI_Chitiet = new ICallbackAPI() {
 			@Override
 			public void onSuccess(String response) {
 				CommonAndroid.showDialog(getActivity(), "data2:" + response , null);
@@ -77,9 +112,8 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 						JSONArray jsonarray = new JSONArray(string_temp);
 						for (int i = 0; i < jsonarray.length(); i++) {
 							//parse
-							String bNhanDinhChuyenGia = jsonarray.get(i).toString();
-							Log.e("kkk",i + "::"+ bNhanDinhChuyenGia );
-							
+							String callbackAPI_Chitiet = jsonarray.get(i).toString();
+							Log.e("callbackAPI_Chitiet",i + "::"+ callbackAPI_Chitiet );
 						}
 						countryAdapter.notifyDataSetChanged();
 					} catch (JSONException e) {
@@ -96,14 +130,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 				Log.e("ERR",message);
 			}
 		};
-//		iID_MaTran = 32456;
-        String magiai 		= giaidau.magiai();
-        String madoinha 	= giaidau.madoinha();
-        String madoikhach 	= giaidau.madoikhach();
-        String param2 = (ByUtils.wsFootBall_Phong_Do_ChiTiet).replace("magiai",
-        		magiai);
-        param2 = param2.replace("madoinha",madoinha);
-        param2 = param2.replace("madoikhach",madoikhach);
+		
         
         String iID_MaTran = giaidau.getId();
 		Log.e("KKKKKKKKKKKKK", "===" + giaidau.magiai() + "::" + giaidau.madoinha() + ":" + giaidau.madoikhach());
@@ -113,11 +140,20 @@ public class PhongDoDoiDauFragment extends BaseFragment {
         
 		new APICaller(getActivity()).callApi("", true,
 					callbackAPI, param);
-//		CommonAndroid.showDialog(getActivity(), "data33:" + param2 , null);
-		Log.e("param2--",param2);
-		Log.e("param--",param);
 		for(int i = 0; i < 6; i ++){
 			phongdodoidau_bangephang_listitem.addView(new BangXepHangItemView(getActivity()));
 		}
+	}
+	
+	private void PhongDoChiTiet(){
+        String magiai 		= iID_MaGiai;
+        String madoinha 	= iID_MaDoiNha;
+        String madoikhach 	= iID_MaDoiKhach;
+        String param2 = (ByUtils.wsFootBall_Phong_Do_ChiTiet).replace("magiai",
+        		magiai);
+        param2 = param2.replace("madoinha",madoinha);
+        param2 = param2.replace("madoikhach",madoikhach);
+        new APICaller(getActivity()).callApi("", true,
+        		callbackAPI_Chitiet, param2);
 	}
 }
