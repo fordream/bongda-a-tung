@@ -11,12 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.app.bongda.R;
 import com.app.bongda.base.BaseFragment;
 import com.app.bongda.base.BongDaBaseAdapter;
+import com.app.bongda.base.ImageLoaderUtils;
 import com.app.bongda.callback.APICaller;
 import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.model.Country;
@@ -48,6 +50,8 @@ public class CountryFragment extends BaseFragment {
 		public void showData(Object item, View convertView) {
 			TextView textView = (TextView) convertView.findViewById(R.id.textView1);
 			textView.setText(((Country) item).getName());
+			String image1 = ((Country) item).logoCountry();
+			ImageLoaderUtils.getInstance(getActivity()).DisplayImage(image1, (ImageView) convertView.findViewById(R.id.imageView1));
 		}
 
 	}
@@ -85,8 +89,8 @@ public class CountryFragment extends BaseFragment {
 					try {
 						JSONArray jsonarray = new JSONArray(string_temp);
 						for (int i = 0; i < jsonarray.length(); i++) {
-							countryAdapter.addItem(new Country(jsonarray.getJSONObject(i).getString("iID_MaQuocGia"), jsonarray.getJSONObject(i).getString("sTenQuocGia")));
-							Log.e("quocgia", i + ":ten==" + jsonarray.getJSONObject(i).getString("sTenQuocGia") + ":::maquocgia==" + jsonarray.getJSONObject(i).getString("sLogo"));
+							countryAdapter.addItem(new Country(jsonarray.getJSONObject(i).getString("iID_MaQuocGia"), jsonarray.getJSONObject(i).getString("sTenQuocGia"), jsonarray.getJSONObject(i).getString("sLogo")));
+//							Log.e("quocgia", i + ":ten==" + jsonarray.getJSONObject(i).getString("sTenQuocGia") + ":::maquocgia==" + jsonarray.getJSONObject(i).getString("sLogo"));
 						}
 						countryAdapter.notifyDataSetChanged();
 					} catch (JSONException e) {

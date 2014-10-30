@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -15,6 +16,7 @@ import android.widget.ListView;
 import com.app.bongda.R;
 import com.app.bongda.base.BaseFragment;
 import com.app.bongda.base.BongDaBaseAdapter;
+import com.app.bongda.base.ImageLoaderUtils;
 import com.app.bongda.callback.APICaller;
 import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.model.Country;
@@ -69,6 +71,8 @@ public class DanhSachGiaiDauFragment extends BaseFragment {
 		listView.setAdapter(countryAdapter);
 		
 		((TextView)view.findViewById(R.id.danhsachgiaidau_txtname)).setText(country.getName());
+		String image1 = country.logoCountry();
+		ImageLoaderUtils.getInstance(getActivity()).DisplayImage(image1, (ImageView) view.findViewById(R.id.imageView1));
 	}
 
 	ICallbackAPI callbackAPI;
