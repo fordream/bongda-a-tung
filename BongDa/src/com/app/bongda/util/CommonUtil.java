@@ -38,5 +38,25 @@ public class CommonUtil {
 
 		}
 	}
+	
+	public static void savedata(FragmentActivity activity, String key, String value) {
+		// TODO Auto-generated method stub
+		SharedPreferences pref = activity.getApplicationContext().getSharedPreferences("Data", 0);
+		Editor editor = pref.edit();
+		editor.putString(key, value);
+		editor.commit();
+	}
+	
+	public static String getdata(FragmentActivity activity, String key) {
+		String values = null;
+		try {
+			SharedPreferences pref = activity.getApplicationContext().getSharedPreferences("Data", 0);
+			values = pref.getString(key, null);
+			return values;
+		} catch (Exception exception) {
+
+		}
+		return values;
+	}
 
 }

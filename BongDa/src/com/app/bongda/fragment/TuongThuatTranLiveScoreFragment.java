@@ -6,6 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,6 +27,7 @@ import com.app.bongda.model.LiveScore;
 import com.app.bongda.model.TuongThuatTran;
 import com.app.bongda.util.ByUtils;
 import com.app.bongda.util.CommonAndroid;
+import com.app.bongda.util.CommonUtil;
 import com.app.bongda.view.HeaderView;
 
 public class TuongThuatTranLiveScoreFragment extends BaseFragment {
@@ -32,6 +35,8 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 	CallBackListenner backListenner;
 	GiaiDau dau;
 	public static View view;
+	SharedPreferences pref_tuongthuat;
+	private boolean ListItem = false;
 	public TuongThuatTranLiveScoreFragment(GiaiDau dau,
 			OnItemClickListener onItemClickListener,
 			CallBackListenner backListenner) {
@@ -39,6 +44,7 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 		this.onItemClickListener = onItemClickListener;
 		this.backListenner = backListenner;
 		this.dau = dau;
+		ListItem = false;
 	}
 
 	private CountryAdapter countryAdapter = new CountryAdapter();
@@ -52,35 +58,54 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 
 		@Override
 		public void showData(Object item, View convertView) {
-			final TuongThuatTran tuongthuattran = (TuongThuatTran) item;
-			if(tuongthuattran.isDoi() == 1){
-				convertView.findViewById(R.id.doi1).setVisibility(View.VISIBLE);
-				convertView.findViewById(R.id.doi2).setVisibility(View.GONE);
-				setText(convertView, R.id.time1,tuongthuattran.isThoigian() + "'");
-				setText(convertView, R.id.name1,tuongthuattran.getName());
-				ImageView localImageView1 = (ImageView)convertView.findViewById(R.id.icon_tuongthuat1);
-				if(tuongthuattran.isTrangthai() == 1){
-					localImageView1.setImageResource(R.drawable.chitiettrandau_32);
-				}else if(tuongthuattran.isTrangthai() == 3){
-					localImageView1.setImageResource(R.drawable.chitiettrandau_40);
+			String sTenGiai = CommonUtil.getdata(getActivity(),"sTenGiai");
+			String sTenDoiNha = CommonUtil.getdata(getActivity(),"sTenDoiNha");
+			String sTenDoiKhach = CommonUtil.getdata(getActivity(),"sTenDoiKhach");
+			String iPhut = CommonUtil.getdata(getActivity(),"iPhut");
+			String Banthang = CommonUtil.getdata(getActivity(),"Banthang");
+			String HT = CommonUtil.getdata(getActivity(),"HT");
+			((TextView) view.findViewById(R.id.textTenTran)).setText(sTenGiai);
+			((TextView) view.findViewById(R.id.TextView01)).setText(sTenDoiNha);
+			((TextView) view.findViewById(R.id.TextView02)).setText(sTenDoiKhach);
+			((TextView) view.findViewById(R.id.tuongthuat_time)).setText(iPhut);
+			((TextView) view.findViewById(R.id.tuongthuat_tiso)).setText(Banthang);
+			((TextView) view.findViewById(R.id.tuongthuat_ht)).setText(HT);
+			if(item != null){
+				final TuongThuatTran tuongthuattran = (TuongThuatTran) item;
+				if(tuongthuattran.isDoi() == 1){
+					convertView.findViewById(R.id.doi1).setVisibility(View.VISIBLE);
+					convertView.findViewById(R.id.doi2).setVisibility(View.GONE);
+					setText(convertView, R.id.time1,tuongthuattran.isThoigian() + "'");
+					setText(convertView, R.id.name1,tuongthuattran.getName());
+					ImageView localImageView1 = (ImageView)convertView.findViewById(R.id.icon_tuongthuat1);
+					if(tuongthuattran.isTrangthai() == 1){
+						localImageView1.setImageResource(R.drawable.chitiettrandau_32);
+					}else if(tuongthuattran.isTrangthai() == 3){
+						localImageView1.setImageResource(R.drawable.chitiettrandau_40);
+					}
+				}else{
+					convertView.findViewById(R.id.doi1).setVisibility(View.GONE);
+					convertView.findViewById(R.id.doi2).setVisibility(View.VISIBLE);
+					setText(convertView, R.id.time2,tuongthuattran.isThoigian() + "'");
+					setText(convertView, R.id.name2,tuongthuattran.getName());
+					ImageView localImageView2 = (ImageView)convertView.findViewById(R.id.icon_tuongthuat2);
+					if(tuongthuattran.isTrangthai() == 2){
+						localImageView2.setImageResource(R.drawable.chitiettrandau_32);
+					}else if(tuongthuattran.isTrangthai() == 4){
+						localImageView2.setImageResource(R.drawable.chitiettrandau_40);
+					}
 				}
 			}else{
 				convertView.findViewById(R.id.doi1).setVisibility(View.GONE);
-				convertView.findViewById(R.id.doi2).setVisibility(View.VISIBLE);
-				setText(convertView, R.id.time2,tuongthuattran.isThoigian() + "'");
-				setText(convertView, R.id.name2,tuongthuattran.getName());
-				ImageView localImageView2 = (ImageView)convertView.findViewById(R.id.icon_tuongthuat2);
-				if(tuongthuattran.isTrangthai() == 2){
-					localImageView2.setImageResource(R.drawable.chitiettrandau_32);
-				}else if(tuongthuattran.isTrangthai() == 4){
-					localImageView2.setImageResource(R.drawable.chitiettrandau_40);
-				}
+				convertView.findViewById(R.id.doi2).setVisibility(View.GONE);
 			}
+			
 			
 		}
 
 	}
 
+	
 	@Override
 	public int getLayout() {
 		return R.layout.tuongthuattructiep;
@@ -179,13 +204,19 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 						HT = stringbuilder1.append(iCN_BanThang_DoiNha_HT).append(" - ").append(iCN_BanThang_DoiKhach_HT).toString();
 				        
 						String Banthang = (new StringBuilder()).append(iCN_BanThang_DoiNha).append(" - ").append(iCN_BanThang_DoiKhach).toString();
-						((TextView) view.findViewById(R.id.textTenTran)).setText(sTenGiai);
-						((TextView) view.findViewById(R.id.TextView01)).setText(sTenDoiNha);
-						((TextView) view.findViewById(R.id.TextView02)).setText(sTenDoiKhach);
-						((TextView) view.findViewById(R.id.tuongthuat_time)).setText(iPhut);
-						((TextView) view.findViewById(R.id.tuongthuat_tiso)).setText(Banthang);
-						((TextView) view.findViewById(R.id.tuongthuat_ht)).setText(HT);
+						
+						//save data
+						CommonUtil.savedata(getActivity(),"sTenGiai", sTenGiai);
+						CommonUtil.savedata(getActivity(),"sTenDoiNha", sTenDoiNha);
+						CommonUtil.savedata(getActivity(),"sTenDoiKhach", sTenDoiKhach);
+						CommonUtil.savedata(getActivity(),"iPhut", iPhut);
+						CommonUtil.savedata(getActivity(),"Banthang", Banthang);
+						CommonUtil.savedata(getActivity(),"HT", HT);
+						if(!ListItem){
+							countryAdapter.addItem(null);
+						}
 						countryAdapter.notifyDataSetChanged();
+						Log.e("kkkkkkkk", "llllllllllllll2");
 					} catch (JSONException e) {
 					}
 					
@@ -237,6 +268,7 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 			                	temp2 = temp1[i].split(" ");
 	//		                	Log.e("KKKKKKKK", "KKKKKKKKKK11" + temp2[0] + ":::" + temp2[1]);
 			                	countryAdapter.addItem(new TuongThuatTran(doi, null , temp2[0] ,temp2[1], status));
+			                	ListItem = true;
 		                	}
 		                }
 	                }else{
@@ -245,6 +277,7 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 	                	if(k > 0){
 	                		temp2 = s3.split(" ");
 	                		countryAdapter.addItem(new TuongThuatTran(doi, null , temp2[0] ,temp2[1], status));
+	                		ListItem = true;
 	                	}
 	                }
 	                

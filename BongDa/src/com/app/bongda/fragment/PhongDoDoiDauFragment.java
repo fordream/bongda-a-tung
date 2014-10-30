@@ -71,7 +71,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 			@Override
 			public void onSuccess(String response) {
 				CommonAndroid.showDialog(getActivity(), "data2:" + response , null);
-				/*String string_temp = CommonAndroid.parseXMLAction(response);
+				String string_temp = CommonAndroid.parseXMLAction(response);
 				if(!string_temp.equalsIgnoreCase("")){
 					try {
 						JSONArray jsonarray = new JSONArray(string_temp);
@@ -86,7 +86,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 //						CommonAndroid.showDialog(getActivity(), "data2json:" + e.getMessage() , null);
 					}
 					
-				}*/
+				}
 				
 			}
 
@@ -112,7 +112,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
         String param = String.format(ByUtils.wsFootBall_Phong_Do, aobj);
         
 		new APICaller(getActivity()).callApi("", true,
-					callbackAPI, param2);
+					callbackAPI, param);
 //		CommonAndroid.showDialog(getActivity(), "data33:" + param2 , null);
 		Log.e("param2--",param2);
 		Log.e("param--",param);

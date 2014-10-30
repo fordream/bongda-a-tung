@@ -43,6 +43,7 @@ public class LiveScoreFragment extends BaseFragment {
 	CallBackListenner callBackListenner;
 	GiaiDau data;
 	String TypeView;
+	private int onLoad = 1;
 	private MyTouchListener mOnTouchListener;
 	public LiveScoreFragment(OnItemClickListener onItemClickListener, CallBackListenner callBackListenner, GiaiDau data, String type) {
 		super();
@@ -236,18 +237,17 @@ public class LiveScoreFragment extends BaseFragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-
 		String maGiaiDau = data == null ? null : data.getId();
 		if (maGiaiDau == null) {
 			 
-			if(TypeView == null){
+			if(TypeView == null && onLoad == 1){
 				BongDaServiceManager.getInstance().getBongDaService().callApi(getCurrentTime(), callbackAPI, ByUtils.wsFootBall_Lives);
 			}else{
 				new APICaller(getActivity()).callApi("", true, callbackAPI,
 						 ByUtils.wsFootBall_Lives);
 			}
 		} else {
-			if(TypeView == null){
+			if(TypeView == null  && onLoad == 1){
 				BongDaServiceManager.getInstance().getBongDaService().callApi(getCurrentTime(), callbackAPI, (ByUtils.wsFootBall_Lives_Theo_Giai).replace("magiai", maGiaiDau));
 			}else{
 				 new APICaller(getActivity()).callApi("", true, callbackAPI,
@@ -255,6 +255,8 @@ public class LiveScoreFragment extends BaseFragment {
 				 maGiaiDau));
 			}
 		}
+		onLoad++;
+		
 	}
 
 	@SuppressWarnings("unused")
@@ -370,7 +372,9 @@ public class LiveScoreFragment extends BaseFragment {
 								}
 
 							}
-							countryAdapter.notifyDataSetChanged();
+							if(onLoad != 1){
+								countryAdapter.notifyDataSetChanged();
+							}
 						} catch (JSONException e) {
 						}
 
@@ -408,7 +412,7 @@ public class LiveScoreFragment extends BaseFragment {
 				break;
 			case MotionEvent.ACTION_UP:
 				Log.e("action", "ACTION_UP - ");
-				if(difference == 0){
+				if(difference <= 10 && difference >= -10){
 					callBackListenner.onCallBackListenner(3, liveScore);
 				}else{
 					calcuateDifference(liveScore);
