@@ -269,8 +269,8 @@ public class LiveScoreFragment extends BaseFragment {
 					countryAdapter.clear();
 					String string_temp = CommonAndroid.parseXMLAction(response);
 					if (!string_temp.equalsIgnoreCase("")) {
-						// CommonAndroid.showDialog(getActivity(), "data2:" +
-						// string_temp , null);
+//						 CommonAndroid.showDialog(getActivity(), "data2:" +
+//						 string_temp , null);
 						// Log.e("data",string_temp);
 						try {
 //							JSONArray jsonarray = new JSONArray(string_temp);
@@ -278,6 +278,9 @@ public class LiveScoreFragment extends BaseFragment {
 							ArrayList<JSONObject> array = new ArrayList<JSONObject>();
 							array.clear();
 							JSONArray jsonArray = new JSONArray(string_temp);
+							if(jsonArray.length() == 0){
+								Toast.makeText(getActivity(), getResources().getString(R.string.giaichuabatdau), Toast.LENGTH_LONG).show();
+							}
 							CommonUtil.getdata(getActivity());
 							Log.e("KKK","kkk"+ "*****"+ CommonUtil.listQuanTam.toString());
 							
