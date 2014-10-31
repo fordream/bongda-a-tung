@@ -28,13 +28,13 @@ public class TyLeDuDoanFragment extends BaseFragment {
 	/**
 	 * name doi nha name doi khach
 	 */
-	private TextView textView1, textView2;
+	private TextView tyledudoan_name1, tyledudoan_name2;
 
 	/**
 	 * image giaidau
 	 */
 
-	private ImageView imageView1;
+	private ImageView tyledudoan_img;
 
 	public TyLeDuDoanFragment(GiaiDau giaiDau, OnItemClickListener onItemClickListener) {
 		super();
@@ -62,10 +62,10 @@ public class TyLeDuDoanFragment extends BaseFragment {
 		TextView01 = (TextView) view.findViewById(R.id.TextView01);
 		TextView02 = (TextView) view.findViewById(R.id.TextView02);
 
-		textView1 = (TextView) view.findViewById(R.id.textView1);
-		textView2 = (TextView) view.findViewById(R.id.textView2);
+		tyledudoan_name1 = (TextView) view.findViewById(R.id.tyledudoan_name1);
+		tyledudoan_name2 = (TextView) view.findViewById(R.id.tyledudoan_name2);
 
-		imageView1 = (ImageView) view.findViewById(R.id.imageView1);
+		tyledudoan_img = (ImageView) view.findViewById(R.id.tyledudoan_img);
 
 		TextView01.setText("");
 		TextView02.setText("");
@@ -73,8 +73,8 @@ public class TyLeDuDoanFragment extends BaseFragment {
 		tyLeView1.setPer(0);
 		tyLeView2.setPer(0);
 
-		textView1.setText("");
-		textView2.setText("");
+		tyledudoan_name1.setText("");
+		tyledudoan_name2.setText("");
 		if (giaidau != null) {
 			// ImageLoaderUtils.getInstance(getActivity()).DisplayImage(giaidau.,
 			// imageView, bitmap);
@@ -101,7 +101,7 @@ public class TyLeDuDoanFragment extends BaseFragment {
 
 						}
 
-						CommonAndroid.showDialog(getActivity(), "rTyLe_DoiNha=" + rTyLe_DoiNha + ":rTyLe_DoiKhach=" + rTyLe_DoiKhach, null);
+						//CommonAndroid.showDialog(getActivity(), "rTyLe_DoiNha=" + rTyLe_DoiNha + ":rTyLe_DoiKhach=" + rTyLe_DoiKhach, null);
 						tyLeView1.setPer(Float.parseFloat(rTyLe_DoiNha) / 100f);
 						tyLeView2.setPer(Float.parseFloat(rTyLe_DoiKhach) / 100f);
 

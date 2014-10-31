@@ -3,8 +3,15 @@ package com.app.bongda.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import com.app.bongda.callback.APICaller;
 import com.app.bongda.callback.APICaller.ICallbackAPI;
+import com.app.bongda.model.Country;
+import com.app.bongda.util.ByUtils;
+import com.app.bongda.util.CommonAndroid;
+import com.vnp.core.datastore.database.DBManager;
 
 import android.app.Service;
 import android.content.Intent;
@@ -126,5 +133,34 @@ public class BongDaService extends Service {
 			this.callbackAPI = callbackAPI;
 		}
 
+	}
+
+	public void startLoadContentBase() {
+		callApi(System.currentTimeMillis(), new ICallbackAPI() {
+			@Override
+			public void onSuccess(final String response) {
+				new Thread() {
+					public void run() {
+						String string_temp = CommonAndroid.parseXMLAction(response);
+						if (!string_temp.equalsIgnoreCase("")) {
+							try {
+								JSONArray jsonarray = new JSONArray(string_temp);
+								for (int i = 0; i < jsonarray.length(); i++) {
+									String iID_MaQuocGia = jsonarray.getJSONObject(i).getString("iID_MaQuocGia");
+									String sTenQuocGia = jsonarray.getJSONObject(i).getString("sTenQuocGia");
+									String sLogo = jsonarray.getJSONObject(i).getString("sLogo");
+								}
+							} catch (JSONException e) {
+							}
+						}
+					};
+				}.start();
+			}
+
+			@Override
+			public void onError(String message) {
+
+			}
+		}, ByUtils.wsFootBall_Quocgia);
 	}
 }

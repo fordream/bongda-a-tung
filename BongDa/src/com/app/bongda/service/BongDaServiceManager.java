@@ -23,7 +23,8 @@ public class BongDaServiceManager {
 	private Context mContext;
 
 	public void init(Context context) {
-		mContext = context;
+		if (mContext == null)
+			mContext = context;
 	}
 
 	private BongDaService bongDaService;
@@ -45,6 +46,8 @@ public class BongDaServiceManager {
 			BongDaBinder bongDaBinder = (BongDaBinder) service;
 			Log.e("MSERVICE", "connect to service");
 			bongDaService = bongDaBinder.getBongDaService();
+			if (bongDaService != null)
+				bongDaService.startLoadContentBase();
 		}
 	};
 

@@ -78,30 +78,28 @@ public class CountryFragment extends BaseFragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-		if(callbackAPI== null)
-		callbackAPI = new ICallbackAPI() {
-			@Override
-			public void onSuccess(String response) {
-				String string_temp = CommonAndroid.parseXMLAction(response);
-				if (!string_temp.equalsIgnoreCase("")) {
-					// CommonAndroid.showDialog(getActivity(), "data2:" +
-					// string_temp , null);
-					try {
-						JSONArray jsonarray = new JSONArray(string_temp);
-						for (int i = 0; i < jsonarray.length(); i++) {
-							countryAdapter.addItem(new Country(jsonarray.getJSONObject(i).getString("iID_MaQuocGia"), jsonarray.getJSONObject(i).getString("sTenQuocGia"), jsonarray.getJSONObject(i).getString("sLogo")));
-//							Log.e("quocgia", i + ":ten==" + jsonarray.getJSONObject(i).getString("sTenQuocGia") + ":::maquocgia==" + jsonarray.getJSONObject(i).getString("sLogo"));
+		if (callbackAPI == null)
+			callbackAPI = new ICallbackAPI() {
+				@Override
+				public void onSuccess(String response) {
+					String string_temp = CommonAndroid.parseXMLAction(response);
+					if (!string_temp.equalsIgnoreCase("")) {
+						try {
+							JSONArray jsonarray = new JSONArray(string_temp);
+							for (int i = 0; i < jsonarray.length(); i++) {
+								countryAdapter.addItem(new Country(jsonarray.getJSONObject(i).getString("iID_MaQuocGia"), jsonarray.getJSONObject(i).getString("sTenQuocGia"), jsonarray.getJSONObject(
+										i).getString("sLogo")));
+							}
+							countryAdapter.notifyDataSetChanged();
+						} catch (JSONException e) {
 						}
-						countryAdapter.notifyDataSetChanged();
-					} catch (JSONException e) {
 					}
 				}
-			}
 
-			@Override
-			public void onError(String message) {
-			}
-		};
+				@Override
+				public void onError(String message) {
+				}
+			};
 		BongDaServiceManager.getInstance().getBongDaService().callApi(getCurrentTime(), callbackAPI, ByUtils.wsFootBall_Quocgia);
 	}
 
@@ -112,32 +110,37 @@ public class CountryFragment extends BaseFragment {
 
 	@Override
 	public void onInitData() {
-//		callbackAPI = new ICallbackAPI() {
-//			@Override
-//			public void onSuccess(String response) {
-//				String string_temp = CommonAndroid.parseXMLAction(response);
-//				if (!string_temp.equalsIgnoreCase("")) {
-//					// CommonAndroid.showDialog(getActivity(), "data2:" +
-//					// string_temp , null);
-//					try {
-//						JSONArray jsonarray = new JSONArray(string_temp);
-//						for (int i = 0; i < jsonarray.length(); i++) {
-//							countryAdapter.addItem(new Country(jsonarray.getJSONObject(i).getString("iID_MaQuocGia"), jsonarray.getJSONObject(i).getString("sTenQuocGia")));
-//							Log.e("quocgia", i + ":ten==" + jsonarray.getJSONObject(i).getString("sTenQuocGia") + ":::maquocgia==" + jsonarray.getJSONObject(i).getString("sLogo"));
-//						}
-//						countryAdapter.notifyDataSetChanged();
-//					} catch (JSONException e) {
-//					}
-//
-//				}
-//
-//			}
-//
-//			@Override
-//			public void onError(String message) {
-//			}
-//		};
-//		new APICaller(getActivity()).callApi("", true, callbackAPI, ByUtils.wsFootBall_Quocgia);
+		// callbackAPI = new ICallbackAPI() {
+		// @Override
+		// public void onSuccess(String response) {
+		// String string_temp = CommonAndroid.parseXMLAction(response);
+		// if (!string_temp.equalsIgnoreCase("")) {
+		// // CommonAndroid.showDialog(getActivity(), "data2:" +
+		// // string_temp , null);
+		// try {
+		// JSONArray jsonarray = new JSONArray(string_temp);
+		// for (int i = 0; i < jsonarray.length(); i++) {
+		// countryAdapter.addItem(new
+		// Country(jsonarray.getJSONObject(i).getString("iID_MaQuocGia"),
+		// jsonarray.getJSONObject(i).getString("sTenQuocGia")));
+		// Log.e("quocgia", i + ":ten==" +
+		// jsonarray.getJSONObject(i).getString("sTenQuocGia") +
+		// ":::maquocgia==" + jsonarray.getJSONObject(i).getString("sLogo"));
+		// }
+		// countryAdapter.notifyDataSetChanged();
+		// } catch (JSONException e) {
+		// }
+		//
+		// }
+		//
+		// }
+		//
+		// @Override
+		// public void onError(String message) {
+		// }
+		// };
+		// new APICaller(getActivity()).callApi("", true, callbackAPI,
+		// ByUtils.wsFootBall_Quocgia);
 		// countryAdapter.addItem(new Country("2", "English"));
 		// countryAdapter.addItem(new Country("3", "Hong Kong"));
 		// countryAdapter.addItem(new Country("4", "Thai Lan"));
