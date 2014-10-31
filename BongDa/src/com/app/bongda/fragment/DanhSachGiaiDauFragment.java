@@ -83,7 +83,6 @@ public class DanhSachGiaiDauFragment extends BaseFragment {
 			public void onSuccess(String response) {
 				String string_temp = CommonAndroid.parseXMLAction(response);
 				if(!string_temp.equalsIgnoreCase("")){
-//					CommonAndroid.showDialog(getActivity(), "data2:" + string_temp , null);
 					try {
 						JSONArray jsonarray = new JSONArray(string_temp);
 						for (int i = 0; i < jsonarray.length(); i++) {

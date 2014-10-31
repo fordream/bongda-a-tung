@@ -95,7 +95,7 @@ public class DBManager {
 				count = cursor.getCount();
 			}
 			long id = 0;
-			
+
 			if (count == 0) {
 				Log.e("ID_Country", "insert");
 				id = database.insert(table, null, values);
@@ -103,7 +103,38 @@ public class DBManager {
 				Log.e("ID_Country", "update");
 				id = database.update(table, values, whereClause, null);
 			}
-			
+
+			close();
+			return id;
+		} catch (Exception exception) {
+			return -1;
+		}
+	}
+
+	public long insertGiaiDau(ContentValues values) {
+		try {
+			open();
+			String table = new GiaiDauTable().getTableName();
+			String iID_MaGiai = values.getAsString("iID_MaGiai");
+			String whereClause = String.format("iID_MaGiai ='%s'", iID_MaGiai);
+
+			Cursor cursor = database.query(table, null, whereClause, null, null, null, null);
+
+			int count = 0;
+			if (cursor != null) {
+				count = cursor.getCount();
+			}
+
+			long id = 0;
+
+			if (count == 0) {
+				Log.e("GiaiDauTable", "insert");
+				id = database.insert(table, null, values);
+			} else {
+				Log.e("GiaiDauTable", "update");
+				id = database.update(table, values, whereClause, null);
+			}
+
 			close();
 			return id;
 		} catch (Exception exception) {

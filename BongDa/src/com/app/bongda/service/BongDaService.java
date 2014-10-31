@@ -12,6 +12,7 @@ import com.app.bongda.callback.APICaller;
 import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.callback.ProgressExecute;
 import com.app.bongda.model.Country;
+import com.app.bongda.model.GiaiDau;
 import com.app.bongda.util.ByUtils;
 import com.app.bongda.util.CommonAndroid;
 import com.vnp.core.datastore.database.DBManager;
@@ -142,13 +143,18 @@ public class BongDaService extends Service {
 
 	}
 
+	private List<String> idCountrys = new ArrayList<String>();
+	private List<String> lIdMaGiaiDaus = new ArrayList<String>();
+
 	public void startLoadContentBase() {
+		if (idCountrys.size() > 0 || lIdMaGiaiDaus.size() > 0) {
+			return;
+		}
+
 		callApi(System.currentTimeMillis(), new ICallbackAPI() {
 			@Override
 			public void onSuccess(final String response) {
-
 				new ProgressExecute(response, BongDaService.this) {
-
 					@Override
 					public void onProgress(String response) {
 						String string_temp = CommonAndroid.parseXMLAction(response);
@@ -164,7 +170,10 @@ public class BongDaService extends Service {
 									values.put("sTenQuocGia", sTenQuocGia);
 									values.put("sLogo", sLogo);
 									long id = dbManager.insertContry(values);
+									idCountrys.add(iID_MaQuocGia);
 								}
+
+								startLoadContentGiaiDauBase();
 							} catch (JSONException e) {
 							}
 						}
@@ -182,5 +191,108 @@ public class BongDaService extends Service {
 
 			}
 		}, ByUtils.wsFootBall_Quocgia);
+	}
+
+	private void startLoadContentGiaiDauBase() {
+		if (idCountrys.size() > 0) {
+			final String idCountry = idCountrys.get(0);
+			String ws = (ByUtils.wsFootBall_Giai_Theo_QuocGia).replace("quocgiaid", idCountry);
+
+			callApi(System.currentTimeMillis(), new ICallbackAPI() {
+				@Override
+				public void onSuccess(String response) {
+
+					new ProgressExecute(response, BongDaService.this) {
+
+						@Override
+						public void onProgress(String response) {
+							String string_temp = CommonAndroid.parseXMLAction(response);
+							if (!string_temp.equalsIgnoreCase("")) {
+								try {
+									JSONArray jsonarray = new JSONArray(string_temp);
+									for (int i = 0; i < jsonarray.length(); i++) {
+										String iID_MaGiai = jsonarray.getJSONObject(i).getString("iID_MaGiai");
+										String sTenGiai = jsonarray.getJSONObject(i).getString("sTenGiai");
+
+										ContentValues values = new ContentValues();
+										values.put("iID_MaQuocGia", idCountry);
+										values.put("iID_MaGiai", iID_MaGiai);
+										values.put("sTenGiai", sTenGiai);
+
+										lIdMaGiaiDaus.add(iID_MaGiai);
+										long id = dbManager.insertGiaiDau(values);
+									}
+								} catch (JSONException e) {
+								}
+							}
+						}
+
+						@Override
+						public void onProgressSucess() {
+							idCountrys.remove(idCountry);
+							startLoadContentGiaiDauBase();
+						}
+					}.executeAsynCallBack();
+				}
+
+				@Override
+				public void onError(String message) {
+					idCountrys.remove(idCountry);
+					startLoadContentGiaiDauBase();
+				}
+			}, ws);
+		} else if (idCountrys.size() == 0 && lIdMaGiaiDaus.size() > 0) {
+			startLoadContentDoiBong();
+		}
+	}
+
+	private void startLoadContentDoiBong() {
+		if (lIdMaGiaiDaus.size() > 0) {
+			final String idMagiadau = lIdMaGiaiDaus.get(0);
+			String ws = (ByUtils.wsFootBall_BangXepHang).replace("bangxephangId", idMagiadau);
+			callApi(System.currentTimeMillis(), new ICallbackAPI() {
+				@Override
+				public void onSuccess(String response) {
+					new ProgressExecute(response, BongDaService.this) {
+						@Override
+						public void onProgress(String response) {
+							String string_temp = CommonAndroid.parseXMLAction(response);
+							if (!string_temp.equalsIgnoreCase("")) {
+								try {
+									JSONArray jsonarray = new JSONArray(string_temp);
+									for (int i = 0; i < jsonarray.length(); i++) {
+										String sViTri = jsonarray.getJSONObject(i).getString("sViTri");
+										String sTenDoi = jsonarray.getJSONObject(i).getString("sTenDoi");
+										String sSoTranDau = jsonarray.getJSONObject(i).getString("sSoTranDau");
+										String sDiem = jsonarray.getJSONObject(i).getString("sDiem");
+										String sSoTranThang = jsonarray.getJSONObject(i).getString("sSoTranThang");
+										String sSoTranHoa = jsonarray.getJSONObject(i).getString("sSoTranHoa");
+										String sSoTranThua = jsonarray.getJSONObject(i).getString("sSoTranThua");
+										String sBanThang = jsonarray.getJSONObject(i).getString("sBanThang");
+										String sBanThua = jsonarray.getJSONObject(i).getString("sBanThua");
+										String sHeSo = jsonarray.getJSONObject(i).getString("sHeSo");
+									}
+								} catch (Exception exception) {
+								}
+							}
+						}
+
+						@Override
+						public void onProgressSucess() {
+							lIdMaGiaiDaus.remove(idMagiadau);
+							startLoadContentDoiBong();
+						}
+					}.executeAsynCallBack();
+
+				}
+
+				@Override
+				public void onError(String message) {
+					lIdMaGiaiDaus.remove(idMagiadau);
+					startLoadContentDoiBong();
+				}
+			}, ws);
+		}
+
 	}
 }
