@@ -23,7 +23,7 @@
             android:id="@+id/imageView1"
             android:layout_width="@dimen/dimen_30dp"
             android:layout_height="@dimen/dimen_20dp"
-            android:background="@drawable/vietnam" />
+          />
 
         <RelativeLayout
             android:layout_width="@dimen/dimen_220dp"

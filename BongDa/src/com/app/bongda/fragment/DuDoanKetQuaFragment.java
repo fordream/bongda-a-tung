@@ -8,11 +8,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -22,11 +19,8 @@ import com.app.bongda.base.BaseFragment;
 import com.app.bongda.base.BongDaBaseAdapter;
 import com.app.bongda.callback.APICaller;
 import com.app.bongda.callback.APICaller.ICallbackAPI;
-import com.app.bongda.model.DuDoanKetQua;
-import com.app.bongda.model.LiveScore;
 import com.app.bongda.util.ByUtils;
 import com.app.bongda.util.CommonAndroid;
-import com.app.bongda.util.CommonUtil;
 import com.app.bongda.view.HeaderView;
 
 public class DuDoanKetQuaFragment extends BaseFragment {
@@ -142,7 +136,8 @@ public class DuDoanKetQuaFragment extends BaseFragment {
 							sTyLe_ChauAu =array.get(i).getString("sTyLe_ChauAu");
 							sTyLe_ChapBong = array.get(i).getString("sTyLe_ChapBong");
 							sTyLe_TaiSuu = array.get(i).getString("sTyLe_TaiSuu");
-							countryAdapter.addItem(new DuDoanKetQua(false, sTenDoiNha, sTenDoiKhach ,iCN_BanThang_DoiNha,iCN_BanThang_DoiKhach, iC0,sThoiGian,sTyLe_ChauAu ,sTyLe_ChapBong, sTyLe_TaiSuu));
+							//TODO
+							//countryAdapter.addItem(new DuDoanKetQua(false, sTenDoiNha, sTenDoiKhach ,iCN_BanThang_DoiNha,iCN_BanThang_DoiKhach, iC0,sThoiGian,sTyLe_ChauAu ,sTyLe_ChapBong, sTyLe_TaiSuu));
 							Log.e("data", "" + array.get(i));
 
 						}

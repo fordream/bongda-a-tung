@@ -6,20 +6,37 @@ import org.json.JSONException;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.app.bongda.R;
 import com.app.bongda.base.BaseFragment;
+import com.app.bongda.base.ImageLoaderUtils;
 import com.app.bongda.callback.APICaller;
 import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.model.GiaiDau;
 import com.app.bongda.util.ByUtils;
 import com.app.bongda.util.CommonAndroid;
 import com.app.bongda.view.HeaderView;
+import com.app.bongda.view.TyLeView;
 
 public class TyLeDuDoanFragment extends BaseFragment {
-	OnItemClickListener onItemClickListener;
-	GiaiDau giaidau;
-	public TyLeDuDoanFragment(GiaiDau giaiDau,OnItemClickListener onItemClickListener) {
+	private OnItemClickListener onItemClickListener;
+	private GiaiDau giaidau;
+	private TyLeView tyLeView1, tyLeView2;
+	private TextView TextView01, TextView02;
+	/**
+	 * name doi nha name doi khach
+	 */
+	private TextView textView1, textView2;
+
+	/**
+	 * image giaidau
+	 */
+
+	private ImageView imageView1;
+
+	public TyLeDuDoanFragment(GiaiDau giaiDau, OnItemClickListener onItemClickListener) {
 		super();
 		this.onItemClickListener = onItemClickListener;
 		this.giaidau = giaiDau;
@@ -35,51 +52,74 @@ public class TyLeDuDoanFragment extends BaseFragment {
 		/**
 		 * init header view
 		 */
-		HeaderView headerView = (HeaderView) view
-				.findViewById(R.id.headerView1);
+		HeaderView headerView = (HeaderView) view.findViewById(R.id.headerView1);
 		headerView.setTextHeader(R.string.tyledudoan);
 		/** init data */
 
+		tyLeView1 = (TyLeView) view.findViewById(R.id.tyLeView1);
+		tyLeView2 = (TyLeView) view.findViewById(R.id.tyLeView2);
+
+		TextView01 = (TextView) view.findViewById(R.id.TextView01);
+		TextView02 = (TextView) view.findViewById(R.id.TextView02);
+
+		textView1 = (TextView) view.findViewById(R.id.textView1);
+		textView2 = (TextView) view.findViewById(R.id.textView2);
+
+		imageView1 = (ImageView) view.findViewById(R.id.imageView1);
+
+		TextView01.setText("");
+		TextView02.setText("");
+
+		tyLeView1.setPer(0);
+		tyLeView2.setPer(0);
+
+		textView1.setText("");
+		textView2.setText("");
+		if (giaidau != null) {
+			// ImageLoaderUtils.getInstance(getActivity()).DisplayImage(giaidau.,
+			// imageView, bitmap);
+		}
 	}
 
-	ICallbackAPI callbackAPI;
+	private ICallbackAPI callbackAPI;
 	private String rTyLe_DoiNha;
 	private String rTyLe_DoiKhach;
+
 	@Override
 	public void onInitData() {
 		callbackAPI = new ICallbackAPI() {
 			@Override
 			public void onSuccess(String response) {
-//				CommonAndroid.showDialog(getActivity(), "data2:" + response , null);
 				String string_temp = CommonAndroid.parseXMLAction(response);
-				if(!string_temp.equalsIgnoreCase("")){
+				if (!string_temp.equalsIgnoreCase("")) {
 					try {
 						JSONArray jsonarray = new JSONArray(string_temp);
 						for (int i = 0; i < jsonarray.length(); i++) {
-							//parse
+							// parse
 							rTyLe_DoiNha = jsonarray.getJSONObject(i).getString("rTyLe_DoiNha");
 							rTyLe_DoiKhach = jsonarray.getJSONObject(i).getString("rTyLe_DoiKhach");
-							
+
 						}
-						
-						CommonAndroid.showDialog(getActivity(), "rTyLe_DoiNha=" + rTyLe_DoiNha + ":rTyLe_DoiKhach=" +rTyLe_DoiKhach, null);
+
+						CommonAndroid.showDialog(getActivity(), "rTyLe_DoiNha=" + rTyLe_DoiNha + ":rTyLe_DoiKhach=" + rTyLe_DoiKhach, null);
+						tyLeView1.setPer(Float.parseFloat(rTyLe_DoiNha) / 100f);
+						tyLeView2.setPer(Float.parseFloat(rTyLe_DoiKhach) / 100f);
+
+						TextView01.setText(rTyLe_DoiNha + "%");
+						TextView02.setText(rTyLe_DoiKhach + "%");
 					} catch (JSONException e) {
-					
 					}
 				}
-				
 			}
 
 			@Override
 			public void onError(String message) {
-				CommonAndroid.showDialog(getActivity(), "data3err:" + message , null);
-				Log.e("ERR",message);
+				CommonAndroid.showDialog(getActivity(), "data3err:" + message, null);
+				Log.e("ERR", message);
 			}
 		};
-		String matran 		= giaidau.getId();
-		String param = (ByUtils.wsFootBall_Lives_TyLeDuDoan).replace("matran",
-				matran);
-		new APICaller(getActivity()).callApi("", true,
-				callbackAPI, param);
+		String matran = giaidau.getId();
+		String param = (ByUtils.wsFootBall_Lives_TyLeDuDoan).replace("matran", matran);
+		new APICaller(getActivity()).callApi("", true, callbackAPI, param);
 	}
 }
