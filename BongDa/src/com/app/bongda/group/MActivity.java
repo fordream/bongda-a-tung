@@ -11,7 +11,7 @@ import com.app.bongda.base.BaseFragmentActivity;
 import com.app.bongda.fragment.BangXepHangFragment;
 import com.app.bongda.fragment.CountryFragment;
 import com.app.bongda.fragment.DanhSachGiaiDauFragment;
-import com.app.bongda.fragment.DuDoanKetQuaFragment;
+import com.app.bongda.fragment.GameDuDoanFragment;
 import com.app.bongda.fragment.LiveScoreFragment;
 import com.app.bongda.fragment.PhongDoDoiDauFragment;
 import com.app.bongda.fragment.TuongThuatTranLiveScoreFragment;
@@ -68,7 +68,7 @@ public class MActivity extends BaseFragmentActivity {
 				} else if (position == 2) {
 					showFragment(new PhongDoDoiDauFragment((GiaiDau) data, null));
 				} else if (position == 3) {
-					showFragment(new DuDoanKetQuaFragment(null));
+					showFragment(new GameDuDoanFragment(null));
 				} else if (position == 4) {
 					showFragment(new TyLeDuDoanFragment((GiaiDau) data,null));
 				}

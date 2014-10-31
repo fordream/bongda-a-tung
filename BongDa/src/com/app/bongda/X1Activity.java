@@ -13,7 +13,7 @@ import com.app.bongda.base.BaseActivtiy;
 import com.app.bongda.callback.APICaller;
 import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.fragment.BangXepHangFragment;
-import com.app.bongda.fragment.DuDoanKetQuaFragment;
+import com.app.bongda.fragment.GameDuDoanFragment;
 import com.app.bongda.fragment.LiveScoreFragment;
 import com.app.bongda.fragment.PhongDoDoiDauFragment;
 import com.app.bongda.fragment.TuongThuatTranLiveScoreFragment;
