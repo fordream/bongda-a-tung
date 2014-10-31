@@ -78,10 +78,14 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 					setText(convertView, R.id.time1,tuongthuattran.isThoigian() + "'");
 					setText(convertView, R.id.name1,tuongthuattran.getName());
 					ImageView localImageView1 = (ImageView)convertView.findViewById(R.id.icon_tuongthuat1);
-					if(tuongthuattran.isTrangthai() == 1){
+					if(tuongthuattran.isTrangthai() == 1){ //quabongthuong
 						localImageView1.setImageResource(R.drawable.chitiettrandau_32);
-					}else if(tuongthuattran.isTrangthai() == 3){
+					}else if(tuongthuattran.isTrangthai() == 10){ //quabongchu P
+						localImageView1.setImageResource(R.drawable.chitiettrandau_28);
+					}else if(tuongthuattran.isTrangthai() == 2){ //thevang
 						localImageView1.setImageResource(R.drawable.chitiettrandau_40);
+					}else{ //thedo
+						localImageView1.setImageResource(R.drawable.chitiettrandau_43);
 					}
 				}else{
 					convertView.findViewById(R.id.doi1).setVisibility(View.GONE);
@@ -89,10 +93,14 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 					setText(convertView, R.id.time2,tuongthuattran.isThoigian() + "'");
 					setText(convertView, R.id.name2,tuongthuattran.getName());
 					ImageView localImageView2 = (ImageView)convertView.findViewById(R.id.icon_tuongthuat2);
-					if(tuongthuattran.isTrangthai() == 2){
+					if(tuongthuattran.isTrangthai() == 1){ //quabongthuong
 						localImageView2.setImageResource(R.drawable.chitiettrandau_32);
-					}else if(tuongthuattran.isTrangthai() == 4){
+					}else if(tuongthuattran.isTrangthai() == 10){ //quabongchu P
+						localImageView2.setImageResource(R.drawable.chitiettrandau_28);
+					}else if(tuongthuattran.isTrangthai() == 2){ //thevang
 						localImageView2.setImageResource(R.drawable.chitiettrandau_40);
+					}else{ //thedo
+						localImageView2.setImageResource(R.drawable.chitiettrandau_43);
 					}
 				}
 			}else{
@@ -267,7 +275,29 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 		                	if(k > 0){
 			                	temp2 = temp1[i].split(" ");
 	//		                	Log.e("KKKKKKKK", "KKKKKKKKKK11" + temp2[0] + ":::" + temp2[1]);
-			                	countryAdapter.addItem(new TuongThuatTran(doi, null , temp2[0] ,temp2[1], status));
+//			                	countryAdapter.addItem(new TuongThuatTran(doi, null , temp2[0] ,temp2[1], status));
+			                	String No = temp2[0];
+			                	String Values = temp2[1];
+			                	//check status
+//			                	sThongTin_DoiNha: 13 aa,20 bbbb(Pen),68 bbbb(Pen),75 ccc ===> (Pen) icon P
+//			                	sThongTinThe_DoiNha: 30 Delaney(TV),41 Campbell(TV),43 Delaney(TD):
+			                	Log.e("pen",Values );
+		                		
+			                	if(status == 1 || status == 2){
+			                		if(Values.indexOf("(Pen)") > 0){
+			                			countryAdapter.addItem(new TuongThuatTran(doi, null , No , Values.replaceAll("(Pen)", ""), 10));
+			                		}else{
+			                			countryAdapter.addItem(new TuongThuatTran(doi, null , No , Values, 1));
+			                		}
+			                	}else{
+			                		if(status == 3 || status == 4){
+				                		if(Values.indexOf("(TV)") > 0){
+				                			countryAdapter.addItem(new TuongThuatTran(doi, null , No , Values.replaceAll("(TV)", ""), 20));
+				                		}else{
+				                			countryAdapter.addItem(new TuongThuatTran(doi, null , No , Values.replaceAll("(TD)", ""), 2));
+				                		}
+				                	}
+			                	}
 			                	ListItem = true;
 		                	}
 		                }
@@ -276,7 +306,25 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 	                	int k = s3.indexOf(" ");
 	                	if(k > 0){
 	                		temp2 = s3.split(" ");
-	                		countryAdapter.addItem(new TuongThuatTran(doi, null , temp2[0] ,temp2[1], status));
+//	                		countryAdapter.addItem(new TuongThuatTran(doi, null , temp2[0] ,temp2[1], status));
+	                		String No = temp2[0];
+		                	String Values = temp2[1];
+		                	Log.e("pen",Values );
+	                		if(status == 1 || status == 2){
+		                		if(Values.indexOf("(Pen)") > 0){
+		                			countryAdapter.addItem(new TuongThuatTran(doi, null , No , Values.replaceAll("(Pen)", ""), 10));
+		                		}else{
+		                			countryAdapter.addItem(new TuongThuatTran(doi, null , No , Values, 1));
+		                		}
+		                	}else{
+		                		if(status == 3 || status == 4){
+			                		if(Values.indexOf("(TV)") > 0){
+			                			countryAdapter.addItem(new TuongThuatTran(doi, null , No , Values.replaceAll("(TV)", ""), 20));
+			                		}else{
+			                			countryAdapter.addItem(new TuongThuatTran(doi, null , No , Values.replaceAll("(TD)", ""), 2));
+			                		}
+			                	}
+		                	}
 	                		ListItem = true;
 	                	}
 	                }
