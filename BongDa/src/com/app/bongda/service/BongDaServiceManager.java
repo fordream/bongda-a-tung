@@ -63,4 +63,8 @@ public class BongDaServiceManager {
 			getBongDaService().startLoadContentBase();
 		}
 	}
+
+	public boolean getGiaiDauTable(String idmagiaidau) {
+		return false;
+	}
 }

@@ -5,6 +5,7 @@ import org.json.JSONException;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,8 +30,7 @@ public class BangXepHangFragment extends BaseFragment {
 	OnItemClickListener onItemClickListener;
 	GiaiDau dau;
 
-	public BangXepHangFragment(GiaiDau dau,
-			OnItemClickListener onItemClickListener) {
+	public BangXepHangFragment(GiaiDau dau, OnItemClickListener onItemClickListener) {
 		super();
 		this.onItemClickListener = onItemClickListener;
 		this.dau = dau;
@@ -44,11 +44,13 @@ public class BangXepHangFragment extends BaseFragment {
 		public int getLayout() {
 			return R.layout.bangxephang_item;
 		}
+
 		@Override
 		public void showData(int position, Object item, View convertView) {
 			super.showData(position, item, convertView);
 			setText(convertView, R.id.stt, position + "");
 		}
+
 		@Override
 		public void showData(Object item, View convertView) {
 			BangXepHang bangxephang = (BangXepHang) item;
@@ -76,19 +78,15 @@ public class BangXepHangFragment extends BaseFragment {
 		/**
 		 * init header view
 		 */
-		HeaderView headerView = (HeaderView) view
-				.findViewById(R.id.headerView1);
+		HeaderView headerView = (HeaderView) view.findViewById(R.id.headerView1);
 		headerView.setTextHeader(R.string.bangxephang);
 
 		/** init data */
-		ListView listView = (ListView) view
-				.findViewById(R.id.bangxephang_listview);
+		ListView listView = (ListView) view.findViewById(R.id.bangxephang_listview);
 		if (mHeader != null) {
 			listView.removeHeaderView(mHeader);
 		} else {
-			mHeader = ((LayoutInflater) getActivity().getSystemService(
-					Context.LAYOUT_INFLATER_SERVICE)).inflate(
-					R.layout.bangxephang_item, null);
+			mHeader = ((LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.bangxephang_item, null);
 		}
 
 		listView.addHeaderView(mHeader);
@@ -96,40 +94,35 @@ public class BangXepHangFragment extends BaseFragment {
 		listView.setOnItemClickListener(onItemClickListener);
 		listView.setAdapter(countryAdapter);
 
-		((TextView) view.findViewById(R.id.danhsachgiaidau_txtname))
-				.setText(dau.getName());
+		((TextView) view.findViewById(R.id.danhsachgiaidau_txtname)).setText(dau.getName());
 	}
 
 	ICallbackAPI callbackAPI;
+
 	@Override
 	public void onInitData() {
 		callbackAPI = new ICallbackAPI() {
 			@Override
 			public void onSuccess(String response) {
 				String string_temp = CommonAndroid.parseXMLAction(response);
-				if(!string_temp.equalsIgnoreCase("")){
-					CommonAndroid.showDialog(getActivity(), "data2:" + string_temp , null);
+				if (!string_temp.equalsIgnoreCase("")) {
+
+					// CommonAndroid.showDialog(getActivity(), "data2:" +
+					// string_temp, null);
 					try {
 						JSONArray jsonarray = new JSONArray(string_temp);
 						for (int i = 0; i < jsonarray.length(); i++) {
-							countryAdapter.addItem(new BangXepHang(
-									jsonarray.getJSONObject(i).getString("sViTri"), 
-									jsonarray.getJSONObject(i).getString("sTenDoi"), 
-									jsonarray.getJSONObject(i).getString("sSoTranDau"), 
-									jsonarray.getJSONObject(i).getString("sDiem"), 
-									jsonarray.getJSONObject(i).getString("sSoTranThang"), 
-									jsonarray.getJSONObject(i).getString("sSoTranHoa"),  
-									jsonarray.getJSONObject(i).getString("sSoTranThua"),  
-									jsonarray.getJSONObject(i).getString("sBanThang"), 
-									jsonarray.getJSONObject(i).getString("sBanThua"), 
-									jsonarray.getJSONObject(i).getString("sHeSo")));
+							countryAdapter.addItem(new BangXepHang(jsonarray.getJSONObject(i).getString("sViTri"), jsonarray.getJSONObject(i).getString("sTenDoi"), jsonarray.getJSONObject(i)
+									.getString("sSoTranDau"), jsonarray.getJSONObject(i).getString("sDiem"), jsonarray.getJSONObject(i).getString("sSoTranThang"), jsonarray.getJSONObject(i)
+									.getString("sSoTranHoa"), jsonarray.getJSONObject(i).getString("sSoTranThua"), jsonarray.getJSONObject(i).getString("sBanThang"), jsonarray.getJSONObject(i)
+									.getString("sBanThua"), jsonarray.getJSONObject(i).getString("sHeSo")));
 						}
 						countryAdapter.notifyDataSetChanged();
 					} catch (JSONException e) {
 					}
-					
+
 				}
-				
+
 			}
 
 			@Override
@@ -137,32 +130,31 @@ public class BangXepHangFragment extends BaseFragment {
 			}
 		};
 		String maGiaiDau = null;
-			new APICaller(getActivity()).callApi("", true,
-					callbackAPI, (ByUtils.wsFootBall_BangXepHang).replace("bangxephangId", dau.idmagiai()));
-//		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-//				"8", "1", "2", "22", "11", "12"));
-//		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-//				"8", "1", "2", "22", "11", "12"));
-//		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-//				"8", "1", "2", "22", "11", "12"));
-//		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-//				"8", "1", "2", "22", "11", "12"));
-//		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-//				"8", "1", "2", "22", "11", "12"));
-//		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-//				"8", "1", "2", "22", "11", "12"));
-//		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-//				"8", "1", "2", "22", "11", "12"));
-//		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-//				"8", "1", "2", "22", "11", "12"));
-//		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-//				"8", "1", "2", "22", "11", "12"));
-//		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-//				"8", "1", "2", "22", "11", "12"));
-//		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-//				"8", "1", "2", "22", "11", "12"));
-//		countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-//				"8", "1", "2", "22", "11", "12"));
+		new APICaller(getActivity()).callApi("", true, callbackAPI, (ByUtils.wsFootBall_BangXepHang).replace("bangxephangId", dau.idmagiai()));
+		// countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
+		// "8", "1", "2", "22", "11", "12"));
+		// countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
+		// "8", "1", "2", "22", "11", "12"));
+		// countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
+		// "8", "1", "2", "22", "11", "12"));
+		// countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
+		// "8", "1", "2", "22", "11", "12"));
+		// countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
+		// "8", "1", "2", "22", "11", "12"));
+		// countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
+		// "8", "1", "2", "22", "11", "12"));
+		// countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
+		// "8", "1", "2", "22", "11", "12"));
+		// countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
+		// "8", "1", "2", "22", "11", "12"));
+		// countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
+		// "8", "1", "2", "22", "11", "12"));
+		// countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
+		// "8", "1", "2", "22", "11", "12"));
+		// countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
+		// "8", "1", "2", "22", "11", "12"));
+		// countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
+		// "8", "1", "2", "22", "11", "12"));
 		countryAdapter.notifyDataSetChanged();
 	}
 }

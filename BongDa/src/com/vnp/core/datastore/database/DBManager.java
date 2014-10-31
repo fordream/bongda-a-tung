@@ -2,11 +2,9 @@ package com.vnp.core.datastore.database;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -83,11 +81,9 @@ public class DBManager {
 
 	public long insertContry(ContentValues values) {
 		try {
-			open();
 			String table = new CountryTable().getTableName();
 			String iID_MaQuocGia = values.getAsString("iID_MaQuocGia");
 			String whereClause = String.format("iID_MaQuocGia ='%s'", iID_MaQuocGia);
-			// database.delete(table, whereClause, null);
 			Cursor cursor = database.query(table, null, whereClause, null, null, null, null);
 
 			int count = 0;
@@ -95,19 +91,83 @@ public class DBManager {
 				count = cursor.getCount();
 			}
 			long id = 0;
-			
+
 			if (count == 0) {
-				Log.e("ID_Country", "insert");
+				Log.e(table, "insert");
 				id = database.insert(table, null, values);
 			} else {
-				Log.e("ID_Country", "update");
+				Log.e(table, "update");
 				id = database.update(table, values, whereClause, null);
 			}
-			
-			close();
+
 			return id;
 		} catch (Exception exception) {
 			return -1;
 		}
+	}
+
+	public long insertGiaiDau(ContentValues values) {
+		try {
+			// open();
+			String table = new GiaiDauTable().getTableName();
+			String iID_MaGiai = values.getAsString("iID_MaGiai");
+			String iID_MaQuocGia = values.getAsString("iID_MaQuocGia");
+			String whereClause = String.format("iID_MaGiai ='%s' and iID_MaQuocGia ='%s'", iID_MaGiai, iID_MaQuocGia);
+
+			Cursor cursor = database.query(table, null, whereClause, null, null, null, null);
+
+			int count = 0;
+			if (cursor != null) {
+				count = cursor.getCount();
+			}
+
+			long id = 0;
+
+			if (count == 0) {
+				Log.e(table, "insert");
+				id = database.insert(table, null, values);
+			} else {
+				Log.e(table, "update");
+				id = database.update(table, values, whereClause, null);
+			}
+
+			// close();
+			return id;
+		} catch (Exception exception) {
+			return -1;
+		}
+	}
+
+	public long insertDoiBong(ContentValues values) {
+		try {
+			String table = new DoiBongTable().getTableName();
+			String iID_MaBXH_ChiTiet = values.getAsString("iID_MaBXH_ChiTiet");
+			String iID_MaBXH = values.getAsString("iID_MaBXH");
+			String iID_MaGiai = values.getAsString("iID_MaGiai");
+			String iID_MaDoi = values.getAsString("iID_MaDoi");
+			String whereClause = String.format("iID_MaBXH_ChiTiet ='%s' and iID_MaBXH='%s' and iID_MaGiai='%s' and iID_MaDoi='%s'", iID_MaBXH_ChiTiet, iID_MaBXH, iID_MaGiai, iID_MaDoi);
+
+			Cursor cursor = database.query(table, null, whereClause, null, null, null, null);
+
+			int count = 0;
+			if (cursor != null) {
+				count = cursor.getCount();
+			}
+
+			long id = 0;
+
+			if (count == 0) {
+				Log.e(table, "insert");
+				id = database.insert(table, null, values);
+			} else {
+				Log.e(table, "update");
+				id = database.update(table, values, whereClause, null);
+			}
+
+			return id;
+		} catch (Exception exception) {
+
+		}
+		return -1;
 	}
 }

@@ -4,17 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-
-import com.app.bongda.callback.APICaller;
-import com.app.bongda.callback.APICaller.ICallbackAPI;
-import com.app.bongda.callback.ProgressExecute;
-import com.app.bongda.model.Country;
-import com.app.bongda.util.ByUtils;
-import com.app.bongda.util.CommonAndroid;
-import com.vnp.core.datastore.database.DBManager;
+import org.json.JSONObject;
 
 import android.app.Service;
 import android.content.ContentValues;
@@ -22,20 +16,39 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.IBinder;
-import android.util.Log;
+
+import com.app.bongda.callback.APICaller;
+import com.app.bongda.callback.APICaller.ICallbackAPI;
+import com.app.bongda.callback.ProgressExecute;
+import com.app.bongda.util.ByUtils;
+import com.app.bongda.util.CommonAndroid;
+import com.vnp.core.datastore.database.CountryTable;
+import com.vnp.core.datastore.database.DBManager;
+import com.vnp.core.datastore.database.DoiBongTable;
+import com.vnp.core.datastore.database.GiaiDauTable;
 
 public class BongDaService extends Service {
 	private BongDaBinder bongDaBinder;
 	private SharedPreferences preferencesSetting;
 	private Handler handler = new Handler();
 	private DBManager dbManager;
+	private CountryTable countryTable = new CountryTable();
+	private DoiBongTable doiBongTable = new DoiBongTable();
+	private GiaiDauTable giaiDauTable = new GiaiDauTable();
 
 	@Override
 	public void onCreate() {
 		super.onCreate();
 		dbManager = new DBManager(this);
+		dbManager.open();
 		preferencesSetting = getSharedPreferences("SettingXml", 0);
 		bongDaBinder = new BongDaBinder(this);
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		dbManager.close();
 	}
 
 	@Override
@@ -142,13 +155,18 @@ public class BongDaService extends Service {
 
 	}
 
+	private List<String> idCountrys = new ArrayList<String>();
+	private List<String> lIdMaGiaiDaus = new ArrayList<String>();
+
 	public void startLoadContentBase() {
+		if (idCountrys.size() > 0 || lIdMaGiaiDaus.size() > 0) {
+			return;
+		}
+
 		callApi(System.currentTimeMillis(), new ICallbackAPI() {
 			@Override
 			public void onSuccess(final String response) {
-
 				new ProgressExecute(response, BongDaService.this) {
-
 					@Override
 					public void onProgress(String response) {
 						String string_temp = CommonAndroid.parseXMLAction(response);
@@ -156,15 +174,20 @@ public class BongDaService extends Service {
 							try {
 								JSONArray jsonarray = new JSONArray(string_temp);
 								for (int i = 0; i < jsonarray.length(); i++) {
-									String iID_MaQuocGia = jsonarray.getJSONObject(i).getString("iID_MaQuocGia");
-									String sTenQuocGia = jsonarray.getJSONObject(i).getString("sTenQuocGia");
-									String sLogo = jsonarray.getJSONObject(i).getString("sLogo");
+									JSONObject jsonObject = jsonarray.getJSONObject(i);
+									String iID_MaQuocGia = jsonObject.getString("iID_MaQuocGia");
+									idCountrys.add(iID_MaQuocGia);
+
 									ContentValues values = new ContentValues();
-									values.put("iID_MaQuocGia", iID_MaQuocGia);
-									values.put("sTenQuocGia", sTenQuocGia);
-									values.put("sLogo", sLogo);
+									Set<String> columns = countryTable.columNameS();
+									for (String column : columns) {
+										if (jsonObject.has(column)) {
+											values.put(column, jsonObject.getString(column));
+										}
+									}
 									long id = dbManager.insertContry(values);
 								}
+								startLoadContentGiaiDauBase();
 							} catch (JSONException e) {
 							}
 						}
@@ -182,5 +205,110 @@ public class BongDaService extends Service {
 
 			}
 		}, ByUtils.wsFootBall_Quocgia);
+	}
+
+	private void startLoadContentGiaiDauBase() {
+		if (idCountrys.size() > 0) {
+			final String idCountry = idCountrys.get(0);
+			String ws = (ByUtils.wsFootBall_Giai_Theo_QuocGia).replace("quocgiaid", idCountry);
+
+			callApi(System.currentTimeMillis(), new ICallbackAPI() {
+				@Override
+				public void onSuccess(String response) {
+
+					new ProgressExecute(response, BongDaService.this) {
+
+						@Override
+						public void onProgress(String response) {
+							String string_temp = CommonAndroid.parseXMLAction(response);
+							if (!string_temp.equalsIgnoreCase("")) {
+								try {
+									JSONArray jsonarray = new JSONArray(string_temp);
+									for (int i = 0; i < jsonarray.length(); i++) {
+										JSONObject jsonObject = jsonarray.getJSONObject(i);
+										String iID_MaGiai = jsonObject.getString("iID_MaGiai");
+										lIdMaGiaiDaus.add(iID_MaGiai);
+
+										ContentValues values = new ContentValues();
+										Set<String> columns = giaiDauTable.columNameS();
+										for (String column : columns) {
+											if (jsonObject.has(column)) {
+												values.put(column, jsonObject.getString(column));
+											}
+										}
+
+										long id = dbManager.insertGiaiDau(values);
+									}
+								} catch (JSONException e) {
+								}
+							}
+						}
+
+						@Override
+						public void onProgressSucess() {
+							idCountrys.remove(idCountry);
+							startLoadContentGiaiDauBase();
+						}
+					}.executeAsynCallBack();
+				}
+
+				@Override
+				public void onError(String message) {
+					idCountrys.remove(idCountry);
+					startLoadContentGiaiDauBase();
+				}
+			}, ws);
+		} else if (idCountrys.size() == 0 && lIdMaGiaiDaus.size() > 0) {
+			startLoadContentDoiBong();
+		}
+	}
+
+	private void startLoadContentDoiBong() {
+		if (lIdMaGiaiDaus.size() > 0) {
+			final String iID_MaGiai = lIdMaGiaiDaus.get(0);
+			String ws = (ByUtils.wsFootBall_BangXepHang).replace("bangxephangId", iID_MaGiai);
+			callApi(System.currentTimeMillis(), new ICallbackAPI() {
+				@Override
+				public void onSuccess(String response) {
+					new ProgressExecute(response, BongDaService.this) {
+						@Override
+						public void onProgress(String response) {
+							String string_temp = CommonAndroid.parseXMLAction(response);
+							if (!string_temp.equalsIgnoreCase("")) {
+								try {
+									JSONArray jsonarray = new JSONArray(string_temp);
+									for (int i = 0; i < jsonarray.length(); i++) {
+										JSONObject jsonObject = jsonarray.getJSONObject(i);
+										ContentValues values = new ContentValues();
+										Set<String> columns = doiBongTable.columNameS();
+										for (String column : columns) {
+											if (jsonObject.has(column)) {
+												values.put(column, jsonObject.getString(column));
+											}
+										}
+
+										dbManager.insertDoiBong(values);
+									}
+								} catch (Exception exception) {
+								}
+							}
+						}
+
+						@Override
+						public void onProgressSucess() {
+							lIdMaGiaiDaus.remove(iID_MaGiai);
+							startLoadContentDoiBong();
+						}
+					}.executeAsynCallBack();
+
+				}
+
+				@Override
+				public void onError(String message) {
+					lIdMaGiaiDaus.remove(iID_MaGiai);
+					startLoadContentDoiBong();
+				}
+			}, ws);
+		}
 	}
 }
