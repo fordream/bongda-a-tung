@@ -39,7 +39,7 @@ public class GameDuDoanFragment extends BaseFragment {
 
 		@Override
 		public int getLayout() {
-			return R.layout.dudoanketqua_item;
+			return R.layout.gamedudoan_item;
 		}
 
 		@Override
@@ -47,6 +47,17 @@ public class GameDuDoanFragment extends BaseFragment {
 			final GameDuDoan dudoan = (GameDuDoan) item;
 			setText(convertView, R.id.TextView02, dudoan.sTenDoiNha());
 			setText(convertView, R.id.TextView03, dudoan.sTenDoiKhach());
+			setText(convertView, R.id.TextView01, "[" +dudoan.iCN_BanThang_DoiNha() + " - " + dudoan.iCN_BanThang_DoiKhach() + "]");
+			
+			int j = Integer.valueOf(dudoan.iC0());
+			java.util.Date localDate2 = new java.util.Date(1000L * j);
+			System.currentTimeMillis();
+			new java.sql.Date(j * 1000);
+			Object[] arrayOfObject2 = new Object[2];
+			arrayOfObject2[0] = Integer.valueOf(localDate2.getDate());
+			arrayOfObject2[1] = Integer.valueOf(1 + localDate2.getMonth());
+			String times = String.format("%d/%d", arrayOfObject2) + ", " +dudoan.sThoiGian();
+			setText(convertView, R.id.TextView05, times);
 		}
 
 	}
@@ -83,8 +94,8 @@ public class GameDuDoanFragment extends BaseFragment {
 		callbackAPI = new ICallbackAPI() {
 			@Override
 			public void onSuccess(String response) {
-				 CommonAndroid.showDialog(getActivity(), "data2:" +
-						 response , null);
+//				 CommonAndroid.showDialog(getActivity(), "data2:" +
+//						 response , null);
 				String string_temp = CommonAndroid.parseXMLAction(response);
 				if (!string_temp.equalsIgnoreCase("")) {
 					try {
