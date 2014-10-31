@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,6 +84,7 @@ public class DanhSachGiaiDauFragment extends BaseFragment {
 			public void onSuccess(String response) {
 				String string_temp = CommonAndroid.parseXMLAction(response);
 				if(!string_temp.equalsIgnoreCase("")){
+					Log.e("DATAX", string_temp);
 					try {
 						JSONArray jsonarray = new JSONArray(string_temp);
 						for (int i = 0; i < jsonarray.length(); i++) {
