@@ -5,10 +5,10 @@ public class GiaiDauTable extends Table {
 	public GiaiDauTable() {
 		addColumns("iID_MaGiai");
 		addColumns("iID_MaQuocGia");
+		
 		addColumns("sMaGiai");
 		addColumns("sTenGiai");
 		addColumns("sLogo");
-
 		addColumns("sTinNhan_DoanTinCuoi");
 		addColumns("iTinNhan_DoanTinCuoi_ThoiGian");
 		addColumns("iBXH_ThoiGianCapNhap");

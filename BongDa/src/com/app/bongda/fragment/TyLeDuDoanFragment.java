@@ -15,6 +15,7 @@ import com.app.bongda.base.ImageLoaderUtils;
 import com.app.bongda.callback.APICaller;
 import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.model.GiaiDau;
+import com.app.bongda.service.BongDaServiceManager;
 import com.app.bongda.util.ByUtils;
 import com.app.bongda.util.CommonAndroid;
 import com.app.bongda.view.HeaderView;
@@ -76,6 +77,10 @@ public class TyLeDuDoanFragment extends BaseFragment {
 		tyledudoan_name1.setText("");
 		tyledudoan_name2.setText("");
 		if (giaidau != null) {
+			String idmagiaidau = giaidau.idmagiai();
+			if(BongDaServiceManager.getInstance().getGiaiDauTable(idmagiaidau)){
+				
+			}
 			// ImageLoaderUtils.getInstance(getActivity()).DisplayImage(giaidau.,
 			// imageView, bitmap);
 		}
@@ -98,10 +103,11 @@ public class TyLeDuDoanFragment extends BaseFragment {
 							// parse
 							rTyLe_DoiNha = jsonarray.getJSONObject(i).getString("rTyLe_DoiNha");
 							rTyLe_DoiKhach = jsonarray.getJSONObject(i).getString("rTyLe_DoiKhach");
-
 						}
 
-						//CommonAndroid.showDialog(getActivity(), "rTyLe_DoiNha=" + rTyLe_DoiNha + ":rTyLe_DoiKhach=" + rTyLe_DoiKhach, null);
+						// CommonAndroid.showDialog(getActivity(),
+						// "rTyLe_DoiNha=" + rTyLe_DoiNha + ":rTyLe_DoiKhach=" +
+						// rTyLe_DoiKhach, null);
 						tyLeView1.setPer(Float.parseFloat(rTyLe_DoiNha) / 100f);
 						tyLeView2.setPer(Float.parseFloat(rTyLe_DoiKhach) / 100f);
 

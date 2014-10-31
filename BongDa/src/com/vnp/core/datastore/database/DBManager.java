@@ -93,10 +93,10 @@ public class DBManager {
 			long id = 0;
 
 			if (count == 0) {
-				Log.e("ID_Country", "insert");
+				Log.e(table, "insert");
 				id = database.insert(table, null, values);
 			} else {
-				Log.e("ID_Country", "update");
+				Log.e(table, "update");
 				id = database.update(table, values, whereClause, null);
 			}
 
@@ -124,10 +124,10 @@ public class DBManager {
 			long id = 0;
 
 			if (count == 0) {
-				Log.e("GiaiDauTable", "insert");
+				Log.e(table, "insert");
 				id = database.insert(table, null, values);
 			} else {
-				Log.e("GiaiDauTable", "update");
+				Log.e(table, "update");
 				id = database.update(table, values, whereClause, null);
 			}
 
@@ -145,11 +145,7 @@ public class DBManager {
 			String iID_MaBXH = values.getAsString("iID_MaBXH");
 			String iID_MaGiai = values.getAsString("iID_MaGiai");
 			String iID_MaDoi = values.getAsString("iID_MaDoi");
-			String whereClause = String.format("iID_MaBXH_ChiTiet ='%s' and iID_MaBXH='%s' and iID_MaGiai='%s' and iID_MaDoi='%s'",
-					iID_MaBXH_ChiTiet,
-					iID_MaBXH,
-					iID_MaGiai,
-					iID_MaDoi);
+			String whereClause = String.format("iID_MaBXH_ChiTiet ='%s' and iID_MaBXH='%s' and iID_MaGiai='%s' and iID_MaDoi='%s'", iID_MaBXH_ChiTiet, iID_MaBXH, iID_MaGiai, iID_MaDoi);
 
 			Cursor cursor = database.query(table, null, whereClause, null, null, null, null);
 
@@ -161,10 +157,10 @@ public class DBManager {
 			long id = 0;
 
 			if (count == 0) {
-				Log.e("Doibong", "insert");
+				Log.e(table, "insert");
 				id = database.insert(table, null, values);
 			} else {
-				Log.e("Doibong", "update");
+				Log.e(table, "update");
 				id = database.update(table, values, whereClause, null);
 			}
 
