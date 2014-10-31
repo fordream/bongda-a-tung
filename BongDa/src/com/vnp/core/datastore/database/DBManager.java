@@ -11,6 +11,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DBManager {
 
@@ -77,6 +78,36 @@ public class DBManager {
 			}
 
 			onCreate(db);
+		}
+	}
+
+	public long insertContry(ContentValues values) {
+		try {
+			open();
+			String table = new CountryTable().getTableName();
+			String iID_MaQuocGia = values.getAsString("iID_MaQuocGia");
+			String whereClause = String.format("iID_MaQuocGia ='%s'", iID_MaQuocGia);
+			// database.delete(table, whereClause, null);
+			Cursor cursor = database.query(table, null, whereClause, null, null, null, null);
+
+			int count = 0;
+			if (cursor != null) {
+				count = cursor.getCount();
+			}
+			long id = 0;
+			
+			if (count == 0) {
+				Log.e("ID_Country", "insert");
+				id = database.insert(table, null, values);
+			} else {
+				Log.e("ID_Country", "update");
+				id = database.update(table, values, whereClause, null);
+			}
+			
+			close();
+			return id;
+		} catch (Exception exception) {
+			return -1;
 		}
 	}
 }

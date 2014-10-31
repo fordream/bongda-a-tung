@@ -19,6 +19,7 @@ import com.app.bongda.group.X1GroupActivity;
 import com.app.bongda.group.X2GroupActivity;
 import com.app.bongda.group.X3GroupActivity;
 import com.app.bongda.group.X4GroupActivity;
+import com.app.bongda.service.BongDaServiceManager;
 import com.app.bongda.util.ByUtils;
 import com.app.bongda.view.IndivicatorView;
 
@@ -54,6 +55,7 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 
 			@Override
 			public void onAnimationEnd(Animation animation) {
+			BongDaServiceManager.getInstance().startLoadContentBase();
 				getTabHost().setVisibility(View.VISIBLE);
 				getTabHost().startAnimation(
 						AnimationUtils.loadAnimation(getContext(),
@@ -101,16 +103,14 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 			} else if (index == 7) {
 				// phong do cac doi
 				// country -> cac giai dau -> phong do
-				startActivity(new Intent(SplashActivity.this,
-						PhongDoCacDoiActivity.class));
+				startActivity(new Intent(SplashActivity.this, PhongDoCacDoiActivity.class));
 			} else if (index == 6) {
 				// May tinh du doan
 				// chua co
 			} else if (index == 5) {
 				// nhan dinh cua chuyen gia
 				// crash
-				startActivity(new Intent(SplashActivity.this,
-						NhanDinhChuyenGiaActivity.class));
+				startActivity(new Intent(SplashActivity.this, NhanDinhChuyenGiaActivity.class));
 			} else if (index == 4) {
 				// game du doan
 				// chua co
@@ -123,14 +123,12 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 
 	}
 
-	public void addTab(Class<?> activity, String tabSpect, String indicator,
-			int type) {
+	public void addTab(Class<?> activity, String tabSpect, String indicator, int type) {
 		TabHost tabHost = getTabHost();
 		TabSpec firstTabSpec = tabHost.newTabSpec(tabSpect);
 		Intent intent = new Intent(this, activity);
 		intent.putExtra("type", type);
-		firstTabSpec.setIndicator(new IndivicatorView(this, type)).setContent(
-				intent);
+		firstTabSpec.setIndicator(new IndivicatorView(this, type)).setContent(intent);
 		tabHost.addTab(firstTabSpec);
 	}
 

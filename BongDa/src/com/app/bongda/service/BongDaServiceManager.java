@@ -1,7 +1,5 @@
 package com.app.bongda.service;
 
-import com.app.bongda.util.CommonAndroid;
-
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -23,8 +21,9 @@ public class BongDaServiceManager {
 	private Context mContext;
 
 	public void init(Context context) {
-		if (mContext == null)
+		if (mContext == null) {
 			mContext = context;
+		}
 	}
 
 	private BongDaService bongDaService;
@@ -46,8 +45,6 @@ public class BongDaServiceManager {
 			BongDaBinder bongDaBinder = (BongDaBinder) service;
 			Log.e("MSERVICE", "connect to service");
 			bongDaService = bongDaBinder.getBongDaService();
-			if (bongDaService != null)
-				bongDaService.startLoadContentBase();
 		}
 	};
 
@@ -59,5 +56,11 @@ public class BongDaServiceManager {
 
 	public void onPause() {
 		mContext.unbindService(conn);
+	}
+
+	public void startLoadContentBase() {
+		if (getBongDaService() != null) {
+			getBongDaService().startLoadContentBase();
+		}
 	}
 }
