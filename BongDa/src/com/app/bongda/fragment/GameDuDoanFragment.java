@@ -19,14 +19,16 @@ import com.app.bongda.base.BaseFragment;
 import com.app.bongda.base.BongDaBaseAdapter;
 import com.app.bongda.callback.APICaller;
 import com.app.bongda.callback.APICaller.ICallbackAPI;
+import com.app.bongda.model.GameDuDoan;
+import com.app.bongda.model.LiveScore;
 import com.app.bongda.util.ByUtils;
 import com.app.bongda.util.CommonAndroid;
 import com.app.bongda.view.HeaderView;
 
-public class DuDoanKetQuaFragment extends BaseFragment {
+public class GameDuDoanFragment extends BaseFragment {
 	OnItemClickListener onItemClickListener;
 
-	public DuDoanKetQuaFragment(OnItemClickListener onItemClickListener) {
+	public GameDuDoanFragment(OnItemClickListener onItemClickListener) {
 		super();
 		this.onItemClickListener = onItemClickListener;
 	}
@@ -37,19 +39,32 @@ public class DuDoanKetQuaFragment extends BaseFragment {
 
 		@Override
 		public int getLayout() {
-			return R.layout.dudoanketqua_item;
+			return R.layout.gamedudoan_item;
 		}
 
 		@Override
 		public void showData(Object item, View convertView) {
+			final GameDuDoan dudoan = (GameDuDoan) item;
+			setText(convertView, R.id.TextView02, dudoan.sTenDoiNha());
+			setText(convertView, R.id.TextView03, dudoan.sTenDoiKhach());
+			setText(convertView, R.id.TextView01, "[" +dudoan.iCN_BanThang_DoiNha() + " - " + dudoan.iCN_BanThang_DoiKhach() + "]");
 			
+			int j = Integer.valueOf(dudoan.iC0());
+			java.util.Date localDate2 = new java.util.Date(1000L * j);
+			System.currentTimeMillis();
+			new java.sql.Date(j * 1000);
+			Object[] arrayOfObject2 = new Object[2];
+			arrayOfObject2[0] = Integer.valueOf(localDate2.getDate());
+			arrayOfObject2[1] = Integer.valueOf(1 + localDate2.getMonth());
+			String times = String.format("%d/%d", arrayOfObject2) + ", " +dudoan.sThoiGian();
+			setText(convertView, R.id.TextView05, times);
 		}
 
 	}
 
 	@Override
 	public int getLayout() {
-		return R.layout.dudoanketqua;
+		return R.layout.gamedudoan;
 	}
 
 	@Override
@@ -59,7 +74,7 @@ public class DuDoanKetQuaFragment extends BaseFragment {
 		 */
 		HeaderView headerView = (HeaderView) view
 				.findViewById(R.id.headerView1);
-		headerView.setTextHeader(R.string.dudoanketqua);
+		headerView.setTextHeader(R.string.gamedudoan);
 		/** init data */
 		ListView listView = (ListView) view.findViewById(R.id.listView1);
 		listView.setOnItemClickListener(onItemClickListener);
@@ -71,17 +86,16 @@ public class DuDoanKetQuaFragment extends BaseFragment {
 
 	@Override
 	public void onInitData() {
-		countryAdapter.addItem("");
-		countryAdapter.addItem("");
-		countryAdapter.addItem("");
-		countryAdapter.addItem("");
-		countryAdapter.addItem("");
-		countryAdapter.notifyDataSetChanged();
+//		countryAdapter.addItem("");
+//		countryAdapter.addItem("");
+//		countryAdapter.addItem("");
+//		countryAdapter.addItem("");
+//		countryAdapter.addItem("");
 		callbackAPI = new ICallbackAPI() {
 			@Override
 			public void onSuccess(String response) {
-				 CommonAndroid.showDialog(getActivity(), "data2:" +
-						 response , null);
+//				 CommonAndroid.showDialog(getActivity(), "data2:" +
+//						 response , null);
 				String string_temp = CommonAndroid.parseXMLAction(response);
 				if (!string_temp.equalsIgnoreCase("")) {
 					try {
@@ -137,7 +151,7 @@ public class DuDoanKetQuaFragment extends BaseFragment {
 							sTyLe_ChapBong = array.get(i).getString("sTyLe_ChapBong");
 							sTyLe_TaiSuu = array.get(i).getString("sTyLe_TaiSuu");
 							//TODO
-							//countryAdapter.addItem(new DuDoanKetQua(false, sTenDoiNha, sTenDoiKhach ,iCN_BanThang_DoiNha,iCN_BanThang_DoiKhach, iC0,sThoiGian,sTyLe_ChauAu ,sTyLe_ChapBong, sTyLe_TaiSuu));
+							countryAdapter.addItem(new GameDuDoan(false, sTenDoiNha, sTenDoiKhach ,iCN_BanThang_DoiNha,iCN_BanThang_DoiKhach, iC0,sThoiGian,sTyLe_ChauAu ,sTyLe_ChapBong, sTyLe_TaiSuu));
 							Log.e("data", "" + array.get(i));
 
 						}

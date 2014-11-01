@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#999999"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/dimen_2dp"
+            android:paddingTop="@dimen/dimen_2dp" >
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="@dimen/dimen_30dp"
+                android:layout_height="@dimen/dimen_20dp"
+                android:background="@drawable/vietnam" />
+
+            <TextView
+                android:id="@+id/textView1"
+                style="@style/bongda_text_item"
+                android:layout_width="@dimen/dimen_240dp"
+                android:layout_height="wrap_content"
+                android:text="Large Text"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="@dimen/dimen_25dp"
+                android:layout_height="@dimen/dimen_25dp"
+                android:src="@drawable/game_dudoan_recovered_14" />
+        </LinearLayout>
+
+        <ImageView
+            style="@style/line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="vertical" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_20dp"
+            android:layout_marginTop="@dimen/dimen_5dp" >
+
+            <!-- <TextView
+                android:id="@+id/TextView04"
+                style="@style/bongda_text_item"
+                android:layout_width="@dimen/dimen_50dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="@string/keo"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/dimen_10dp" /> -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:gravity="center" >
+
+                <ImageView  android:layout_marginRight="@dimen/dimen_5dp"
+                    android:id="@+id/imageView3"
+                    android:layout_width="@dimen/dimen_20dp"
+                    android:layout_height="@dimen/dimen_20dp"
+                    android:background="@drawable/game_dudoan_recovered_23" />
+
+                <ImageView
+                    android:layout_width="@dimen/dimen_20dp"
+                    android:layout_height="@dimen/dimen_20dp"
+                    android:layout_marginLeft="@dimen/dimen_5dp"
+                    android:layout_marginRight="@dimen/dimen_5dp"
+                    android:background="@drawable/game_dudoan_recovered_25" />
+
+                <ImageView
+                    android:layout_width="@dimen/dimen_20dp"
+                    android:layout_marginLeft="@dimen/dimen_5dp"
+                    android:layout_height="@dimen/dimen_20dp"
+                    android:background="@drawable/game_dudoan_recovered_18" />
+
+                <ImageView
+                    android:layout_width="@dimen/dimen_20dp"
+                    android:layout_height="@dimen/dimen_20dp"
+                    android:layout_marginLeft="@dimen/dimen_5dp"
+                    android:layout_marginRight="@dimen/dimen_5dp"
+                    android:background="@drawable/game_dudoan_recovered_20" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/TextView05"
+                style="@style/bongda_text_item"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignTop="@+id/TextView04"
+                android:gravity="center"
+                android:paddingLeft="@dimen/dimen_10dp"
+                android:text="time"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/dimen_10dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_35dp" >
+
+            <TextView
+                android:id="@+id/TextView01"
+                style="@style/bongda_text_item"
+                android:layout_width="@dimen/dimen_50dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="[2-2]"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/dimen_13dp" />
+
+            <TextView
+                android:id="@+id/TextView02"
+                style="@style/bongda_text_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/TextView01"
+                android:text="Liverpool"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/TextView03"
+                style="@style/bongda_text_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/TextView01"
+                android:text="manchesterunited"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_35dp" >
+
+            <TextView
+                android:id="@+id/TextView012"
+                style="@style/bongda_text_item"
+                android:layout_width="@dimen/dimen_50dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@android:color/black"
+                android:gravity="center"
+                android:padding="0dp"
+                android:text="1/2:0"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/dimen_13dp" />
+
+            <EditText 
+                android:id="@+id/TextView022"
+                style="@style/bongda_text_item"
+                android:layout_width="@dimen/dimen_100dp"
+                android:layout_height="@dimen/dimen_30dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/TextView012"
+                android:text=""
+                android:hint="Nhập sao"
+                android:background="@drawable/edittext"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <EditText 
+                android:id="@+id/TextView032"
+                style="@style/bongda_text_item"
+                android:layout_width="@dimen/dimen_100dp"
+                android:layout_height="@dimen/dimen_30dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/TextView012"
+                android:text=""
+                android:hint="Nhập sao"
+                android:background="@drawable/edittext"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_35dp" >
+
+            <TextView
+                android:id="@+id/TextView013"
+                style="@style/bongda_text_item"
+                android:layout_width="@dimen/dimen_60dp"
+                android:layout_height="@dimen/dimen_30dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/game_dudoan_recovered_32"
+                android:gravity="center"
+                android:padding="0dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/dimen_13dp" />
+
+            <TextView
+                android:id="@+id/TextView023"
+                style="@style/bongda_text_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/TextView013"
+                android:text="Đã đặt:0"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/TextView033"
+                style="@style/bongda_text_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/TextView013"
+                android:text="Đã đặt:0"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>
