@@ -1,5 +1,7 @@
 package com.app.bongda.service;
 
+import com.vnp.core.datastore.database.GiaiDauTable;
+
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -64,7 +66,9 @@ public class BongDaServiceManager {
 		}
 	}
 
-	public boolean getGiaiDauTable(String idmagiaidau) {
-		return false;
+	public GiaiDauTable getGiaiDauTable(String idmagiaidau) {
+		if(getBongDaService()!= null)
+			return getBongDaService().getGiaiDauTable(idmagiaidau);
+		return new GiaiDauTable();
 	}
 }

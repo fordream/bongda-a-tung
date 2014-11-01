@@ -2,6 +2,7 @@ package com.vnp.core.datastore.database;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -169,5 +170,20 @@ public class DBManager {
 
 		}
 		return -1;
+	}
+
+	public GiaiDauTable getGiaiDauTable(String iID_MaGiai) {
+		GiaiDauTable dauTable = new GiaiDauTable();
+		String whereClause = String.format("iID_MaGiai ='%s'", iID_MaGiai);
+
+		Cursor cursor = database.query(dauTable.getTableName(), null, whereClause, null, null, null, null);
+		if (cursor != null && cursor.moveToFirst() && cursor.moveToNext()) {
+			Set<String> columns = dauTable.columNameS();
+
+			for (String column : columns) {
+				dauTable.setData(column, cursor.getColumnName(cursor.getColumnIndex(column)));
+			}
+		}
+		return dauTable;
 	}
 }

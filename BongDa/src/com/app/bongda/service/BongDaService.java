@@ -311,4 +311,8 @@ public class BongDaService extends Service {
 			}, ws);
 		}
 	}
+
+	public GiaiDauTable getGiaiDauTable(String idmagiaidau) {
+		return dbManager.getGiaiDauTable(idmagiaidau);
+	}
 }

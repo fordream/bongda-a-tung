@@ -30,7 +30,7 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/phongdo_text"
+                android:id="@+id/tyledudoan_name_giaidau_text"
                 style="@style/bongda_text_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -38,13 +38,13 @@
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
-                android:id="@+id/TextView03"
+                android:id="@+id/tyledudoan_time"
                 style="@style/bongda_text_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/phongdo_text"
+                android:layout_toRightOf="@+id/tyledudoan_name_giaidau_text"
                 android:text="Thời gian : 19-05-2014"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textSize="@dimen/dimen_10dp" />

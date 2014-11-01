@@ -20,12 +20,14 @@ import com.app.bongda.util.ByUtils;
 import com.app.bongda.util.CommonAndroid;
 import com.app.bongda.view.HeaderView;
 import com.app.bongda.view.TyLeView;
+import com.vnp.core.datastore.database.GiaiDauTable;
 
 public class TyLeDuDoanFragment extends BaseFragment {
 	private OnItemClickListener onItemClickListener;
 	private GiaiDau giaidau;
 	private TyLeView tyLeView1, tyLeView2;
 	private TextView TextView01, TextView02;
+
 	/**
 	 * name doi nha name doi khach
 	 */
@@ -36,6 +38,7 @@ public class TyLeDuDoanFragment extends BaseFragment {
 	 */
 
 	private ImageView tyledudoan_img;
+	private TextView tyledudoan_name_giaidau_text, tyledudoan_time;
 
 	public TyLeDuDoanFragment(GiaiDau giaiDau, OnItemClickListener onItemClickListener) {
 		super();
@@ -67,6 +70,8 @@ public class TyLeDuDoanFragment extends BaseFragment {
 		tyledudoan_name2 = (TextView) view.findViewById(R.id.tyledudoan_name2);
 
 		tyledudoan_img = (ImageView) view.findViewById(R.id.tyledudoan_img);
+		tyledudoan_name_giaidau_text = (TextView) view.findViewById(R.id.tyledudoan_name_giaidau_text);
+		tyledudoan_time = (TextView) view.findViewById(R.id.tyledudoan_time);
 
 		TextView01.setText("");
 		TextView02.setText("");
@@ -76,14 +81,31 @@ public class TyLeDuDoanFragment extends BaseFragment {
 
 		tyledudoan_name1.setText("");
 		tyledudoan_name2.setText("");
+
+		tyledudoan_name_giaidau_text.setText("");
 		if (giaidau != null) {
 			String idmagiaidau = giaidau.idmagiai();
-			if(BongDaServiceManager.getInstance().getGiaiDauTable(idmagiaidau)){
-				
-			}
-			// ImageLoaderUtils.getInstance(getActivity()).DisplayImage(giaidau.,
-			// imageView, bitmap);
+			GiaiDauTable giaiDauTable = BongDaServiceManager.getInstance().getGiaiDauTable(idmagiaidau);
+			tyledudoan_name_giaidau_text.setText(giaiDauTable.getData("sTenGiai"));
+			ImageLoaderUtils.getInstance(getActivity()).DisplayImage(giaiDauTable.getData("sLogo"), tyledudoan_img, null);
+
+			/**
+			 * TODO check
+			 */
+			tyledudoan_time.setText(String.format(getResources().getString(R.string.format_tyledudoan), giaiDauTable.getData("iBXH_ThoiGianCapNhap")));
 		}
+		
+		/**
+		 * action
+		 */
+		
+		view.findViewById(R.id.imageView1s).setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+//				onItemClickListener.onItemClick(parent, headerView, position, id);
+			}
+		});
 	}
 
 	private ICallbackAPI callbackAPI;
