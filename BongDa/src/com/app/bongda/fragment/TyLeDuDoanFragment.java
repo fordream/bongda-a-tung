@@ -3,6 +3,7 @@ package com.app.bongda.fragment;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import android.database.Cursor;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView.OnItemClickListener;
@@ -20,6 +21,7 @@ import com.app.bongda.util.ByUtils;
 import com.app.bongda.util.CommonAndroid;
 import com.app.bongda.view.HeaderView;
 import com.app.bongda.view.TyLeView;
+import com.vnp.core.datastore.database.CountryTable;
 import com.vnp.core.datastore.database.GiaiDauTable;
 
 public class TyLeDuDoanFragment extends BaseFragment {
@@ -88,7 +90,9 @@ public class TyLeDuDoanFragment extends BaseFragment {
 			GiaiDauTable giaiDauTable = BongDaServiceManager.getInstance().getGiaiDauTable(idmagiaidau);
 			tyledudoan_name_giaidau_text.setText(giaiDauTable.getData("sTenGiai"));
 			ImageLoaderUtils.getInstance(getActivity()).DisplayImage(giaiDauTable.getData("sLogo"), tyledudoan_img, null);
-
+			String iID_MaQuocGia = giaiDauTable.getData("iID_MaQuocGia");
+			String where = String.format("iID_MaQuocGia ='%s'", iID_MaQuocGia);
+			Cursor cursor = BongDaServiceManager.getInstance().query(new CountryTable().getTableName(),where);
 			/**
 			 * TODO check
 			 */

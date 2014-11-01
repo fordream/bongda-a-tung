@@ -14,6 +14,7 @@ import android.app.Service;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Handler;
 import android.os.IBinder;
 
@@ -314,5 +315,9 @@ public class BongDaService extends Service {
 
 	public GiaiDauTable getGiaiDauTable(String idmagiaidau) {
 		return dbManager.getGiaiDauTable(idmagiaidau);
+	}
+
+	public Cursor query(String tableName, String where) {
+		return dbManager.query(tableName, where);
 	}
 }

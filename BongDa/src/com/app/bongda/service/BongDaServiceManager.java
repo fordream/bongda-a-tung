@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.database.Cursor;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -67,8 +68,15 @@ public class BongDaServiceManager {
 	}
 
 	public GiaiDauTable getGiaiDauTable(String idmagiaidau) {
-		if(getBongDaService()!= null)
+		if (getBongDaService() != null)
 			return getBongDaService().getGiaiDauTable(idmagiaidau);
 		return new GiaiDauTable();
+	}
+
+	public Cursor query(String tableName, String where) {
+		if(getBongDaService()!= null)
+			return getBongDaService().query(tableName,where);		
+			
+			return null;
 	}
 }

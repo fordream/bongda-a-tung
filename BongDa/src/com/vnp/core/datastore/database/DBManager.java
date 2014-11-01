@@ -177,13 +177,21 @@ public class DBManager {
 		String whereClause = String.format("iID_MaGiai ='%s'", iID_MaGiai);
 
 		Cursor cursor = database.query(dauTable.getTableName(), null, whereClause, null, null, null, null);
-		if (cursor != null && cursor.moveToFirst() && cursor.moveToNext()) {
-			Set<String> columns = dauTable.columNameS();
-
-			for (String column : columns) {
-				dauTable.setData(column, cursor.getColumnName(cursor.getColumnIndex(column)));
+		if (cursor != null) {
+			if (cursor.moveToFirst()) {
+				Set<String> columns = dauTable.columNameS();
+				for (String column : columns) {
+					dauTable.setData(column, cursor.getString(cursor.getColumnIndex(column)));
+				}
 			}
 		}
+
+		if (cursor != null)
+			cursor.close();
 		return dauTable;
+	}
+
+	public Cursor query(String tableName, String where) {
+		return database.query(tableName, null, where, null, null, null, null);
 	}
 }

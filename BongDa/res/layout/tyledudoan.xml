@@ -22,8 +22,7 @@
         <ImageView
             android:id="@+id/tyledudoan_img"
             android:layout_width="@dimen/dimen_30dp"
-            android:layout_height="@dimen/dimen_20dp"
-          />
+            android:layout_height="@dimen/dimen_20dp" />
 
         <RelativeLayout
             android:layout_width="@dimen/dimen_220dp"
@@ -32,8 +31,10 @@
             <TextView
                 android:id="@+id/tyledudoan_name_giaidau_text"
                 style="@style/bongda_text_item"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:singleLine="true"
                 android:text="Large Text"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -44,10 +45,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/tyledudoan_name_giaidau_text"
+                android:singleLine="true"
                 android:text="Thời gian : 19-05-2014"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="@dimen/dimen_10dp" />
+                android:textSize="@dimen/dimen_10dp"
+                android:visibility="gone" />
         </RelativeLayout>
 
         <ImageView
