@@ -51,7 +51,8 @@ public class BaseX1X2Activity extends BaseActivtiy {
 //					Log.e("KKKKKKKKKKKKK22", "===" + ((GiaiDau) data).magiai() + "::" + ((GiaiDau) data).madoinha() + ":" + ((GiaiDau) data).madoikhach());
 					showFragment(new PhongDoDoiDauFragment((GiaiDau) data,null));
 				} else if (position == 3) {
-					showFragment(new GameDuDoanFragment(null));
+//					showFragment(new GameDuDoanFragment(null));
+					showGameDuDoan(null);
 				} else if (position == 4) {
 					showFragment(new TyLeDuDoanFragment((GiaiDau) data,null));
 				}
@@ -154,5 +155,9 @@ public class BaseX1X2Activity extends BaseActivtiy {
 	
 	public void showNhanDinhChuyenGia(GiaiDau dau) {
 		showFragment(new NhanDinhChuyenGiaFragment(dau, null));
+	}
+	
+	public void showGameDuDoan(GiaiDau dau) {
+		showFragment(new GameDuDoanFragment(null));
 	}
 }
