@@ -58,6 +58,7 @@ public class GameDuDoanFragment extends BaseFragment {
 			arrayOfObject2[1] = Integer.valueOf(1 + localDate2.getMonth());
 			String times = String.format("%d/%d", arrayOfObject2) + ", " +dudoan.sThoiGian();
 			setText(convertView, R.id.TextView05, times);
+			Log.e("aaaaaaaaa", dudoan.sTyLe_ChapBong());
 		}
 
 	}

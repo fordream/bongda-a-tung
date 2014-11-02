@@ -282,7 +282,7 @@ public class LiveScoreFragment extends BaseFragment {
 								Toast.makeText(getActivity(), getResources().getString(R.string.giaichuabatdau), Toast.LENGTH_LONG).show();
 							}
 							CommonUtil.getdata(getActivity());
-							Log.e("KKK","kkk"+ "*****"+ CommonUtil.listQuanTam.toString());
+//							Log.e("KKK","kkk"+ "*****"+ CommonUtil.listQuanTam.toString());
 							
 							for (int i = 0; i < jsonArray.length(); i++) {
 								try {
@@ -325,7 +325,7 @@ public class LiveScoreFragment extends BaseFragment {
 								String bNhanDinhChuyenGia = array.get(i).getString("bNhanDinhChuyenGia");
 								String bGameDuDoan = array.get(i).getString("bGameDuDoan");
 								String bDaCapNhapVaoBXH = array.get(i).getString("bDaCapNhapVaoBXH");
-								Log.e("kkk", i + "::" + bNhanDinhChuyenGia + ":" + bGameDuDoan + ":" + bDaCapNhapVaoBXH);
+//								Log.e("kkk", i + "::" + bNhanDinhChuyenGia + ":" + bGameDuDoan + ":" + bDaCapNhapVaoBXH);
 
 								// String kk =
 								// array.get(i).getString("sTenGiai");

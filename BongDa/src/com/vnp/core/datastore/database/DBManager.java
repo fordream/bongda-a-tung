@@ -94,10 +94,10 @@ public class DBManager {
 			long id = 0;
 
 			if (count == 0) {
-				Log.e(table, "insert");
+//				Log.e(table, "insert");
 				id = database.insert(table, null, values);
 			} else {
-				Log.e(table, "update");
+//				Log.e(table, "update");
 				id = database.update(table, values, whereClause, null);
 			}
 
@@ -125,10 +125,10 @@ public class DBManager {
 			long id = 0;
 
 			if (count == 0) {
-				Log.e(table, "insert");
+//				Log.e(table, "insert");
 				id = database.insert(table, null, values);
 			} else {
-				Log.e(table, "update");
+//				Log.e(table, "update");
 				id = database.update(table, values, whereClause, null);
 			}
 
@@ -158,10 +158,10 @@ public class DBManager {
 			long id = 0;
 
 			if (count == 0) {
-				Log.e(table, "insert");
+//				Log.e(table, "insert");
 				id = database.insert(table, null, values);
 			} else {
-				Log.e(table, "update");
+//				Log.e(table, "update");
 				id = database.update(table, values, whereClause, null);
 			}
 

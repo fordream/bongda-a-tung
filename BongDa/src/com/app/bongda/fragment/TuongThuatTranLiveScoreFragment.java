@@ -281,20 +281,38 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 			                	//check status
 //			                	sThongTin_DoiNha: 13 aa,20 bbbb(Pen),68 bbbb(Pen),75 ccc ===> (Pen) icon P
 //			                	sThongTinThe_DoiNha: 30 Delaney(TV),41 Campbell(TV),43 Delaney(TD):
-			                	Log.e("pen",Values );
-		                		
+//			                	Log.e("pen",Values );
+			                	// Anywhere in string
+			                	boolean Pen_check = Values.indexOf("(Pen)") > 0; 
+			                	boolean TV_check = Values.indexOf("(TV)") > 0; 
+			                	Log.e("test", "aa" + Pen_check);
 			                	if(status == 1 || status == 2){
-			                		if(Values.indexOf("(Pen)") > 0){
-			                			countryAdapter.addItem(new TuongThuatTran(doi, null , No , Values.replaceAll("(Pen)", ""), 10));
+			                		if(Pen_check){
+			                			int lastcheck = Values.lastIndexOf("(Pen)");
+			                			String tem = Values;
+			                			if(lastcheck != -1){
+			                				tem = Values.substring(0,lastcheck);
+			                			}
+			                			countryAdapter.addItem(new TuongThuatTran(doi, null , No , tem , 10));
 			                		}else{
 			                			countryAdapter.addItem(new TuongThuatTran(doi, null , No , Values, 1));
 			                		}
 			                	}else{
 			                		if(status == 3 || status == 4){
-				                		if(Values.indexOf("(TV)") > 0){
-				                			countryAdapter.addItem(new TuongThuatTran(doi, null , No , Values.replaceAll("(TV)", ""), 20));
+				                		if(TV_check){
+				                			int lastcheck = Values.lastIndexOf("(TV)");
+				                			String tem = Values;
+				                			if(lastcheck != -1){
+				                				tem = Values.substring(0,lastcheck);
+				                			}
+				                			countryAdapter.addItem(new TuongThuatTran(doi, null , No , tem, 20));
 				                		}else{
-				                			countryAdapter.addItem(new TuongThuatTran(doi, null , No , Values.replaceAll("(TD)", ""), 2));
+				                			int lastcheck = Values.lastIndexOf("(TD)");
+				                			String tem = Values;
+				                			if(lastcheck != -1){
+				                				tem = Values.substring(0,lastcheck);
+				                			}
+				                			countryAdapter.addItem(new TuongThuatTran(doi, null , No , tem, 2));
 				                		}
 				                	}
 			                	}
@@ -309,19 +327,36 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 //	                		countryAdapter.addItem(new TuongThuatTran(doi, null , temp2[0] ,temp2[1], status));
 	                		String No = temp2[0];
 		                	String Values = temp2[1];
-		                	Log.e("pen",Values );
-	                		if(status == 1 || status == 2){
-		                		if(Values.indexOf("(Pen)") > 0){
-		                			countryAdapter.addItem(new TuongThuatTran(doi, null , No , Values.replaceAll("(Pen)", ""), 10));
+		                	boolean Pen_check = Values.indexOf("(Pen)") > 0; 
+		                	boolean TV_check = Values.indexOf("(TV)") > 0; 
+		                	Log.e("test", "aa" + Pen_check);
+		                	if(status == 1 || status == 2){
+		                		if(Pen_check){
+		                			int lastcheck = Values.lastIndexOf("(Pen)");
+		                			String tem = Values;
+		                			if(lastcheck != -1){
+		                				tem = Values.substring(0,lastcheck);
+		                			}
+		                			countryAdapter.addItem(new TuongThuatTran(doi, null , No , tem , 10));
 		                		}else{
 		                			countryAdapter.addItem(new TuongThuatTran(doi, null , No , Values, 1));
 		                		}
 		                	}else{
 		                		if(status == 3 || status == 4){
-			                		if(Values.indexOf("(TV)") > 0){
-			                			countryAdapter.addItem(new TuongThuatTran(doi, null , No , Values.replaceAll("(TV)", ""), 20));
+			                		if(TV_check){
+			                			int lastcheck = Values.lastIndexOf("(TV)");
+			                			String tem = Values;
+			                			if(lastcheck != -1){
+			                				tem = Values.substring(0,lastcheck);
+			                			}
+			                			countryAdapter.addItem(new TuongThuatTran(doi, null , No , tem, 20));
 			                		}else{
-			                			countryAdapter.addItem(new TuongThuatTran(doi, null , No , Values.replaceAll("(TD)", ""), 2));
+			                			int lastcheck = Values.lastIndexOf("(TD)");
+			                			String tem = Values;
+			                			if(lastcheck != -1){
+			                				tem = Values.substring(0,lastcheck);
+			                			}
+			                			countryAdapter.addItem(new TuongThuatTran(doi, null , No , tem, 2));
 			                		}
 			                	}
 		                	}
