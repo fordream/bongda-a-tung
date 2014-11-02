@@ -6,5 +6,6 @@
     <string name="hoanthidau">Hoãn đá</string>
     <string name="giaichuabatdau">Giải chưa bắt đầu</string>
     <string name="format_tyledudoan">Thời gian : %s</string>
+    <string name="khongcodoiyeuthich">Không có đội yêu thích</string>
 
 </resources>

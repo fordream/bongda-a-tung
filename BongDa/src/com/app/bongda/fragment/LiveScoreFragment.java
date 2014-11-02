@@ -243,8 +243,23 @@ public class LiveScoreFragment extends BaseFragment {
 			if(TypeView == null && onLoad == 1){
 				BongDaServiceManager.getInstance().getBongDaService().callApi(getCurrentTime(), callbackAPI, ByUtils.wsFootBall_Lives);
 			}else{
-				new APICaller(getActivity()).callApi("", true, callbackAPI,
-						 ByUtils.wsFootBall_Lives);
+//				new APICaller(getActivity()).callApi("", true, callbackAPI,
+//						 ByUtils.wsFootBall_Lives);
+				if(TypeView == null){
+					new APICaller(getActivity()).callApi("", true, callbackAPI,
+							 ByUtils.wsFootBall_Lives);
+				}else{
+					if(TypeView.equalsIgnoreCase("quantam")){
+						if (CommonUtil.listQuanTam.size() > 0){
+							new APICaller(getActivity()).callApi("", true, callbackAPI,
+									 ByUtils.wsFootBall_Lives);
+							
+						}else{
+							Toast.makeText(getActivity(), getResources().getString(R.string.khongcodoiyeuthich), Toast.LENGTH_LONG).show();
+						}
+					}
+					
+				}
 			}
 		} else {
 			if(TypeView == null  && onLoad == 1){
