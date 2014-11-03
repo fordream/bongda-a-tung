@@ -1058,43 +1058,33 @@ public class CommonAndroid {
 			return bytesAvailable / 1048576;
 		}
 	}
-	
-	ByteArrayInputStream bytearrayinputstream1;
-    JSONArray jsonarray;
-    static ByteArrayInputStream bytearrayinputstream;
-    static SAXParserFactory saxparserfactory;
-    Message message;
-    static XMLReader xmlreader;
-    static XmlHandler xmlhandler;
-    static InputSource inputsource;
-	public static String parseXMLAction(String str){
+
+	public static String parseXMLAction(String str) {
 		String txt = "";
 		try {
-			bytearrayinputstream = new ByteArrayInputStream(str.getBytes("UTF-8"));
-			saxparserfactory = SAXParserFactory.newInstance();
-            try {
+			ByteArrayInputStream bytearrayinputstream = new ByteArrayInputStream(
+					str.getBytes("UTF-8"));
+			SAXParserFactory saxparserfactory = SAXParserFactory.newInstance();
+			XMLReader xmlreader = null;
+			try {
 				xmlreader = saxparserfactory.newSAXParser().getXMLReader();
 			} catch (SAXException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (ParserConfigurationException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-            xmlhandler = new XmlHandler();
-            xmlreader.setContentHandler(xmlhandler);
-            inputsource = new InputSource(bytearrayinputstream);
-            try {
+			XmlHandler xmlhandler = new XmlHandler();
+			xmlreader.setContentHandler(xmlhandler);
+			InputSource inputsource = new InputSource(bytearrayinputstream);
+			try {
 				xmlreader.parse(inputsource);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (SAXException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-            txt = xmlhandler.getResult();
-            
+			txt = xmlhandler.getResult();
+
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
