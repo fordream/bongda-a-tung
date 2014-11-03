@@ -24,27 +24,27 @@
                 android:layout_height="match_parent" >
 
                 <ImageView
-                    android:id="@+id/imageView1"
+                    android:id="@+id/logo_doinha"
                     android:layout_marginTop="@dimen/dimen_5dp"
                     android:layout_marginLeft="@dimen/dimen_5dp"
                     android:layout_width="@dimen/dimen_75dp"
                     android:layout_height="@dimen/dimen_75dp"
-                    android:background="@drawable/bongda1" />
+                    android:background="@null" />
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/logo_doikhach"
                           android:layout_marginTop="@dimen/dimen_5dp"
                     android:layout_marginRight="@dimen/dimen_5dp"
                     android:layout_width="@dimen/dimen_75dp"
                     android:layout_height="@dimen/dimen_75dp"
                     android:layout_alignParentRight="true"
-                    android:background="@drawable/bongda1" />
+                    android:background="@null" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/imageView2"
-                    android:layout_toRightOf="@+id/imageView1"
+                    android:layout_toLeftOf="@+id/logo_doikhach"
+                    android:layout_toRightOf="@+id/logo_doinha"
                     android:gravity="center"
                     android:orientation="vertical" >
 

@@ -11,7 +11,7 @@
         android:background="#999999" >
 
         <TextView
-            android:id="@+id/TextView01"
+            android:id="@+id/tendoi"
             style="@style/bongda_text_item_phongdo"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerInParent="true"
-            android:layout_toLeftOf="@+id/TextView01"
+            android:layout_toLeftOf="@+id/tendoi"
             android:gravity="left"
             android:text="@string/khanangtancongphongthu"
             android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -50,7 +50,8 @@
                 style="@style/bongda_text_item_phongdo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
+                android:gravity="center|left"
+                android:paddingLeft="10dp"
                 android:text="@string/tancong"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#d57f42" />
@@ -96,7 +97,8 @@
                 style="@style/bongda_text_item_phongdo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
+                android:gravity="center|left"
+                android:paddingLeft="10dp"
                 android:text="@string/tyleghibantrungbinh"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
@@ -108,7 +110,7 @@
             android:layout_alignParentRight="true" >
 
             <TextView
-                android:id="@+id/TextView10"
+                android:id="@+id/tyleghibantrungbinh1"
                 style="@style/bongda_text_item_phongdo"
                 android:layout_width="@dimen/width_phongdo"
                 android:layout_height="match_parent"
@@ -116,14 +118,14 @@
                 android:text="@string/sannha"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
-            <TextView
-                android:id="@+id/TextView08"
+            <!-- <TextView
+                android:id="@+id/tyleghibantrungbinh2"
                 style="@style/bongda_text_item_phongdo"
                 android:layout_width="@dimen/width_phongdo"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="@string/sankhach"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge" /> -->
         </LinearLayout>
     </RelativeLayout>
 
@@ -142,7 +144,8 @@
                 style="@style/bongda_text_item_phongdo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
+                android:gravity="center|left"
+                android:paddingLeft="10dp"
                 android:text="@string/sotrankhongghiban"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
@@ -154,7 +157,7 @@
             android:layout_alignParentRight="true" >
 
             <TextView
-                android:id="@+id/TextView03"
+                android:id="@+id/sotrankhongghiban1"
                 style="@style/bongda_text_item_phongdo"
                 android:layout_width="@dimen/width_phongdo"
                 android:layout_height="match_parent"
@@ -162,14 +165,14 @@
                 android:text="@string/sannha"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
-            <TextView
-                android:id="@+id/TextView02"
+            <!-- <TextView
+                android:id="@+id/sotrankhongghiban2"
                 style="@style/bongda_text_item_phongdo"
                 android:layout_width="@dimen/width_phongdo"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="@string/sankhach"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge" /> -->
         </LinearLayout>
     </RelativeLayout>
 
@@ -188,7 +191,8 @@
                 style="@style/bongda_text_item_phongdo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
+                android:gravity="center|left"
+                android:paddingLeft="10dp"
                 android:text="@string/sotranghiban"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
@@ -200,6 +204,7 @@
             android:layout_alignParentRight="true" >
 
             <TextView
+                android:id="@+id/sotranghiban1"
                 style="@style/bongda_text_item_phongdo"
                 android:layout_width="@dimen/width_phongdo"
                 android:layout_height="match_parent"
@@ -207,13 +212,14 @@
                 android:text="@string/sannha"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
-            <TextView
+            <!-- <TextView
+                android:id="@+id/sotranghiban2"
                 style="@style/bongda_text_item_phongdo"
                 android:layout_width="@dimen/width_phongdo"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="@string/sankhach"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge" /> -->
         </LinearLayout>
     </RelativeLayout>
 
@@ -231,7 +237,8 @@
                 style="@style/bongda_text_item_phongdo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
+                android:gravity="center|left"
+                android:paddingLeft="10dp"
                 android:text="@string/hieusobanthang"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
@@ -243,6 +250,7 @@
             android:layout_alignParentRight="true" >
 
             <TextView
+                android:id="@+id/hieusobanthang1"
                 style="@style/bongda_text_item_phongdo"
                 android:layout_width="@dimen/width_phongdo"
                 android:layout_height="match_parent"
@@ -250,13 +258,14 @@
                 android:text="@string/sannha"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
-            <TextView
+            <!-- <TextView
+                android:id="@+id/hieusobanthang2"
                 style="@style/bongda_text_item_phongdo"
                 android:layout_width="@dimen/width_phongdo"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="@string/sankhach"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge" /> -->
         </LinearLayout>
     </RelativeLayout>
 
@@ -281,7 +290,8 @@
                     style="@style/bongda_text_item_phongdo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
+                    android:gravity="center|left"
+                	android:paddingLeft="10dp"
                     android:text="@string/phongthu"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="#d57f42" />
@@ -326,7 +336,8 @@
                     style="@style/bongda_text_item_phongdo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
+                    android:gravity="center|left"
+                	android:paddingLeft="10dp"
                     android:text="@string/tylelotluoitrungbinh"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
             </LinearLayout>
@@ -338,7 +349,7 @@
                 android:layout_alignParentRight="true" >
 
                 <TextView
-                    android:id="@+id/TextView17"
+                    android:id="@+id/tylelotluoitrungbinh1"
                     style="@style/bongda_text_item_phongdo"
                     android:layout_width="@dimen/width_phongdo"
                     android:layout_height="match_parent"
@@ -346,14 +357,14 @@
                     android:text="@string/sannha"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
-                <TextView
-                    android:id="@+id/TextView15"
+                <!-- <TextView
+                    android:id="@+id/tylelotluoitrungbinh2"
                     style="@style/bongda_text_item_phongdo"
                     android:layout_width="@dimen/width_phongdo"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="@string/sankhach"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge" /> -->
             </LinearLayout>
         </RelativeLayout>
 
@@ -373,7 +384,8 @@
                     style="@style/bongda_text_item_phongdo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
+                    android:gravity="center|left"
+                	android:paddingLeft="10dp"
                     android:text="@string/sotrankhonglotluoi"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
             </LinearLayout>
@@ -385,7 +397,7 @@
                 android:layout_alignParentRight="true" >
 
                 <TextView
-                    android:id="@+id/TextView20"
+                    android:id="@+id/sotrankhonglotluoi1"
                     style="@style/bongda_text_item_phongdo"
                     android:layout_width="@dimen/width_phongdo"
                     android:layout_height="match_parent"
@@ -393,14 +405,14 @@
                     android:text="@string/sannha"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
-                <TextView
-                    android:id="@+id/TextView18"
+                <!-- <TextView
+                    android:id="@+id/sotrankhonglotluoi2"
                     style="@style/bongda_text_item_phongdo"
                     android:layout_width="@dimen/width_phongdo"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="@string/sankhach"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge" /> -->
             </LinearLayout>
         </RelativeLayout>
 
@@ -419,8 +431,9 @@
                     style="@style/bongda_text_item_phongdo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="@string/sotrankhonglotluoi"
+                    android:gravity="center|left"
+                	android:paddingLeft="10dp"
+                    android:text="@string/sotranlotluoi"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
             </LinearLayout>
 
@@ -431,7 +444,7 @@
                 android:layout_alignParentRight="true" >
 
                 <TextView
-                    android:id="@+id/TextView20v6"
+                    android:id="@+id/sotranlotluoi1"
                     style="@style/bongda_text_item_phongdo"
                     android:layout_width="@dimen/width_phongdo"
                     android:layout_height="match_parent"
@@ -439,14 +452,14 @@
                     android:text="@string/sannha"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
-                <TextView
-                    android:id="@+id/TextView18v7"
+                <!-- <TextView
+                    android:id="@+id/sotranlotluoi2"
                     style="@style/bongda_text_item_phongdo"
                     android:layout_width="@dimen/width_phongdo"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="@string/sankhach"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge" /> -->
             </LinearLayout>
         </RelativeLayout>
 
@@ -466,7 +479,8 @@
                     style="@style/bongda_text_item_phongdo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
+                    android:gravity="center|left"
+                	android:paddingLeft="10dp"
                     android:text="@string/hieusobanthua"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
             </LinearLayout>
@@ -478,7 +492,7 @@
                 android:layout_alignParentRight="true" >
 
                 <TextView
-                    android:id="@+id/TextView17x10"
+                    android:id="@+id/hieusobanthua1"
                     style="@style/bongda_text_item_phongdo"
                     android:layout_width="@dimen/width_phongdo"
                     android:layout_height="match_parent"
@@ -486,14 +500,14 @@
                     android:text="@string/sannha"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
-                <TextView
-                    android:id="@+id/TextView15"
+                <!-- <TextView
+                    android:id="@+id/hieusobanthua2"
                     style="@style/bongda_text_item_phongdo"
                     android:layout_width="@dimen/width_phongdo"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="@string/sankhach"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge" /> -->
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>

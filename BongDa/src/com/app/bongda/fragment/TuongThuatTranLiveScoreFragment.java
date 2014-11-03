@@ -179,9 +179,9 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
     public String iCN_BanThang_DoiKhach_HT;
     public String iCN_BanThang_DoiNha;
     public String iCN_BanThang_DoiNha_HT;
-    private int iID_MaDoiKhach;
-    private int iID_MaDoiNha;
-    public int iID_MaGiai;
+    private String iID_MaDoiKhach;
+    private String iID_MaDoiNha;
+    public String iID_MaGiai;
     public String iPhut;
     private boolean isInFront;
     private ListView listView;
@@ -220,6 +220,10 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 							sLogoDoiNha = jsonarray.getJSONObject(i).getString("sLogoDoiNha");
 							sLogoDoiKhach = jsonarray.getJSONObject(i).getString("sLogoDoiKhach");
 							
+							iID_MaDoiNha = jsonarray.getJSONObject(i).getString("iID_MaDoiNha");
+							iID_MaDoiKhach = jsonarray.getJSONObject(i).getString("iID_MaDoiKhach");
+							iID_MaGiai = jsonarray.getJSONObject(i).getString("iID_MaGiai");
+							
 							loadItem(jsonarray.getJSONObject(i),"sThongTin_DoiNha",1);//GOAL_HOME
 							loadItem(jsonarray.getJSONObject(i),"sThongTin_DoiKhach",2);//GOAL_AWAY
 							loadItem(jsonarray.getJSONObject(i),"sThongTinThe_DoiNha",3);//YELLOW_CARD_HOME
@@ -242,6 +246,10 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 						CommonUtil.savedata(getActivity(),"sLogoGiai", sLogoGiai);
 						CommonUtil.savedata(getActivity(),"sLogoDoiNha", sLogoDoiNha);
 						CommonUtil.savedata(getActivity(),"sLogoDoiKhach", sLogoDoiKhach);
+						
+						CommonUtil.savedata(getActivity(),"iID_MaGiai", iID_MaGiai);
+						CommonUtil.savedata(getActivity(),"iID_MaDoiNha", iID_MaDoiNha);
+						CommonUtil.savedata(getActivity(),"iID_MaDoiKhach", iID_MaDoiKhach);
 						if(!ListItem){
 							countryAdapter.addItem(null);
 						}
