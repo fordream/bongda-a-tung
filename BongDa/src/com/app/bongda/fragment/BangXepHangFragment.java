@@ -24,6 +24,7 @@ import com.app.bongda.model.GiaiDau;
 import com.app.bongda.model.LiveScore;
 import com.app.bongda.util.ByUtils;
 import com.app.bongda.util.CommonAndroid;
+import com.app.bongda.util.CommonUtil;
 import com.app.bongda.view.HeaderView;
 
 public class BangXepHangFragment extends BaseFragment {
@@ -93,8 +94,9 @@ public class BangXepHangFragment extends BaseFragment {
 
 		listView.setOnItemClickListener(onItemClickListener);
 		listView.setAdapter(countryAdapter);
-
-		((TextView) view.findViewById(R.id.danhsachgiaidau_txtname)).setText(dau.getName());
+		String tengiai = "";
+		tengiai = CommonUtil.getdata(getActivity(),"sTenGiai");
+		((TextView) view.findViewById(R.id.danhsachgiaidau_txtname)).setText(tengiai);
 	}
 
 	ICallbackAPI callbackAPI;
