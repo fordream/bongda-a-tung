@@ -160,9 +160,9 @@ public class BongDaService extends Service {
 	private List<String> lIdMaGiaiDaus = new ArrayList<String>();
 
 	public void startLoadContentBase() {
-		if (idCountrys.size() > 0 || lIdMaGiaiDaus.size() > 0) {
-			return;
-		}
+//		if (idCountrys.size() > 0 || lIdMaGiaiDaus.size() > 0) {
+//			return;
+//		}
 
 		callApi(System.currentTimeMillis(), new ICallbackAPI() {
 			@Override
@@ -188,7 +188,7 @@ public class BongDaService extends Service {
 									}
 									long id = dbManager.insertContry(values);
 								}
-								startLoadContentGiaiDauBase();
+								//startLoadContentGiaiDauBase();
 							} catch (JSONException e) {
 							}
 						}
