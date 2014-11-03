@@ -77,5 +77,8 @@
         Nạp từ 2 thuê bao khác nhau tính riêng rẽ.\n
         Cú pháp: TYSO24H NAP Username 1038
         </string>
+        
+    <string name="check_network">Please enable your network!</string>
+    <string name="ok">Ok</string>
 
 </resources>

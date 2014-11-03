@@ -11,6 +11,14 @@ import android.os.IBinder;
 import android.util.Log;
 
 public class BongDaServiceManager {
+	public interface BongDaServiceManagerListener {
+		public void onFail();
+
+		public void onSuccess();
+
+		public void onDisconnected();
+	}
+
 	private static BongDaServiceManager instance = new BongDaServiceManager();
 
 	private BongDaServiceManager() {
@@ -35,26 +43,50 @@ public class BongDaServiceManager {
 		return bongDaService;
 	}
 
-	private ServiceConnection conn = new ServiceConnection() {
+	private ServiceConnection conn;
 
-		@Override
-		public void onServiceDisconnected(ComponentName name) {
-			Log.e("MSERVICE", "disconnect");
-			bongDaService = null;
-		}
+	// = new ServiceConnection() {
+	//
+	// @Override
+	// public void onServiceDisconnected(ComponentName name) {
+	// Log.e("MSERVICE", "disconnect");
+	// bongDaService = null;
+	// }
+	//
+	// @Override
+	// public void onServiceConnected(ComponentName name, IBinder service) {
+	// BongDaBinder bongDaBinder = (BongDaBinder) service;
+	// Log.e("MSERVICE", "connect to service");
+	// bongDaService = bongDaBinder.getBongDaService();
+	// }
+	// };
 
-		@Override
-		public void onServiceConnected(ComponentName name, IBinder service) {
-			BongDaBinder bongDaBinder = (BongDaBinder) service;
-			Log.e("MSERVICE", "connect to service");
-			bongDaService = bongDaBinder.getBongDaService();
-		}
-	};
-
-	public void onResume() {
+	public void onResume(final BongDaServiceManagerListener where) {
 		Log.e("MSERVICE", "start bin to service");
-		Intent service = new Intent(mContext, BongDaService.class);
-		mContext.bindService(service, conn, Context.BIND_AUTO_CREATE);
+		if (getBongDaService() == null) {
+			conn = new ServiceConnection() {
+
+				@Override
+				public void onServiceDisconnected(ComponentName name) {
+					Log.e("MSERVICE", "disconnect");
+					bongDaService = null;
+					where.onDisconnected();
+				}
+
+				@Override
+				public void onServiceConnected(ComponentName name,
+						IBinder service) {
+					BongDaBinder bongDaBinder = (BongDaBinder) service;
+					Log.e("MSERVICE", "connect to service");
+					bongDaService = bongDaBinder.getBongDaService();
+					where.onSuccess();
+				}
+			};
+			Intent service = new Intent(mContext, BongDaService.class);
+			mContext.bindService(service, conn, Context.BIND_AUTO_CREATE);
+		} else {
+			where.onSuccess();
+		}
 	}
 
 	public void onPause() {
@@ -74,9 +106,9 @@ public class BongDaServiceManager {
 	}
 
 	public Cursor query(String tableName, String where) {
-		if(getBongDaService()!= null)
-			return getBongDaService().query(tableName,where);		
-			
-			return null;
+		if (getBongDaService() != null)
+			return getBongDaService().query(tableName, where);
+
+		return null;
 	}
 }
