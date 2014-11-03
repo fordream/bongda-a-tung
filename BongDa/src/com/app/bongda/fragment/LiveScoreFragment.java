@@ -110,7 +110,7 @@ public class LiveScoreFragment extends BaseFragment {
 			}
 			
 			//cobangxephang
-			if (liveScore.isDaCapNhapVaoBXH()) {
+			/*if (liveScore.isDaCapNhapVaoBXH()) {
 				convertView.findViewById(R.id.bangxephang_icon).setVisibility(View.VISIBLE);
 				convertView.findViewById(R.id.bangxephang_icon).setOnClickListener(new OnClickListener() {
 					@Override
@@ -120,7 +120,7 @@ public class LiveScoreFragment extends BaseFragment {
 				});
 			} else {
 				convertView.findViewById(R.id.bangxephang_icon).setVisibility(View.GONE);
-			}
+			}*/
 
 			setText(convertView, R.id.textView1, liveScore.sTenGiai());
 
@@ -169,10 +169,17 @@ public class LiveScoreFragment extends BaseFragment {
 			setText(convertView, R.id.TextView023, liveScore.getName2());
 			// setText(convertView, R.id.tv1, liveScore.getDate());
 
-			convertView.findViewById(R.id.image_phongdo).setOnClickListener(new OnClickListener() {
+			convertView.findViewById(R.id.image_bangxephang).setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					callBackListenner.onCallBackListenner(2, liveScore);
+				}
+			});
+//			convertView.findViewById(R.id.bangxephang_icon).setVisibility(View.VISIBLE);
+			convertView.findViewById(R.id.phongdo_icon).setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					callBackListenner.onCallBackListenner(0, liveScore);
 				}
 			});
 			mOnTouchListener = new MyTouchListener(liveScore);

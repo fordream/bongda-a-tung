@@ -131,12 +131,12 @@ public class BaseX1X2Activity extends BaseActivtiy {
 //					GiaiDau dau = new GiaiDau(liveScore.getId(),
 //							liveScore.getName());
 					// showFragment(new BangXepHangFragment(dau, null));
-					showBangXemHang(dau);
+					showPhongDoDoiDauFragment(dau);
 				}else if(position == 1){
 					showGameDuDoan(null);
 				}
 				else if (position == 2) {
-					showPhongDoDoiDauFragment(dau);
+					showBangXemHang(dau);
 				}else if (position == 3) {
 					//nhandinhchuyengia
 				}else{

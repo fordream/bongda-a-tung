@@ -29,7 +29,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <ImageView
-            android:id="@+id/image_phongdo"
+            android:id="@+id/image_bangxephang"
             android:layout_width="@dimen/dimen_25dp"
             android:layout_height="@dimen/dimen_25dp"
             android:src="@drawable/game_dudoan_recovered_14" />
@@ -67,7 +67,7 @@
                     android:background="@drawable/game_dudoan_recovered_25" />
 
                 <ImageView
-                    android:id="@+id/bangxephang_icon"
+                    android:id="@+id/phongdo_icon"
                     android:layout_width="@dimen/size_button_live_score"
                     android:layout_height="@dimen/size_button_live_score"
                     android:layout_marginLeft="@dimen/dimen_5dp"
