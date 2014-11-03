@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.app.bongda.R;
 
@@ -25,4 +26,7 @@ public class PhongDodoiItemTanCongPhongThuView extends LinearLayout {
 		inflater.inflate(R.layout.phongdodoi_tancong_phongthu, this);
 	}
 
+	public void setText(int id,String text) {
+		((TextView) findViewById(id)).setText(text);
+	}
 }
