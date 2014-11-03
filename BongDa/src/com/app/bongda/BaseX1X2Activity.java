@@ -125,20 +125,21 @@ public class BaseX1X2Activity extends BaseActivtiy {
 			@Override
 			public void onCallBackListenner(int position, Object data) {
 				LiveScore liveScore = (LiveScore) data;
+				GiaiDau dau = new GiaiDau(liveScore.getId(),
+						liveScore.getName() , liveScore.magiai(), liveScore.madoinha(), liveScore.madoikhach(),liveScore.idmagiai());
 				if (position == 0) {
 //					GiaiDau dau = new GiaiDau(liveScore.getId(),
 //							liveScore.getName());
-					GiaiDau dau = new GiaiDau(liveScore.getId(),
-							liveScore.getName() , liveScore.magiai(), liveScore.madoinha(), liveScore.madoikhach(),liveScore.idmagiai());
 					// showFragment(new BangXepHangFragment(dau, null));
 					showBangXemHang(dau);
-				} else if (position == 2) {
-					GiaiDau dau = new GiaiDau(liveScore.getId(),
-							liveScore.getName() , liveScore.magiai(), liveScore.madoinha(), liveScore.madoikhach(),liveScore.idmagiai());
+				}else if(position == 1){
+					showGameDuDoan(null);
+				}
+				else if (position == 2) {
 					showPhongDoDoiDauFragment(dau);
+				}else if (position == 3) {
+					//nhandinhchuyengia
 				}else{
-					GiaiDau dau = new GiaiDau(liveScore.getId(),
-							liveScore.getName() , liveScore.magiai(), liveScore.madoinha(), liveScore.madoikhach(),liveScore.idmagiai());
 					showTuongThuatTranLiveScoreFragment(dau);
 				}
 			}

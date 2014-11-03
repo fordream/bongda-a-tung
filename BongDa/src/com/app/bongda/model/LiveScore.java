@@ -2,7 +2,7 @@ package com.app.bongda.model;
 
 public class LiveScore extends PhongDo {
 	public LiveScore(boolean isHeader, String id, String giai, String name, String name2,
-			String ht, String phut ,String thoigian, String iC0, String tiso, int trangthai, String magiai, String madoinha, String madoikhach, String IDMagiai) {
+			String ht, String phut ,String thoigian, String iC0, String tiso, int trangthai, String magiai, String madoinha, String madoikhach, String IDMagiai, boolean bNhanDinhChuyenGia_, boolean bGameDuDoan_, boolean bDaCapNhapVaoBXH_) {
 		super(id, name, name2, iC0, thoigian);
 		this.isHeader = isHeader;
 		this.sTenGiai = giai;
@@ -15,6 +15,9 @@ public class LiveScore extends PhongDo {
 		this.sMaDoiNha = madoinha;
 		this.sMaDoiKhach = madoikhach;
 		this.iID_MaGiai = IDMagiai;
+		this.bNhanDinhChuyenGia = bNhanDinhChuyenGia_;
+		this.bDaCapNhapVaoBXH = bDaCapNhapVaoBXH_;
+		this.bGameDuDoan = bGameDuDoan_;
 	}
 	public LiveScore(boolean isHeader, String sTenGiai,String sTenDoiNha,String sTenDoiKhach,int iCN_BanThang_DoiNha,int iCN_BanThang_DoiKhach,int iCN_BanThang_DoiNha_HT,int iCN_BanThang_DoiKhach_HT) {
 		super(null,sTenDoiNha,sTenDoiKhach,null,null);
@@ -48,6 +51,9 @@ public class LiveScore extends PhongDo {
 	
 	private String iID_MaGiai;
 
+	private boolean bNhanDinhChuyenGia;
+	private boolean bGameDuDoan;
+	private boolean bDaCapNhapVaoBXH;
 	public boolean isHeader() {
 		return isHeader;
 	}
@@ -114,4 +120,15 @@ public class LiveScore extends PhongDo {
 		return iID_MaGiai;
 	}
 	
+	public boolean isNhanDinhChuyenGia(){
+		return bNhanDinhChuyenGia;
+	}
+	
+	public boolean isGameDuDoan(){
+		return bGameDuDoan;
+	}
+	
+	public boolean isDaCapNhapVaoBXH(){
+		return bDaCapNhapVaoBXH;
+	}
 }

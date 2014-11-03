@@ -88,6 +88,39 @@ public class LiveScoreFragment extends BaseFragment {
 			} else {
 				convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
 			}
+			
+			//cogamedudoan
+			if (liveScore.isGameDuDoan()) {
+				convertView.findViewById(R.id.gamedudoan_icon).setVisibility(View.VISIBLE);
+				convertView.findViewById(R.id.gamedudoan_icon).setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						callBackListenner.onCallBackListenner(1, liveScore);
+					}
+				});
+			} else {
+				convertView.findViewById(R.id.gamedudoan_icon).setVisibility(View.GONE);
+			}
+			
+			//coykienchuyengia
+			if (liveScore.isNhanDinhChuyenGia()) {
+				convertView.findViewById(R.id.persion).setVisibility(View.VISIBLE);
+			} else {
+				convertView.findViewById(R.id.persion).setVisibility(View.GONE);
+			}
+			
+			//cobangxephang
+			if (liveScore.isDaCapNhapVaoBXH()) {
+				convertView.findViewById(R.id.bangxephang_icon).setVisibility(View.VISIBLE);
+				convertView.findViewById(R.id.bangxephang_icon).setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						callBackListenner.onCallBackListenner(0, liveScore);
+					}
+				});
+			} else {
+				convertView.findViewById(R.id.bangxephang_icon).setVisibility(View.GONE);
+			}
 
 			setText(convertView, R.id.textView1, liveScore.sTenGiai());
 
@@ -136,14 +169,7 @@ public class LiveScoreFragment extends BaseFragment {
 			setText(convertView, R.id.TextView023, liveScore.getName2());
 			// setText(convertView, R.id.tv1, liveScore.getDate());
 
-			convertView.findViewById(R.id.imageView2).setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					callBackListenner.onCallBackListenner(0, liveScore);
-				}
-			});
-
-			convertView.findViewById(R.id.ImageView01).setOnClickListener(new OnClickListener() {
+			convertView.findViewById(R.id.image_phongdo).setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					callBackListenner.onCallBackListenner(2, liveScore);
@@ -250,6 +276,7 @@ public class LiveScoreFragment extends BaseFragment {
 							 ByUtils.wsFootBall_Lives);
 				}else{
 					if(TypeView.equalsIgnoreCase("quantam")){
+						CommonUtil.getdata(getActivity());
 						if (CommonUtil.listQuanTam.size() > 0){
 							new APICaller(getActivity()).callApi("", true, callbackAPI,
 									 ByUtils.wsFootBall_Lives);
@@ -337,10 +364,10 @@ public class LiveScoreFragment extends BaseFragment {
 							});
 
 							for (int i = 0; i < array.size(); i++) {
-								String bNhanDinhChuyenGia = array.get(i).getString("bNhanDinhChuyenGia");
-								String bGameDuDoan = array.get(i).getString("bGameDuDoan");
-								String bDaCapNhapVaoBXH = array.get(i).getString("bDaCapNhapVaoBXH");
-//								Log.e("kkk", i + "::" + bNhanDinhChuyenGia + ":" + bGameDuDoan + ":" + bDaCapNhapVaoBXH);
+								boolean bNhanDinhChuyenGia = array.get(i).getBoolean("bNhanDinhChuyenGia");
+								boolean bGameDuDoan = array.get(i).getBoolean("bGameDuDoan");
+								boolean bDaCapNhapVaoBXH = array.get(i).getBoolean("bDaCapNhapVaoBXH");
+								Log.e("kkk", i + ":"+array.get(i).getString("sTenDoiNha")+":" + bNhanDinhChuyenGia + ":" + bGameDuDoan + ":" + bDaCapNhapVaoBXH);
 
 								// String kk =
 								// array.get(i).getString("sTenGiai");
@@ -372,19 +399,19 @@ public class LiveScoreFragment extends BaseFragment {
 								// +sTenDoiNha);iID_MaGiai
 								if (i == 0) {
 									countryAdapter.addItem(new LiveScore(true, iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut, sThoiGian, iC0, tiso, iTrangThai, sMaGiai, sMaDoiNha,
-											sMaDoiKhach, iID_MaGiai));
+											sMaDoiKhach, iID_MaGiai, bNhanDinhChuyenGia, bGameDuDoan, bDaCapNhapVaoBXH ));
 									countryAdapter.addItem(new LiveScore(false, iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut, sThoiGian, iC0, tiso, iTrangThai, sMaGiai, sMaDoiNha,
-											sMaDoiKhach, iID_MaGiai));
+											sMaDoiKhach, iID_MaGiai, bNhanDinhChuyenGia, bGameDuDoan, bDaCapNhapVaoBXH));
 
 								} else if (i > 0) {
 									if ((array.get(i).getString("sTenGiai")).equalsIgnoreCase(array.get(i - 1).getString("sTenGiai"))) {
 										countryAdapter.addItem(new LiveScore(false, iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut, sThoiGian, iC0, tiso, iTrangThai, sMaGiai, sMaDoiNha,
-												sMaDoiKhach, iID_MaGiai));
+												sMaDoiKhach, iID_MaGiai, bNhanDinhChuyenGia, bGameDuDoan, bDaCapNhapVaoBXH));
 									} else {
 										countryAdapter.addItem(new LiveScore(true, iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut, sThoiGian, iC0, tiso, iTrangThai, sMaGiai, sMaDoiNha,
-												sMaDoiKhach, iID_MaGiai));
+												sMaDoiKhach, iID_MaGiai, bNhanDinhChuyenGia, bGameDuDoan, bDaCapNhapVaoBXH));
 										countryAdapter.addItem(new LiveScore(false, iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut, sThoiGian, iC0, tiso, iTrangThai, sMaGiai, sMaDoiNha,
-												sMaDoiKhach, iID_MaGiai));
+												sMaDoiKhach, iID_MaGiai, bNhanDinhChuyenGia, bGameDuDoan, bDaCapNhapVaoBXH));
 
 									}
 								}
