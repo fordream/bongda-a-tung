@@ -6,11 +6,14 @@ import org.json.JSONException;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.app.bongda.R;
 import com.app.bongda.base.BaseFragment;
 import com.app.bongda.base.BongDaBaseAdapter;
+import com.app.bongda.base.ImageLoaderUtils;
 import com.app.bongda.callback.APICaller;
 import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.model.GiaiDau;
@@ -68,7 +71,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 		
 	}
 
-	ICallbackAPI callbackAPI, callbackAPI_Chitiet ;
+	ICallbackAPI callbackAPI, callbackAPI_Chitiet, callbackAPI_tuongthuat ;
 	private String iID_MaDoiNha;
 	private String iID_MaDoiKhach;
 	private String iID_MaGiai;
@@ -118,13 +121,71 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 	String DoiKhach_SoTran_Khong_LotLuoi;
 	String DoiKhach_SoTran_LotLuoi;
 	String DoiKhach_Hieu_So_Ban_Thua;
+	
+	public String iCN_BanThang_DoiKhach;
+    public String iCN_BanThang_DoiKhach_HT;
+    public String iCN_BanThang_DoiNha;
+    public String iCN_BanThang_DoiNha_HT;
+    public String sTenDoiKhach;
+    public String sTenDoiNha;
+    public String sTenGiai;
+    public String sLogoGiai;
+    public String sLogoDoiNha;
+    public String sLogoDoiKhach;
 	@Override
 	public void onInitData() {
+		callbackAPI_tuongthuat = new ICallbackAPI() {
+			@Override
+			public void onSuccess(String response) {
+//				CommonAndroid.showDialog(getActivity(), "data2:" + response , null);
+				String string_temp = CommonAndroid.parseXMLAction(response);
+				if(!string_temp.equalsIgnoreCase("")){
+					try {
+						JSONArray jsonarray = new JSONArray(string_temp);
+						for (int i = 0; i < jsonarray.length(); i++) {
+							//parse
+							sTenGiai = jsonarray.getJSONObject(i).getString("sTenGiai");
+							sTenDoiNha = jsonarray.getJSONObject(i).getString("sTenDoiNha");
+							sTenDoiKhach = jsonarray.getJSONObject(i).getString("sTenDoiKhach");
+							iCN_BanThang_DoiNha = jsonarray.getJSONObject(i).getString("iCN_BanThang_DoiNha");
+							iCN_BanThang_DoiKhach = jsonarray.getJSONObject(i).getString("iCN_BanThang_DoiKhach");
+							iCN_BanThang_DoiNha_HT= jsonarray.getJSONObject(i).getString("iCN_BanThang_DoiNha_HT");
+							iCN_BanThang_DoiKhach_HT = jsonarray.getJSONObject(i).getString("iCN_BanThang_DoiKhach_HT");
+							sLogoGiai = jsonarray.getJSONObject(i).getString("sLogoGiai");
+							sLogoDoiNha = jsonarray.getJSONObject(i).getString("sLogoDoiNha");
+							sLogoDoiKhach = jsonarray.getJSONObject(i).getString("sLogoDoiKhach");
+							
+							iID_MaDoiNha = jsonarray.getJSONObject(i).getString("iID_MaDoiNha");
+							iID_MaDoiKhach = jsonarray.getJSONObject(i).getString("iID_MaDoiKhach");
+							iID_MaGiai = jsonarray.getJSONObject(i).getString("iID_MaGiai");
+							
+						}
+						ImageLoaderUtils.getInstance(getActivity()).DisplayImage(sLogoDoiNha, (ImageView) view.findViewById(R.id.logo_doinha));
+						ImageLoaderUtils.getInstance(getActivity()).DisplayImage(sLogoDoiKhach, (ImageView) view.findViewById(R.id.logo_doikhach));
+						
+						if(!iID_MaGiai.equalsIgnoreCase("") && !iID_MaDoiNha.equalsIgnoreCase("")  && !iID_MaDoiKhach.equalsIgnoreCase("")){
+							TenDoiNha = sTenDoiNha;
+							TenDoiKhach = sTenDoiKhach;
+							PhongDoChiTiet();
+						}
+						
+					} catch (JSONException e) {
+					}
+					
+				}
+				
+			}
+
+			@Override
+			public void onError(String message) {
+			}
+		};
+		
 		callbackAPI = new ICallbackAPI() {
 			@Override
 			public void onSuccess(String response) {
 //				CommonAndroid.showDialog(getActivity(), "data2:" + response , null);
-				Log.e("aaaaa", "data::" + response);
+//				Log.e("aaaaa", "data::" + response);
 				String string_temp = CommonAndroid.parseXMLAction(response);
 				if(!string_temp.equalsIgnoreCase("")){
 					try {
@@ -132,7 +193,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 						for (int i = 0; i < jsonarray.length(); i++) {
 							//parse
 							String callbackAPI = jsonarray.get(i).toString();
-							Log.e("callbackAPI",i + "::"+ callbackAPI );
+//							Log.e("callbackAPI",i + "::"+ callbackAPI );
 //							iID_MaDoiNha = jsonarray.getJSONObject(i).getString("iID_MaDoiNha");
 //							iID_MaDoiKhach = jsonarray.getJSONObject(i).getString("iID_MaDoiKhach");
 //							iID_MaGiai = jsonarray.getJSONObject(i).getString("iID_MaGiai");
@@ -147,7 +208,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 
 			@Override
 			public void onError(String message) {
-				CommonAndroid.showDialog(getActivity(), "data3err:" + message , null);
+				CommonAndroid.showDialog(getActivity(), "err:" + message , null);
 				Log.e("ERR",message);
 			}
 		};
@@ -161,8 +222,8 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 						JSONArray jsonarray = new JSONArray(string_temp);
 						for (int i = 0; i < jsonarray.length(); i++) {
 							//parse
-							String callbackAPI_Chitiet = jsonarray.get(i).toString();
-							Log.e("callbackAPI_Chitiet",i + "::"+ callbackAPI_Chitiet );
+//							String callbackAPI_Chitiet = jsonarray.get(i).toString();
+//							Log.e("callbackAPI_Chitiet",i + "::"+ callbackAPI_Chitiet );
 							DoiNha_SoTran_GhiBan_SanNha = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_GhiBan_SanNha");
 							DoiNha_SoTran_GhiBan_SanKhach = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_GhiBan_SanKhach");
 							DoiNha_TyLe_GhiBan_SanNha = jsonarray.getJSONObject(i).getString("DoiNha_TyLe_GhiBan_SanNha");
@@ -251,7 +312,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 						PhongDodoiItemView2.setText(R.id.tylelotluonsannhatrungbinh1, DoiKhach_TyLe_LotLuoi_SanNha);
 						PhongDodoiItemView2.setText(R.id.tylelotluonsannhatrungbinh2, DoiKhach_TyLe_LotLuoi_SanKhach);
 						
-						
+						PhongDodoiItemTanCongPhongThuView1.setText(R.id.tendoi, TenDoiNha);
 						PhongDodoiItemTanCongPhongThuView1.setText(R.id.tyleghibantrungbinh1, DoiNha_TyLe_GhiBan_TrungBinh);
 						PhongDodoiItemTanCongPhongThuView1.setText(R.id.sotrankhongghiban1 , DoiNha_SoTran_Khong_GhiBan);
 						PhongDodoiItemTanCongPhongThuView1.setText(R.id.sotranghiban1 , DoiNha_SoTran_GhiBan);
@@ -261,7 +322,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 						PhongDodoiItemTanCongPhongThuView1.setText(R.id.sotranlotluoi1 , DoiNha_SoTran_LotLuoi);
 						PhongDodoiItemTanCongPhongThuView1.setText(R.id.hieusobanthua1 , DoiNha_Hieu_So_Ban_Thua);
 						
-						
+						PhongDodoiItemTanCongPhongThuView2.setText(R.id.tendoi, TenDoiKhach);
 						PhongDodoiItemTanCongPhongThuView2.setText(R.id.tyleghibantrungbinh1, DoiKhach_TyLe_GhiBan_TrungBinh);
 						PhongDodoiItemTanCongPhongThuView2.setText(R.id.sotrankhongghiban1 , DoiKhach_SoTran_Khong_GhiBan);
 						PhongDodoiItemTanCongPhongThuView2.setText(R.id.sotranghiban1 , DoiKhach_SoTran_GhiBan);
@@ -299,18 +360,21 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 			phongdodoidau_bangephang_listitem.addView(new BangXepHangItemView(getActivity()));
 		}
 		
-		iID_MaGiai = CommonUtil.getdata(getActivity(),"iID_MaGiai");
-		iID_MaDoiNha = CommonUtil.getdata(getActivity(),"iID_MaDoiNha");
-		iID_MaDoiKhach = CommonUtil.getdata(getActivity(),"iID_MaDoiKhach");
-		if(!iID_MaGiai.equalsIgnoreCase("") && !iID_MaDoiNha.equalsIgnoreCase("")  && !iID_MaDoiKhach.equalsIgnoreCase("")){
-			PhongDoChiTiet();
-		}
+//		iID_MaGiai = CommonUtil.getdata(getActivity(),"iID_MaGiai");
+//		iID_MaDoiNha = CommonUtil.getdata(getActivity(),"iID_MaDoiNha");
+//		iID_MaDoiKhach = CommonUtil.getdata(getActivity(),"iID_MaDoiKhach");
+		
+		//laythongtinchitiet
+		String param2 = String.format(ByUtils.wsFootBall_MatchDetail, aobj);
+		new APICaller(getActivity()).callApi("", true,
+					callbackAPI_tuongthuat, param2);
 	}
 	
 	private void PhongDoChiTiet(){
         String magiai 		= iID_MaGiai;
         String madoinha 	= iID_MaDoiNha;
         String madoikhach 	= iID_MaDoiKhach;
+        Log.e("Tag", iID_MaGiai + ":" + iID_MaDoiNha + ":" + iID_MaDoiKhach);
         String param2 = (ByUtils.wsFootBall_Phong_Do_ChiTiet).replace("magiai",
         		magiai);
         param2 = param2.replace("madoinha",madoinha);
