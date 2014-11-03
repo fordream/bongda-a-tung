@@ -64,7 +64,8 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 			String iPhut = CommonUtil.getdata(getActivity(),"iPhut");
 			String Banthang = CommonUtil.getdata(getActivity(),"Banthang");
 			String HT = CommonUtil.getdata(getActivity(),"HT");
-			((TextView) view.findViewById(R.id.textTenTran)).setText(sTenGiai);
+//			CommonAndroid.showDialog(getActivity(), "data22:" + sTenGiai , null);
+			((TextView) view.findViewById(R.id.tuongthuat_textTenTran)).setText(sTenGiai);
 			((TextView) view.findViewById(R.id.TextView01)).setText(sTenDoiNha);
 			((TextView) view.findViewById(R.id.TextView02)).setText(sTenDoiKhach);
 			((TextView) view.findViewById(R.id.tuongthuat_time)).setText(iPhut);
@@ -214,6 +215,7 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 						String Banthang = (new StringBuilder()).append(iCN_BanThang_DoiNha).append(" - ").append(iCN_BanThang_DoiKhach).toString();
 						
 						//save data
+//						CommonAndroid.showDialog(getActivity(), "data2:" + sTenGiai , null);
 						CommonUtil.savedata(getActivity(),"sTenGiai", sTenGiai);
 						CommonUtil.savedata(getActivity(),"sTenDoiNha", sTenDoiNha);
 						CommonUtil.savedata(getActivity(),"sTenDoiKhach", sTenDoiKhach);
