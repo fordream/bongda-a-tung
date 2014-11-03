@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.app.bongda.R;
 import com.app.bongda.base.BaseFragment;
 import com.app.bongda.base.BongDaBaseAdapter;
+import com.app.bongda.base.ImageLoaderUtils;
 import com.app.bongda.callback.APICaller;
 import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.inter.CallBackListenner;
@@ -34,7 +35,7 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 	OnItemClickListener onItemClickListener;
 	CallBackListenner backListenner;
 	GiaiDau dau;
-	public static View view;
+	public static View views;
 	SharedPreferences pref_tuongthuat;
 	private boolean ListItem = false;
 	public TuongThuatTranLiveScoreFragment(GiaiDau dau,
@@ -65,12 +66,12 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 			String Banthang = CommonUtil.getdata(getActivity(),"Banthang");
 			String HT = CommonUtil.getdata(getActivity(),"HT");
 //			CommonAndroid.showDialog(getActivity(), "data22:" + sTenGiai , null);
-			((TextView) view.findViewById(R.id.tuongthuat_textTenTran)).setText(sTenGiai);
-			((TextView) view.findViewById(R.id.TextView01)).setText(sTenDoiNha);
-			((TextView) view.findViewById(R.id.TextView02)).setText(sTenDoiKhach);
-			((TextView) view.findViewById(R.id.tuongthuat_time)).setText(iPhut);
-			((TextView) view.findViewById(R.id.tuongthuat_tiso)).setText(Banthang);
-			((TextView) view.findViewById(R.id.tuongthuat_ht)).setText(HT);
+			((TextView) views.findViewById(R.id.tuongthuat_textTenTran)).setText(sTenGiai);
+			((TextView) views.findViewById(R.id.TextView01)).setText(sTenDoiNha);
+			((TextView) views.findViewById(R.id.TextView02)).setText(sTenDoiKhach);
+			((TextView) views.findViewById(R.id.tuongthuat_time)).setText(iPhut);
+			((TextView) views.findViewById(R.id.tuongthuat_tiso)).setText(Banthang);
+			((TextView) views.findViewById(R.id.tuongthuat_ht)).setText(HT);
 			if(item != null){
 				final TuongThuatTran tuongthuattran = (TuongThuatTran) item;
 				if(tuongthuattran.isDoi() == 1){
@@ -109,6 +110,15 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 				convertView.findViewById(R.id.doi2).setVisibility(View.GONE);
 			}
 			
+			//logo
+			String sLogoGiai = CommonUtil.getdata(getActivity(),"sLogoGiai");
+			String sLogoDoiNha = CommonUtil.getdata(getActivity(),"sLogoDoiNha");
+			String sLogoDoiKhach = CommonUtil.getdata(getActivity(),"sLogoDoiKhach");
+			
+			ImageLoaderUtils.getInstance(getActivity()).DisplayImage(sLogoGiai, (ImageView) views.findViewById(R.id.logogiai));
+			ImageLoaderUtils.getInstance(getActivity()).DisplayImage(sLogoDoiNha, (ImageView) views.findViewById(R.id.logo_doinha));
+			ImageLoaderUtils.getInstance(getActivity()).DisplayImage(sLogoDoiKhach, (ImageView) views.findViewById(R.id.logo_doikhach));
+			Log.e("aaaa", "sLogoDoiNha" + sLogoDoiNha + "::sLogoDoiKhach" +sLogoDoiKhach);
 			
 		}
 
@@ -141,7 +151,7 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 		listView.setAdapter(countryAdapter);
 		listView.setOnItemClickListener(onItemClickListener);
 
-		this.view = view;
+		this.views = view;
 //		((TextView) view.findViewById(R.id.textTenTran)).setText(dau.getName());
 
 	}
@@ -178,6 +188,9 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
     public String sTenDoiKhach;
     public String sTenDoiNha;
     public String sTenGiai;
+    public String sLogoGiai;
+    public String sLogoDoiNha;
+    public String sLogoDoiKhach;
 	@Override
 	public void onInitData() {
 
@@ -203,6 +216,10 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 							iCN_BanThang_DoiNha_HT= jsonarray.getJSONObject(i).getString("iCN_BanThang_DoiNha_HT");
 							iCN_BanThang_DoiKhach_HT = jsonarray.getJSONObject(i).getString("iCN_BanThang_DoiKhach_HT");
 							iPhut = jsonarray.getJSONObject(i).getString("iPhut") + "'";
+							sLogoGiai = jsonarray.getJSONObject(i).getString("sLogoGiai");
+							sLogoDoiNha = jsonarray.getJSONObject(i).getString("sLogoDoiNha");
+							sLogoDoiKhach = jsonarray.getJSONObject(i).getString("sLogoDoiKhach");
+							
 							loadItem(jsonarray.getJSONObject(i),"sThongTin_DoiNha",1);//GOAL_HOME
 							loadItem(jsonarray.getJSONObject(i),"sThongTin_DoiKhach",2);//GOAL_AWAY
 							loadItem(jsonarray.getJSONObject(i),"sThongTinThe_DoiNha",3);//YELLOW_CARD_HOME
@@ -222,6 +239,9 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 						CommonUtil.savedata(getActivity(),"iPhut", iPhut);
 						CommonUtil.savedata(getActivity(),"Banthang", Banthang);
 						CommonUtil.savedata(getActivity(),"HT", HT);
+						CommonUtil.savedata(getActivity(),"sLogoGiai", sLogoGiai);
+						CommonUtil.savedata(getActivity(),"sLogoDoiNha", sLogoDoiNha);
+						CommonUtil.savedata(getActivity(),"sLogoDoiKhach", sLogoDoiKhach);
 						if(!ListItem){
 							countryAdapter.addItem(null);
 						}
