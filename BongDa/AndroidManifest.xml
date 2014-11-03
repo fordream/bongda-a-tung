@@ -63,6 +63,11 @@
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".MayTinhDuDoanActivity"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale"
+            android:screenOrientation="portrait" >
+        </activity>
 
         <service android:name=".service.BongDaService" android:enabled="true" android:exported="true">
         </service>

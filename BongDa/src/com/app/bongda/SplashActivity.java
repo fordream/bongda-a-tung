@@ -107,6 +107,7 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 			} else if (index == 6) {
 				// May tinh du doan
 				// chua co
+				startActivity(new Intent(SplashActivity.this, MayTinhDuDoanActivity.class));
 			} else if (index == 5) {
 				// nhan dinh cua chuyen gia
 				// crash

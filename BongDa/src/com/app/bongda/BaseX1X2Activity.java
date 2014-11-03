@@ -11,6 +11,7 @@ import com.app.bongda.fragment.CountryFragment;
 import com.app.bongda.fragment.DanhSachGiaiDauFragment;
 import com.app.bongda.fragment.GameDuDoanFragment;
 import com.app.bongda.fragment.LiveScoreFragment;
+import com.app.bongda.fragment.MayTinhDuDoanFragment;
 import com.app.bongda.fragment.NhanDinhChuyenGiaFragment;
 import com.app.bongda.fragment.PhongDoDoiDauFragment;
 import com.app.bongda.fragment.TuongThuatTranLiveScoreFragment;
@@ -160,5 +161,9 @@ public class BaseX1X2Activity extends BaseActivtiy {
 	
 	public void showGameDuDoan(GiaiDau dau) {
 		showFragment(new GameDuDoanFragment(null));
+	}
+	
+	public void showMayTinhDuDoan(GiaiDau dau) {
+		showFragment(new MayTinhDuDoanFragment(null));
 	}
 }
