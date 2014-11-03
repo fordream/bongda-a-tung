@@ -458,7 +458,7 @@ public class LiveScoreFragment extends BaseFragment {
 			case MotionEvent.ACTION_UP:
 				Log.e("action", "ACTION_UP - ");
 				if(difference <= 10 && difference >= -10){
-					callBackListenner.onCallBackListenner(3, liveScore);
+					callBackListenner.onCallBackListenner(5, liveScore);
 				}else{
 					calcuateDifference(liveScore);
 				}
