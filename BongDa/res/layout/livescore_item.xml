@@ -108,7 +108,6 @@
                 android:textColor="#ff3333"
                 android:textStyle="bold" />
         </RelativeLayout>
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -164,6 +163,16 @@
                 android:layout_toRightOf="@+id/ImageView03"
                 android:text="Large Text"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <ImageView
+                android:id="@+id/iconlike"
+                android:layout_width="@dimen/dimen_30dp"
+                android:layout_height="@dimen/dimen_30dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:visibility="gone"
+                android:background="@drawable/like_icon" />
+
         </RelativeLayout>
 
         <TextView

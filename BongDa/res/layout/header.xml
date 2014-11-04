@@ -13,6 +13,12 @@
         android:gravity="center" >
 
         <Button
+            android:id="@+id/Button05"
+            android:layout_width="@dimen/header_button_size"
+            android:layout_height="@dimen/header_button_size"
+            android:background="@drawable/like_icon"
+            android:visibility="gone" />
+        <Button
             android:id="@+id/Button04"
             android:layout_width="@dimen/header_button_size"
             android:layout_height="@dimen/header_button_size"

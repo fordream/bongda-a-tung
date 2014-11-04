@@ -20,6 +20,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +46,7 @@ public class LiveScoreFragment extends BaseFragment {
 	String TypeView;
 	private int onLoad = 1;
 	private MyTouchListener mOnTouchListener;
+	ImageView img_favorite;
 	public LiveScoreFragment(OnItemClickListener onItemClickListener, CallBackListenner callBackListenner, GiaiDau data, String type) {
 		super();
 		this.callBackListenner = callBackListenner;
@@ -76,13 +78,13 @@ public class LiveScoreFragment extends BaseFragment {
 			convertView.findViewById(R.id.livescore_header).setVisibility(View.GONE);
 			convertView.findViewById(R.id.livescore_main).setVisibility(View.GONE);
 
-			//show tran quan tam
-			if (CommonUtil.listQuanTam.contains(liveScore.getId()))
-            {
-				convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
-			}else{
-				convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
-			}
+//			//show tran quan tam
+//			if (CommonUtil.listQuanTam.contains(liveScore.getId()))
+//            {
+//				convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
+//			}else{
+//				convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
+//			}
 			if (liveScore.isHeader()) {
 				convertView.findViewById(R.id.livescore_header).setVisibility(View.VISIBLE);
 			} else {
@@ -182,6 +184,37 @@ public class LiveScoreFragment extends BaseFragment {
 					callBackListenner.onCallBackListenner(0, liveScore);
 				}
 			});
+			
+			if(addfavorite){
+				convertView.findViewById(R.id.iconlike).setVisibility(View.VISIBLE);
+				//show tran quan tam
+				img_favorite = (ImageView) getActivity().findViewById(R.id.iconlike);
+				if (CommonUtil.listQuanTam.contains(liveScore.getId()))
+	            {
+//					convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
+					img_favorite.setImageResource(R.drawable.like_icon);
+				}else{
+//					convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
+					img_favorite.setImageResource(R.drawable.unlike_icon);
+				}
+				convertView.findViewById(R.id.traitim).setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						if (CommonUtil.listQuanTam.contains(liveScore.getId()))
+			            {
+							CommonUtil.listQuanTam.remove(liveScore.getId());
+			                CommonUtil.savedata(getActivity());
+							img_favorite.setImageResource(R.drawable.like_icon);
+						}else{
+							 CommonUtil.listQuanTam.add(liveScore.getId());
+				             CommonUtil.savedata(getActivity());
+							img_favorite.setImageResource(R.drawable.unlike_icon);
+						}
+					}
+				});
+			}else{
+				convertView.findViewById(R.id.iconlike).setVisibility(View.GONE);
+			}
 			mOnTouchListener = new MyTouchListener(liveScore);
 			convertView.setOnTouchListener(mOnTouchListener);
 		}
@@ -203,6 +236,7 @@ public class LiveScoreFragment extends BaseFragment {
     private int action_down_x = 0;
     private int action_up_x = 0;
     public static int difference = 0;
+    private boolean addfavorite = false;
     ListView listView;
 	@Override
 	public void onInitCreateView(View view) {
@@ -223,8 +257,21 @@ public class LiveScoreFragment extends BaseFragment {
 		listView = (ListView) view.findViewById(R.id.listView1);
 		listView.setAdapter(countryAdapter);
 		
+		headerView.findViewById(R.id.Button05).setVisibility(View.VISIBLE);
+		headerView.findViewById(R.id.Button05).setOnClickListener(clickListener);
 
 	}
+	
+	View.OnClickListener clickListener = new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+
+			if(v.getId() == R.id.Button05){
+				addfavorite = addfavorite == true ? false : true;
+				countryAdapter.notifyDataSetChanged();
+			}
+		}
+	};
 	
 	private void calcuateDifference(final LiveScore liveScore) {
 		getActivity().runOnUiThread(new Runnable() {
