@@ -34,6 +34,8 @@ public class MActivity extends BaseFragmentActivity {
 
 		if (fRAGMENT == FRAGMENT.COUNTRY) {
 			showCountry();
+		} else if (fRAGMENT == FRAGMENT.LIVESCORE) {
+			showLiveScore(null, null);
 		}
 	}
 
@@ -70,7 +72,7 @@ public class MActivity extends BaseFragmentActivity {
 				} else if (position == 3) {
 					showFragment(new GameDuDoanFragment(null));
 				} else if (position == 4) {
-					showFragment(new TyLeDuDoanFragment((GiaiDau) data,null));
+					showFragment(new TyLeDuDoanFragment((GiaiDau) data, null));
 				}
 			}
 		};
@@ -83,7 +85,8 @@ public class MActivity extends BaseFragmentActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				showLiveScore((GiaiDau) parent.getItemAtPosition(position),"giaidau");
+				showLiveScore((GiaiDau) parent.getItemAtPosition(position),
+						"giaidau");
 			}
 		};
 

@@ -31,7 +31,7 @@ public class BaseGroupActivity extends ActivityGroup {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.basefragmentactivity);
 
-		basegroup_frame = (FrameLayout) findViewById(R.id.basegroup_frame);
+		basegroup_frame = (FrameLayout) findViewById(R.id.basefragmentactivity_main);
 	}
 
 	public void setCanFinish(boolean canFinish) {
@@ -61,18 +61,26 @@ public class BaseGroupActivity extends ActivityGroup {
 
 	private void replaceView(View v) {
 		// Adds the old one to history
-		history.add(v);
+
 		// Changes this Groups View to the new View.
 		// setContentView(v);
-		basegroup_frame.addView(v);
+		if (basegroup_frame == null) {
+			history.add(v);
+			setContentView(v);
+		} else {
+			basegroup_frame.addView(v);
+		}
 	}
 
 	public void onBackPressed() {
 		if (history.size() > 1) {
 			history.remove(history.size() - 1);
 			View view = history.get(history.size() - 1);
-			// setContentView(view);
-			basegroup_frame.addView(view);
+			if (basegroup_frame == null) {
+				setContentView(view);
+			} else {
+				basegroup_frame.addView(view);
+			}
 		} else {
 			if (canFinish) {
 				// finish();
