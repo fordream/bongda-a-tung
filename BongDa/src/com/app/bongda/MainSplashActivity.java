@@ -2,7 +2,6 @@ package com.app.bongda;
 
 import android.app.Activity;
 import android.app.AlertDialog.Builder;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -12,10 +11,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.RotateAnimation;
-import android.widget.Toast;
 
-import com.app.bongda.base.BaseActivtiy;
-import com.app.bongda.callback.APICaller;
 import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.service.BongDaServiceManager;
 import com.app.bongda.service.BongDaServiceManager.BongDaServiceManagerListener;
@@ -40,7 +36,7 @@ public class MainSplashActivity extends Activity {
 
 				ic_logo.startAnimation(animation);
 
-				handler.sendEmptyMessageDelayed(0, 11);
+				handler.sendEmptyMessageDelayed(0, 10);
 			}
 		}
 
@@ -110,8 +106,8 @@ public class MainSplashActivity extends Activity {
 
 			builder.show();
 		} else {
-//			BongDaServiceManager.getInstance().getBongDaService()
-//					.startLoadContentBase();
+			// BongDaServiceManager.getInstance().getBongDaService()
+			// .startLoadContentBase();
 
 			ICallbackAPI callbackAPI = new ICallbackAPI() {
 
@@ -136,10 +132,10 @@ public class MainSplashActivity extends Activity {
 
 						// intent.putExtra("socre", string_temp);
 
-						//startActivity(intent);
-					//	finish();
-					//	overridePendingTransition(R.anim.bot_to_top,
-					//			R.anim.nothing);
+						startActivity(intent);
+						finish();
+						overridePendingTransition(R.anim.bot_to_top,
+								R.anim.nothing);
 					} else {
 						Builder builder = new Builder(MainSplashActivity.this);
 						builder.setCancelable(false);
@@ -184,7 +180,7 @@ public class MainSplashActivity extends Activity {
 					builder.show();
 				}
 			};
-			
+
 			BongDaServiceManager
 					.getInstance()
 					.getBongDaService()
