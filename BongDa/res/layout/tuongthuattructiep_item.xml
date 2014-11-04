@@ -23,7 +23,7 @@
         <TextView
             android:id="@+id/name2"
             style="@style/bongda_text_item"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dimen_100dp"
             android:layout_height="wrap_content"
             android:text="Large Text"
             android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -31,7 +31,7 @@
         <TextView
             android:id="@+id/time2"
             style="@style/bongda_text_item"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dimen_40dp"
             android:layout_height="wrap_content"
             android:text="28&apos;"
             android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -48,24 +48,24 @@
         <TextView
             android:id="@+id/time1"
             style="@style/bongda_text_item"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dimen_40dp"
             android:layout_height="wrap_content"
             android:text="28&apos;"
             android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <TextView
-            android:id="@+id/name1"
-            style="@style/bongda_text_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Large Text"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <ImageView
+		<ImageView
             android:id="@+id/icon_tuongthuat1"
             android:layout_width="@dimen/dimen_20dp"
             android:layout_height="@dimen/dimen_20dp"
             android:background="@drawable/vietnam" />
+        <TextView
+            android:id="@+id/name1"
+            style="@style/bongda_text_item"
+            android:layout_width="@dimen/dimen_100dp"
+            android:layout_height="wrap_content"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        
 
     </LinearLayout>
 
