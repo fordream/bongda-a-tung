@@ -19,6 +19,7 @@ import com.app.bongda.model.GiaiDau;
 import com.app.bongda.service.BongDaServiceManager;
 import com.app.bongda.util.ByUtils;
 import com.app.bongda.util.CommonAndroid;
+import com.app.bongda.util.CommonUtil;
 import com.app.bongda.view.HeaderView;
 import com.app.bongda.view.TyLeView;
 import com.vnp.core.datastore.database.CountryTable;
@@ -81,15 +82,18 @@ public class TyLeDuDoanFragment extends BaseFragment {
 		tyLeView1.setPer(0);
 		tyLeView2.setPer(0);
 
-		tyledudoan_name1.setText("");
-		tyledudoan_name2.setText("");
+		tyledudoan_name1.setText(CommonUtil.getdata(getActivity(),"sTenDoiNha"));
+		tyledudoan_name2.setText(CommonUtil.getdata(getActivity(),"sTenDoiKhach"));
 
-		tyledudoan_name_giaidau_text.setText("");
+		tyledudoan_name_giaidau_text.setText(CommonUtil.getdata(getActivity(),"sTenGiai"));
+		
+		ImageLoaderUtils.getInstance(getActivity()).DisplayImage(CommonUtil.getdata(getActivity(),"sLogoGiai"), (ImageView) view.findViewById(R.id.tyledudoan_img));
+		
 		if (giaidau != null) {
 			String idmagiaidau = giaidau.idmagiai();
 			GiaiDauTable giaiDauTable = BongDaServiceManager.getInstance().getGiaiDauTable(idmagiaidau);
-			tyledudoan_name_giaidau_text.setText(giaiDauTable.getData("sTenGiai"));
-			ImageLoaderUtils.getInstance(getActivity()).DisplayImage(giaiDauTable.getData("sLogo"), tyledudoan_img, null);
+//			tyledudoan_name_giaidau_text.setText(giaiDauTable.getData("sTenGiai"));
+//			ImageLoaderUtils.getInstance(getActivity()).DisplayImage(giaiDauTable.getData("sLogo"), tyledudoan_img, null);
 			String iID_MaQuocGia = giaiDauTable.getData("iID_MaQuocGia");
 			String where = String.format("iID_MaQuocGia ='%s'", iID_MaQuocGia);
 			Cursor cursor = BongDaServiceManager.getInstance().query(new CountryTable().getTableName(),where);
