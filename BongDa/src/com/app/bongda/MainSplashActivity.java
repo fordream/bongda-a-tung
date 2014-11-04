@@ -51,13 +51,6 @@ public class MainSplashActivity extends Activity {
 		ic_logo = (View) findViewById(R.id.ic_logo);
 		handler.sendEmptyMessage(0);
 
-		// handler.postDelayed(new Runnable() {
-		//
-		// @Override
-		// public void run() {
-		// onCheckForNetwork();
-		// }
-		// }, 1000);
 		BongDaServiceManager.getInstance().onResume(
 				new BongDaServiceManagerListener() {
 
@@ -106,8 +99,6 @@ public class MainSplashActivity extends Activity {
 
 			builder.show();
 		} else {
-			// BongDaServiceManager.getInstance().getBongDaService()
-			// .startLoadContentBase();
 
 			ICallbackAPI callbackAPI = new ICallbackAPI() {
 
@@ -119,9 +110,6 @@ public class MainSplashActivity extends Activity {
 					}
 
 					String string_temp = CommonAndroid.parseXMLAction(response);
-					// CommonAndroid.toast(MainSplashActivity.this,
-					// "onSuccess :"
-					// + string_temp);
 					if (!string_temp.equalsIgnoreCase("")) {
 
 						// save live score
