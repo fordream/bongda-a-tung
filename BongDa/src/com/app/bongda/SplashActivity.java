@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.TabHost;
@@ -35,53 +36,52 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 		setContentView(R.layout.tabexampleslide);
 		getTabHost().setOnTabChangedListener(this);
 
-//		Animation animation = AnimationUtils.loadAnimation(getContext(),
-//				R.anim.splash);
-//
-//		animation.setAnimationListener(new AnimationListener() {
-//
-//			@Override
-//			public void onAnimationStart(Animation animation) {
-//
-//			}
-//
-//			@Override
-//			public void onAnimationRepeat(Animation animation) {
-//
-//			}
-//
-//			@Override
-//			public void onAnimationEnd(Animation animation) {
-//				//BongDaServiceManager.getInstance().startLoadContentBase();
-//				getTabHost().setVisibility(View.VISIBLE);
-//				getTabHost().startAnimation(
-//						AnimationUtils.loadAnimation(getContext(),
-//								R.anim.splash));
-//				if (ByUtils.USEGROUPVIEW) {
-//					addTab(X1GroupActivity.class, "Home", "Home",
-//							R.drawable.menu_1);
-//					addTab(X2GroupActivity.class, "M1", "M1", R.drawable.menu_2);
-//					addTab(X3GroupActivity.class, "M2", "M2", R.drawable.menu_3);
-//					addTab(X4GroupActivity.class, "M3", "M3", R.drawable.menu_4);
-//				} else {
-//					addTab(X1Activity.class, "Home", "Home", R.drawable.menu_1);
-//					addTab(X2Activity.class, "M1", "M1", R.drawable.menu_2);
-//					addTab(X3Activity.class, "M2", "M2", R.drawable.menu_3);
-//					addTab(X4Activity.class, "M3", "M3", R.drawable.menu_4);
-//				}
-//
-//				addTab(X5Activity.class, "M3", "M3", R.drawable.menu_5);
-//				getTabHost().setCurrentTab(4);
-//			}
-//		});
-//		findViewById(R.id.ic_logo).startAnimation(animation);
+		// Animation animation = AnimationUtils.loadAnimation(getContext(),
+		// R.anim.splash);
+		//
+		// animation.setAnimationListener(new AnimationListener() {
+		//
+		// @Override
+		// public void onAnimationStart(Animation animation) {
+		//
+		// }
+		//
+		// @Override
+		// public void onAnimationRepeat(Animation animation) {
+		//
+		// }
+		//
+		// @Override
+		// public void onAnimationEnd(Animation animation) {
+		// //BongDaServiceManager.getInstance().startLoadContentBase();
+		// getTabHost().setVisibility(View.VISIBLE);
+		// getTabHost().startAnimation(
+		// AnimationUtils.loadAnimation(getContext(),
+		// R.anim.splash));
+		// if (ByUtils.USEGROUPVIEW) {
+		// addTab(X1GroupActivity.class, "Home", "Home",
+		// R.drawable.menu_1);
+		// addTab(X2GroupActivity.class, "M1", "M1", R.drawable.menu_2);
+		// addTab(X3GroupActivity.class, "M2", "M2", R.drawable.menu_3);
+		// addTab(X4GroupActivity.class, "M3", "M3", R.drawable.menu_4);
+		// } else {
+		// addTab(X1Activity.class, "Home", "Home", R.drawable.menu_1);
+		// addTab(X2Activity.class, "M1", "M1", R.drawable.menu_2);
+		// addTab(X3Activity.class, "M2", "M2", R.drawable.menu_3);
+		// addTab(X4Activity.class, "M3", "M3", R.drawable.menu_4);
+		// }
+		//
+		// addTab(X5Activity.class, "M3", "M3", R.drawable.menu_5);
+		// getTabHost().setCurrentTab(4);
+		// }
+		// });
+		// findViewById(R.id.ic_logo).startAnimation(animation);
 		getTabHost().setVisibility(View.VISIBLE);
-//		getTabHost().startAnimation(
-//				AnimationUtils.loadAnimation(getContext(),
-//						R.anim.splash));
+		// getTabHost().startAnimation(
+		// AnimationUtils.loadAnimation(getContext(),
+		// R.anim.splash));
 		if (ByUtils.USEGROUPVIEW) {
-			addTab(X1GroupActivity.class, "Home", "Home",
-					R.drawable.menu_1);
+			addTab(X1GroupActivity.class, "Home", "Home", R.drawable.menu_1);
 			addTab(X2GroupActivity.class, "M1", "M1", R.drawable.menu_2);
 			addTab(X3GroupActivity.class, "M2", "M2", R.drawable.menu_3);
 			addTab(X4GroupActivity.class, "M3", "M3", R.drawable.menu_4);
@@ -93,7 +93,7 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 		}
 
 		addTab(X5Activity.class, "M3", "M3", R.drawable.menu_5);
-//		getTabHost().setCurrentTab(4);
+		// getTabHost().setCurrentTab(4);
 	}
 
 	@Override
@@ -101,6 +101,16 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 		super.onResume();
 		registerReceiver(broadcastReceiver, new IntentFilter(CHANGETAG));
 	}
+
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			finish();
+			overridePendingTransition(R.anim.nothing, R.anim.top_to_bot);
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	};
 
 	@Override
 	protected void onPause() {
