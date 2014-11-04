@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.RotateAnimation;
 
@@ -43,6 +44,16 @@ public class MainSplashActivity extends Activity {
 		int rotate = 0;
 	};
 
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			finish();
+			overridePendingTransition(R.anim.nothing, R.anim.top_to_bot);
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	};
+
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
@@ -74,7 +85,7 @@ public class MainSplashActivity extends Activity {
 
 	private void onCheckForNetwork() {
 		if (isFinishing()) {
-			CommonAndroid.toast(MainSplashActivity.this, "finish");
+//			CommonAndroid.toast(MainSplashActivity.this, "finish");
 			return;
 		}
 
@@ -93,7 +104,7 @@ public class MainSplashActivity extends Activity {
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					finish();
-					overridePendingTransition(R.anim.bot_to_top, R.anim.nothing);
+					overridePendingTransition(R.anim.nothing, R.anim.top_to_bot);
 				}
 			});
 
