@@ -54,13 +54,32 @@ public class MainSplashActivity extends Activity {
 		ic_logo = (View) findViewById(R.id.ic_logo);
 		handler.sendEmptyMessage(0);
 
-		handler.postDelayed(new Runnable() {
+		// handler.postDelayed(new Runnable() {
+		//
+		// @Override
+		// public void run() {
+		// onCheckForNetwork();
+		// }
+		// }, 1000);
+		BongDaServiceManager.getInstance().onResume(
+				new BongDaServiceManagerListener() {
 
-			@Override
-			public void run() {
-				onCheckForNetwork();
-			}
-		}, 1000);
+					@Override
+					public void onSuccess() {
+						onCheckForNetwork();
+					}
+
+					@Override
+					public void onFail() {
+
+					}
+
+					@Override
+					public void onDisconnected() {
+
+					}
+				});
+
 	}
 
 	private void onCheckForNetwork() {
