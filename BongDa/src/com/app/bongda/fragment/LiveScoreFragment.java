@@ -188,7 +188,7 @@ public class LiveScoreFragment extends BaseFragment {
 			if(addfavorite){
 				convertView.findViewById(R.id.iconlike).setVisibility(View.VISIBLE);
 				//show tran quan tam
-				img_favorite = (ImageView) getActivity().findViewById(R.id.iconlike);
+				img_favorite = (ImageView) convertView.findViewById(R.id.iconlike);
 				if (CommonUtil.listQuanTam.contains(liveScore.getId()))
 	            {
 //					convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
@@ -197,7 +197,7 @@ public class LiveScoreFragment extends BaseFragment {
 //					convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
 					img_favorite.setImageResource(R.drawable.unlike_icon);
 				}
-				convertView.findViewById(R.id.traitim).setOnClickListener(new OnClickListener() {
+				convertView.findViewById(R.id.iconlike).setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
 						if (CommonUtil.listQuanTam.contains(liveScore.getId()))
@@ -210,6 +210,7 @@ public class LiveScoreFragment extends BaseFragment {
 				             CommonUtil.savedata(getActivity());
 							img_favorite.setImageResource(R.drawable.unlike_icon);
 						}
+						countryAdapter.notifyDataSetChanged();
 					}
 				});
 			}else{
@@ -511,10 +512,13 @@ public class LiveScoreFragment extends BaseFragment {
 				break;
 			case MotionEvent.ACTION_UP:
 				Log.e("action", "ACTION_UP - ");
-				if(difference <= 10 && difference >= -10){
+//				if(difference <= 10 && difference >= -10){
+//					callBackListenner.onCallBackListenner(5, liveScore);
+//				}else{
+//					calcuateDifference(liveScore);
+//				}
+				if(!addfavorite){
 					callBackListenner.onCallBackListenner(5, liveScore);
-				}else{
-					calcuateDifference(liveScore);
 				}
 				break;
 			}
