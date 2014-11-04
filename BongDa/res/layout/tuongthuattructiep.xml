@@ -61,21 +61,22 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/main01"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_10dp" >
 
         <LinearLayout
             android:id="@+id/l1"
-            android:layout_width="@dimen/dimen_90dp"
-            android:layout_height="@dimen/dimen_90dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center|top"
             android:orientation="vertical" >
 
             <ImageView
                 android:id="@+id/logo_doinha"
-                android:layout_width="@dimen/dimen_70dp"
-                android:layout_height="@dimen/dimen_70dp"
+                android:layout_width="@dimen/dimen_100dp"
+                android:layout_height="@dimen/dimen_100dp"
                 android:background="@null" />
 
             <TextView
@@ -104,6 +105,7 @@
                 android:gravity="center"
                 android:text="90&apos;"
                 android:textSize="@dimen/dimen_15dp"
+                android:textColor="#ff000000"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
@@ -112,8 +114,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="2-1"
-                android:textSize="@dimen/dimen_20dp"
+                android:text="0 - 0"
+                android:textSize="@dimen/dimen_24dp"
+                android:textColor="#ff000000" 
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textStyle="bold" />
 
@@ -125,13 +128,15 @@
                 android:gravity="center"
                 android:textSize="@dimen/dimen_15dp"
                 android:text="HT 0-1"
+                android:textColor="#ff000000"
+                android:layout_marginTop="@dimen/dimen_10dp" 
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/l2"
-            android:layout_width="@dimen/dimen_90dp"
-            android:layout_height="@dimen/dimen_90dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:gravity="center|top"
@@ -139,8 +144,8 @@
 
             <ImageView
                 android:id="@+id/logo_doikhach"
-                android:layout_width="@dimen/dimen_70dp"
-                android:layout_height="@dimen/dimen_70dp"
+                android:layout_width="@dimen/dimen_100dp"
+                android:layout_height="@dimen/dimen_100dp"
                 android:background="@null" />
 
             <TextView

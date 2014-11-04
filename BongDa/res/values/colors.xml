@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="livescore_divider_color">#ffe0e0e0</color>
+    <color name="country_detail_list_bg_color">#ffd8d8d8</color>
+    <color name="country_detail_divider_color">#ff828282</color>
+    <color name="while1">#ffffffff</color>
+    <color name="while2">#fff0f0f0</color>
+    <color name="red">#ffff0000</color>
+    <color name="yalow">#ffffff00</color>
+    <color name="green">#ff0000ff</color>
+</resources>
