@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.RotateAnimation;
 import android.widget.Toast;
@@ -109,13 +110,17 @@ public class MainSplashActivity extends Activity {
 
 			builder.show();
 		} else {
-			BongDaServiceManager.getInstance().getBongDaService()
-					.startLoadContentBase();
+//			BongDaServiceManager.getInstance().getBongDaService()
+//					.startLoadContentBase();
 
 			ICallbackAPI callbackAPI = new ICallbackAPI() {
 
 				@Override
 				public void onSuccess(String response) {
+					Log.e("callApi", "onSuccess");
+					if (isFinishing()) {
+						return;
+					}
 
 					String string_temp = CommonAndroid.parseXMLAction(response);
 					// CommonAndroid.toast(MainSplashActivity.this,
@@ -131,10 +136,10 @@ public class MainSplashActivity extends Activity {
 
 						// intent.putExtra("socre", string_temp);
 
-						startActivity(intent);
-						finish();
-						overridePendingTransition(R.anim.bot_to_top,
-								R.anim.nothing);
+						//startActivity(intent);
+					//	finish();
+					//	overridePendingTransition(R.anim.bot_to_top,
+					//			R.anim.nothing);
 					} else {
 						Builder builder = new Builder(MainSplashActivity.this);
 						builder.setCancelable(false);
@@ -157,6 +162,10 @@ public class MainSplashActivity extends Activity {
 
 				@Override
 				public void onError(String message) {
+					Log.e("callApi", "ERROR");
+					if (isFinishing()) {
+						return;
+					}
 					// show dialog and cancel
 					Builder builder = new Builder(MainSplashActivity.this);
 					builder.setCancelable(false);
@@ -175,6 +184,7 @@ public class MainSplashActivity extends Activity {
 					builder.show();
 				}
 			};
+			
 			BongDaServiceManager
 					.getInstance()
 					.getBongDaService()

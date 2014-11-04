@@ -17,6 +17,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Handler;
 import android.os.IBinder;
+import android.util.Log;
 
 import com.app.bongda.callback.APICaller;
 import com.app.bongda.callback.APICaller.ICallbackAPI;
@@ -69,7 +70,10 @@ public class BongDaService extends Service {
 
 	public void callApi(long currentTime, ICallbackAPI callbackAPI, String data) {
 		APICaller apiCaller = map.get(new Long(currentTime));
+		String format = String.format("time : %s data : %s", currentTime, data);
+		Log.e("callApi", format);
 		if (apiCaller == null) {
+			Log.e("callApi", "StartCallApi");
 			apiCaller = new APICaller(this);
 			map.put(new Long(currentTime), apiCaller);
 			apiCaller.setICallBack(callbackAPI);
@@ -82,7 +86,8 @@ public class BongDaService extends Service {
 	 * 
 	 */
 
-	public void registerApi(final Long keyTime, final boolean needReload, final String data) {
+	public void registerApi(final Long keyTime, final boolean needReload,
+			final String data) {
 
 		// save to data
 
@@ -160,9 +165,9 @@ public class BongDaService extends Service {
 	private List<String> lIdMaGiaiDaus = new ArrayList<String>();
 
 	public void startLoadContentBase() {
-//		if (idCountrys.size() > 0 || lIdMaGiaiDaus.size() > 0) {
-//			return;
-//		}
+		// if (idCountrys.size() > 0 || lIdMaGiaiDaus.size() > 0) {
+		// return;
+		// }
 
 		callApi(System.currentTimeMillis(), new ICallbackAPI() {
 			@Override
@@ -170,25 +175,30 @@ public class BongDaService extends Service {
 				new ProgressExecute(response, BongDaService.this) {
 					@Override
 					public void onProgress(String response) {
-						String string_temp = CommonAndroid.parseXMLAction(response);
+						String string_temp = CommonAndroid
+								.parseXMLAction(response);
 						if (!string_temp.equalsIgnoreCase("")) {
 							try {
 								JSONArray jsonarray = new JSONArray(string_temp);
 								for (int i = 0; i < jsonarray.length(); i++) {
-									JSONObject jsonObject = jsonarray.getJSONObject(i);
-									String iID_MaQuocGia = jsonObject.getString("iID_MaQuocGia");
+									JSONObject jsonObject = jsonarray
+											.getJSONObject(i);
+									String iID_MaQuocGia = jsonObject
+											.getString("iID_MaQuocGia");
 									idCountrys.add(iID_MaQuocGia);
 
 									ContentValues values = new ContentValues();
-									Set<String> columns = countryTable.columNameS();
+									Set<String> columns = countryTable
+											.columNameS();
 									for (String column : columns) {
 										if (jsonObject.has(column)) {
-											values.put(column, jsonObject.getString(column));
+											values.put(column, jsonObject
+													.getString(column));
 										}
 									}
 									long id = dbManager.insertContry(values);
 								}
-								//startLoadContentGiaiDauBase();
+								// startLoadContentGiaiDauBase();
 							} catch (JSONException e) {
 							}
 						}
@@ -211,7 +221,8 @@ public class BongDaService extends Service {
 	private void startLoadContentGiaiDauBase() {
 		if (idCountrys.size() > 0) {
 			final String idCountry = idCountrys.get(0);
-			String ws = (ByUtils.wsFootBall_Giai_Theo_QuocGia).replace("quocgiaid", idCountry);
+			String ws = (ByUtils.wsFootBall_Giai_Theo_QuocGia).replace(
+					"quocgiaid", idCountry);
 
 			callApi(System.currentTimeMillis(), new ICallbackAPI() {
 				@Override
@@ -221,24 +232,31 @@ public class BongDaService extends Service {
 
 						@Override
 						public void onProgress(String response) {
-							String string_temp = CommonAndroid.parseXMLAction(response);
+							String string_temp = CommonAndroid
+									.parseXMLAction(response);
 							if (!string_temp.equalsIgnoreCase("")) {
 								try {
-									JSONArray jsonarray = new JSONArray(string_temp);
+									JSONArray jsonarray = new JSONArray(
+											string_temp);
 									for (int i = 0; i < jsonarray.length(); i++) {
-										JSONObject jsonObject = jsonarray.getJSONObject(i);
-										String iID_MaGiai = jsonObject.getString("iID_MaGiai");
+										JSONObject jsonObject = jsonarray
+												.getJSONObject(i);
+										String iID_MaGiai = jsonObject
+												.getString("iID_MaGiai");
 										lIdMaGiaiDaus.add(iID_MaGiai);
 
 										ContentValues values = new ContentValues();
-										Set<String> columns = giaiDauTable.columNameS();
+										Set<String> columns = giaiDauTable
+												.columNameS();
 										for (String column : columns) {
 											if (jsonObject.has(column)) {
-												values.put(column, jsonObject.getString(column));
+												values.put(column, jsonObject
+														.getString(column));
 											}
 										}
 
-										long id = dbManager.insertGiaiDau(values);
+										long id = dbManager
+												.insertGiaiDau(values);
 									}
 								} catch (JSONException e) {
 								}
@@ -267,24 +285,30 @@ public class BongDaService extends Service {
 	private void startLoadContentDoiBong() {
 		if (lIdMaGiaiDaus.size() > 0) {
 			final String iID_MaGiai = lIdMaGiaiDaus.get(0);
-			String ws = (ByUtils.wsFootBall_BangXepHang).replace("bangxephangId", iID_MaGiai);
+			String ws = (ByUtils.wsFootBall_BangXepHang).replace(
+					"bangxephangId", iID_MaGiai);
 			callApi(System.currentTimeMillis(), new ICallbackAPI() {
 				@Override
 				public void onSuccess(String response) {
 					new ProgressExecute(response, BongDaService.this) {
 						@Override
 						public void onProgress(String response) {
-							String string_temp = CommonAndroid.parseXMLAction(response);
+							String string_temp = CommonAndroid
+									.parseXMLAction(response);
 							if (!string_temp.equalsIgnoreCase("")) {
 								try {
-									JSONArray jsonarray = new JSONArray(string_temp);
+									JSONArray jsonarray = new JSONArray(
+											string_temp);
 									for (int i = 0; i < jsonarray.length(); i++) {
-										JSONObject jsonObject = jsonarray.getJSONObject(i);
+										JSONObject jsonObject = jsonarray
+												.getJSONObject(i);
 										ContentValues values = new ContentValues();
-										Set<String> columns = doiBongTable.columNameS();
+										Set<String> columns = doiBongTable
+												.columNameS();
 										for (String column : columns) {
 											if (jsonObject.has(column)) {
-												values.put(column, jsonObject.getString(column));
+												values.put(column, jsonObject
+														.getString(column));
 											}
 										}
 
