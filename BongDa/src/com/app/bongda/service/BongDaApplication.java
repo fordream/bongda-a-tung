@@ -11,6 +11,6 @@ public class BongDaApplication extends Application {
 
 	public void init() {
 		BongDaServiceManager.getInstance().init(this);
-//		BongDaServiceManager.getInstance().onResume();
+		BongDaServiceManager.getInstance().onResume();
 	}
 }

@@ -89,6 +89,31 @@ public class BongDaServiceManager {
 		}
 	}
 
+	public void onResume() {
+		Log.e("MSERVICE", "start bin to service");
+		if (getBongDaService() == null) {
+			conn = new ServiceConnection() {
+
+				@Override
+				public void onServiceDisconnected(ComponentName name) {
+					Log.e("MSERVICE", "disconnect");
+					bongDaService = null;
+				}
+
+				@Override
+				public void onServiceConnected(ComponentName name,
+						IBinder service) {
+					BongDaBinder bongDaBinder = (BongDaBinder) service;
+					Log.e("MSERVICE", "connect to service");
+					bongDaService = bongDaBinder.getBongDaService();
+				}
+			};
+			Intent service = new Intent(mContext, BongDaService.class);
+			mContext.bindService(service, conn, Context.BIND_AUTO_CREATE);
+		} else {
+		}
+	}
+
 	public void onPause() {
 		mContext.unbindService(conn);
 	}

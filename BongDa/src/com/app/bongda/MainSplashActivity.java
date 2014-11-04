@@ -14,6 +14,7 @@ import android.view.animation.RotateAnimation;
 import android.widget.Toast;
 
 import com.app.bongda.base.BaseActivtiy;
+import com.app.bongda.callback.APICaller;
 import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.service.BongDaServiceManager;
 import com.app.bongda.service.BongDaServiceManager.BongDaServiceManagerListener;
@@ -27,19 +28,19 @@ public class MainSplashActivity extends Activity {
 		public void dispatchMessage(Message msg) {
 			super.dispatchMessage(msg);
 
-			// if (!isFinishing()) {
-			int start = rotate;
-			rotate = rotate + 10;
-			float pivotX = ic_logo.getWidth() / 2;
-			float pivotY = ic_logo.getHeight() / 2;
-			RotateAnimation animation = new RotateAnimation(start, rotate,
-					pivotX, pivotY);
-			animation.setDuration(10);
+			if (!isFinishing()) {
+				int start = rotate;
+				rotate = rotate + 10;
+				float pivotX = ic_logo.getWidth() / 2;
+				float pivotY = ic_logo.getHeight() / 2;
+				RotateAnimation animation = new RotateAnimation(start, rotate,
+						pivotX, pivotY);
+				animation.setDuration(10);
 
-			ic_logo.startAnimation(animation);
+				ic_logo.startAnimation(animation);
 
-			handler.sendEmptyMessageDelayed(0, 11);
-			// }
+				handler.sendEmptyMessageDelayed(0, 11);
+			}
 		}
 
 		int rotate = 0;
@@ -48,47 +49,23 @@ public class MainSplashActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
-		// overridePendingTransition(R.anim.bot_to_top, R.anim.nothing);
+		overridePendingTransition(R.anim.bot_to_top, R.anim.nothing);
 		setContentView(R.layout.mainsplash);
 		ic_logo = (View) findViewById(R.id.ic_logo);
+		handler.sendEmptyMessage(0);
 
-		// handler.sendEmptyMessage(0);
-		ic_logo.post(new Runnable() {
+		handler.postDelayed(new Runnable() {
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				onCheckForNetwork();
 			}
-		});
-
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-		// onCheckForNetwork();
-		// BongDaServiceManager.getInstance().onResume(
-		// new BongDaServiceManagerListener() {
-		//
-		// @Override
-		// public void onSuccess() {
-		//
-		// }
-		//
-		// @Override
-		// public void onFail() {
-		// }
-		//
-		// @Override
-		// public void onDisconnected() {
-		// }
-		// });
+		}, 1000);
 	}
 
 	private void onCheckForNetwork() {
-		if (!MainSplashActivity.this.isFinishing()) {
-			CommonAndroid.toast(this, "finish");
+		if (isFinishing()) {
+			CommonAndroid.toast(MainSplashActivity.this, "finish");
 			return;
 		}
 
@@ -107,15 +84,14 @@ public class MainSplashActivity extends Activity {
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					finish();
-					// overridePendingTransition(R.anim.bot_to_top,
-					// R.anim.nothing);
+					overridePendingTransition(R.anim.bot_to_top, R.anim.nothing);
 				}
 			});
 
 			builder.show();
 		} else {
-			BongDaServiceManager.getInstance().getBongDaService()
-					.startLoadContentBase();
+			// BongDaServiceManager.getInstance().getBongDaService()
+			// .startLoadContentBase();
 
 			ICallbackAPI callbackAPI = new ICallbackAPI() {
 
@@ -123,6 +99,9 @@ public class MainSplashActivity extends Activity {
 				public void onSuccess(String response) {
 
 					String string_temp = CommonAndroid.parseXMLAction(response);
+					// CommonAndroid.toast(MainSplashActivity.this,
+					// "onSuccess :"
+					// + string_temp);
 					if (!string_temp.equalsIgnoreCase("")) {
 
 						// save live score
@@ -131,12 +110,12 @@ public class MainSplashActivity extends Activity {
 						Intent intent = new Intent(MainSplashActivity.this,
 								SplashActivity.class);
 
-						intent.putExtra("socre", string_temp);
+					//	intent.putExtra("socre", string_temp);
 
 						startActivity(intent);
-						// finish();
-						// overridePendingTransition(R.anim.bot_to_top,
-						// R.anim.nothing);
+						finish();
+						overridePendingTransition(R.anim.bot_to_top,
+								R.anim.nothing);
 					} else {
 						Builder builder = new Builder(MainSplashActivity.this);
 						builder.setCancelable(false);
@@ -148,9 +127,9 @@ public class MainSplashActivity extends Activity {
 									public void onClick(DialogInterface dialog,
 											int which) {
 										finish();
-										// overridePendingTransition(
-										// R.anim.bot_to_top,
-										// R.anim.nothing);
+										overridePendingTransition(
+												R.anim.bot_to_top,
+												R.anim.nothing);
 									}
 								});
 						builder.show();
@@ -160,14 +139,30 @@ public class MainSplashActivity extends Activity {
 				@Override
 				public void onError(String message) {
 					// show dialog and cancel
-					onCheckForNetwork();
+					Builder builder = new Builder(MainSplashActivity.this);
+					builder.setCancelable(false);
+					builder.setMessage(R.string.cannotconnecttoserverr);
+					builder.setPositiveButton(R.string.ok,
+							new OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									finish();
+									overridePendingTransition(
+											R.anim.bot_to_top, R.anim.nothing);
+								}
+							});
+					builder.show();
 				}
 			};
-			BongDaServiceManager
-					.getInstance()
-					.getBongDaService()
-					.callApi(System.currentTimeMillis(), callbackAPI,
-							ByUtils.wsFootBall_Lives);
+			APICaller apiCaller = new APICaller(MainSplashActivity.this);
+			apiCaller.callApi("", false, callbackAPI, ByUtils.wsFootBall_Lives);
+			// BongDaServiceManager
+			// .getInstance()
+			// .getBongDaService()
+			// .callApi(System.currentTimeMillis(), callbackAPI,
+			// ByUtils.wsFootBall_Lives);
 		}
 	}
 
