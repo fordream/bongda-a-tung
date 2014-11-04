@@ -4,6 +4,7 @@ import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -11,8 +12,10 @@ import android.view.View;
 import android.view.animation.RotateAnimation;
 
 import com.app.bongda.base.BaseActivtiy;
+import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.service.BongDaServiceManager;
 import com.app.bongda.service.BongDaServiceManager.BongDaServiceManagerListener;
+import com.app.bongda.util.ByUtils;
 import com.app.bongda.util.CommonAndroid;
 
 public class MainSplashActivity extends BaseActivtiy {
@@ -70,6 +73,9 @@ public class MainSplashActivity extends BaseActivtiy {
 	}
 
 	private void onCheckForNetwork() {
+		if (!isFinishing()) {
+			return;
+		}
 		if (!CommonAndroid.NETWORK.haveConnectTed(this)) {
 			Builder builder = new Builder(this);
 			builder.setMessage(R.string.check_network);
@@ -80,10 +86,67 @@ public class MainSplashActivity extends BaseActivtiy {
 					onCheckForNetwork();
 				}
 			});
-			
+
+			builder.setNegativeButton(R.string.cancel, new OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					finish();
+					overridePendingTransition(R.anim.bot_to_top, R.anim.nothing);
+				}
+			});
+
 			builder.show();
 		} else {
-			BongDaServiceManager.getInstance().getBongDaService().callApi(currentTime, callbackAPI, data);
+			BongDaServiceManager.getInstance().getBongDaService()
+					.startLoadContentBase();
+
+			ICallbackAPI callbackAPI = new ICallbackAPI() {
+
+				@Override
+				public void onSuccess(String response) {
+
+					String string_temp = CommonAndroid.parseXMLAction(response);
+					if (!string_temp.equalsIgnoreCase("")) {
+
+						// save live score
+						// open
+
+						Intent intent = new Intent(MainSplashActivity.this,
+								SplashActivity.class);
+
+						intent.putExtra("socre", string_temp);
+
+						startActivity(intent);
+						finish();
+						overridePendingTransition(R.anim.bot_to_top, R.anim.nothing);
+					} else {
+						Builder builder = new Builder(MainSplashActivity.this);
+						builder.setCancelable(false);
+						builder.setMessage(R.string.cannotconnecttoserverr);
+						builder.setPositiveButton(R.string.ok,
+								new OnClickListener() {
+
+									@Override
+									public void onClick(DialogInterface dialog,
+											int which) {
+										finish();
+										overridePendingTransition(R.anim.bot_to_top, R.anim.nothing);
+									}
+								});
+					}
+				}
+
+				@Override
+				public void onError(String message) {
+					// show dialog and cancel
+					onCheckForNetwork();
+				}
+			};
+			BongDaServiceManager
+					.getInstance()
+					.getBongDaService()
+					.callApi(System.currentTimeMillis(), callbackAPI,
+							ByUtils.wsFootBall_Lives);
 		}
 	}
 

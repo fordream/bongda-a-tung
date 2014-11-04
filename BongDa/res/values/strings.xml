@@ -79,7 +79,9 @@
         Cú pháp: TYSO24H NAP Username 1038
         </string>
         
-    <string name="check_network">Please enable your network!</string>
+    <string name="check_network">Please check your network! Click "Ok" to continue connect to server or click "Cancel" to close application!</string>
     <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string  name="cannotconnecttoserverr">Can not connect to server, click "Ok" to close application!</string>
 
 </resources>
