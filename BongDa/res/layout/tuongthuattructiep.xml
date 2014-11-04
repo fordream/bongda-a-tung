@@ -170,8 +170,8 @@
         android:id="@+id/listView1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@null"
-        android:dividerHeight="0dp"
+        android:divider="@drawable/list_divider"
+        android:dividerHeight="@dimen/dimen_1dp"
         android:listSelector="@drawable/transfer" >
     </ListView>
 

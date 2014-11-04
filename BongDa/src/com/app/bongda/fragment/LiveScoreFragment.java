@@ -185,6 +185,12 @@ public class LiveScoreFragment extends BaseFragment {
 				}
 			});
 			
+			if (CommonUtil.listQuanTam.contains(liveScore.getId()))
+            {
+				convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
+			}else{
+				convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
+			}
 			if(addfavorite){
 				convertView.findViewById(R.id.iconlike).setVisibility(View.VISIBLE);
 				//show tran quan tam
