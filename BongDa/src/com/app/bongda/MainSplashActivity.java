@@ -90,8 +90,8 @@ public class MainSplashActivity extends Activity {
 
 			builder.show();
 		} else {
-			// BongDaServiceManager.getInstance().getBongDaService()
-			// .startLoadContentBase();
+			BongDaServiceManager.getInstance().getBongDaService()
+					.startLoadContentBase();
 
 			ICallbackAPI callbackAPI = new ICallbackAPI() {
 
@@ -110,7 +110,7 @@ public class MainSplashActivity extends Activity {
 						Intent intent = new Intent(MainSplashActivity.this,
 								SplashActivity.class);
 
-					//	intent.putExtra("socre", string_temp);
+						// intent.putExtra("socre", string_temp);
 
 						startActivity(intent);
 						finish();
@@ -156,13 +156,11 @@ public class MainSplashActivity extends Activity {
 					builder.show();
 				}
 			};
-			APICaller apiCaller = new APICaller(MainSplashActivity.this);
-			apiCaller.callApi("", false, callbackAPI, ByUtils.wsFootBall_Lives);
-			// BongDaServiceManager
-			// .getInstance()
-			// .getBongDaService()
-			// .callApi(System.currentTimeMillis(), callbackAPI,
-			// ByUtils.wsFootBall_Lives);
+			BongDaServiceManager
+					.getInstance()
+					.getBongDaService()
+					.callApi(System.currentTimeMillis(), callbackAPI,
+							ByUtils.wsFootBall_Lives);
 		}
 	}
 
