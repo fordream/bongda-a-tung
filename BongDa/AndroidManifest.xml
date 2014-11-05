@@ -78,7 +78,7 @@
             android:enabled="true"
             android:exported="true" >
         </service>
-        <activity android:name=".group.X4VLayoutActivity"></activity>
+        <activity android:name="com.app.bongda.vl.X4VLayoutActivity"></activity>
     </application>
 
 </manifest>

@@ -16,8 +16,8 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import com.app.bongda.fragment.CountryFragment;
 import com.app.bongda.fragment.DanhSachGiaiDauFragment;
-import com.app.bongda.group.X4VLayoutActivity;
 import com.app.bongda.model.Country;
+import com.app.bongda.vl.X4VLayoutActivity;
 
 public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 	public void addFragement(Fragment fragment) {

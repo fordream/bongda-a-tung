@@ -18,9 +18,9 @@ import com.app.bongda.group.X1GroupActivity;
 import com.app.bongda.group.X2GroupActivity;
 import com.app.bongda.group.X3GroupActivity;
 import com.app.bongda.group.X4GroupActivity;
-import com.app.bongda.group.X4VLayoutActivity;
 import com.app.bongda.util.ByUtils;
 import com.app.bongda.view.IndivicatorView;
+import com.app.bongda.vl.X4VLayoutActivity;
 
 public class SplashActivity extends TabActivity implements OnTabChangeListener {
 	private static final String CHANGETAG = "CHANGETAG";
