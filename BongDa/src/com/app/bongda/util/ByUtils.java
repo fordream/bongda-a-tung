@@ -72,7 +72,7 @@ public class ByUtils {
 	/**
 	 * 
 	 */
-	public static final boolean USEGROUPVIEW = false;
+	public static final boolean USEGROUPVIEW = true;
 
 	public static final class ACTION {
 		public static final String ACTION_GROUP_CHANGE = "ACTION_GROUP_CHANGE";
