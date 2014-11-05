@@ -9,8 +9,6 @@ public class X4GroupActivity extends MBaseGroupActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		
 		startActivity(FRAGMENT.COUNTRY, null);
 	}
 }

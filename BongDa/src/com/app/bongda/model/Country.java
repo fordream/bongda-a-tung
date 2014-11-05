@@ -10,5 +10,4 @@ public class Country extends BaseItem {
 	public String logoCountry(){
 		return LogoCountry;
 	}
-	
 }

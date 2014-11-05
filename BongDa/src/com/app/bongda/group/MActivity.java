@@ -1,5 +1,6 @@
 package com.app.bongda.group;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
@@ -21,6 +22,8 @@ import com.app.bongda.model.BaseItem;
 import com.app.bongda.model.Country;
 import com.app.bongda.model.GiaiDau;
 import com.app.bongda.model.LiveScore;
+import com.app.bongda.util.ByUtils;
+import com.app.bongda.util.CommonAndroid;
 
 public class MActivity extends BaseFragmentActivity {
 
@@ -29,6 +32,7 @@ public class MActivity extends BaseFragmentActivity {
 		super.onCreate(savedInstanceState);
 		FRAGMENT fRAGMENT = (FRAGMENT) getIntent().getExtras().getSerializable(
 				"FRAGMENT");
+
 		BaseItem baseItem = (BaseItem) getIntent().getExtras().getParcelable(
 				"BaseItem");
 
@@ -36,6 +40,9 @@ public class MActivity extends BaseFragmentActivity {
 			showCountry();
 		} else if (fRAGMENT == FRAGMENT.LIVESCORE) {
 			showLiveScore(null, null);
+		} else if (fRAGMENT == FRAGMENT.DANHSACHGIAIDAU) {
+			Country country = new Country(baseItem.getId(), baseItem.getName(), null);
+			showDanhSachGiaiDau(country);
 		}
 	}
 
@@ -106,8 +113,18 @@ public class MActivity extends BaseFragmentActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
+
 				Country country = (Country) parent.getItemAtPosition(position);
-				showDanhSachGiaiDau(country);
+				if (ByUtils.USEGROUPVIEW) {
+					
+					Intent intent = new Intent(
+							ByUtils.ACTION.ACTION_GROUP_CHANGE);
+					intent.putExtra("FRAGMENT", FRAGMENT.DANHSACHGIAIDAU);
+					intent.putExtra("BaseItem", country);
+					sendBroadcast(intent);
+				} else {
+					showDanhSachGiaiDau(country);
+				}
 			}
 		};
 		showFragment(new CountryFragment(clickListenerCountry));

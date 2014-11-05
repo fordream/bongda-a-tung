@@ -36,7 +36,23 @@ public class BaseItem implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(id);
+		dest.writeString(name);
+	}
 
+	public static final Parcelable.Creator<BaseItem> CREATOR = new Parcelable.Creator<BaseItem>() {
+		public BaseItem createFromParcel(Parcel in) {
+			return new BaseItem(in);
+		}
+
+		public BaseItem[] newArray(int size) {
+			return new BaseItem[size];
+		}
+	};
+
+	private BaseItem(Parcel in) {
+		id = in.readString();
+		name = in.readString();
 	}
 
 }

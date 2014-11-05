@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.app.bongda.R;
+import com.app.bongda.util.CommonAndroid;
 
 import android.app.Activity;
 import android.app.ActivityGroup;
@@ -11,6 +12,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 
 public class BaseGroupActivity extends ActivityGroup {
@@ -61,14 +64,24 @@ public class BaseGroupActivity extends ActivityGroup {
 
 	private void replaceView(View v) {
 		// Adds the old one to history
-
 		// Changes this Groups View to the new View.
 		// setContentView(v);
 		if (basegroup_frame == null) {
 			history.add(v);
 			setContentView(v);
+			CommonAndroid.toast(getContext(), "j1");
 		} else {
-			basegroup_frame.addView(v);
+			if (basegroup_frame.getChildCount() == 0) {
+				basegroup_frame.addView(v);
+			} else {
+				CommonAndroid.toast(getContext(), "jo");
+				View parent = basegroup_frame.getChildAt(basegroup_frame.getChildCount() - 1);
+				basegroup_frame.addView(v);
+				Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.center_to_left);
+				Animation animation2 = AnimationUtils.loadAnimation(getContext(), R.anim.right_to_center);
+				parent.startAnimation(animation);
+				v.startAnimation(animation2);
+			}
 		}
 	}
 
@@ -79,11 +92,13 @@ public class BaseGroupActivity extends ActivityGroup {
 			if (basegroup_frame == null) {
 				setContentView(view);
 			} else {
-				basegroup_frame.addView(view);
+				basegroup_frame
+						.removeViewAt(basegroup_frame.getChildCount() - 1);
+				// basegroup_frame.addView(view);
 			}
 		} else {
 			if (canFinish) {
-				// finish();
+				finish();
 			} else {
 				Activity activity = getParent();
 				if (activity != null) {
@@ -91,19 +106,6 @@ public class BaseGroupActivity extends ActivityGroup {
 				}
 			}
 		}
-	}
-
-	public void onBackPressed(Bundle extras, String actionForSendBoardCast) {
-		onBackPressed();
-		if (actionForSendBoardCast != null) {
-			Intent intent = new Intent(actionForSendBoardCast);
-			if (extras != null) {
-				intent.putExtras(extras);
-			}
-
-			sendBroadcast(intent);
-		}
-
 	}
 
 	protected Context getContext() {

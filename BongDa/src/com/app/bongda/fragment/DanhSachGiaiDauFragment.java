@@ -48,8 +48,9 @@ public class DanhSachGiaiDauFragment extends BaseFragment {
 
 		@Override
 		public void showData(Object item, View convertView) {
-			GiaiDau giaiDau = (GiaiDau)item;
-			TextView textView = (TextView)convertView.findViewById(R.id.textView1);
+			GiaiDau giaiDau = (GiaiDau) item;
+			TextView textView = (TextView) convertView
+					.findViewById(R.id.textView1);
 			textView.setText(giaiDau.getName());
 		}
 
@@ -70,32 +71,38 @@ public class DanhSachGiaiDauFragment extends BaseFragment {
 				.findViewById(R.id.danhsachgiaidau_listview);
 		listView.setOnItemClickListener(onItemClickListener);
 		listView.setAdapter(countryAdapter);
-		
-		((TextView)view.findViewById(R.id.danhsachgiaidau_txtname)).setText(country.getName());
+
+		((TextView) view.findViewById(R.id.danhsachgiaidau_txtname))
+				.setText(country.getName());
 		String image1 = country.logoCountry();
-		ImageLoaderUtils.getInstance(getActivity()).DisplayImage(image1, (ImageView) view.findViewById(R.id.imageView1));
+		ImageLoaderUtils.getInstance(getActivity()).DisplayImage(image1,
+				(ImageView) view.findViewById(R.id.imageView1));
 	}
 
 	ICallbackAPI callbackAPI;
+
 	@Override
 	public void onInitData() {
 		callbackAPI = new ICallbackAPI() {
 			@Override
 			public void onSuccess(String response) {
 				String string_temp = CommonAndroid.parseXMLAction(response);
-				if(!string_temp.equalsIgnoreCase("")){
+				if (!string_temp.equalsIgnoreCase("")) {
 					Log.e("DATAX", string_temp);
 					try {
 						JSONArray jsonarray = new JSONArray(string_temp);
 						for (int i = 0; i < jsonarray.length(); i++) {
-							countryAdapter.addItem(new GiaiDau(jsonarray.getJSONObject(i).getString("iID_MaGiai"), jsonarray.getJSONObject(i).getString("sTenGiai")));
+							countryAdapter.addItem(new GiaiDau(jsonarray
+									.getJSONObject(i).getString("iID_MaGiai"),
+									jsonarray.getJSONObject(i).getString(
+											"sTenGiai")));
 						}
 						countryAdapter.notifyDataSetChanged();
 					} catch (JSONException e) {
 					}
-					
+
 				}
-				
+
 			}
 
 			@Override
@@ -103,13 +110,8 @@ public class DanhSachGiaiDauFragment extends BaseFragment {
 			}
 		};
 		String country_id = country.getId();
-		new APICaller(getActivity()).callApi("", true,
-				callbackAPI, (ByUtils.wsFootBall_Giai_Theo_QuocGia).replace("quocgiaid", country_id));
-//		countryAdapter.addItem(new GiaiDau("1", "Premier Laegue"));
-//		countryAdapter.addItem(new GiaiDau("2", "Premier Laegue"));
-//		countryAdapter.addItem(new GiaiDau("3", "Premier Laegue"));
-//		countryAdapter.addItem(new GiaiDau("4", "Premier Laegue"));
-//		countryAdapter.addItem(new GiaiDau("5", "Premier Laegue"));
-//		countryAdapter.notifyDataSetChanged();
+		new APICaller(getActivity()).callApi("", false, callbackAPI,
+				(ByUtils.wsFootBall_Giai_Theo_QuocGia).replace("quocgiaid",
+						country_id));
 	}
 }
