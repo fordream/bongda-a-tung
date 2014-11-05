@@ -26,25 +26,25 @@ public abstract class BaseFragment extends Fragment {
 
 	private int time = 0;
 
-	private View view;
-
-	@Override
-	public View getView() {
-		if (super.getView() == null) {
-			return view;
-		}
-
-		return super.getView();
-	}
+//	private View view;
+//
+//	@Override
+//	public View getView() {
+//		if (super.getView() == null) {
+//			return view;
+//		}
+//
+//		return super.getView();
+//	}
 
 	@Override
 	final public View onCreateView(LayoutInflater inflater,
 			ViewGroup container, Bundle savedInstanceState) {
-		if (view != null) {
-			return view;
-		}
+//		if (view != null) {
+//			return view;
+//		}
 
-		view = super.onCreateView(inflater, container, savedInstanceState);
+		View view = super.onCreateView(inflater, container, savedInstanceState);
 		if (getLayout() != 0) {
 			view = inflater.inflate(getLayout(), null);
 		}
