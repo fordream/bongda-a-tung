@@ -17,6 +17,8 @@ import com.app.bongda.base.ImageLoaderUtils;
 import com.app.bongda.callback.APICaller;
 import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.model.GiaiDau;
+import com.app.bongda.model.NhanDinhChuyenGia;
+import com.app.bongda.model.PhongDo;
 import com.app.bongda.util.ByUtils;
 import com.app.bongda.util.CommonAndroid;
 import com.app.bongda.util.CommonUtil;
@@ -41,12 +43,13 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 
 		@Override
 		public int getLayout() {
-			return R.layout.phongdodoidau_item;
+			return R.layout.bangxephang_item;
 		}
 
 		@Override
 		public void showData(Object item, View convertView) {
-
+			final PhongDo phongdo = (PhongDo) item;
+//			setText(convertView, R.id.title, phongdo.getName());
 		}
 
 	}
@@ -55,7 +58,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 	public int getLayout() {
 		return R.layout.phongdodoidau;
 	}
-	LinearLayout phongdodoidau_bangephang_listitem;
+//	LinearLayout phongdodoidau_bangephang_listitem;
 	@Override
 	public void onInitCreateView(View view) {
 		/**
@@ -65,8 +68,11 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 				.findViewById(R.id.headerView1);
 		headerView.setTextHeader(R.string.xemphongdo);
 	
-		phongdodoidau_bangephang_listitem = (LinearLayout)view.findViewById(R.id.phongdodoidau_bangephang_listitem);
-		phongdodoidau_bangephang_listitem.removeAllViews();
+//		phongdodoidau_bangephang_listitem = (LinearLayout)view.findViewById(R.id.phongdodoidau_bangephang_listitem);
+//		phongdodoidau_bangephang_listitem.removeAllViews();
+		
+		ListView listView = (ListView) view.findViewById(R.id.bangxephang_listview);
+		listView.setAdapter(countryAdapter);
 		this.view = view;
 		
 	}
@@ -184,20 +190,28 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 		callbackAPI = new ICallbackAPI() {
 			@Override
 			public void onSuccess(String response) {
-//				CommonAndroid.showDialog(getActivity(), "data2:" + response , null);
-//				Log.e("aaaaa", "data::" + response);
+				CommonAndroid.showDialog(getActivity(), "data2:" + response , null);
+				Log.e("aaaaa", "data::" + response);
 				String string_temp = CommonAndroid.parseXMLAction(response);
 				if(!string_temp.equalsIgnoreCase("")){
 					try {
 						JSONArray jsonarray = new JSONArray(string_temp);
 						for (int i = 0; i < jsonarray.length(); i++) {
-							//parse
-							String callbackAPI = jsonarray.get(i).toString();
-							Log.e("callbackAPI",i + "::"+ callbackAPI );
-//							iID_MaDoiNha = jsonarray.getJSONObject(i).getString("iID_MaDoiNha");
-//							iID_MaDoiKhach = jsonarray.getJSONObject(i).getString("iID_MaDoiKhach");
-//							iID_MaGiai = jsonarray.getJSONObject(i).getString("iID_MaGiai");
+							String id = jsonarray.getJSONObject(i).getString("iID_MaDoi");
+							String name = jsonarray.getJSONObject(i).getString("sTenDoi");
+							String sViTri= jsonarray.getJSONObject(i).getString("sViTri");
+							String sSoTranDau = jsonarray.getJSONObject(i).getString("sSoTranDau");
+							String sDiem= jsonarray.getJSONObject(i).getString("sDiem");
+							String sSoTranThang = jsonarray.getJSONObject(i).getString("sSoTranThang");
+							String sSoTranHoa = jsonarray.getJSONObject(i).getString("sSoTranHoa");
+							String sSoTranThua = jsonarray.getJSONObject(i).getString("sSoTranThua");
+							String sBanThang = jsonarray.getJSONObject(i).getString("sBanThang");
+							String sBanThua = jsonarray.getJSONObject(i).getString("sBanThua");
+							String sHeSo = jsonarray.getJSONObject(i).getString("sHeSo");
+							
+							countryAdapter.addItem(new PhongDo( id,  name,  sViTri,  sSoTranDau,  sDiem,  sSoTranThang,  sSoTranHoa,  sSoTranThua,  sBanThang,  sBanThua,  sHeSo));
 						}
+						countryAdapter.notifyDataSetChanged();
 					} catch (JSONException e) {
 //						CommonAndroid.showDialog(getActivity(), "data2json:" + e.getMessage() , null);
 					}
@@ -348,7 +362,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 		};
 		
         
-        String iID_MaTran = giaidau.getId();
+        String iID_MaTran = giaidau.getId();//"58167";//
 		Log.e("KKKKKKKKKKKKK", "===" + giaidau.magiai() + "::" + giaidau.madoinha() + ":" + giaidau.madoikhach());
 		Object aobj[] = new Object[1];
         aobj[0] = Integer.valueOf(iID_MaTran);
@@ -356,9 +370,9 @@ public class PhongDoDoiDauFragment extends BaseFragment {
         
 		new APICaller(getActivity()).callApi("", true,
 					callbackAPI, param);
-		for(int i = 0; i < 6; i ++){
-			phongdodoidau_bangephang_listitem.addView(new BangXepHangItemView(getActivity()));
-		}
+//		for(int i = 0; i < 6; i ++){
+//			phongdodoidau_bangephang_listitem.addView(new BangXepHangItemView(getActivity()));
+//		}
 		
 //		iID_MaGiai = CommonUtil.getdata(getActivity(),"iID_MaGiai");
 //		iID_MaDoiNha = CommonUtil.getdata(getActivity(),"iID_MaDoiNha");
