@@ -2,6 +2,7 @@ package com.app.bongda.util;
 
 import java.util.ArrayList;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.support.v4.app.FragmentActivity;
@@ -12,8 +13,7 @@ public class CommonUtil {
 	public CommonUtil(String abc) {
 	}
 
-	public static void savedata(FragmentActivity activity) {
-		// TODO Auto-generated method stub
+	public static void savedata(Context activity) {
 		SharedPreferences pref = activity.getApplicationContext().getSharedPreferences("FavoriteList", 0);
 		Editor editor = pref.edit();
 		StringBuilder csvList = new StringBuilder();
@@ -38,7 +38,7 @@ public class CommonUtil {
 
 		}
 	}
-	
+
 	public static void savedata(FragmentActivity activity, String key, String value) {
 		// TODO Auto-generated method stub
 		SharedPreferences pref = activity.getApplicationContext().getSharedPreferences("Data", 0);
@@ -46,7 +46,7 @@ public class CommonUtil {
 		editor.putString(key, value);
 		editor.commit();
 	}
-	
+
 	public static String getdata(FragmentActivity activity, String key) {
 		String values = null;
 		try {
