@@ -31,6 +31,7 @@ import com.app.bongda.view.HeaderView;
 public class BangXepHangFragment extends BaseFragment {
 	OnItemClickListener onItemClickListener;
 	GiaiDau dau;
+	
 
 	public BangXepHangFragment(GiaiDau dau,
 			OnItemClickListener onItemClickListener) {
