@@ -70,31 +70,9 @@ public class DanhSachGiaiDauFragment extends BaseFragment {
 
 	@Override
 	public void onInitData() {
-		ICallbackAPI callbackAPI = new ICallbackAPI() {
-			@Override
-			public void onSuccess(String response) {
-				String string_temp = CommonAndroid.parseXMLAction(response);
-				if (!string_temp.equalsIgnoreCase("")) {
-					try {
-						JSONArray jsonarray = new JSONArray(string_temp);
-						for (int i = 0; i < jsonarray.length(); i++) {
-							countryAdapter.addItem(new GiaiDau(jsonarray.getJSONObject(i).getString("iID_MaGiai"), jsonarray.getJSONObject(i).getString("sTenGiai")));
-						}
-						countryAdapter.notifyDataSetChanged();
-					} catch (JSONException e) {
-					}
-				}
-			}
-
-			@Override
-			public void onError(String message) {
-			}
-		};
 		String country_id = country.getId();
 		String ws = (ByUtils.wsFootBall_Giai_Theo_QuocGia).replace("quocgiaid", country_id);
 
-		// BongDaServiceManager.getInstance().getBongDaService().callApi(System.currentTimeMillis(),
-		// callbackAPI, ws);
 		DanhSachGiaiDauProgressExecute danhSachGiaiDauProgressExecute = new DanhSachGiaiDauProgressExecute(null, null) {
 			@Override
 			public void onProgressSucess() {
