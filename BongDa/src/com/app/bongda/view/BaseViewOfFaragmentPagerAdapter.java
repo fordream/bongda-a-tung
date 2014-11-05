@@ -97,8 +97,7 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 		this.pager = mpager;
 		pager.setAdapter(this);
 		pager.setOnPageChangeListener(changeListener);
-		if (mpager.getContext() instanceof X4VLayoutActivity
-				|| mpager.getContext() instanceof X2VLayoutActivity) {
+		if (mpager.getContext() instanceof X4VLayoutActivity || mpager.getContext() instanceof X2VLayoutActivity) {
 			addCountry();
 		} else if (mpager.getContext() instanceof X1VLayoutActivity) {
 			addLiveScore(null, null);
@@ -114,19 +113,14 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 	public void addTuongThuatTranLiveScoreFragment(GiaiDau giaiDau) {
 		OnItemClickListener liveScoreTuongThuatOnItemClickListener = new OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				// -> ty le du doan
 				// showFragment(new TyLeDuDoanFragment(null));
 				// -> du doan ket qua
 				// showFragment(new DuDoanKetQuaFragment(null));
 				// -> phong do doi dau
-				LiveScore liveScore = (LiveScore) parent
-						.getItemAtPosition(position);
-				GiaiDau dau = new GiaiDau(liveScore.getId(),
-						liveScore.getName(), liveScore.magiai(),
-						liveScore.madoinha(), liveScore.madoikhach(),
-						liveScore.idmagiai());
+				LiveScore liveScore = (LiveScore) parent.getItemAtPosition(position);
+				GiaiDau dau = new GiaiDau(liveScore.getId(), liveScore.getName(), liveScore.magiai(), liveScore.madoinha(), liveScore.madoikhach(), liveScore.idmagiai());
 
 				addPhongDoDoiDauFragment(dau);
 			}
@@ -147,8 +141,7 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 				}
 			}
 		};
-		addFragement(new TuongThuatTranLiveScoreFragment(giaiDau,
-				liveScoreTuongThuatOnItemClickListener, callBackListenner));
+		addFragement(new TuongThuatTranLiveScoreFragment(giaiDau, liveScoreTuongThuatOnItemClickListener, callBackListenner));
 	}
 
 	private void addTyLeDuDoanFragment(GiaiDau giaiDau) {
@@ -162,10 +155,8 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 	public void addLiveScore(GiaiDau data, String type) {
 		OnItemClickListener liveScoreOnItemClickListener = new OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				LiveScore liveScore = (LiveScore) parent
-						.getItemAtPosition(position);
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				LiveScore liveScore = (LiveScore) parent.getItemAtPosition(position);
 
 				// phong do doi dau
 
@@ -173,10 +164,7 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 				if (!liveScore.isHeader()) {
 					// GiaiDau dau = new GiaiDau(liveScore.getId(),
 					// liveScore.getName());
-					GiaiDau dau = new GiaiDau(liveScore.getId(),
-							liveScore.getName(), liveScore.magiai(),
-							liveScore.madoinha(), liveScore.madoikhach(),
-							liveScore.idmagiai());
+					GiaiDau dau = new GiaiDau(liveScore.getId(), liveScore.getName(), liveScore.magiai(), liveScore.madoinha(), liveScore.madoikhach(), liveScore.idmagiai());
 
 					addTuongThuatTranLiveScoreFragment(dau);
 				}
@@ -186,10 +174,7 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 			@Override
 			public void onCallBackListenner(int position, Object data) {
 				LiveScore liveScore = (LiveScore) data;
-				GiaiDau dau = new GiaiDau(liveScore.getId(),
-						liveScore.getName(), liveScore.magiai(),
-						liveScore.madoinha(), liveScore.madoikhach(),
-						liveScore.idmagiai());
+				GiaiDau dau = new GiaiDau(liveScore.getId(), liveScore.getName(), liveScore.magiai(), liveScore.madoinha(), liveScore.madoikhach(), liveScore.idmagiai());
 				if (position == 0) {
 
 					addPhongDoDoiDauFragment(dau);
@@ -206,8 +191,7 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 		};
 		Log.e("difference", "type--" + type);
 
-		addFragement(new LiveScoreFragment(liveScoreOnItemClickListener,
-				callBackListenner, data, type));
+		addFragement(new LiveScoreFragment(liveScoreOnItemClickListener, callBackListenner, data, type));
 	}
 
 	public void addGameDuDoan(GiaiDau dau) {
@@ -217,9 +201,8 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 	private void addCountry() {
 		addFragement(new CountryFragment(new OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				Cursor cursor = (Cursor)parent.getItemAtPosition(position);
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Cursor cursor = (Cursor) parent.getItemAtPosition(position);
 				String _id = cursor.getString(cursor.getColumnIndex("iID_MaQuocGia"));
 				String name = cursor.getString(cursor.getColumnIndex("sTenQuocGia"));
 				String sLogoCountry = cursor.getString(cursor.getColumnIndex("sLogo"));
@@ -232,10 +215,13 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 	private void addDanhSachGiaiDauFragment(Country country) {
 		OnItemClickListener listGiaiDau = new OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				GiaiDau dau = (GiaiDau) parent.getItemAtPosition(position);
-
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Cursor cursor = (Cursor) parent.getItemAtPosition(position);
+				String iID_MaGiai = cursor.getString(cursor.getColumnIndex("iID_MaGiai"));
+				String sTenGiai = cursor.getString(cursor.getColumnIndex("sTenGiai"));
+				String iID_MaQuocGia = cursor.getString(cursor.getColumnIndex("iID_MaQuocGia"));
+				GiaiDau dau = new GiaiDau(iID_MaGiai, sTenGiai);
+				dau.setiID_MaQuocGia(iID_MaQuocGia);
 				if (pager.getContext() instanceof X4VLayoutActivity) {
 					addBangXepHang(dau);
 				} else if (pager.getContext() instanceof X2VLayoutActivity) {

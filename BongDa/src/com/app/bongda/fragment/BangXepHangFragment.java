@@ -4,14 +4,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.app.bongda.R;
 import com.app.bongda.base.BaseFragment;
+import com.app.bongda.base.ImageLoaderUtils;
 import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.model.BangXepHang;
 import com.app.bongda.model.GiaiDau;
@@ -21,6 +24,7 @@ import com.app.bongda.util.CommonAndroid;
 import com.app.bongda.util.CommonUtil;
 import com.app.bongda.view.HeaderView;
 import com.app.bongda.view.adapter.BangXepHangAdapter;
+import com.vnp.core.datastore.database.CountryTable;
 
 public class BangXepHangFragment extends BaseFragment {
 	private BangXepHangAdapter countryAdapter = new BangXepHangAdapter();
@@ -60,9 +64,15 @@ public class BangXepHangFragment extends BaseFragment {
 
 		listView.setOnItemClickListener(onItemClickListener);
 		listView.setAdapter(countryAdapter);
-		String tengiai = "";
-		tengiai = CommonUtil.getdata(getActivity(), "sTenGiai");
-		((TextView) view.findViewById(R.id.danhsachgiaidau_txtname)).setText(tengiai);
+		((TextView) view.findViewById(R.id.danhsachgiaidau_txtname)).setText(dau.getName());
+
+		String where = String.format("iID_MaQuocGia ='%s'", dau.getiID_MaQuocGia());
+
+		Cursor cursor = BongDaServiceManager.getInstance().getBongDaService().query(new CountryTable().getTableName(), where);
+		if (cursor != null && cursor.moveToNext()) {
+			String sLogo = cursor.getString(cursor.getColumnIndex("sLogo"));
+			ImageLoaderUtils.getInstance(null).DisplayImage(sLogo,(ImageView) view.findViewById(R.id.bangxephang_img_country));
+		}
 	}
 
 	@Override
@@ -94,8 +104,9 @@ public class BangXepHangFragment extends BaseFragment {
 			}
 		};
 		String maGiaiDau = dau.getId();
-		if (maGiaiDau == null)
+		if (maGiaiDau == null) {
 			maGiaiDau = "";
+		}
 		BongDaServiceManager.getInstance().getBongDaService().callApi(System.currentTimeMillis(), callbackAPI, ByUtils.wsFootBall_BangXepHang.replace("bangxephangId", maGiaiDau));
 		countryAdapter.notifyDataSetChanged();
 	}
