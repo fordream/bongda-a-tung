@@ -161,8 +161,10 @@ public class LiveScoreFragment extends BaseFragment {
 				} else if (status == 3) {
 					setText(convertView, R.id.TextView01, "HT");// time
 				} else if (status >= 10) {
-					setText(convertView, R.id.TextView01, getResources()
-							.getString(R.string.hoanthidau));
+					setText(convertView,
+							R.id.TextView01,
+							convertView.getContext().getResources()
+									.getString(R.string.hoanthidau));
 					convertView.findViewById(R.id.TextView02_ketqua)
 							.setVisibility(View.GONE);
 					convertView.findViewById(R.id.TextView03).setVisibility(

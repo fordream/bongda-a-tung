@@ -70,8 +70,8 @@ public class BongDaService extends Service {
 
 	public void callApi(long currentTime, ICallbackAPI callbackAPI, String data) {
 		APICaller apiCaller = map.get(new Long(currentTime));
-		String format = String.format("time : %s data : %s", currentTime, data);
-		Log.e("callApi", format);
+		//String format = String.format("time : %s data : %s", currentTime, data);
+		//Log.e("callApi", format);
 		if (apiCaller == null) {
 			Log.e("callApi", "StartCallApi");
 			apiCaller = new APICaller(this);

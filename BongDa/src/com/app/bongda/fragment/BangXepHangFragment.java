@@ -22,6 +22,7 @@ import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.model.BangXepHang;
 import com.app.bongda.model.GiaiDau;
 import com.app.bongda.model.LiveScore;
+import com.app.bongda.service.BongDaServiceManager;
 import com.app.bongda.util.ByUtils;
 import com.app.bongda.util.CommonAndroid;
 import com.app.bongda.util.CommonUtil;
@@ -31,7 +32,8 @@ public class BangXepHangFragment extends BaseFragment {
 	OnItemClickListener onItemClickListener;
 	GiaiDau dau;
 
-	public BangXepHangFragment(GiaiDau dau, OnItemClickListener onItemClickListener) {
+	public BangXepHangFragment(GiaiDau dau,
+			OnItemClickListener onItemClickListener) {
 		super();
 		this.onItemClickListener = onItemClickListener;
 		this.dau = dau;
@@ -79,15 +81,19 @@ public class BangXepHangFragment extends BaseFragment {
 		/**
 		 * init header view
 		 */
-		HeaderView headerView = (HeaderView) view.findViewById(R.id.headerView1);
+		HeaderView headerView = (HeaderView) view
+				.findViewById(R.id.headerView1);
 		headerView.setTextHeader(R.string.bangxephang);
 
 		/** init data */
-		ListView listView = (ListView) view.findViewById(R.id.bangxephang_listview);
+		ListView listView = (ListView) view
+				.findViewById(R.id.bangxephang_listview);
 		if (mHeader != null) {
 			listView.removeHeaderView(mHeader);
 		} else {
-			mHeader = ((LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.bangxephang_item, null);
+			mHeader = ((LayoutInflater) view.getContext().getSystemService(
+					Context.LAYOUT_INFLATER_SERVICE)).inflate(
+					R.layout.bangxephang_item, null);
 		}
 
 		listView.addHeaderView(mHeader);
@@ -95,8 +101,9 @@ public class BangXepHangFragment extends BaseFragment {
 		listView.setOnItemClickListener(onItemClickListener);
 		listView.setAdapter(countryAdapter);
 		String tengiai = "";
-		tengiai = CommonUtil.getdata(getActivity(),"sTenGiai");
-		((TextView) view.findViewById(R.id.danhsachgiaidau_txtname)).setText(tengiai);
+		tengiai = CommonUtil.getdata(getActivity(), "sTenGiai");
+		((TextView) view.findViewById(R.id.danhsachgiaidau_txtname))
+				.setText(tengiai);
 	}
 
 	ICallbackAPI callbackAPI;
@@ -114,10 +121,26 @@ public class BangXepHangFragment extends BaseFragment {
 					try {
 						JSONArray jsonarray = new JSONArray(string_temp);
 						for (int i = 0; i < jsonarray.length(); i++) {
-							countryAdapter.addItem(new BangXepHang(jsonarray.getJSONObject(i).getString("sViTri"), jsonarray.getJSONObject(i).getString("sTenDoi"), jsonarray.getJSONObject(i)
-									.getString("sSoTranDau"), jsonarray.getJSONObject(i).getString("sDiem"), jsonarray.getJSONObject(i).getString("sSoTranThang"), jsonarray.getJSONObject(i)
-									.getString("sSoTranHoa"), jsonarray.getJSONObject(i).getString("sSoTranThua"), jsonarray.getJSONObject(i).getString("sBanThang"), jsonarray.getJSONObject(i)
-									.getString("sBanThua"), jsonarray.getJSONObject(i).getString("sHeSo")));
+							countryAdapter.addItem(new BangXepHang(jsonarray
+									.getJSONObject(i).getString("sViTri"),
+									jsonarray.getJSONObject(i).getString(
+											"sTenDoi"), jsonarray
+											.getJSONObject(i).getString(
+													"sSoTranDau"), jsonarray
+											.getJSONObject(i)
+											.getString("sDiem"), jsonarray
+											.getJSONObject(i).getString(
+													"sSoTranThang"), jsonarray
+											.getJSONObject(i).getString(
+													"sSoTranHoa"), jsonarray
+											.getJSONObject(i).getString(
+													"sSoTranThua"), jsonarray
+											.getJSONObject(i).getString(
+													"sBanThang"), jsonarray
+											.getJSONObject(i).getString(
+													"sBanThua"), jsonarray
+											.getJSONObject(i)
+											.getString("sHeSo")));
 						}
 						countryAdapter.notifyDataSetChanged();
 					} catch (JSONException e) {
@@ -131,32 +154,17 @@ public class BangXepHangFragment extends BaseFragment {
 			public void onError(String message) {
 			}
 		};
-		String maGiaiDau = null;
-		new APICaller(getActivity()).callApi("", true, callbackAPI, (ByUtils.wsFootBall_BangXepHang).replace("bangxephangId", dau.idmagiai()));
-		// countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-		// "8", "1", "2", "22", "11", "12"));
-		// countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-		// "8", "1", "2", "22", "11", "12"));
-		// countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-		// "8", "1", "2", "22", "11", "12"));
-		// countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-		// "8", "1", "2", "22", "11", "12"));
-		// countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-		// "8", "1", "2", "22", "11", "12"));
-		// countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-		// "8", "1", "2", "22", "11", "12"));
-		// countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-		// "8", "1", "2", "22", "11", "12"));
-		// countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-		// "8", "1", "2", "22", "11", "12"));
-		// countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-		// "8", "1", "2", "22", "11", "12"));
-		// countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-		// "8", "1", "2", "22", "11", "12"));
-		// countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-		// "8", "1", "2", "22", "11", "12"));
-		// countryAdapter.addItem(new BangXepHang("id", "man city", "25", "11",
-		// "8", "1", "2", "22", "11", "12"));
+		String maGiaiDau = dau.getId();
+		if (maGiaiDau == null)
+			maGiaiDau = "";
+		BongDaServiceManager
+				.getInstance()
+				.getBongDaService()
+				.callApi(
+						System.currentTimeMillis(),
+						callbackAPI,
+						ByUtils.wsFootBall_BangXepHang.replace("bangxephangId",
+								maGiaiDau));
 		countryAdapter.notifyDataSetChanged();
 	}
 }

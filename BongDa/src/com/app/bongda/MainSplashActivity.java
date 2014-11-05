@@ -115,7 +115,7 @@ public class MainSplashActivity extends Activity {
 
 				@Override
 				public void onSuccess(String response) {
-					Log.e("callApi", "onSuccess");
+					//Log.e("callApi", "onSuccess");
 					if (isFinishing()) {
 						return;
 					}
@@ -157,7 +157,7 @@ public class MainSplashActivity extends Activity {
 
 				@Override
 				public void onError(String message) {
-					Log.e("callApi", "ERROR");
+					//Log.e("callApi", "ERROR");
 					if (isFinishing()) {
 						return;
 					}
