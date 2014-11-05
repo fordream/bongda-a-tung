@@ -11,13 +11,27 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+
+import com.app.bongda.fragment.CountryFragment;
+import com.app.bongda.fragment.DanhSachGiaiDauFragment;
+import com.app.bongda.group.X4VLayoutActivity;
+import com.app.bongda.model.Country;
 
 public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 	public void addFragement(Fragment fragment) {
+		int curent = pager.getCurrentItem();
 		list.add(fragment);
+
 		pager.setAdapter(BaseViewOfFaragmentPagerAdapter.this);
 		notifyDataSetChanged();
-		pager.setCurrentItem(getCount() - 1);
+
+		if (curent >= 0) {
+			pager.setCurrentItem(curent);
+		}
+		handler.sendEmptyMessageDelayed(2, 10);
+
 	}
 
 	private List<Fragment> list = new ArrayList<Fragment>();
@@ -31,9 +45,13 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 				notifyDataSetChanged();
 				pager.setCurrentItem(getCount() - 1);
 			} else if (msg.what == 1) {
+				// back
 				list.remove(list.size() - 1);
 				pager.setAdapter(BaseViewOfFaragmentPagerAdapter.this);
 				notifyDataSetChanged();
+				pager.setCurrentItem(getCount() - 1);
+			} else if (msg.what == 2) {
+				// next
 				pager.setCurrentItem(getCount() - 1);
 			}
 		};
@@ -63,6 +81,20 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 
 			}
 		});
+
+		if (mpager.getContext() instanceof X4VLayoutActivity) {
+			addFragement(new CountryFragment(new OnItemClickListener() {
+
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+					Country country = (Country) parent
+							.getItemAtPosition(position);
+
+					addFragement(new DanhSachGiaiDauFragment(country, null));
+				}
+			}));
+		}
 	}
 
 	@Override

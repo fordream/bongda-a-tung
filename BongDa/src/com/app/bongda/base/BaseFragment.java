@@ -1,5 +1,6 @@
 package com.app.bongda.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -44,7 +45,10 @@ public abstract class BaseFragment extends Fragment {
 //			return view;
 //		}
 
-		View view = super.onCreateView(inflater, container, savedInstanceState);
+//		View view = super.onCreateView(inflater, container, savedInstanceState);
+		View view = null;
+		if(inflater == null)
+			inflater = (LayoutInflater)container.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		if (getLayout() != 0) {
 			view = inflater.inflate(getLayout(), null);
 		}

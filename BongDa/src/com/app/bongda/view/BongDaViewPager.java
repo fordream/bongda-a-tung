@@ -21,8 +21,6 @@ public class BongDaViewPager extends ViewPager {
 
 	private void init() {
 		adapter = new BaseViewOfFaragmentPagerAdapter(this);
-		
-		
 	}
 
 	public void addFragement(Fragment fragment) {

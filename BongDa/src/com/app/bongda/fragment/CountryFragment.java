@@ -41,10 +41,12 @@ public class CountryFragment extends BaseFragment {
 
 		@Override
 		public void showData(Object item, View convertView) {
-			TextView textView = (TextView) convertView.findViewById(R.id.textView1);
+			TextView textView = (TextView) convertView
+					.findViewById(R.id.textView1);
 			textView.setText(((Country) item).getName());
 			String image1 = ((Country) item).logoCountry();
-			ImageLoaderUtils.getInstance(getActivity()).DisplayImage(image1, (ImageView) convertView.findViewById(R.id.imageView1));
+			ImageLoaderUtils.getInstance(getActivity()).DisplayImage(image1,
+					(ImageView) convertView.findViewById(R.id.imageView1));
 		}
 
 	}
@@ -59,18 +61,21 @@ public class CountryFragment extends BaseFragment {
 		/**
 		 * init header view
 		 */
-		HeaderView headerView = (HeaderView) view.findViewById(R.id.headerView1);
+		HeaderView headerView = (HeaderView) view
+				.findViewById(R.id.headerView1);
 		headerView.setTextHeader(R.string.cacnuoc);
 		/** init data */
 		ListView listView = (ListView) view.findViewById(R.id.listView1);
 		listView.setOnItemClickListener(onItemClickListener);
 
 		listView.setAdapter(countryAdapter);
+
+		if (ByUtils.USEGROUPVIEW) {
+			loadata();
+		}
 	}
 
-	@Override
-	public void onResume() {
-		super.onResume();
+	private void loadata() {
 		if (callbackAPI == null)
 			callbackAPI = new ICallbackAPI() {
 				@Override
@@ -80,8 +85,12 @@ public class CountryFragment extends BaseFragment {
 						try {
 							JSONArray jsonarray = new JSONArray(string_temp);
 							for (int i = 0; i < jsonarray.length(); i++) {
-								countryAdapter.addItem(new Country(jsonarray.getJSONObject(i).getString("iID_MaQuocGia"), jsonarray.getJSONObject(i).getString("sTenQuocGia"), jsonarray.getJSONObject(
-										i).getString("sLogo")));
+								countryAdapter.addItem(new Country(jsonarray
+										.getJSONObject(i).getString(
+												"iID_MaQuocGia"), jsonarray
+										.getJSONObject(i).getString(
+												"sTenQuocGia"), jsonarray
+										.getJSONObject(i).getString("sLogo")));
 							}
 							countryAdapter.notifyDataSetChanged();
 						} catch (JSONException e) {
@@ -93,7 +102,17 @@ public class CountryFragment extends BaseFragment {
 				public void onError(String message) {
 				}
 			};
-		BongDaServiceManager.getInstance().getBongDaService().callApi(getCurrentTime(), callbackAPI, ByUtils.wsFootBall_Quocgia);
+		BongDaServiceManager
+				.getInstance()
+				.getBongDaService()
+				.callApi(getCurrentTime(), callbackAPI,
+						ByUtils.wsFootBall_Quocgia);
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		loadata();
 	}
 
 	@Override
