@@ -82,36 +82,38 @@ public class TyLeDuDoanFragment extends BaseFragment {
 		tyLeView1.setPer(0);
 		tyLeView2.setPer(0);
 
-		tyledudoan_name1.setText(CommonUtil.getdata(getActivity(),"sTenDoiNha"));
-		tyledudoan_name2.setText(CommonUtil.getdata(getActivity(),"sTenDoiKhach"));
+		tyledudoan_name1.setText(CommonUtil.getdata(view.getContext(), "sTenDoiNha"));
+		tyledudoan_name2.setText(CommonUtil.getdata(view.getContext(), "sTenDoiKhach"));
 
-		tyledudoan_name_giaidau_text.setText(CommonUtil.getdata(getActivity(),"sTenGiai"));
-		
-		ImageLoaderUtils.getInstance(getActivity()).DisplayImage(CommonUtil.getdata(getActivity(),"sLogoGiai"), (ImageView) view.findViewById(R.id.tyledudoan_img));
-		
+		tyledudoan_name_giaidau_text.setText(CommonUtil.getdata(view.getContext(), "sTenGiai"));
+
+		ImageLoaderUtils.getInstance(null).DisplayImage(CommonUtil.getdata(view.getContext(), "sLogoGiai"), (ImageView) view.findViewById(R.id.tyledudoan_img));
+
 		if (giaidau != null) {
 			String idmagiaidau = giaidau.idmagiai();
 			GiaiDauTable giaiDauTable = BongDaServiceManager.getInstance().getGiaiDauTable(idmagiaidau);
-//			tyledudoan_name_giaidau_text.setText(giaiDauTable.getData("sTenGiai"));
-//			ImageLoaderUtils.getInstance(getActivity()).DisplayImage(giaiDauTable.getData("sLogo"), tyledudoan_img, null);
+			// tyledudoan_name_giaidau_text.setText(giaiDauTable.getData("sTenGiai"));
+			// ImageLoaderUtils.getInstance(getActivity()).DisplayImage(giaiDauTable.getData("sLogo"),
+			// tyledudoan_img, null);
 			String iID_MaQuocGia = giaiDauTable.getData("iID_MaQuocGia");
 			String where = String.format("iID_MaQuocGia ='%s'", iID_MaQuocGia);
-			Cursor cursor = BongDaServiceManager.getInstance().query(new CountryTable().getTableName(),where);
+			Cursor cursor = BongDaServiceManager.getInstance().query(new CountryTable().getTableName(), where);
 			/**
 			 * TODO check
 			 */
-			tyledudoan_time.setText(String.format(getResources().getString(R.string.format_tyledudoan), giaiDauTable.getData("iBXH_ThoiGianCapNhap")));
+			tyledudoan_time.setText(String.format(view.getContext().getResources().getString(R.string.format_tyledudoan), giaiDauTable.getData("iBXH_ThoiGianCapNhap")));
 		}
-		
+
 		/**
 		 * action
 		 */
-		
+
 		view.findViewById(R.id.imageView1s).setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-//				onItemClickListener.onItemClick(parent, headerView, position, id);
+				// onItemClickListener.onItemClick(parent, headerView, position,
+				// id);
 			}
 		});
 	}
@@ -127,7 +129,7 @@ public class TyLeDuDoanFragment extends BaseFragment {
 			public void onSuccess(String response) {
 				String string_temp = CommonAndroid.parseXMLAction(response);
 				if (!string_temp.equalsIgnoreCase("")) {
-					
+
 					Log.e("ABCS", string_temp + "");
 					try {
 						JSONArray jsonarray = new JSONArray(string_temp);
@@ -152,12 +154,13 @@ public class TyLeDuDoanFragment extends BaseFragment {
 
 			@Override
 			public void onError(String message) {
-				CommonAndroid.showDialog(getActivity(), "data3err:" + message, null);
+				// CommonAndroid.showDialog(getActivity(), "data3err:" +
+				// message, null);
 				Log.e("ERR", message);
 			}
 		};
 		String matran = giaidau.getId();
 		String param = (ByUtils.wsFootBall_Lives_TyLeDuDoan).replace("matran", matran);
-		new APICaller(getActivity()).callApi("", true, callbackAPI, param);
+		new APICaller(getActivity()).callApi("", false, callbackAPI, param);
 	}
 }
