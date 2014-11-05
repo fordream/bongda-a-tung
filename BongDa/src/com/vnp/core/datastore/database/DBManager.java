@@ -94,10 +94,10 @@ public class DBManager {
 			long id = 0;
 
 			if (count == 0) {
-//				Log.e(table, "insert");
+				// Log.e(table, "insert");
 				id = database.insert(table, null, values);
 			} else {
-//				Log.e(table, "update");
+				// Log.e(table, "update");
 				id = database.update(table, values, whereClause, null);
 			}
 
@@ -125,10 +125,10 @@ public class DBManager {
 			long id = 0;
 
 			if (count == 0) {
-//				Log.e(table, "insert");
+				// Log.e(table, "insert");
 				id = database.insert(table, null, values);
 			} else {
-//				Log.e(table, "update");
+				// Log.e(table, "update");
 				id = database.update(table, values, whereClause, null);
 			}
 
@@ -158,10 +158,10 @@ public class DBManager {
 			long id = 0;
 
 			if (count == 0) {
-//				Log.e(table, "insert");
+				// Log.e(table, "insert");
 				id = database.insert(table, null, values);
 			} else {
-//				Log.e(table, "update");
+				// Log.e(table, "update");
 				id = database.update(table, values, whereClause, null);
 			}
 
@@ -193,5 +193,29 @@ public class DBManager {
 
 	public Cursor query(String tableName, String where) {
 		return database.query(tableName, null, where, null, null, null, null);
+	}
+
+	public long inset(String tableName, ContentValues contentValues, String where) {
+		Cursor cursor = database.query(tableName, null, where, null, null, null, null);
+
+		int count = 0;
+		if (cursor != null) {
+			count = cursor.getCount();
+		}
+
+		if (where == null) {
+			count = 0;
+		}
+		long id = -1;
+		if (count == 0) {
+			// Log.e(table, "insert");
+			id = database.insert(tableName, null, contentValues);
+		} else {
+			// Log.e(table, "update");
+			id = database.update(tableName, contentValues, where, null);
+		}
+
+		return id;
+
 	}
 }

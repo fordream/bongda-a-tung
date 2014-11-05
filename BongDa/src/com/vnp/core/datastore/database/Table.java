@@ -47,7 +47,7 @@ public abstract class Table {
 		StringBuilder builder = new StringBuilder();
 		builder.append("CREATE TABLE ").append(getTableName()).append("(");
 		Set<String> keys = columNameS();
-
+		builder.append("	_id TEXT");
 		for (String c : keys) {
 			if (builder.toString().endsWith("TEXT")) {
 				builder.append(",");

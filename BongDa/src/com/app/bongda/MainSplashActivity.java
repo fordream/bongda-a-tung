@@ -31,12 +31,9 @@ public class MainSplashActivity extends Activity {
 				rotate = rotate + 10;
 				float pivotX = ic_logo.getWidth() / 2;
 				float pivotY = ic_logo.getHeight() / 2;
-				RotateAnimation animation = new RotateAnimation(start, rotate,
-						pivotX, pivotY);
+				RotateAnimation animation = new RotateAnimation(start, rotate, pivotX, pivotY);
 				animation.setDuration(10);
-
 				ic_logo.startAnimation(animation);
-
 				handler.sendEmptyMessageDelayed(0, 10);
 			}
 		}
@@ -51,6 +48,7 @@ public class MainSplashActivity extends Activity {
 			overridePendingTransition(R.anim.nothing, R.anim.top_to_bot);
 			return true;
 		}
+		
 		return super.onKeyDown(keyCode, event);
 	};
 
@@ -62,30 +60,28 @@ public class MainSplashActivity extends Activity {
 		ic_logo = (View) findViewById(R.id.ic_logo);
 		handler.sendEmptyMessage(0);
 
-		BongDaServiceManager.getInstance().onResume(
-				new BongDaServiceManagerListener() {
+		BongDaServiceManager.getInstance().onResume(new BongDaServiceManagerListener() {
 
-					@Override
-					public void onSuccess() {
-						onCheckForNetwork();
-					}
+			@Override
+			public void onSuccess() {
+				onCheckForNetwork();
+			}
 
-					@Override
-					public void onFail() {
+			@Override
+			public void onFail() {
 
-					}
+			}
 
-					@Override
-					public void onDisconnected() {
+			@Override
+			public void onDisconnected() {
 
-					}
-				});
+			}
+		});
 
 	}
 
 	private void onCheckForNetwork() {
 		if (isFinishing()) {
-//			CommonAndroid.toast(MainSplashActivity.this, "finish");
 			return;
 		}
 
@@ -115,7 +111,7 @@ public class MainSplashActivity extends Activity {
 
 				@Override
 				public void onSuccess(String response) {
-					//Log.e("callApi", "onSuccess");
+					// Log.e("callApi", "onSuccess");
 					if (isFinishing()) {
 						return;
 					}
@@ -123,41 +119,29 @@ public class MainSplashActivity extends Activity {
 					String string_temp = CommonAndroid.parseXMLAction(response);
 					if (!string_temp.equalsIgnoreCase("")) {
 
-						// save live score
-						// open
-
-						Intent intent = new Intent(MainSplashActivity.this,
-								SplashActivity.class);
-
-						// intent.putExtra("socre", string_temp);
+						Intent intent = new Intent(MainSplashActivity.this, SplashActivity.class);
 
 						startActivity(intent);
 						finish();
-						overridePendingTransition(R.anim.bot_to_top,
-								R.anim.nothing);
+						overridePendingTransition(R.anim.bot_to_top, R.anim.nothing);
 					} else {
 						Builder builder = new Builder(MainSplashActivity.this);
 						builder.setCancelable(false);
 						builder.setMessage(R.string.cannotconnecttoserverr);
-						builder.setPositiveButton(R.string.ok,
-								new OnClickListener() {
+						builder.setPositiveButton(R.string.ok, new OnClickListener() {
 
-									@Override
-									public void onClick(DialogInterface dialog,
-											int which) {
-										finish();
-										overridePendingTransition(
-												R.anim.bot_to_top,
-												R.anim.nothing);
-									}
-								});
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								finish();
+								overridePendingTransition(R.anim.bot_to_top, R.anim.nothing);
+							}
+						});
 						builder.show();
 					}
 				}
 
 				@Override
 				public void onError(String message) {
-					//Log.e("callApi", "ERROR");
 					if (isFinishing()) {
 						return;
 					}
@@ -165,27 +149,20 @@ public class MainSplashActivity extends Activity {
 					Builder builder = new Builder(MainSplashActivity.this);
 					builder.setCancelable(false);
 					builder.setMessage(R.string.cannotconnecttoserverr);
-					builder.setPositiveButton(R.string.ok,
-							new OnClickListener() {
+					builder.setPositiveButton(R.string.ok, new OnClickListener() {
 
-								@Override
-								public void onClick(DialogInterface dialog,
-										int which) {
-									finish();
-									overridePendingTransition(
-											R.anim.bot_to_top, R.anim.nothing);
-								}
-							});
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							finish();
+							overridePendingTransition(R.anim.bot_to_top, R.anim.nothing);
+						}
+					});
 					builder.show();
 				}
 			};
-
-			BongDaServiceManager
-					.getInstance()
-					.getBongDaService()
-					.callApi(System.currentTimeMillis(), callbackAPI,
-							ByUtils.wsFootBall_Lives);
+			BongDaServiceManager.getInstance().startLoadContentBase();
+			BongDaServiceManager.getInstance().getBongDaService().callApi(System.currentTimeMillis(), callbackAPI, ByUtils.wsFootBall_Lives);
+			
 		}
 	}
-
 }

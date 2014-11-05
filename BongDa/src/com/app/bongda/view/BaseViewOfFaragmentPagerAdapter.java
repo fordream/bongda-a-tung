@@ -3,6 +3,7 @@ package com.app.bongda.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.database.Cursor;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
@@ -218,7 +219,11 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				Country country = (Country) parent.getItemAtPosition(position);
+				Cursor cursor = (Cursor)parent.getItemAtPosition(position);
+				String _id = cursor.getString(cursor.getColumnIndex("iID_MaQuocGia"));
+				String name = cursor.getString(cursor.getColumnIndex("sTenQuocGia"));
+				String sLogoCountry = cursor.getString(cursor.getColumnIndex("sLogo"));
+				Country country = new Country(_id, name, sLogoCountry);
 				addDanhSachGiaiDauFragment(country);
 			}
 		}));

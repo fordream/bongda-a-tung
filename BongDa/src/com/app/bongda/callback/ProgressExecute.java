@@ -17,6 +17,10 @@ public abstract class ProgressExecute extends ExeCallBack {
 		this.context = context;
 	}
 
+	public void setResponse(String response) {
+		this.response = response;
+	}
+
 	public void executeAsynCallBack() {
 		super.executeAsynCallBack(new CallBack() {
 
@@ -36,4 +40,8 @@ public abstract class ProgressExecute extends ExeCallBack {
 	public abstract void onProgress(String response);
 
 	public abstract void onProgressSucess();
+
+	public void onProgressStartFail() {
+
+	}
 }

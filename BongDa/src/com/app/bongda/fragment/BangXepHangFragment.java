@@ -4,70 +4,33 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.app.bongda.R;
 import com.app.bongda.base.BaseFragment;
-import com.app.bongda.base.BongDaBaseAdapter;
-import com.app.bongda.callback.APICaller;
 import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.model.BangXepHang;
 import com.app.bongda.model.GiaiDau;
-import com.app.bongda.model.LiveScore;
 import com.app.bongda.service.BongDaServiceManager;
 import com.app.bongda.util.ByUtils;
 import com.app.bongda.util.CommonAndroid;
 import com.app.bongda.util.CommonUtil;
 import com.app.bongda.view.HeaderView;
+import com.app.bongda.view.adapter.BangXepHangAdapter;
 
 public class BangXepHangFragment extends BaseFragment {
+	private BangXepHangAdapter countryAdapter = new BangXepHangAdapter();
 	OnItemClickListener onItemClickListener;
 	GiaiDau dau;
-	
 
-	public BangXepHangFragment(GiaiDau dau,
-			OnItemClickListener onItemClickListener) {
+	public BangXepHangFragment(GiaiDau dau, OnItemClickListener onItemClickListener) {
 		super();
 		this.onItemClickListener = onItemClickListener;
 		this.dau = dau;
-	}
-
-	private CountryAdapter countryAdapter = new CountryAdapter();
-
-	private class CountryAdapter extends BongDaBaseAdapter {
-
-		@Override
-		public int getLayout() {
-			return R.layout.bangxephang_item;
-		}
-
-		@Override
-		public void showData(int position, Object item, View convertView) {
-			super.showData(position, item, convertView);
-			setText(convertView, R.id.stt, position + "");
-		}
-
-		@Override
-		public void showData(Object item, View convertView) {
-			BangXepHang bangxephang = (BangXepHang) item;
-			setText(convertView, R.id.tendoi, bangxephang.getName());
-			setText(convertView, R.id.pts, bangxephang.getPts());
-			setText(convertView, R.id._congtru, bangxephang.get_contru());
-			setText(convertView, R.id.d, bangxephang.getD());
-			setText(convertView, R.id.ga, bangxephang.getGa());
-			setText(convertView, R.id.gf, bangxephang.getGf());
-			setText(convertView, R.id.gp, bangxephang.getGp());
-			setText(convertView, R.id.l, bangxephang.getL());
-			setText(convertView, R.id.w, bangxephang.getW());
-		}
 	}
 
 	@Override
@@ -82,19 +45,15 @@ public class BangXepHangFragment extends BaseFragment {
 		/**
 		 * init header view
 		 */
-		HeaderView headerView = (HeaderView) view
-				.findViewById(R.id.headerView1);
+		HeaderView headerView = (HeaderView) view.findViewById(R.id.headerView1);
 		headerView.setTextHeader(R.string.bangxephang);
 
 		/** init data */
-		ListView listView = (ListView) view
-				.findViewById(R.id.bangxephang_listview);
+		ListView listView = (ListView) view.findViewById(R.id.bangxephang_listview);
 		if (mHeader != null) {
 			listView.removeHeaderView(mHeader);
 		} else {
-			mHeader = ((LayoutInflater) view.getContext().getSystemService(
-					Context.LAYOUT_INFLATER_SERVICE)).inflate(
-					R.layout.bangxephang_item, null);
+			mHeader = ((LayoutInflater) view.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.bangxephang_item, null);
 		}
 
 		listView.addHeaderView(mHeader);
@@ -103,45 +62,24 @@ public class BangXepHangFragment extends BaseFragment {
 		listView.setAdapter(countryAdapter);
 		String tengiai = "";
 		tengiai = CommonUtil.getdata(getActivity(), "sTenGiai");
-		((TextView) view.findViewById(R.id.danhsachgiaidau_txtname))
-				.setText(tengiai);
+		((TextView) view.findViewById(R.id.danhsachgiaidau_txtname)).setText(tengiai);
 	}
-
-	ICallbackAPI callbackAPI;
 
 	@Override
 	public void onInitData() {
-		callbackAPI = new ICallbackAPI() {
+		ICallbackAPI callbackAPI = new ICallbackAPI() {
 			@Override
 			public void onSuccess(String response) {
 				String string_temp = CommonAndroid.parseXMLAction(response);
 				if (!string_temp.equalsIgnoreCase("")) {
 
-					// CommonAndroid.showDialog(getActivity(), "data2:" +
-					// string_temp, null);
 					try {
 						JSONArray jsonarray = new JSONArray(string_temp);
 						for (int i = 0; i < jsonarray.length(); i++) {
-							countryAdapter.addItem(new BangXepHang(jsonarray
-									.getJSONObject(i).getString("sViTri"),
-									jsonarray.getJSONObject(i).getString(
-											"sTenDoi"), jsonarray
-											.getJSONObject(i).getString(
-													"sSoTranDau"), jsonarray
-											.getJSONObject(i)
-											.getString("sDiem"), jsonarray
-											.getJSONObject(i).getString(
-													"sSoTranThang"), jsonarray
-											.getJSONObject(i).getString(
-													"sSoTranHoa"), jsonarray
-											.getJSONObject(i).getString(
-													"sSoTranThua"), jsonarray
-											.getJSONObject(i).getString(
-													"sBanThang"), jsonarray
-											.getJSONObject(i).getString(
-													"sBanThua"), jsonarray
-											.getJSONObject(i)
-											.getString("sHeSo")));
+							countryAdapter.addItem(new BangXepHang(jsonarray.getJSONObject(i).getString("sViTri"), jsonarray.getJSONObject(i).getString("sTenDoi"), jsonarray.getJSONObject(i)
+									.getString("sSoTranDau"), jsonarray.getJSONObject(i).getString("sDiem"), jsonarray.getJSONObject(i).getString("sSoTranThang"), jsonarray.getJSONObject(i)
+									.getString("sSoTranHoa"), jsonarray.getJSONObject(i).getString("sSoTranThua"), jsonarray.getJSONObject(i).getString("sBanThang"), jsonarray.getJSONObject(i)
+									.getString("sBanThua"), jsonarray.getJSONObject(i).getString("sHeSo")));
 						}
 						countryAdapter.notifyDataSetChanged();
 					} catch (JSONException e) {
@@ -158,14 +96,7 @@ public class BangXepHangFragment extends BaseFragment {
 		String maGiaiDau = dau.getId();
 		if (maGiaiDau == null)
 			maGiaiDau = "";
-		BongDaServiceManager
-				.getInstance()
-				.getBongDaService()
-				.callApi(
-						System.currentTimeMillis(),
-						callbackAPI,
-						ByUtils.wsFootBall_BangXepHang.replace("bangxephangId",
-								maGiaiDau));
+		BongDaServiceManager.getInstance().getBongDaService().callApi(System.currentTimeMillis(), callbackAPI, ByUtils.wsFootBall_BangXepHang.replace("bangxephangId", maGiaiDau));
 		countryAdapter.notifyDataSetChanged();
 	}
 }
