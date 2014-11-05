@@ -78,6 +78,9 @@
             android:enabled="true"
             android:exported="true" >
         </service>
+        <activity android:name="com.app.bongda.vl.X1VLayoutActivity"></activity>
+        <activity android:name="com.app.bongda.vl.X2VLayoutActivity"></activity>
+        <activity android:name="com.app.bongda.vl.X3VLayoutActivity"></activity>
         <activity android:name="com.app.bongda.vl.X4VLayoutActivity"></activity>
     </application>
 
