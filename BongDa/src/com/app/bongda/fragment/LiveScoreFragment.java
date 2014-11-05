@@ -331,15 +331,14 @@ public class LiveScoreFragment extends BaseFragment {
 				BongDaServiceManager.getInstance().getBongDaService().callApi(getCurrentTime(), callbackAPI, ByUtils.wsFootBall_Lives);
 			} else {
 				if (TypeView == null) {
-					new APICaller(getActivity()).callApi("", true, callbackAPI, ByUtils.wsFootBall_Lives);
+					BongDaServiceManager.getInstance().getBongDaService().callApi(System.currentTimeMillis(), callbackAPI, ByUtils.wsFootBall_Lives);
 				} else {
 					if (TypeView.equalsIgnoreCase("quantam")) {
-						CommonUtil.getdata(getActivity());
+						CommonUtil.getdata(listView.getContext());
 						if (CommonUtil.listQuanTam.size() > 0) {
-							new APICaller(getActivity()).callApi("", true, callbackAPI, ByUtils.wsFootBall_Lives);
-
+							BongDaServiceManager.getInstance().getBongDaService().callApi(System.currentTimeMillis(), callbackAPI, ByUtils.wsFootBall_Lives);
 						} else {
-							Toast.makeText(getActivity(), getResources().getString(R.string.khongcodoiyeuthich), Toast.LENGTH_LONG).show();
+							Toast.makeText(listView.getContext(), listView.getContext().getResources().getString(R.string.khongcodoiyeuthich), Toast.LENGTH_LONG).show();
 						}
 					}
 
@@ -349,7 +348,8 @@ public class LiveScoreFragment extends BaseFragment {
 			if (TypeView == null && onLoad == 1) {
 				BongDaServiceManager.getInstance().getBongDaService().callApi(getCurrentTime(), callbackAPI, (ByUtils.wsFootBall_Lives_Theo_Giai).replace("magiai", maGiaiDau));
 			} else {
-				new APICaller(getActivity()).callApi("", true, callbackAPI, (ByUtils.wsFootBall_Lives_Theo_Giai).replace("magiai", maGiaiDau));
+				String ws = (ByUtils.wsFootBall_Lives_Theo_Giai).replace("magiai", maGiaiDau);
+				BongDaServiceManager.getInstance().getBongDaService().callApi(System.currentTimeMillis(), callbackAPI, ws);
 			}
 		}
 		onLoad++;
@@ -375,9 +375,9 @@ public class LiveScoreFragment extends BaseFragment {
 							array.clear();
 							JSONArray jsonArray = new JSONArray(string_temp);
 							if (jsonArray.length() == 0) {
-								Toast.makeText(getActivity(), getResources().getString(R.string.giaichuabatdau), Toast.LENGTH_LONG).show();
+								Toast.makeText(listView.getContext(), listView.getContext().getResources().getString(R.string.giaichuabatdau), Toast.LENGTH_LONG).show();
 							}
-							CommonUtil.getdata(getActivity());
+							CommonUtil.getdata(listView.getContext());
 							// Log.e("KKK","kkk"+ "*****"+
 							// CommonUtil.listQuanTam.toString());
 

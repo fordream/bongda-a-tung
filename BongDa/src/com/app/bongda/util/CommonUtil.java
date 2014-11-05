@@ -25,7 +25,7 @@ public class CommonUtil {
 		editor.commit();
 	}
 
-	public static void getdata(FragmentActivity activity) {
+	public static void getdata(Context activity) {
 		try {
 			SharedPreferences pref = activity.getApplicationContext().getSharedPreferences("FavoriteList", 0);
 			String csvList = pref.getString("FList", null);
@@ -39,15 +39,14 @@ public class CommonUtil {
 		}
 	}
 
-	public static void savedata(FragmentActivity activity, String key, String value) {
-		// TODO Auto-generated method stub
-		SharedPreferences pref = activity.getApplicationContext().getSharedPreferences("Data", 0);
+	public static void savedata(Context context, String key, String value) {
+		SharedPreferences pref = context.getSharedPreferences("Data", 0);
 		Editor editor = pref.edit();
 		editor.putString(key, value);
 		editor.commit();
 	}
 
-	public static String getdata(FragmentActivity activity, String key) {
+	public static String getdata(Context activity, String key) {
 		String values = null;
 		try {
 			SharedPreferences pref = activity.getApplicationContext().getSharedPreferences("Data", 0);
