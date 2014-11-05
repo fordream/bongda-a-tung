@@ -9,17 +9,15 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.animation.AnimationUtils;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
 
-import com.app.bongda.group.X1GroupActivity;
-import com.app.bongda.group.X2GroupActivity;
-import com.app.bongda.group.X3GroupActivity;
-import com.app.bongda.group.X4GroupActivity;
 import com.app.bongda.util.ByUtils;
 import com.app.bongda.view.IndivicatorView;
+import com.app.bongda.vl.X1VLayoutActivity;
+import com.app.bongda.vl.X2VLayoutActivity;
+import com.app.bongda.vl.X3VLayoutActivity;
 import com.app.bongda.vl.X4VLayoutActivity;
 
 public class SplashActivity extends TabActivity implements OnTabChangeListener {
@@ -82,9 +80,9 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 		// AnimationUtils.loadAnimation(getContext(),
 		// R.anim.splash));
 		if (ByUtils.USEGROUPVIEW) {
-			addTab(X1GroupActivity.class, "Home", "Home", R.drawable.menu_1);
-			addTab(X2GroupActivity.class, "M1", "M1", R.drawable.menu_2);
-			addTab(X3GroupActivity.class, "M2", "M2", R.drawable.menu_3);
+			addTab(X1VLayoutActivity.class, "Home", "Home", R.drawable.menu_1);
+			addTab(X2VLayoutActivity.class, "M1", "M1", R.drawable.menu_2);
+			addTab(X3VLayoutActivity.class, "M2", "M2", R.drawable.menu_3);
 			addTab(X4VLayoutActivity.class, "M3", "M3", R.drawable.menu_4);
 		} else {
 			addTab(X1Activity.class, "Home", "Home", R.drawable.menu_1);
