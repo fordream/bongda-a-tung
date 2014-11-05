@@ -176,14 +176,14 @@
                 android:text="@string/bangephang2doi"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
-            <!-- <com.app.bongda.view.BangXepHangItemView
+            <com.app.bongda.view.BangXepHangItemView
                 android:id="@+id/bangXepHangItemView1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
             </com.app.bongda.view.BangXepHangItemView>
- -->
 
-		 <ListView
+
+		 <!-- <ListView
 		     android:id="@+id/bangxephang_listview"
 		     android:layout_width="match_parent"
 		     android:layout_height="wrap_content"
@@ -191,7 +191,7 @@
 		     android:dividerHeight="0dp"
 		     android:listSelector="@drawable/transfer" >
 
-		    </ListView>
+		    </ListView> -->
             <LinearLayout
                 android:id="@+id/phongdodoidau_bangephang_listitem"
                 android:layout_width="match_parent"

@@ -198,10 +198,10 @@ public class LiveScoreFragment extends BaseFragment {
 				if (CommonUtil.listQuanTam.contains(liveScore.getId()))
 	            {
 //					convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
-					img_favorite.setImageResource(R.drawable.like_icon);
+					img_favorite.setImageResource(R.drawable.ico_favorite_on);
 				}else{
 //					convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
-					img_favorite.setImageResource(R.drawable.unlike_icon);
+					img_favorite.setImageResource(R.drawable.ico_favorite_off);
 				}
 				convertView.findViewById(R.id.iconlike).setOnClickListener(new OnClickListener() {
 					@Override
@@ -210,11 +210,11 @@ public class LiveScoreFragment extends BaseFragment {
 			            {
 							CommonUtil.listQuanTam.remove(liveScore.getId());
 			                CommonUtil.savedata(getActivity());
-							img_favorite.setImageResource(R.drawable.like_icon);
+							img_favorite.setImageResource(R.drawable.ico_favorite_on);
 						}else{
 							 CommonUtil.listQuanTam.add(liveScore.getId());
 				             CommonUtil.savedata(getActivity());
-							img_favorite.setImageResource(R.drawable.unlike_icon);
+							img_favorite.setImageResource(R.drawable.ico_favorite_off);
 						}
 						countryAdapter.notifyDataSetChanged();
 					}

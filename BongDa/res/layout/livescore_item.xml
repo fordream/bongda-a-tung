@@ -166,12 +166,12 @@
 
             <ImageView
                 android:id="@+id/iconlike"
-                android:layout_width="@dimen/dimen_30dp"
-                android:layout_height="@dimen/dimen_30dp"
+                android:layout_width="@dimen/dimen_24dp"
+                android:layout_height="@dimen/dimen_24dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:visibility="gone"
-                android:background="@drawable/like_icon" />
+                android:background="@null" />
 
         </RelativeLayout>
 

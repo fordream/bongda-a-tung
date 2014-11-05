@@ -58,7 +58,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 	public int getLayout() {
 		return R.layout.phongdodoidau;
 	}
-//	LinearLayout phongdodoidau_bangephang_listitem;
+	LinearLayout phongdodoidau_bangephang_listitem;
 	@Override
 	public void onInitCreateView(View view) {
 		/**
@@ -68,11 +68,11 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 				.findViewById(R.id.headerView1);
 		headerView.setTextHeader(R.string.xemphongdo);
 	
-//		phongdodoidau_bangephang_listitem = (LinearLayout)view.findViewById(R.id.phongdodoidau_bangephang_listitem);
-//		phongdodoidau_bangephang_listitem.removeAllViews();
+		phongdodoidau_bangephang_listitem = (LinearLayout)view.findViewById(R.id.phongdodoidau_bangephang_listitem);
+		phongdodoidau_bangephang_listitem.removeAllViews();
 		
-		ListView listView = (ListView) view.findViewById(R.id.bangxephang_listview);
-		listView.setAdapter(countryAdapter);
+//		ListView listView = (ListView) view.findViewById(R.id.bangxephang_listview);
+//		listView.setAdapter(countryAdapter);
 		this.view = view;
 		
 	}
@@ -190,8 +190,8 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 		callbackAPI = new ICallbackAPI() {
 			@Override
 			public void onSuccess(String response) {
-				CommonAndroid.showDialog(getActivity(), "data2:" + response , null);
-				Log.e("aaaaa", "data::" + response);
+//				CommonAndroid.showDialog(getActivity(), "data2:" + response , null);
+//				Log.e("aaaaa", "data::" + response);
 				String string_temp = CommonAndroid.parseXMLAction(response);
 				if(!string_temp.equalsIgnoreCase("")){
 					try {
@@ -208,10 +208,11 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 							String sBanThang = jsonarray.getJSONObject(i).getString("sBanThang");
 							String sBanThua = jsonarray.getJSONObject(i).getString("sBanThua");
 							String sHeSo = jsonarray.getJSONObject(i).getString("sHeSo");
-							
-							countryAdapter.addItem(new PhongDo( id,  name,  sViTri,  sSoTranDau,  sDiem,  sSoTranThang,  sSoTranHoa,  sSoTranThua,  sBanThang,  sBanThua,  sHeSo));
+							PhongDo phongdo =new PhongDo( id,  name,  sViTri,  sSoTranDau,  sDiem,  sSoTranThang,  sSoTranHoa,  sSoTranThua,  sBanThang,  sBanThua,  sHeSo);
+//							countryAdapter.addItem(new PhongDo( id,  name,  sViTri,  sSoTranDau,  sDiem,  sSoTranThang,  sSoTranHoa,  sSoTranThua,  sBanThang,  sBanThua,  sHeSo));
+							phongdodoidau_bangephang_listitem.addView(new BangXepHangItemView(getActivity(), phongdo));
 						}
-						countryAdapter.notifyDataSetChanged();
+//						countryAdapter.notifyDataSetChanged();
 					} catch (JSONException e) {
 //						CommonAndroid.showDialog(getActivity(), "data2json:" + e.getMessage() , null);
 					}
@@ -238,47 +239,47 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 							//parse
 //							String callbackAPI_Chitiet = jsonarray.get(i).toString();
 //							Log.e("callbackAPI_Chitiet",i + "::"+ callbackAPI_Chitiet );
-							DoiNha_SoTran_GhiBan_SanNha = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_GhiBan_SanNha") +  getResources().getString(R.string.tran);
-							DoiNha_SoTran_GhiBan_SanKhach = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_GhiBan_SanKhach") +  getResources().getString(R.string.tran);
-							DoiNha_TyLe_GhiBan_SanNha = jsonarray.getJSONObject(i).getString("DoiNha_TyLe_GhiBan_SanNha") +  getResources().getString(R.string.tran);
-							DoiNha_TyLe_GhiBan_SanKhach = jsonarray.getJSONObject(i).getString("DoiNha_TyLe_GhiBan_SanKhach") +  getResources().getString(R.string.tran);
-							DoiNha_SoTran_Khong_GhiBan_SanNha = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_Khong_GhiBan_SanNha") +  getResources().getString(R.string.tran);
-							DoiNha_SoTran_Khong_GhiBan_SanKhach = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_Khong_GhiBan_SanKhach") +  getResources().getString(R.string.tran);
-							DoiNha_SoTran_SachLuoi_SanNha = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_SachLuoi_SanNha") +  getResources().getString(R.string.tran);
-							DoiNha_SoTran_SachLuoi_SanKhach = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_SachLuoi_SanKhach") +  getResources().getString(R.string.tran);
-							DoiNha_SoTran_LotLuoi_SanNha = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_LotLuoi_SanNha") +  getResources().getString(R.string.tran);
-							DoiNha_SoTran_LotLuoi_SanKhach = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_LotLuoi_SanKhach") +  getResources().getString(R.string.tran);
-							DoiNha_TyLe_LotLuoi_SanNha = jsonarray.getJSONObject(i).getString("DoiNha_TyLe_LotLuoi_SanNha") +  getResources().getString(R.string.tran);
-							DoiNha_TyLe_LotLuoi_SanKhach = jsonarray.getJSONObject(i).getString("DoiNha_TyLe_LotLuoi_SanKhach") +  getResources().getString(R.string.tran);
-							DoiNha_TyLe_GhiBan_TrungBinh = jsonarray.getJSONObject(i).getString("DoiNha_TyLe_GhiBan_TrungBinh") +  getResources().getString(R.string.tran);
-							DoiNha_SoTran_Khong_GhiBan = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_Khong_GhiBan") +  getResources().getString(R.string.tran);
-							DoiNha_SoTran_GhiBan = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_GhiBan") +  getResources().getString(R.string.tran);
-							DoiNha_Hieu_So_Ban_Thang = jsonarray.getJSONObject(i).getString("DoiNha_Hieu_So_Ban_Thang") +  getResources().getString(R.string.tran);
-							DoiNha_TyLe_LotLuoi_TrungBinh = jsonarray.getJSONObject(i).getString("DoiNha_TyLe_LotLuoi_TrungBinh") +  getResources().getString(R.string.tran);
-							DoiNha_SoTran_Khong_LotLuoi = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_Khong_LotLuoi") +  getResources().getString(R.string.tran);
-							DoiNha_SoTran_LotLuoi = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_LotLuoi") +  getResources().getString(R.string.tran);
-							DoiNha_Hieu_So_Ban_Thua = jsonarray.getJSONObject(i).getString("DoiNha_Hieu_So_Ban_Thua") +  getResources().getString(R.string.tran);
+							DoiNha_SoTran_GhiBan_SanNha = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_GhiBan_SanNha") +  " " + getResources().getString(R.string.tran);
+							DoiNha_SoTran_GhiBan_SanKhach = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_GhiBan_SanKhach") +  " " + getResources().getString(R.string.tran);
+							DoiNha_TyLe_GhiBan_SanNha = jsonarray.getJSONObject(i).getString("DoiNha_TyLe_GhiBan_SanNha") +  " " + getResources().getString(R.string.tran);
+							DoiNha_TyLe_GhiBan_SanKhach = jsonarray.getJSONObject(i).getString("DoiNha_TyLe_GhiBan_SanKhach") +  " " + getResources().getString(R.string.tran);
+							DoiNha_SoTran_Khong_GhiBan_SanNha = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_Khong_GhiBan_SanNha") +  " " + getResources().getString(R.string.tran);
+							DoiNha_SoTran_Khong_GhiBan_SanKhach = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_Khong_GhiBan_SanKhach") +  " " + getResources().getString(R.string.tran);
+							DoiNha_SoTran_SachLuoi_SanNha = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_SachLuoi_SanNha") +  " " + getResources().getString(R.string.tran);
+							DoiNha_SoTran_SachLuoi_SanKhach = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_SachLuoi_SanKhach") +  " " + getResources().getString(R.string.tran);
+							DoiNha_SoTran_LotLuoi_SanNha = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_LotLuoi_SanNha") +  " " + getResources().getString(R.string.tran);
+							DoiNha_SoTran_LotLuoi_SanKhach = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_LotLuoi_SanKhach") +  " " + getResources().getString(R.string.tran);
+							DoiNha_TyLe_LotLuoi_SanNha = jsonarray.getJSONObject(i).getString("DoiNha_TyLe_LotLuoi_SanNha") +  " " + getResources().getString(R.string.tran);
+							DoiNha_TyLe_LotLuoi_SanKhach = jsonarray.getJSONObject(i).getString("DoiNha_TyLe_LotLuoi_SanKhach") +  " " + getResources().getString(R.string.tran);
+							DoiNha_TyLe_GhiBan_TrungBinh = jsonarray.getJSONObject(i).getString("DoiNha_TyLe_GhiBan_TrungBinh") +  " " + getResources().getString(R.string.tran);
+							DoiNha_SoTran_Khong_GhiBan = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_Khong_GhiBan") +  " " + getResources().getString(R.string.tran);
+							DoiNha_SoTran_GhiBan = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_GhiBan") +  " " + getResources().getString(R.string.tran);
+							DoiNha_Hieu_So_Ban_Thang = jsonarray.getJSONObject(i).getString("DoiNha_Hieu_So_Ban_Thang") +  " " + getResources().getString(R.string.tran);
+							DoiNha_TyLe_LotLuoi_TrungBinh = jsonarray.getJSONObject(i).getString("DoiNha_TyLe_LotLuoi_TrungBinh") +  " " + getResources().getString(R.string.tran);
+							DoiNha_SoTran_Khong_LotLuoi = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_Khong_LotLuoi") +  " " + getResources().getString(R.string.tran);
+							DoiNha_SoTran_LotLuoi = jsonarray.getJSONObject(i).getString("DoiNha_SoTran_LotLuoi") +  " " + getResources().getString(R.string.tran);
+							DoiNha_Hieu_So_Ban_Thua = jsonarray.getJSONObject(i).getString("DoiNha_Hieu_So_Ban_Thua") +  " " + getResources().getString(R.string.tran);
 							
-							DoiKhach_SoTran_GhiBan_SanNha = jsonarray.getJSONObject(i).getString("DoiKhach_SoTran_GhiBan_SanNha") +  getResources().getString(R.string.tran);
-							DoiKhach_SoTran_GhiBan_SanKhach = jsonarray.getJSONObject(i).getString("DoiKhach_SoTran_GhiBan_SanKhach") +  getResources().getString(R.string.tran);
-							DoiKhach_TyLe_GhiBan_SanNha = jsonarray.getJSONObject(i).getString("DoiKhach_TyLe_GhiBan_SanNha") +  getResources().getString(R.string.tran);
-							DoiKhach_TyLe_GhiBan_SanKhach = jsonarray.getJSONObject(i).getString("DoiKhach_TyLe_GhiBan_SanKhach") +  getResources().getString(R.string.tran);
-							DoiKhach_SoTran_Khong_GhiBan_SanNha = jsonarray.getJSONObject(i).getString("DoiKhach_SoTran_Khong_GhiBan_SanNha") +  getResources().getString(R.string.tran);
-							DoiKhach_SoTran_Khong_GhiBan_SanKhach = jsonarray.getJSONObject(i).getString("DoiKhach_SoTran_Khong_GhiBan_SanKhach") +  getResources().getString(R.string.tran);
-							DoiKhach_SoTran_SachLuoi_SanNha = jsonarray.getJSONObject(i).getString("DoiKhach_SoTran_SachLuoi_SanNha") +  getResources().getString(R.string.tran);
-							DoiKhach_SoTran_SachLuoi_SanKhach = jsonarray.getJSONObject(i).getString("DoiKhach_SoTran_SachLuoi_SanKhach") +  getResources().getString(R.string.tran);
-							DoiKhach_SoTran_LotLuoi_SanNha = jsonarray.getJSONObject(i).getString("DoiKhach_SoTran_LotLuoi_SanNha") +  getResources().getString(R.string.tran);
-							DoiKhach_SoTran_LotLuoi_SanKhach = jsonarray.getJSONObject(i).getString("DoiKhach_SoTran_LotLuoi_SanKhach") +  getResources().getString(R.string.tran);
-							DoiKhach_TyLe_LotLuoi_SanNha = jsonarray.getJSONObject(i).getString("DoiKhach_TyLe_LotLuoi_SanNha") +  getResources().getString(R.string.tran);
-							DoiKhach_TyLe_LotLuoi_SanKhach = jsonarray.getJSONObject(i).getString("DoiKhach_TyLe_LotLuoi_SanKhach") +  getResources().getString(R.string.tran);
-							DoiKhach_TyLe_GhiBan_TrungBinh = jsonarray.getJSONObject(i).getString("DoiKhach_TyLe_GhiBan_TrungBinh") +  getResources().getString(R.string.tran);
-							DoiKhach_SoTran_Khong_GhiBan = jsonarray.getJSONObject(i).getString("DoiKhach_SoTran_Khong_GhiBan") +  getResources().getString(R.string.tran);
-							DoiKhach_SoTran_GhiBan = jsonarray.getJSONObject(i).getString("DoiKhach_SoTran_GhiBan") +  getResources().getString(R.string.tran);
-							DoiKhach_Hieu_So_Ban_Thang = jsonarray.getJSONObject(i).getString("DoiKhach_Hieu_So_Ban_Thang") +  getResources().getString(R.string.tran);
-							DoiKhach_TyLe_LotLuoi_TrungBinh = jsonarray.getJSONObject(i).getString("DoiKhach_TyLe_LotLuoi_TrungBinh") +  getResources().getString(R.string.tran);
-							DoiKhach_SoTran_Khong_LotLuoi = jsonarray.getJSONObject(i).getString("DoiKhach_SoTran_Khong_LotLuoi") +  getResources().getString(R.string.tran);
-							DoiKhach_SoTran_LotLuoi = jsonarray.getJSONObject(i).getString("DoiKhach_SoTran_LotLuoi") +  getResources().getString(R.string.tran);
-							DoiKhach_Hieu_So_Ban_Thua = jsonarray.getJSONObject(i).getString("DoiKhach_Hieu_So_Ban_Thua") +  getResources().getString(R.string.tran);
+							DoiKhach_SoTran_GhiBan_SanNha = jsonarray.getJSONObject(i).getString("DoiKhach_SoTran_GhiBan_SanNha") +  " " + getResources().getString(R.string.tran);
+							DoiKhach_SoTran_GhiBan_SanKhach = jsonarray.getJSONObject(i).getString("DoiKhach_SoTran_GhiBan_SanKhach") +  " " + getResources().getString(R.string.tran);
+							DoiKhach_TyLe_GhiBan_SanNha = jsonarray.getJSONObject(i).getString("DoiKhach_TyLe_GhiBan_SanNha") +  " " + getResources().getString(R.string.tran);
+							DoiKhach_TyLe_GhiBan_SanKhach = jsonarray.getJSONObject(i).getString("DoiKhach_TyLe_GhiBan_SanKhach") +  " " + getResources().getString(R.string.tran);
+							DoiKhach_SoTran_Khong_GhiBan_SanNha = jsonarray.getJSONObject(i).getString("DoiKhach_SoTran_Khong_GhiBan_SanNha") +  " " + getResources().getString(R.string.tran);
+							DoiKhach_SoTran_Khong_GhiBan_SanKhach = jsonarray.getJSONObject(i).getString("DoiKhach_SoTran_Khong_GhiBan_SanKhach") +  " " + getResources().getString(R.string.tran);
+							DoiKhach_SoTran_SachLuoi_SanNha = jsonarray.getJSONObject(i).getString("DoiKhach_SoTran_SachLuoi_SanNha") +  " " + getResources().getString(R.string.tran);
+							DoiKhach_SoTran_SachLuoi_SanKhach = jsonarray.getJSONObject(i).getString("DoiKhach_SoTran_SachLuoi_SanKhach") +  " " + getResources().getString(R.string.tran);
+							DoiKhach_SoTran_LotLuoi_SanNha = jsonarray.getJSONObject(i).getString("DoiKhach_SoTran_LotLuoi_SanNha") +  " " + getResources().getString(R.string.tran);
+							DoiKhach_SoTran_LotLuoi_SanKhach = jsonarray.getJSONObject(i).getString("DoiKhach_SoTran_LotLuoi_SanKhach") +  " " + getResources().getString(R.string.tran);
+							DoiKhach_TyLe_LotLuoi_SanNha = jsonarray.getJSONObject(i).getString("DoiKhach_TyLe_LotLuoi_SanNha") +  " " + getResources().getString(R.string.tran);
+							DoiKhach_TyLe_LotLuoi_SanKhach = jsonarray.getJSONObject(i).getString("DoiKhach_TyLe_LotLuoi_SanKhach") +  " " + getResources().getString(R.string.tran);
+							DoiKhach_TyLe_GhiBan_TrungBinh = jsonarray.getJSONObject(i).getString("DoiKhach_TyLe_GhiBan_TrungBinh") +  " " + getResources().getString(R.string.tran);
+							DoiKhach_SoTran_Khong_GhiBan = jsonarray.getJSONObject(i).getString("DoiKhach_SoTran_Khong_GhiBan") +  " " + getResources().getString(R.string.tran);
+							DoiKhach_SoTran_GhiBan = jsonarray.getJSONObject(i).getString("DoiKhach_SoTran_GhiBan") +  " " + getResources().getString(R.string.tran);
+							DoiKhach_Hieu_So_Ban_Thang = jsonarray.getJSONObject(i).getString("DoiKhach_Hieu_So_Ban_Thang") +  " " + getResources().getString(R.string.tran);
+							DoiKhach_TyLe_LotLuoi_TrungBinh = jsonarray.getJSONObject(i).getString("DoiKhach_TyLe_LotLuoi_TrungBinh") +  " " + getResources().getString(R.string.tran);
+							DoiKhach_SoTran_Khong_LotLuoi = jsonarray.getJSONObject(i).getString("DoiKhach_SoTran_Khong_LotLuoi") +  " " + getResources().getString(R.string.tran);
+							DoiKhach_SoTran_LotLuoi = jsonarray.getJSONObject(i).getString("DoiKhach_SoTran_LotLuoi") +  " " + getResources().getString(R.string.tran);
+							DoiKhach_Hieu_So_Ban_Thua = jsonarray.getJSONObject(i).getString("DoiKhach_Hieu_So_Ban_Thua") +  " " + getResources().getString(R.string.tran);
 
 						}
 						
