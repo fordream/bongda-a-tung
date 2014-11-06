@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.app.bongda.R;
@@ -30,7 +31,8 @@ public class DanhSachGiaiDauFragment extends BaseFragment {
 	OnItemClickListener onItemClickListener;
 	Country country;
 
-	public DanhSachGiaiDauFragment(Country country, OnItemClickListener onItemClickListener) {
+	public DanhSachGiaiDauFragment(Country country,
+			OnItemClickListener onItemClickListener) {
 		super();
 		this.onItemClickListener = onItemClickListener;
 		this.country = country;
@@ -43,49 +45,78 @@ public class DanhSachGiaiDauFragment extends BaseFragment {
 		return R.layout.danhsachgiaidau;
 	}
 
-	ListView listView;
+	private ListView listView;
+	private ProgressBar progressBar;
 
 	@Override
 	public void onInitCreateView(View view) {
-		HeaderView headerView = (HeaderView) view.findViewById(R.id.headerView1);
+		HeaderView headerView = (HeaderView) view
+				.findViewById(R.id.headerView1);
 		headerView.setTextHeader(R.string.quocgia);
+		progressBar = (ProgressBar) view.findViewById(R.id.progressBar1);
+
 		/** init data */
 		listView = (ListView) view.findViewById(R.id.danhsachgiaidau_listview);
 		listView.setOnItemClickListener(onItemClickListener);
 		listView.setAdapter(countryAdapter);
 
-		((TextView) view.findViewById(R.id.danhsachgiaidau_txtname)).setText(country.getName());
+		((TextView) view.findViewById(R.id.danhsachgiaidau_txtname))
+				.setText(country.getName());
 		String image1 = country.logoCountry();
-		ImageLoaderUtils.getInstance(view.getContext()).DisplayImage(image1, (ImageView) view.findViewById(R.id.imageView1));
+		ImageLoaderUtils.getInstance(view.getContext()).DisplayImage(image1,
+				(ImageView) view.findViewById(R.id.imageView1));
+		showData();
 
+		listView.postDelayed(new Runnable() {
+
+			@Override
+			public void run() {
+				loadData();
+			}
+		}, 20);
+	}
+
+	private DanhSachGiaiDauCusorAdapter cusorAdapter;
+
+	private void showData() {
 		String where = String.format("iID_MaQuocGia = '%s'", country.getId());
-		Cursor cursor = BongDaServiceManager.getInstance().getBongDaService().query(new GiaiDauTable().getTableName(), where);
+		Cursor cursor = BongDaServiceManager.getInstance().getBongDaService()
+				.query(new GiaiDauTable().getTableName(), where);
 		if (cursor != null) {
-			cusorAdapter = new DanhSachGiaiDauCusorAdapter(view.getContext(), cursor, true);
+			if (cursor.getCount() >= 1) {
+				progressBar.setVisibility(View.GONE);
+			}
+			cusorAdapter = new DanhSachGiaiDauCusorAdapter(
+					listView.getContext(), cursor, true);
 			listView.setAdapter(cusorAdapter);
 		}
 	}
 
-	DanhSachGiaiDauCusorAdapter cusorAdapter;
-
-	@Override
-	public void onInitData() {
+	private void loadData() {
 		String country_id = country.getId();
-		String ws = (ByUtils.wsFootBall_Giai_Theo_QuocGia).replace("quocgiaid", country_id);
+		String ws = (ByUtils.wsFootBall_Giai_Theo_QuocGia).replace("quocgiaid",
+				country_id);
 
-		DanhSachGiaiDauProgressExecute danhSachGiaiDauProgressExecute = new DanhSachGiaiDauProgressExecute(null, null) {
+		DanhSachGiaiDauProgressExecute danhSachGiaiDauProgressExecute = new DanhSachGiaiDauProgressExecute(
+				null, null) {
 			@Override
 			public void onProgressSucess() {
 				super.onProgressSucess();
-				String where = String.format("iID_MaQuocGia = '%s'", country.getId());
-				Cursor cursor = BongDaServiceManager.getInstance().getBongDaService().query(new GiaiDauTable().getTableName(), where);
-				if (cursor != null) {
-					cusorAdapter = new DanhSachGiaiDauCusorAdapter(listView.getContext(), cursor, true);
-					listView.setAdapter(cusorAdapter);
-				}
+				String where = String.format("iID_MaQuocGia = '%s'",
+						country.getId());
+				showData();
 			}
 		};
 
-		BongDaServiceManager.getInstance().getBongDaService().callApi(System.currentTimeMillis(), danhSachGiaiDauProgressExecute, ws);
+		BongDaServiceManager
+				.getInstance()
+				.getBongDaService()
+				.callApi(System.currentTimeMillis(),
+						danhSachGiaiDauProgressExecute, ws);
+	}
+
+	@Override
+	public void onInitData() {
+
 	}
 }

@@ -17,6 +17,15 @@ public class X2VLayoutActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.vlayout);
 		bongDaViewPager = (BongDaViewPager) findViewById(R.id.bongdaviewpager);
-//		bongDaViewPager.addFragement(new CountryFragment(null));
+		// bongDaViewPager.addFragement(new CountryFragment(null));
+	}
+
+	@Override
+	public void onBackPressed() {
+
+		if (bongDaViewPager.onBackPressed()) {
+			return;
+		}
+		super.onBackPressed();
 	}
 }
