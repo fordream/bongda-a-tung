@@ -6,14 +6,14 @@
 
     <com.app.bongda.view.HeaderView
         android:id="@+id/headerView1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" >
     </com.app.bongda.view.HeaderView>
 
     <LinearLayout
-        android:background="#cccccc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#cccccc"
         android:gravity="center"
         android:paddingBottom="@dimen/dimen_10dp"
         android:paddingTop="@dimen/dimen_10dp" >
@@ -21,8 +21,7 @@
         <ImageView
             android:id="@+id/bangxephang_img_country"
             android:layout_width="@dimen/dimen_30dp"
-            android:layout_height="@dimen/dimen_20dp"
-          />
+            android:layout_height="@dimen/dimen_20dp" />
 
         <TextView
             android:id="@+id/danhsachgiaidau_txtname"
@@ -37,16 +36,27 @@
         android:id="@+id/imageView2"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="#999999"
-      />
+        android:background="#999999" />
 
-    <ListView
-        android:id="@+id/bangxephang_listview"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:divider="@null"
-        android:dividerHeight="0dp"
-        android:listSelector="@drawable/transfer" >
-    </ListView>
+        android:layout_height="match_parent" >
+
+        <ListView
+            android:id="@+id/bangxephang_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:listSelector="@drawable/transfer" >
+        </ListView>
+
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
 
 </LinearLayout>

@@ -26,4 +26,8 @@ public class BongDaViewPager extends ViewPager {
 	public void addFragement(Fragment fragment) {
 		adapter.addFragement(fragment);
 	}
+
+	public boolean onBackPressed() {
+		return adapter.onBackPressed();
+	}
 }
