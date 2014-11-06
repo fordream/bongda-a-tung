@@ -34,16 +34,18 @@ import com.app.bongda.view.HeaderView;
 public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 	OnItemClickListener onItemClickListener;
 	CallBackListenner backListenner;
-	GiaiDau dau;
+	LiveScore livecore;
 	public static View views;
 	SharedPreferences pref_tuongthuat;
 	private boolean ListItem = false;
 
-	public TuongThuatTranLiveScoreFragment(GiaiDau dau, OnItemClickListener onItemClickListener, CallBackListenner backListenner) {
+	public TuongThuatTranLiveScoreFragment(LiveScore dau,
+			OnItemClickListener onItemClickListener,
+			CallBackListenner backListenner) {
 		super();
 		this.onItemClickListener = onItemClickListener;
 		this.backListenner = backListenner;
-		this.dau = dau;
+		this.livecore = dau;
 		ListItem = false;
 	}
 
@@ -58,51 +60,76 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 
 		@Override
 		public void showData(Object item, View convertView) {
-			String sTenGiai = CommonUtil.getdata(views.getContext(), "sTenGiai");
-			String sTenDoiNha = CommonUtil.getdata(views.getContext(), "sTenDoiNha");
-			String sTenDoiKhach = CommonUtil.getdata(views.getContext(), "sTenDoiKhach");
+			String sTenGiai = CommonUtil
+					.getdata(views.getContext(), "sTenGiai");
+			String sTenDoiNha = CommonUtil.getdata(views.getContext(),
+					"sTenDoiNha");
+			String sTenDoiKhach = CommonUtil.getdata(views.getContext(),
+					"sTenDoiKhach");
 			String iPhut = CommonUtil.getdata(views.getContext(), "iPhut");
-			String Banthang = CommonUtil.getdata(views.getContext(), "Banthang");
+			String Banthang = CommonUtil
+					.getdata(views.getContext(), "Banthang");
 			String HT = CommonUtil.getdata(views.getContext(), "HT");
-			((TextView) views.findViewById(R.id.tuongthuat_textTenTran)).setText(sTenGiai);
-			((TextView) views.findViewById(R.id.TextView01)).setText(sTenDoiNha);
-			((TextView) views.findViewById(R.id.TextView02)).setText(sTenDoiKhach);
-			((TextView) views.findViewById(R.id.tuongthuat_time)).setText(iPhut);
-			((TextView) views.findViewById(R.id.tuongthuat_tiso)).setText(Banthang);
+			((TextView) views.findViewById(R.id.tuongthuat_textTenTran))
+					.setText(sTenGiai);
+			((TextView) views.findViewById(R.id.TextView01))
+					.setText(sTenDoiNha);
+			((TextView) views.findViewById(R.id.TextView02))
+					.setText(sTenDoiKhach);
+			((TextView) views.findViewById(R.id.tuongthuat_time))
+					.setText(iPhut);
+			((TextView) views.findViewById(R.id.tuongthuat_tiso))
+					.setText(Banthang);
 			((TextView) views.findViewById(R.id.tuongthuat_ht)).setText(HT);
 			if (item != null) {
 				final TuongThuatTran tuongthuattran = (TuongThuatTran) item;
 				if (tuongthuattran.isDoi() == 1) {
-					convertView.findViewById(R.id.doi1).setVisibility(View.VISIBLE);
-					convertView.findViewById(R.id.doi2).setVisibility(View.GONE);
-					setText(convertView, R.id.time1, tuongthuattran.isThoigian() + "'");
+					convertView.findViewById(R.id.doi1).setVisibility(
+							View.VISIBLE);
+					convertView.findViewById(R.id.doi2)
+							.setVisibility(View.GONE);
+					setText(convertView, R.id.time1,
+							tuongthuattran.isThoigian() + "'");
 					setText(convertView, R.id.name1, tuongthuattran.getName());
-					ImageView localImageView1 = (ImageView) convertView.findViewById(R.id.icon_tuongthuat1);
+					ImageView localImageView1 = (ImageView) convertView
+							.findViewById(R.id.icon_tuongthuat1);
 					if (tuongthuattran.isTrangthai() == 1) { // quabongthuong
-						localImageView1.setImageResource(R.drawable.chitiettrandau_32);
+						localImageView1
+								.setImageResource(R.drawable.chitiettrandau_32);
 					} else if (tuongthuattran.isTrangthai() == 10) { // quabongchu
 																		// P
-						localImageView1.setImageResource(R.drawable.chitiettrandau_28);
+						localImageView1
+								.setImageResource(R.drawable.chitiettrandau_28);
 					} else if (tuongthuattran.isTrangthai() == 2) { // thevang
-						localImageView1.setImageResource(R.drawable.chitiettrandau_40);
+						localImageView1
+								.setImageResource(R.drawable.chitiettrandau_40);
 					} else { // thedo
-						localImageView1.setImageResource(R.drawable.chitiettrandau_43);
+						localImageView1
+								.setImageResource(R.drawable.chitiettrandau_43);
 					}
 				} else {
-					convertView.findViewById(R.id.doi1).setVisibility(View.GONE);
-					convertView.findViewById(R.id.doi2).setVisibility(View.VISIBLE);
-					setText(convertView, R.id.time2, tuongthuattran.isThoigian() + "'");
+					convertView.findViewById(R.id.doi1)
+							.setVisibility(View.GONE);
+					convertView.findViewById(R.id.doi2).setVisibility(
+							View.VISIBLE);
+					setText(convertView, R.id.time2,
+							tuongthuattran.isThoigian() + "'");
 					setText(convertView, R.id.name2, tuongthuattran.getName());
-					ImageView localImageView2 = (ImageView) convertView.findViewById(R.id.icon_tuongthuat2);
+					ImageView localImageView2 = (ImageView) convertView
+							.findViewById(R.id.icon_tuongthuat2);
 					if (tuongthuattran.isTrangthai() == 1) { // quabongthuong
-						localImageView2.setImageResource(R.drawable.chitiettrandau_32);
+						localImageView2
+								.setImageResource(R.drawable.chitiettrandau_32);
 					} else if (tuongthuattran.isTrangthai() == 10) { // quabongchu
 																		// P
-						localImageView2.setImageResource(R.drawable.chitiettrandau_28);
+						localImageView2
+								.setImageResource(R.drawable.chitiettrandau_28);
 					} else if (tuongthuattran.isTrangthai() == 2) { // thevang
-						localImageView2.setImageResource(R.drawable.chitiettrandau_40);
+						localImageView2
+								.setImageResource(R.drawable.chitiettrandau_40);
 					} else { // thedo
-						localImageView2.setImageResource(R.drawable.chitiettrandau_43);
+						localImageView2
+								.setImageResource(R.drawable.chitiettrandau_43);
 					}
 				}
 			} else {
@@ -111,14 +138,23 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 			}
 
 			// logo
-			String sLogoGiai = CommonUtil.getdata(views.getContext(), "sLogoGiai");
-			String sLogoDoiNha = CommonUtil.getdata(views.getContext(), "sLogoDoiNha");
-			String sLogoDoiKhach = CommonUtil.getdata(views.getContext(), "sLogoDoiKhach");
+			String sLogoGiai = CommonUtil.getdata(views.getContext(),
+					"sLogoGiai");
+			String sLogoDoiNha = CommonUtil.getdata(views.getContext(),
+					"sLogoDoiNha");
+			String sLogoDoiKhach = CommonUtil.getdata(views.getContext(),
+					"sLogoDoiKhach");
 
-			ImageLoaderUtils.getInstance(views.getContext()).DisplayImage(sLogoGiai, (ImageView) views.findViewById(R.id.logogiai));
-			ImageLoaderUtils.getInstance(views.getContext()).DisplayImage(sLogoDoiNha, (ImageView) views.findViewById(R.id.logo_doinha));
-			ImageLoaderUtils.getInstance(views.getContext()).DisplayImage(sLogoDoiKhach, (ImageView) views.findViewById(R.id.logo_doikhach));
-			Log.e("aaaa", "sLogoDoiNha" + sLogoDoiNha + "::sLogoDoiKhach" + sLogoDoiKhach);
+			ImageLoaderUtils.getInstance(views.getContext()).DisplayImage(
+					sLogoGiai, (ImageView) views.findViewById(R.id.logogiai));
+			ImageLoaderUtils.getInstance(views.getContext()).DisplayImage(
+					sLogoDoiNha,
+					(ImageView) views.findViewById(R.id.logo_doinha));
+			ImageLoaderUtils.getInstance(views.getContext()).DisplayImage(
+					sLogoDoiKhach,
+					(ImageView) views.findViewById(R.id.logo_doikhach));
+			Log.e("aaaa", "sLogoDoiNha" + sLogoDoiNha + "::sLogoDoiKhach"
+					+ sLogoDoiKhach);
 
 		}
 
@@ -134,15 +170,19 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 		/**
 		 * init header view
 		 */
-		HeaderView headerView = (HeaderView) view.findViewById(R.id.headerView1);
+		HeaderView headerView = (HeaderView) view
+				.findViewById(R.id.headerView1);
 		headerView.setTextHeader(R.string.tuongthuattran);
 		headerView.findViewById(R.id.Button02).setVisibility(View.VISIBLE);
 		headerView.findViewById(R.id.Button03).setVisibility(View.VISIBLE);
 		headerView.findViewById(R.id.Button04).setVisibility(View.VISIBLE);
 		view.findViewById(R.id.imageView1s).setOnClickListener(clickListener);
-		headerView.findViewById(R.id.Button02).setOnClickListener(clickListener);
-		headerView.findViewById(R.id.Button03).setOnClickListener(clickListener);
-		headerView.findViewById(R.id.Button04).setOnClickListener(clickListener);
+		headerView.findViewById(R.id.Button02)
+				.setOnClickListener(clickListener);
+		headerView.findViewById(R.id.Button03)
+				.setOnClickListener(clickListener);
+		headerView.findViewById(R.id.Button04)
+				.setOnClickListener(clickListener);
 
 		/** init data */
 		ListView listView = (ListView) view.findViewById(R.id.listView1);
@@ -156,7 +196,10 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 	View.OnClickListener clickListener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-
+			GiaiDau dau = new GiaiDau(livecore.sMaGiai(), livecore.sTenGiai(),
+					livecore.sMaGiai(), livecore.madoinha(),
+					livecore.madoikhach(), livecore.idmagiai());
+			dau.sLogoGiai(livecore.sLogoGiai());
 			if (v.getId() == R.id.imageView1s) {
 				backListenner.onCallBackListenner(1, dau /*
 														 * new GiaiDau("1",
@@ -204,47 +247,80 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 						JSONArray jsonarray = new JSONArray(string_temp);
 						for (int i = 0; i < jsonarray.length(); i++) {
 							// parse
-							sTenGiai = jsonarray.getJSONObject(i).getString("sTenGiai");
-							sTenDoiNha = jsonarray.getJSONObject(i).getString("sTenDoiNha");
-							sTenDoiKhach = jsonarray.getJSONObject(i).getString("sTenDoiKhach");
-							iCN_BanThang_DoiNha = jsonarray.getJSONObject(i).getString("iCN_BanThang_DoiNha");
-							iCN_BanThang_DoiKhach = jsonarray.getJSONObject(i).getString("iCN_BanThang_DoiKhach");
-							iCN_BanThang_DoiNha_HT = jsonarray.getJSONObject(i).getString("iCN_BanThang_DoiNha_HT");
-							iCN_BanThang_DoiKhach_HT = jsonarray.getJSONObject(i).getString("iCN_BanThang_DoiKhach_HT");
-							iPhut = jsonarray.getJSONObject(i).getString("iPhut") + "'";
-							sLogoGiai = jsonarray.getJSONObject(i).getString("sLogoGiai");
-							sLogoDoiNha = jsonarray.getJSONObject(i).getString("sLogoDoiNha");
-							sLogoDoiKhach = jsonarray.getJSONObject(i).getString("sLogoDoiKhach");
+							sTenGiai = jsonarray.getJSONObject(i).getString(
+									"sTenGiai");
+							sTenDoiNha = jsonarray.getJSONObject(i).getString(
+									"sTenDoiNha");
+							sTenDoiKhach = jsonarray.getJSONObject(i)
+									.getString("sTenDoiKhach");
+							iCN_BanThang_DoiNha = jsonarray.getJSONObject(i)
+									.getString("iCN_BanThang_DoiNha");
+							iCN_BanThang_DoiKhach = jsonarray.getJSONObject(i)
+									.getString("iCN_BanThang_DoiKhach");
+							iCN_BanThang_DoiNha_HT = jsonarray.getJSONObject(i)
+									.getString("iCN_BanThang_DoiNha_HT");
+							iCN_BanThang_DoiKhach_HT = jsonarray.getJSONObject(
+									i).getString("iCN_BanThang_DoiKhach_HT");
+							iPhut = jsonarray.getJSONObject(i).getString(
+									"iPhut")
+									+ "'";
+							sLogoGiai = jsonarray.getJSONObject(i).getString(
+									"sLogoGiai");
+							sLogoDoiNha = jsonarray.getJSONObject(i).getString(
+									"sLogoDoiNha");
+							sLogoDoiKhach = jsonarray.getJSONObject(i)
+									.getString("sLogoDoiKhach");
 
-							iID_MaDoiNha = jsonarray.getJSONObject(i).getString("iID_MaDoiNha");
-							iID_MaDoiKhach = jsonarray.getJSONObject(i).getString("iID_MaDoiKhach");
-							iID_MaGiai = jsonarray.getJSONObject(i).getString("iID_MaGiai");
+							iID_MaDoiNha = jsonarray.getJSONObject(i)
+									.getString("iID_MaDoiNha");
+							iID_MaDoiKhach = jsonarray.getJSONObject(i)
+									.getString("iID_MaDoiKhach");
+							iID_MaGiai = jsonarray.getJSONObject(i).getString(
+									"iID_MaGiai");
 
-							loadItem(jsonarray.getJSONObject(i), "sThongTin_DoiNha", 1);// GOAL_HOME
-							loadItem(jsonarray.getJSONObject(i), "sThongTin_DoiKhach", 2);// GOAL_AWAY
-							loadItem(jsonarray.getJSONObject(i), "sThongTinThe_DoiNha", 3);// YELLOW_CARD_HOME
-							loadItem(jsonarray.getJSONObject(i), "sThongTinThe_DoiKhach", 4);// YELLOW_CARD_AWAY
+							loadItem(jsonarray.getJSONObject(i),
+									"sThongTin_DoiNha", 1);// GOAL_HOME
+							loadItem(jsonarray.getJSONObject(i),
+									"sThongTin_DoiKhach", 2);// GOAL_AWAY
+							loadItem(jsonarray.getJSONObject(i),
+									"sThongTinThe_DoiNha", 3);// YELLOW_CARD_HOME
+							loadItem(jsonarray.getJSONObject(i),
+									"sThongTinThe_DoiKhach", 4);// YELLOW_CARD_AWAY
 						}
 						String HT = "";
 						StringBuilder stringbuilder1 = new StringBuilder("HT ");
-						HT = stringbuilder1.append(iCN_BanThang_DoiNha_HT).append(" - ").append(iCN_BanThang_DoiKhach_HT).toString();
+						HT = stringbuilder1.append(iCN_BanThang_DoiNha_HT)
+								.append(" - ").append(iCN_BanThang_DoiKhach_HT)
+								.toString();
 
-						String Banthang = (new StringBuilder()).append(iCN_BanThang_DoiNha).append(" - ").append(iCN_BanThang_DoiKhach).toString();
+						String Banthang = (new StringBuilder())
+								.append(iCN_BanThang_DoiNha).append(" - ")
+								.append(iCN_BanThang_DoiKhach).toString();
 
 						// save data
-						CommonUtil.savedata(views.getContext(), "sTenGiai", sTenGiai);
-						CommonUtil.savedata(views.getContext(), "sTenDoiNha", sTenDoiNha);
-						CommonUtil.savedata(views.getContext(), "sTenDoiKhach", sTenDoiKhach);
+						CommonUtil.savedata(views.getContext(), "sTenGiai",
+								sTenGiai);
+						CommonUtil.savedata(views.getContext(), "sTenDoiNha",
+								sTenDoiNha);
+						CommonUtil.savedata(views.getContext(), "sTenDoiKhach",
+								sTenDoiKhach);
 						CommonUtil.savedata(views.getContext(), "iPhut", iPhut);
-						CommonUtil.savedata(views.getContext(), "Banthang", Banthang);
+						CommonUtil.savedata(views.getContext(), "Banthang",
+								Banthang);
 						CommonUtil.savedata(views.getContext(), "HT", HT);
-						CommonUtil.savedata(views.getContext(), "sLogoGiai", sLogoGiai);
-						CommonUtil.savedata(views.getContext(), "sLogoDoiNha", sLogoDoiNha);
-						CommonUtil.savedata(views.getContext(), "sLogoDoiKhach", sLogoDoiKhach);
+						CommonUtil.savedata(views.getContext(), "sLogoGiai",
+								sLogoGiai);
+						CommonUtil.savedata(views.getContext(), "sLogoDoiNha",
+								sLogoDoiNha);
+						CommonUtil.savedata(views.getContext(),
+								"sLogoDoiKhach", sLogoDoiKhach);
 
-						CommonUtil.savedata(views.getContext(), "iID_MaGiai", iID_MaGiai);
-						CommonUtil.savedata(views.getContext(), "iID_MaDoiNha", iID_MaDoiNha);
-						CommonUtil.savedata(views.getContext(), "iID_MaDoiKhach", iID_MaDoiKhach);
+						CommonUtil.savedata(views.getContext(), "iID_MaGiai",
+								iID_MaGiai);
+						CommonUtil.savedata(views.getContext(), "iID_MaDoiNha",
+								iID_MaDoiNha);
+						CommonUtil.savedata(views.getContext(),
+								"iID_MaDoiKhach", iID_MaDoiKhach);
 						if (!ListItem) {
 							countryAdapter.addItem(null);
 						}
@@ -260,7 +336,7 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 			public void onError(String message) {
 			}
 		};
-		iID_MaTran = dau.getId();
+		iID_MaTran = livecore.getId();
 		Object aobj[] = new Object[1];
 		aobj[0] = Integer.valueOf(iID_MaTran);
 		String param = String.format(ByUtils.wsFootBall_MatchDetail, aobj);
@@ -309,31 +385,48 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 								boolean TV_check = Values.indexOf("(TV)") > 0;
 								if (status == 1 || status == 2) {
 									if (Pen_check) {
-										int lastcheck = Values.lastIndexOf("(Pen)");
+										int lastcheck = Values
+												.lastIndexOf("(Pen)");
 										String tem = Values;
 										if (lastcheck != -1) {
-											tem = Values.substring(0, lastcheck);
+											tem = Values
+													.substring(0, lastcheck);
 										}
-										countryAdapter.addItem(new TuongThuatTran(doi, null, No, tem, 10));
+										countryAdapter
+												.addItem(new TuongThuatTran(
+														doi, null, No, tem, 10));
 									} else {
-										countryAdapter.addItem(new TuongThuatTran(doi, null, No, Values, 1));
+										countryAdapter
+												.addItem(new TuongThuatTran(
+														doi, null, No, Values,
+														1));
 									}
 								} else {
 									if (status == 3 || status == 4) {
 										if (TV_check) {
-											int lastcheck = Values.lastIndexOf("(TV)");
+											int lastcheck = Values
+													.lastIndexOf("(TV)");
 											String tem = Values;
 											if (lastcheck != -1) {
-												tem = Values.substring(0, lastcheck);
+												tem = Values.substring(0,
+														lastcheck);
 											}
-											countryAdapter.addItem(new TuongThuatTran(doi, null, No, tem, 20));
+											countryAdapter
+													.addItem(new TuongThuatTran(
+															doi, null, No, tem,
+															20));
 										} else {
-											int lastcheck = Values.lastIndexOf("(TD)");
+											int lastcheck = Values
+													.lastIndexOf("(TD)");
 											String tem = Values;
 											if (lastcheck != -1) {
-												tem = Values.substring(0, lastcheck);
+												tem = Values.substring(0,
+														lastcheck);
 											}
-											countryAdapter.addItem(new TuongThuatTran(doi, null, No, tem, 2));
+											countryAdapter
+													.addItem(new TuongThuatTran(
+															doi, null, No, tem,
+															2));
 										}
 									}
 								}
@@ -359,26 +452,36 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 									if (lastcheck != -1) {
 										tem = Values.substring(0, lastcheck);
 									}
-									countryAdapter.addItem(new TuongThuatTran(doi, null, No, tem, 10));
+									countryAdapter.addItem(new TuongThuatTran(
+											doi, null, No, tem, 10));
 								} else {
-									countryAdapter.addItem(new TuongThuatTran(doi, null, No, Values, 1));
+									countryAdapter.addItem(new TuongThuatTran(
+											doi, null, No, Values, 1));
 								}
 							} else {
 								if (status == 3 || status == 4) {
 									if (TV_check) {
-										int lastcheck = Values.lastIndexOf("(TV)");
+										int lastcheck = Values
+												.lastIndexOf("(TV)");
 										String tem = Values;
 										if (lastcheck != -1) {
-											tem = Values.substring(0, lastcheck);
+											tem = Values
+													.substring(0, lastcheck);
 										}
-										countryAdapter.addItem(new TuongThuatTran(doi, null, No, tem, 20));
+										countryAdapter
+												.addItem(new TuongThuatTran(
+														doi, null, No, tem, 20));
 									} else {
-										int lastcheck = Values.lastIndexOf("(TD)");
+										int lastcheck = Values
+												.lastIndexOf("(TD)");
 										String tem = Values;
 										if (lastcheck != -1) {
-											tem = Values.substring(0, lastcheck);
+											tem = Values
+													.substring(0, lastcheck);
 										}
-										countryAdapter.addItem(new TuongThuatTran(doi, null, No, tem, 2));
+										countryAdapter
+												.addItem(new TuongThuatTran(
+														doi, null, No, tem, 2));
 									}
 								}
 							}

@@ -113,7 +113,7 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 	 * 
 	 */
 
-	public void addTuongThuatTranLiveScoreFragment(GiaiDau giaiDau) {
+	public void addTuongThuatTranLiveScoreFragment(LiveScore giaiDau) {
 		OnItemClickListener liveScoreTuongThuatOnItemClickListener = new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -175,12 +175,12 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 				if (!liveScore.isHeader()) {
 					// GiaiDau dau = new GiaiDau(liveScore.getId(),
 					// liveScore.getName());
-					GiaiDau dau = new GiaiDau(liveScore.getId(),
-							liveScore.getName(), liveScore.sMaGiai(),
-							liveScore.madoinha(), liveScore.madoikhach(),
-							liveScore.idmagiai());
+					// GiaiDau dau = new GiaiDau(liveScore.getId(),
+					// liveScore.getName(), liveScore.sMaGiai(),
+					// liveScore.madoinha(), liveScore.madoikhach(),
+					// liveScore.idmagiai());
 
-					addTuongThuatTranLiveScoreFragment(dau);
+					addTuongThuatTranLiveScoreFragment(liveScore);
 				}
 			}
 		};
@@ -197,15 +197,16 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 				} else if (position == 1) {
 					addGameDuDoan(null);
 				} else if (position == 2) {
-					dau = new GiaiDau(liveScore.sMaGiai(), liveScore.sTenGiai(),
-							liveScore.sMaGiai(), liveScore.madoinha(),
-							liveScore.madoikhach(), liveScore.idmagiai());
+					dau = new GiaiDau(liveScore.sMaGiai(),
+							liveScore.sTenGiai(), liveScore.sMaGiai(),
+							liveScore.madoinha(), liveScore.madoikhach(),
+							liveScore.idmagiai());
 					dau.sLogoGiai(liveScore.sLogoGiai());
 					addBangXepHang(dau);
 				} else if (position == 3) {
 					// nhandinhchuyengia
 				} else {
-					addTuongThuatTranLiveScoreFragment(dau);
+					addTuongThuatTranLiveScoreFragment(liveScore);
 				}
 			}
 		};
