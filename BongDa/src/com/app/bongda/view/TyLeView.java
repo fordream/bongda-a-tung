@@ -10,10 +10,12 @@ import android.view.View;
 import android.widget.TextView;
 
 public class TyLeView extends TextView {
-	private float per = 0.5f;
+	private float per = 0.0f;
+	private int mCurrentTop = -1;
 
 	public void setPer(float per) {
 		this.per = per;
+		mCurrentTop = -1;
 	}
 
 	public TyLeView(Context context) {
@@ -44,10 +46,24 @@ public class TyLeView extends TextView {
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		int width = getWidth();
-		int height = getHeight();
-		canvas.drawRect((int) (width * 0.25), (int) (height * (1.0 - per)),
-				(int) (width * 0.75), height, paint);
-		
+		int bottom = getHeight();
+
+		int top = (int) (bottom * (1.0 - per));
+		int left = (int) (width * 0.25);
+		int right = (int) (width * 0.75);
+
+		if (mCurrentTop == -1) {
+			mCurrentTop = bottom;
+		}
+
+		if (mCurrentTop > top) {
+			mCurrentTop = mCurrentTop - 10;
+		}
+
+		if (mCurrentTop <= top)
+			mCurrentTop = top;
+		canvas.drawRect(left, mCurrentTop, right, bottom, paint);
+
 		invalidate();
 
 	}
