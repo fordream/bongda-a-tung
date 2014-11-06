@@ -137,4 +137,8 @@ public class LiveScore extends PhongDo {
 	public String sLogoGiai(){
 		return sLogoGiai;
 	}
+	public String iID_MaGiai() {
+		// TODO Auto-generated method stub
+		return iID_MaGiai;
+	}
 }

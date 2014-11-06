@@ -196,7 +196,7 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 	View.OnClickListener clickListener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			GiaiDau dau = new GiaiDau(livecore.sMaGiai(), livecore.sTenGiai(),
+			GiaiDau dau = new GiaiDau(livecore.iID_MaGiai(), livecore.sTenGiai(),
 					livecore.sMaGiai(), livecore.madoinha(),
 					livecore.madoikhach(), livecore.idmagiai());
 			dau.sLogoGiai(livecore.sLogoGiai());

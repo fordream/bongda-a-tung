@@ -125,8 +125,8 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 				// -> phong do doi dau
 				LiveScore liveScore = (LiveScore) parent
 						.getItemAtPosition(position);
-				GiaiDau dau = new GiaiDau(liveScore.getId(),
-						liveScore.getName(), liveScore.sMaGiai(),
+				GiaiDau dau = new GiaiDau(liveScore.iID_MaGiai(),
+						liveScore.sTenGiai(), liveScore.sMaGiai(),
 						liveScore.madoinha(), liveScore.madoikhach(),
 						liveScore.idmagiai());
 
@@ -188,19 +188,16 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 			@Override
 			public void onCallBackListenner(int position, Object data) {
 				LiveScore liveScore = (LiveScore) data;
-				GiaiDau dau = new GiaiDau(liveScore.getId(),
-						liveScore.getName(), liveScore.sMaGiai(),
+				GiaiDau dau = new GiaiDau(liveScore.iID_MaGiai(),
+						liveScore.sTenGiai(), liveScore.sMaGiai(),
 						liveScore.madoinha(), liveScore.madoikhach(),
 						liveScore.idmagiai());
 				if (position == 0) {
+					dau.sLogoGiai(liveScore.sLogoGiai());
 					addPhongDoDoiDauFragment(dau);
 				} else if (position == 1) {
 					addGameDuDoan(null);
 				} else if (position == 2) {
-					dau = new GiaiDau(liveScore.sMaGiai(),
-							liveScore.sTenGiai(), liveScore.sMaGiai(),
-							liveScore.madoinha(), liveScore.madoikhach(),
-							liveScore.idmagiai());
 					dau.sLogoGiai(liveScore.sLogoGiai());
 					addBangXepHang(dau);
 				} else if (position == 3) {

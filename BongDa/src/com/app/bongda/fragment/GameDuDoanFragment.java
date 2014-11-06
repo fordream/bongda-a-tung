@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView.OnItemClickListener;
@@ -47,8 +48,11 @@ public class GameDuDoanFragment extends BaseFragment {
 			final GameDuDoan dudoan = (GameDuDoan) item;
 			setText(convertView, R.id.TextView02, dudoan.sTenDoiNha());
 			setText(convertView, R.id.TextView03, dudoan.sTenDoiKhach());
-			setText(convertView, R.id.TextView01, "[" +dudoan.iCN_BanThang_DoiNha() + " - " + dudoan.iCN_BanThang_DoiKhach() + "]");
-			
+			setText(convertView,
+					R.id.TextView01,
+					"[" + dudoan.iCN_BanThang_DoiNha() + " - "
+							+ dudoan.iCN_BanThang_DoiKhach() + "]");
+
 			int j = Integer.valueOf(dudoan.iC0());
 			java.util.Date localDate2 = new java.util.Date(1000L * j);
 			System.currentTimeMillis();
@@ -56,7 +60,8 @@ public class GameDuDoanFragment extends BaseFragment {
 			Object[] arrayOfObject2 = new Object[2];
 			arrayOfObject2[0] = Integer.valueOf(localDate2.getDate());
 			arrayOfObject2[1] = Integer.valueOf(1 + localDate2.getMonth());
-			String times = String.format("%d/%d", arrayOfObject2) + ", " +dudoan.sThoiGian();
+			String times = String.format("%d/%d", arrayOfObject2) + ", "
+					+ dudoan.sThoiGian();
 			setText(convertView, R.id.TextView05, times);
 			Log.e("aaaaaaaaa", dudoan.sTyLe_ChapBong());
 		}
@@ -68,6 +73,8 @@ public class GameDuDoanFragment extends BaseFragment {
 		return R.layout.gamedudoan;
 	}
 
+	ListView listView;
+
 	@Override
 	public void onInitCreateView(View view) {
 		/**
@@ -77,26 +84,23 @@ public class GameDuDoanFragment extends BaseFragment {
 				.findViewById(R.id.headerView1);
 		headerView.setTextHeader(R.string.gamedudoan);
 		/** init data */
-		ListView listView = (ListView) view.findViewById(R.id.listView1);
+		listView = (ListView) view.findViewById(R.id.listView1);
 		listView.setOnItemClickListener(onItemClickListener);
 
 		listView.setAdapter(countryAdapter);
 	}
-	
+
 	ICallbackAPI callbackAPI;
+
+	private Context getContext() {
+		return listView.getContext();
+	}
 
 	@Override
 	public void onInitData() {
-//		countryAdapter.addItem("");
-//		countryAdapter.addItem("");
-//		countryAdapter.addItem("");
-//		countryAdapter.addItem("");
-//		countryAdapter.addItem("");
 		callbackAPI = new ICallbackAPI() {
 			@Override
 			public void onSuccess(String response) {
-//				 CommonAndroid.showDialog(getActivity(), "data2:" +
-//						 response , null);
 				String string_temp = CommonAndroid.parseXMLAction(response);
 				if (!string_temp.equalsIgnoreCase("")) {
 					try {
@@ -104,14 +108,17 @@ public class GameDuDoanFragment extends BaseFragment {
 						ArrayList<JSONObject> array = new ArrayList<JSONObject>();
 						array.clear();
 						JSONArray jsonArray = new JSONArray(string_temp);
-						if(jsonArray.length() == 0){
-							Toast.makeText(getActivity(), getResources().getString(R.string.giaichuabatdau), Toast.LENGTH_LONG).show();
+						if (jsonArray.length() == 0) {
+							Toast.makeText(
+									getContext(),
+									getContext().getResources().getString(
+											R.string.giaichuabatdau),
+									Toast.LENGTH_LONG).show();
 						}
 						for (int i = 0; i < jsonArray.length(); i++) {
 							try {
 								array.add(jsonArray.getJSONObject(i));
 							} catch (JSONException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 						}
@@ -123,9 +130,11 @@ public class GameDuDoanFragment extends BaseFragment {
 								// TODO Auto-generated method stub
 
 								try {
-									return (lhs.getString("sTenGiai").toLowerCase().compareTo(rhs.getString("sTenGiai").toLowerCase()));
+									return (lhs.getString("sTenGiai")
+											.toLowerCase().compareTo(rhs
+											.getString("sTenGiai")
+											.toLowerCase()));
 								} catch (JSONException e) {
-									// TODO Auto-generated catch block
 									e.printStackTrace();
 									return 0;
 								}
@@ -136,24 +145,32 @@ public class GameDuDoanFragment extends BaseFragment {
 						String sTenDoiKhach;
 						String iCN_BanThang_DoiNha;
 						String iCN_BanThang_DoiKhach;
-						String iC0; //ngay
+						String iC0; // ngay
 						String sThoiGian;
-						String sTyLe_ChauAu; //"2.20*3.10*2.35"
-						String sTyLe_ChapBong ; //":"0.87*0 : 1\/4*0.83"
-						String sTyLe_TaiSuu ;//":"0.98*2 1\/4*0.72"
+						String sTyLe_ChauAu; // "2.20*3.10*2.35"
+						String sTyLe_ChapBong; // ":"0.87*0 : 1\/4*0.83"
+						String sTyLe_TaiSuu;// ":"0.98*2 1\/4*0.72"
 						for (int i = 0; i < array.size(); i++) {
 							sTenDoiNha = array.get(i).getString("sTenDoiNha");
-							sTenDoiKhach = array.get(i).getString("sTenDoiKhach");
-							iCN_BanThang_DoiNha = array.get(i).getString("iCN_BanThang_DoiNha");
-							iCN_BanThang_DoiKhach = array.get(i).getString("iCN_BanThang_DoiKhach");
+							sTenDoiKhach = array.get(i).getString(
+									"sTenDoiKhach");
+							iCN_BanThang_DoiNha = array.get(i).getString(
+									"iCN_BanThang_DoiNha");
+							iCN_BanThang_DoiKhach = array.get(i).getString(
+									"iCN_BanThang_DoiKhach");
 							iC0 = array.get(i).getString("iC0");
 							sThoiGian = array.get(i).getString("sThoiGian");
-							sTyLe_ChauAu =array.get(i).getString("sTyLe_ChauAu");
-							sTyLe_ChapBong = array.get(i).getString("sTyLe_ChapBong");
-							sTyLe_TaiSuu = array.get(i).getString("sTyLe_TaiSuu");
-							//TODO
-							countryAdapter.addItem(new GameDuDoan(false, sTenDoiNha, sTenDoiKhach ,iCN_BanThang_DoiNha,iCN_BanThang_DoiKhach, iC0,sThoiGian,sTyLe_ChauAu ,sTyLe_ChapBong, sTyLe_TaiSuu));
-							Log.e("data", "" + array.get(i));
+							sTyLe_ChauAu = array.get(i).getString(
+									"sTyLe_ChauAu");
+							sTyLe_ChapBong = array.get(i).getString(
+									"sTyLe_ChapBong");
+							sTyLe_TaiSuu = array.get(i).getString(
+									"sTyLe_TaiSuu");
+							countryAdapter.addItem(new GameDuDoan(false,
+									sTenDoiNha, sTenDoiKhach,
+									iCN_BanThang_DoiNha, iCN_BanThang_DoiKhach,
+									iC0, sThoiGian, sTyLe_ChauAu,
+									sTyLe_ChapBong, sTyLe_TaiSuu));
 
 						}
 						countryAdapter.notifyDataSetChanged();
@@ -167,7 +184,7 @@ public class GameDuDoanFragment extends BaseFragment {
 			public void onError(String message) {
 			}
 		};
-		new APICaller(getActivity()).callApi("", true, callbackAPI,
-					ByUtils.wsFootBall_Lives_dudoan);
+		new APICaller(getContext()).callApi("", true, callbackAPI,
+				ByUtils.wsFootBall_Lives_dudoan);
 	}
 }
