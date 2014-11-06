@@ -14,7 +14,7 @@ public class CommonUtil {
 	}
 
 	public static void savedata(Context activity) {
-		SharedPreferences pref = activity.getApplicationContext().getSharedPreferences("FavoriteList", 0);
+		SharedPreferences pref = activity.getApplicationContext().getSharedPreferences("FavoriteList1", 0);
 		Editor editor = pref.edit();
 		StringBuilder csvList = new StringBuilder();
 		for (int i = 0; i < listQuanTam.size(); i++) {
@@ -27,12 +27,17 @@ public class CommonUtil {
 
 	public static void getdata(Context activity) {
 		try {
-			SharedPreferences pref = activity.getApplicationContext().getSharedPreferences("FavoriteList", 0);
+			SharedPreferences pref = activity.getApplicationContext().getSharedPreferences("FavoriteList1", 0);
 			String csvList = pref.getString("FList", null);
 			String[] items = csvList.split(",");
 			listQuanTam = new ArrayList<String>();
+			listQuanTam.clear();
 			for (int i = 0; i < items.length; i++) {
-				listQuanTam.add(items[i].toString());
+				String temp = items[i].toString();
+				if(!listQuanTam.contains(temp) && !temp.equalsIgnoreCase("")){
+					listQuanTam.add(items[i].toString());
+				}
+				
 			}
 		} catch (Exception exception) {
 

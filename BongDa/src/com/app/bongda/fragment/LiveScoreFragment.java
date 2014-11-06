@@ -48,7 +48,7 @@ public class LiveScoreFragment extends BaseFragment {
 	private int onLoad = 1;
 	private MyTouchListener mOnTouchListener;
 	ImageView img_favorite;
-
+	private int listView_size = 0;
 	public LiveScoreFragment(OnItemClickListener onItemClickListener, CallBackListenner callBackListenner, GiaiDau data, String type) {
 		super();
 		this.callBackListenner = callBackListenner;
@@ -69,16 +69,73 @@ public class LiveScoreFragment extends BaseFragment {
 		@Override
 		public void showData(int position, Object item, View convertView) {
 			final LiveScore liveScore = (LiveScore) item;
-			if (TypeView != null) {
-				if (TypeView.equalsIgnoreCase("quantam") && !CommonUtil.listQuanTam.contains(liveScore.getId())) {
-					convertView.findViewById(R.id.livescore_header).setVisibility(View.GONE);
-					convertView.findViewById(R.id.livescore_main).setVisibility(View.GONE);
-					return;
-				}
-			}
-
 			convertView.findViewById(R.id.livescore_header).setVisibility(View.GONE);
 			convertView.findViewById(R.id.livescore_main).setVisibility(View.GONE);
+			convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
+			if(position < 1){
+				CommonUtil.getdata(listView.getContext());
+				countryAdapter.notifyDataSetChanged();
+				if ( CommonUtil.listQuanTam.size() == 0 && TypeView != null ) {
+					if(TypeView.equalsIgnoreCase("quantam")){
+						Toast.makeText(listView.getContext(), listView.getContext().getResources().getString(R.string.khongcodoiyeuthich), Toast.LENGTH_SHORT).show();
+					}
+				}
+				
+//				Log.e("KKKKKKKKKK", "AA*" + CommonUtil.listQuanTam.toString() + ":::" + liveScore.getId() + ":::"+ position + ":TypeView:" + TypeView + ":CommonUtil.listQuanTam.size():" + CommonUtil.listQuanTam.size());
+			}
+			String check_quantam = liveScore.getId() + "-" + liveScore.idmagiai();
+			if (TypeView != null) {
+				if (TypeView.equalsIgnoreCase("quantam") && CommonUtil.listQuanTam.contains( check_quantam )) {
+					Log.e("KKKKKKKKKK", "AA*" + CommonUtil.listQuanTam.toString() + ":::" + check_quantam);
+					int k = 0;
+					int k2 = 0;
+					String str_check = "";
+					boolean check_header = false;
+					for(int i = 0; i < CommonUtil.listQuanTam.size(); i++){
+//						Log.e("check","======="+ CommonUtil.listQuanTam.get(i));
+						String str1= CommonUtil.listQuanTam.get(i);
+						if( str1.equalsIgnoreCase(check_quantam)){
+							k = i;
+							str_check = CommonUtil.listQuanTam.get(i);
+						}
+					}
+					for(int j = 0; j <= k;j++ ){
+						String str1= CommonUtil.listQuanTam.get(j);
+						String[] temps = str_check.split("-");
+						String str2 = "-" + temps[1];
+						if(str1.indexOf(str2) > 0){
+							k2++;
+							if(k2 > 1)check_header = true;
+//							Log.e("check","=======k"+ k + "::" + str1 + "::" + str2 + ":j:" + j + ":k2:" + k2);
+						}
+						
+						
+					}
+//					Log.e("check","======="+ check_header + "::" + k);
+					if (!check_header) {
+						convertView.findViewById(R.id.livescore_header).setVisibility(View.VISIBLE);
+						convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
+					} else {
+						convertView.findViewById(R.id.livescore_header).setVisibility(View.GONE);
+						convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
+					}
+					convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
+				}else{
+					convertView.findViewById(R.id.livescore_header).setVisibility(View.GONE);
+					convertView.findViewById(R.id.livescore_main).setVisibility(View.GONE);
+				}
+			}else{
+				if (liveScore.isHeader()) {
+					convertView.findViewById(R.id.livescore_header).setVisibility(View.VISIBLE);
+				} else {
+					convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
+				}
+				if(CommonUtil.listQuanTam.contains( check_quantam )){
+					convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
+				}else{
+					convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
+				}
+			}
 
 			// //show tran quan tam
 			// if (CommonUtil.listQuanTam.contains(liveScore.getId()))
@@ -87,11 +144,7 @@ public class LiveScoreFragment extends BaseFragment {
 			// }else{
 			// convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
 			// }
-			if (liveScore.isHeader()) {
-				convertView.findViewById(R.id.livescore_header).setVisibility(View.VISIBLE);
-			} else {
-				convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
-			}
+			
 
 			// cogamedudoan
 			if (liveScore.isGameDuDoan()) {
@@ -187,20 +240,16 @@ public class LiveScoreFragment extends BaseFragment {
 			convertView.findViewById(R.id.phongdo_icon).setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
+					Log.e("livescore", "liveScore.iID_MaTran===" + liveScore.iID_MaTran());
 					callBackListenner.onCallBackListenner(0, liveScore);
 				}
 			});
-
-			if (CommonUtil.listQuanTam.contains(liveScore.getId())) {
-				convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
-			} else {
-				convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
-			}
+			
 			if (addfavorite) {
 				convertView.findViewById(R.id.iconlike).setVisibility(View.VISIBLE);
 				// show tran quan tam
 				img_favorite = (ImageView) convertView.findViewById(R.id.iconlike);
-				if (CommonUtil.listQuanTam.contains(liveScore.getId())) {
+				if (CommonUtil.listQuanTam.contains( check_quantam )) {
 					// convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
 					img_favorite.setImageResource(R.drawable.ico_favorite_on);
 				} else {
@@ -210,15 +259,17 @@ public class LiveScoreFragment extends BaseFragment {
 				convertView.findViewById(R.id.iconlike).setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						if (CommonUtil.listQuanTam.contains(liveScore.getId())) {
-							CommonUtil.listQuanTam.remove(liveScore.getId());
+						String check_quantam = liveScore.getId() + "-" + liveScore.idmagiai();
+						if (CommonUtil.listQuanTam.contains( check_quantam )) {
+							CommonUtil.listQuanTam.remove( check_quantam );
 							CommonUtil.savedata(v.getContext());
 							img_favorite.setImageResource(R.drawable.ico_favorite_on);
 						} else {
-							CommonUtil.listQuanTam.add(liveScore.getId());
+							CommonUtil.listQuanTam.add( check_quantam );
 							CommonUtil.savedata(v.getContext());
 							img_favorite.setImageResource(R.drawable.ico_favorite_off);
 						}
+						CommonUtil.getdata(listView.getContext());
 						countryAdapter.notifyDataSetChanged();
 					}
 				});
@@ -268,6 +319,12 @@ public class LiveScoreFragment extends BaseFragment {
 
 		headerView.findViewById(R.id.Button05).setVisibility(View.VISIBLE);
 		headerView.findViewById(R.id.Button05).setOnClickListener(clickListener);
+		if (TypeView != null) {
+			if (TypeView.equalsIgnoreCase("quantam") ){
+				CommonUtil.getdata(getActivity());
+				Log.e("livescore", "onInitCreateView");
+			}
+		}	
 
 	}
 
@@ -322,7 +379,16 @@ public class LiveScoreFragment extends BaseFragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-
+		Log.e("livescore", "onResume22");
+		if(countryAdapter != null){
+			if (TypeView != null) {
+				if (TypeView.equalsIgnoreCase("quantam") ){
+					CommonUtil.getdata(getActivity());
+					Log.e("livescore", "onResume");
+				}
+			}	
+			countryAdapter.notifyDataSetChanged();
+		}
 	}
 
 	private void loadData() {
@@ -330,18 +396,20 @@ public class LiveScoreFragment extends BaseFragment {
 		if (maGiaiDau == null) {
 //			ByUtils.wsFootBall_Lives_page
 			if (TypeView == null && onLoad == 1) {
-				BongDaServiceManager.getInstance().getBongDaService().callApi(getCurrentTime(), callbackAPI, ByUtils.wsFootBall_Lives);
+				BongDaServiceManager.getInstance().getBongDaService().callApi(getCurrentTime(), callbackAPI, ByUtils.wsFootBall_Lives_page);
 			} else {
 				if (TypeView == null) {
-					BongDaServiceManager.getInstance().getBongDaService().callApi(System.currentTimeMillis(), callbackAPI, ByUtils.wsFootBall_Lives);
+					BongDaServiceManager.getInstance().getBongDaService().callApi(System.currentTimeMillis(), callbackAPI, ByUtils.wsFootBall_Lives_page);
 				} else {
 					if (TypeView.equalsIgnoreCase("quantam")) {
 						CommonUtil.getdata(listView.getContext());
-						if (CommonUtil.listQuanTam.size() > 0) {
-							BongDaServiceManager.getInstance().getBongDaService().callApi(System.currentTimeMillis(), callbackAPI, ByUtils.wsFootBall_Lives);
-						} else {
-							Toast.makeText(listView.getContext(), listView.getContext().getResources().getString(R.string.khongcodoiyeuthich), Toast.LENGTH_LONG).show();
-						}
+//						if (CommonUtil.listQuanTam.size() > 0) {
+//							BongDaServiceManager.getInstance().getBongDaService().callApi(System.currentTimeMillis(), callbackAPI, ByUtils.wsFootBall_Lives_page);
+							new APICaller(getActivity()).callApi("", true, callbackAPI,
+									ByUtils.wsFootBall_Lives_page);
+//						} else {
+//							Toast.makeText(listView.getContext(), listView.getContext().getResources().getString(R.string.khongcodoiyeuthich), Toast.LENGTH_LONG).show();
+//						}
 					}
 
 				}
@@ -369,7 +437,7 @@ public class LiveScoreFragment extends BaseFragment {
 					if (!string_temp.equalsIgnoreCase("")) {
 						// CommonAndroid.showDialog(getActivity(), "data2:" +
 						// string_temp , null);
-						// Log.e("data",string_temp);
+						 Log.e("data","============onInitData");
 						try {
 							// JSONArray jsonarray = new JSONArray(string_temp);
 
@@ -382,27 +450,29 @@ public class LiveScoreFragment extends BaseFragment {
 							CommonUtil.getdata(listView.getContext());
 							// Log.e("KKK","kkk"+ "*****"+
 							// CommonUtil.listQuanTam.toString());
+							Log.e("data","============onInitData" + CommonUtil.listQuanTam.toString());
 
 							for (int i = 0; i < jsonArray.length(); i++) {
 								try {
-									if (TypeView != null) {
-										if (TypeView.equalsIgnoreCase("quantam")) {
-											String matran = jsonArray.getJSONObject(i).getString("iID_MaTran");
-											if (CommonUtil.listQuanTam.contains(matran)) {
-												array.add(jsonArray.getJSONObject(i));
-											}
-										} else {
-											array.add(jsonArray.getJSONObject(i));
-										}
-									} else {
+//									if (TypeView != null) {
+//										if (TypeView.equalsIgnoreCase("quantam")) {
+//											String matran = jsonArray.getJSONObject(i).getString("iID_MaTran");
+//											if (CommonUtil.listQuanTam.contains(matran)) {
+//												array.add(jsonArray.getJSONObject(i));
+//											}
+//										} else {
+//											array.add(jsonArray.getJSONObject(i));
+//										}
+//									} else {
 										array.add(jsonArray.getJSONObject(i));
-									}
+//									}
 
 								} catch (JSONException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
 							}
+							listView_size = jsonArray.length();
 							Collections.emptyList();
 							Collections.sort(array, new Comparator<JSONObject>() {
 
