@@ -77,21 +77,21 @@ public class BangXepHangFragment extends BaseFragment {
 
 		String where = String.format("iID_MaQuocGia ='%s'",
 				dau.getiID_MaQuocGia());
-
+		String sLogo = null;
 		Cursor cursor = BongDaServiceManager.getInstance().getBongDaService()
 				.query(new CountryTable().getTableName(), where);
 		if (cursor != null && cursor.moveToNext()) {
-			String sLogo = cursor.getString(cursor.getColumnIndex("sLogo"));
-			ImageLoaderUtils
-					.getInstance(null)
-					.DisplayImage(
-							sLogo,
-							(ImageView) view
-									.findViewById(R.id.bangxephang_img_country));
+			sLogo = cursor.getString(cursor.getColumnIndex("sLogo"));
 		}
+
+		if (sLogo == null)
+			sLogo = dau.sLogoGiai();
+
+		ImageLoaderUtils.getInstance(null).DisplayImage(sLogo,
+				(ImageView) view.findViewById(R.id.bangxephang_img_country));
 		progressBar.setVisibility(View.VISIBLE);
 		view.postDelayed(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				loadData();

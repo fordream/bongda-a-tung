@@ -106,7 +106,7 @@ public class LiveScore extends PhongDo {
 		return sThoiGian;
 	}
 	
-	public String magiai(){
+	public String sMaGiai(){
 		return sMaGiai;
 	}
 	
