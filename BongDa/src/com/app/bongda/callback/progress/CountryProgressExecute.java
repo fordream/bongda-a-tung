@@ -1,0 +1,60 @@
+package com.app.bongda.callback.progress;
+
+import java.util.Set;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.inputmethodservice.Keyboard.Key;
+import android.util.Log;
+
+import com.app.bongda.callback.ProgressExecute;
+import com.app.bongda.service.BongDaServiceManager;
+import com.app.bongda.util.CommonAndroid;
+import com.vnp.core.datastore.database.CountryTable;
+import com.vnp.core.datastore.database.GiaiDauTable;
+
+public class CountryProgressExecute extends ProgressExecute {
+
+	public CountryProgressExecute(String response, Context context) {
+		super(response, context);
+	}
+
+	@Override
+	public void onProgress(String response) {
+		String string_temp = CommonAndroid.parseXMLAction(response);
+		CountryTable countryTable = new CountryTable();
+		if (!string_temp.equalsIgnoreCase("")) {
+			try {
+				JSONArray jsonarray = new JSONArray(string_temp);
+				for (int i = 0; i < jsonarray.length(); i++) {
+					JSONObject jsonObject = jsonarray.getJSONObject(i);
+					String iID_MaQuocGia = jsonObject
+							.getString("iID_MaQuocGia");
+
+					ContentValues values = new ContentValues();
+					Set<String> columns = countryTable.columNameS();
+					for (String column : columns) {
+						if (jsonObject.has(column)) {
+							values.put(column, jsonObject.getString(column));
+						}
+					}
+					String where = String.format("iID_MaQuocGia ='%s'",
+							iID_MaQuocGia);
+					
+					BongDaServiceManager.getInstance().getBongDaService().insert(countryTable.getTableName(), values, where);
+//					long id = dbManager.insertContry(values);
+				}
+			} catch (JSONException e) {
+			}
+		}
+	}
+
+	@Override
+	public void onProgressSucess() {
+
+	}
+}
