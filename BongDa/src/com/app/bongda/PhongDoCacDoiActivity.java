@@ -23,6 +23,7 @@ public class PhongDoCacDoiActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.vlayout);
+		overridePendingTransition(R.anim.bot_to_top, R.anim.nothing);
 		bongDaViewPager = (BongDaViewPager) findViewById(R.id.bongdaviewpager);
 	}
 
@@ -33,5 +34,11 @@ public class PhongDoCacDoiActivity extends Activity {
 			return;
 		}
 		super.onBackPressed();
+	}
+
+	@Override
+	public void finish() {
+		super.finish();
+		overridePendingTransition(R.anim.nothing, R.anim.top_to_bot);
 	}
 }

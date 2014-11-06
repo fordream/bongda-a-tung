@@ -15,9 +15,17 @@ import com.app.bongda.model.GiaiDau;
 
 public class MayTinhDuDoanActivity extends BaseX1X2Activity {
 	ICallbackAPI callbackAPI;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		overridePendingTransition(R.anim.bot_to_top, R.anim.nothing);
 		showMayTinhDuDoan(null);
+	}
+
+	@Override
+	public void finish() {
+		super.finish();
+		overridePendingTransition(R.anim.nothing, R.anim.top_to_bot);
 	}
 }
