@@ -49,6 +49,7 @@ public class LiveScoreFragment extends BaseFragment {
 	private MyTouchListener mOnTouchListener;
 	ImageView img_favorite;
 	private int listView_size = 0;
+	private String value_list_favorite = "";
 	public LiveScoreFragment(OnItemClickListener onItemClickListener, CallBackListenner callBackListenner, GiaiDau data, String type) {
 		super();
 		this.callBackListenner = callBackListenner;
@@ -73,6 +74,7 @@ public class LiveScoreFragment extends BaseFragment {
 			convertView.findViewById(R.id.livescore_main).setVisibility(View.GONE);
 			convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
 			if(position < 1){
+				value_list_favorite = "";
 				CommonUtil.getdata(listView.getContext());
 				countryAdapter.notifyDataSetChanged();
 				if ( CommonUtil.listQuanTam.size() == 0 && TypeView != null ) {
@@ -85,7 +87,8 @@ public class LiveScoreFragment extends BaseFragment {
 			}
 			String check_quantam = liveScore.getId() + "-" + liveScore.idmagiai();
 			if (TypeView != null) {
-				if (TypeView.equalsIgnoreCase("quantam") && CommonUtil.listQuanTam.contains( check_quantam )) {
+				if (TypeView.equalsIgnoreCase("quantam") && CommonUtil.listQuanTam.contains( check_quantam ) && !check_quantam.equalsIgnoreCase(value_list_favorite)) {
+					value_list_favorite = check_quantam;
 					Log.e("KKKKKKKKKK", "AA*" + CommonUtil.listQuanTam.toString() + ":::" + check_quantam);
 					int k = 0;
 					int k2 = 0;
