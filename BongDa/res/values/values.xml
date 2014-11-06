@@ -7,5 +7,6 @@
     <string name="giaichuabatdau">Giải chưa bắt đầu</string>
     <string name="format_tyledudoan">Thời gian : %s</string>
     <string name="khongcodoiyeuthich">Không có đội yêu thích</string>
+    <string name="khongconhandinhchuyengia">Không có nhận định chuyên gia</string>
 
 </resources>

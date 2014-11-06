@@ -14,6 +14,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.app.bongda.base.ImageLoaderUtils;
 import com.app.bongda.R;
@@ -33,11 +34,11 @@ public class NhanDinhChuyenGiaFragment extends BaseFragment {
 	OnItemClickListener onItemClickListener;
 	CallBackListenner callBackListenner;
 	GiaiDau data;
-
+	ListView listView;
 	public NhanDinhChuyenGiaFragment(GiaiDau dau, Object object) {
 		// TODO Auto-generated constructor stub
 		super();
-		this.data = dau;
+//		this.data = dau;
 	}
 
 	private CountryAdapter countryAdapter = new CountryAdapter();
@@ -76,7 +77,7 @@ public class NhanDinhChuyenGiaFragment extends BaseFragment {
 				.findViewById(R.id.headerView1);
 		headerView.setTextHeader(R.string.nhandinhchuyengia);
 		/** init data */
-		ListView listView = (ListView) view.findViewById(R.id.listView1);
+		listView = (ListView) view.findViewById(R.id.listView1);
 		listView.setOnItemClickListener(onItemClickListener);
 
 		listView.setAdapter(countryAdapter);
@@ -84,7 +85,6 @@ public class NhanDinhChuyenGiaFragment extends BaseFragment {
 
 	ICallbackAPI callbackAPI;
 
-	@SuppressWarnings("unused")
 	@Override
 	public void onInitData() {
 		
@@ -93,8 +93,10 @@ public class NhanDinhChuyenGiaFragment extends BaseFragment {
 			public void onSuccess(String response) {
 //				 CommonAndroid.showDialog(getActivity(), "data2:" +
 //						 response , null);
-				 String string_temp = CommonAndroid.parseXMLAction(response);
+				Log.e("data22", response);
+				 String string_temp = response == null ? "" : CommonAndroid.parseXMLAction(response);
 					if (!string_temp.equalsIgnoreCase("")) {
+						Log.e("data", string_temp);
 						try {
 							JSONArray jsonarray = new JSONArray(string_temp);
 							for (int i = 0; i < jsonarray.length(); i++) {
@@ -108,6 +110,9 @@ public class NhanDinhChuyenGiaFragment extends BaseFragment {
 								String date = jsonarray.getJSONObject(i).getString("dNgayDang");
 								countryAdapter.addItem(new NhanDinhChuyenGia(id, matran, tieude, key,anh, anh2,  noidung,date));
 							}
+							if(jsonarray.length() == 0){
+								Toast.makeText(listView.getContext(), listView.getContext().getResources().getString(R.string.khongconhandinhchuyengia), Toast.LENGTH_LONG).show();
+							}
 							countryAdapter.notifyDataSetChanged();
 						} catch (JSONException e) {
 					        // TODO Auto-generated catch block
@@ -118,16 +123,19 @@ public class NhanDinhChuyenGiaFragment extends BaseFragment {
 
 			@Override
 			public void onError(String message) {
+				Log.e("Err", "" + message);
 			}
 		};
-		String maGiaiDau = data == null ? null : data.getId();
-		if (maGiaiDau == null) {
+		String matran = data == null ? null : data.iID_MaTran();
+		if (matran == null) {
 			new APICaller(getActivity()).callApi("", true, callbackAPI,
 					ByUtils.wsFootBall_Nhan_Dinh_Chuyen_Gia);
+			Log.e("nhandinh","nhandinhchuyengia");
+			
 		} else {
-//			new APICaller(getActivity()).callApi("", true, callbackAPI,
-//					(ByUtils.wsFootBall_Nhan_Dinh_Chuyen_Gia_Theo_Tran).replace("magiai",
-//							maGiaiDau));
+			new APICaller(getActivity()).callApi("", true, callbackAPI,
+					(ByUtils.wsFootBall_Nhan_Dinh_Chuyen_Gia_Theo_Tran).replace("matran",
+							matran));
 		}
 
 	}

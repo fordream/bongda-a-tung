@@ -142,7 +142,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 			public void onSuccess(String response) {
 				// CommonAndroid.showDialog(getActivity(), "data2:" + response ,
 				// null);
-				// Log.e("aaaaa", "data::" + response);
+				 Log.e("aaaaa", "data::" + response);
 				String string_temp = response == null ? "" : CommonAndroid.parseXMLAction(response);
 				if (!string_temp.equalsIgnoreCase("")) {
 					try {
@@ -525,7 +525,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 
 		String iID_MaTran = giaidau.iID_MaTran();//"58167";//giaidau.getId();
 		Log.e("KKKKKKKKKKKKK",
-				"===" + giaidau.getId()+ " : " + iID_MaTran);
+				"===mg:" + giaidau.idmagiai()+ " :mt " + giaidau.iID_MaTran() + "::"+ iID_MaTran );
 		Object aobj[] = new Object[1];
 		aobj[0] = Integer.valueOf(iID_MaTran);
 		String param = String.format(ByUtils.wsFootBall_Phong_Do, aobj);

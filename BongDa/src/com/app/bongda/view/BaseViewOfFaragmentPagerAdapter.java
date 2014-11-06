@@ -31,6 +31,7 @@ import com.app.bongda.model.GiaiDau;
 import com.app.bongda.model.LiveScore;
 import com.app.bongda.vl.X1VLayoutActivity;
 import com.app.bongda.vl.X2VLayoutActivity;
+import com.app.bongda.vl.X3VLayoutActivity;
 import com.app.bongda.vl.X4VLayoutActivity;
 
 public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
@@ -104,6 +105,8 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 			addCountry();
 		} else if (mpager.getContext() instanceof X1VLayoutActivity) {
 			addLiveScore(null, null);
+		} else if (mpager.getContext() instanceof X3VLayoutActivity){
+			addLiveScore(null, "quantam");
 		}
 	}
 
@@ -194,6 +197,7 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 						liveScore.idmagiai(), liveScore.iID_MaTran(), liveScore.sLogoDoiNha(), liveScore.sLogoDoiKhach(), liveScore.iID_MaDoiNha(), liveScore.iID_MaDoiKhach());
 				if (position == 0) {
 					dau.sLogoGiai(liveScore.sLogoGiai());
+					Log.e("livescore_phong do", "liveScore.iID_MaTran()===" + dau.iID_MaTran());
 					addPhongDoDoiDauFragment(dau);
 				} else if (position == 1) {
 					addGameDuDoan(null);
