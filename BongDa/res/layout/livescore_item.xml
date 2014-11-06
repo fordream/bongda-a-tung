@@ -15,10 +15,10 @@
         android:paddingTop="@dimen/dimen_5dp" >
 
         <ImageView
-            android:id="@+id/imageView1"
+            android:id="@+id/logogiai"
             android:layout_width="@dimen/dimen_30dp"
             android:layout_height="@dimen/dimen_20dp"
-            android:background="@drawable/vietnam" />
+            android:background="@null" />
 
         <TextView
             android:id="@+id/textView1"
@@ -193,13 +193,5 @@
             android:orientation="vertical" >
         </TextView>
     </LinearLayout>
-    <!--
-    <TextView
-        style="@style/line"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:orientation="vertical" >
-    </TextView>
-    -->
 
 </LinearLayout>
