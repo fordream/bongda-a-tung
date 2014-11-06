@@ -30,7 +30,7 @@ public class X5Activity extends Activity implements OnItemClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.x5);
 
-		HeaderView headerView =(HeaderView)findViewById(R.id.headerView1);
+		HeaderView headerView = (HeaderView) findViewById(R.id.headerView1);
 		headerView.hiddenProgressbar();
 		ListView listView = (ListView) findViewById(R.id.x5listview);
 
@@ -90,4 +90,6 @@ public class X5Activity extends Activity implements OnItemClickListener {
 		}
 
 	}
+
+	
 }

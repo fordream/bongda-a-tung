@@ -25,4 +25,5 @@ public class X2VLayoutActivity extends Activity {
 		}
 		super.onBackPressed();
 	}
+
 }

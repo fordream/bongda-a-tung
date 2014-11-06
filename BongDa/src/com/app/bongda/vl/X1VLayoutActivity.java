@@ -15,6 +15,7 @@ public class X1VLayoutActivity extends Activity {
 		setContentView(R.layout.vlayout);
 		bongDaViewPager = (BongDaViewPager) findViewById(R.id.bongdaviewpager);
 	}
+
 	@Override
 	public void onBackPressed() {
 
@@ -23,4 +24,5 @@ public class X1VLayoutActivity extends Activity {
 		}
 		super.onBackPressed();
 	}
+
 }

@@ -71,43 +71,43 @@ public class BongDaService extends Service {
 	private Map<Long, APICaller> map = new HashMap<Long, APICaller>();
 
 	public void callApi(long currentTime, ICallbackAPI callbackAPI, String data) {
-		APICaller apiCaller = map.get(new Long(currentTime));
+		// APICaller apiCaller = map.get(new Long(currentTime));
 		// String format = String.format("time : %s data : %s", currentTime,
 		// data);
 		// Log.e("callApi", format);
-		if (apiCaller == null) {
-			// Log.e("callApi", "StartCallApi");
-			apiCaller = new APICaller(this);
-			map.put(new Long(currentTime), apiCaller);
-			apiCaller.setICallBack(callbackAPI);
-			apiCaller.callApi("", false, callbackAPI, data);
-		} else {
-		}
+		// if (apiCaller == null) {
+		// Log.e("callApi", "StartCallApi");
+		APICaller apiCaller = new APICaller(this);
+		map.put(new Long(currentTime), apiCaller);
+		apiCaller.setICallBack(callbackAPI);
+		apiCaller.callApi("", false, callbackAPI, data);
+		// } else {
+		// }
 	}
 
 	public void callApi(long currentTime,
 			final ProgressExecute progressExecute, String data) {
-		APICaller apiCaller = map.get(new Long(currentTime));
-		if (apiCaller == null) {
-			apiCaller = new APICaller(this);
-			map.put(new Long(currentTime), apiCaller);
-			ICallbackAPI callbackAPI = new ICallbackAPI() {
-				@Override
-				public void onSuccess(String response) {
-					progressExecute.setResponse(response);
-					progressExecute.executeAsynCallBack();
-				}
+		// APICaller apiCaller = map.get(new Long(currentTime));
+		// if (apiCaller == null) {
+		APICaller apiCaller = new APICaller(this);
+		map.put(new Long(currentTime), apiCaller);
+		ICallbackAPI callbackAPI = new ICallbackAPI() {
+			@Override
+			public void onSuccess(String response) {
+				progressExecute.setResponse(response);
+				progressExecute.executeAsynCallBack();
+			}
 
-				@Override
-				public void onError(String message) {
-					progressExecute.onProgressStartFail();
-				}
-			};
-			apiCaller.setICallBack(callbackAPI);
-			apiCaller.callApi("", false, callbackAPI, data);
-		} else {
-
-		}
+			@Override
+			public void onError(String message) {
+				progressExecute.onProgressStartFail();
+			}
+		};
+		apiCaller.setICallBack(callbackAPI);
+		apiCaller.callApi("", false, callbackAPI, data);
+		// } else {
+		//
+		// }
 	}
 
 	/**

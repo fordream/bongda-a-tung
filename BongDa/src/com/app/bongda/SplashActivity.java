@@ -30,6 +30,12 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 	}
 
 	@Override
+	public void finish() {
+		super.finish();
+		overridePendingTransition(R.anim.nothing, R.anim.top_to_bot);
+	}
+
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tabexampleslide);
@@ -85,10 +91,10 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 			addTab(X3VLayoutActivity.class, "M2", "M2", R.drawable.menu_3);
 			addTab(X4VLayoutActivity.class, "M3", "M3", R.drawable.menu_4);
 		} else {
-//			addTab(X1Activity.class, "Home", "Home", R.drawable.menu_1);
-//			addTab(X2Activity.class, "M1", "M1", R.drawable.menu_2);
-//			addTab(X3Activity.class, "M2", "M2", R.drawable.menu_3);
-//			addTab(X4Activity.class, "M3", "M3", R.drawable.menu_4);
+			// addTab(X1Activity.class, "Home", "Home", R.drawable.menu_1);
+			// addTab(X2Activity.class, "M1", "M1", R.drawable.menu_2);
+			// addTab(X3Activity.class, "M2", "M2", R.drawable.menu_3);
+			// addTab(X4Activity.class, "M3", "M3", R.drawable.menu_4);
 		}
 
 		addTab(X5Activity.class, "M3", "M3", R.drawable.menu_5);
