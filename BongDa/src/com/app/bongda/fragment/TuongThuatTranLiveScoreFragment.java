@@ -198,7 +198,7 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 		public void onClick(View v) {
 			GiaiDau dau = new GiaiDau(livecore.iID_MaGiai(), livecore.sTenGiai(),
 					livecore.sMaGiai(), livecore.madoinha(),
-					livecore.madoikhach(), livecore.idmagiai());
+					livecore.madoikhach(), livecore.idmagiai(), livecore.iID_MaTran(), livecore.sLogoDoiNha(), livecore.sLogoDoiKhach(), livecore.iID_MaDoiNha(), livecore.iID_MaDoiKhach());
 			dau.sLogoGiai(livecore.sLogoGiai());
 			if (v.getId() == R.id.imageView1s) {
 				backListenner.onCallBackListenner(1, dau /*

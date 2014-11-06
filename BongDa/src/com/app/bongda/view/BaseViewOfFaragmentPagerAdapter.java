@@ -128,7 +128,7 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 				GiaiDau dau = new GiaiDau(liveScore.iID_MaGiai(),
 						liveScore.sTenGiai(), liveScore.sMaGiai(),
 						liveScore.madoinha(), liveScore.madoikhach(),
-						liveScore.idmagiai());
+						liveScore.idmagiai(),liveScore.iID_MaTran(), liveScore.sLogoDoiNha(), liveScore.sLogoDoiKhach(), liveScore.iID_MaDoiNha(), liveScore.iID_MaDoiKhach());
 
 				addPhongDoDoiDauFragment(dau);
 			}
@@ -191,7 +191,7 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 				GiaiDau dau = new GiaiDau(liveScore.iID_MaGiai(),
 						liveScore.sTenGiai(), liveScore.sMaGiai(),
 						liveScore.madoinha(), liveScore.madoikhach(),
-						liveScore.idmagiai());
+						liveScore.idmagiai(), liveScore.iID_MaTran(), liveScore.sLogoDoiNha(), liveScore.sLogoDoiKhach(), liveScore.iID_MaDoiNha(), liveScore.iID_MaDoiKhach());
 				if (position == 0) {
 					dau.sLogoGiai(liveScore.sLogoGiai());
 					addPhongDoDoiDauFragment(dau);

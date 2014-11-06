@@ -5,18 +5,28 @@ public class GiaiDau extends BaseItem {
 	private String sMadoinha;
 	private String sMadoikhach;
 	private String iID_MaGiai;
+	private String iID_MaTran;
+	private String sLogoDoiNha;
+	private String sLogoDoiKhach;
+	private String iID_MaDoiNha;
+	private String iID_MaDoiKhach;
 
 	public GiaiDau(String id, String name) {
 		super(id, name);
 	}
 
 	public GiaiDau(String id, String name, String magiai, String madoinha,
-			String madoikhach, String idmagiai) {
+			String madoikhach, String idmagiai, String iID_MaTran_ , String sLogoDoiNha_, String sLogoDoiKhach_ ,String iID_MaDoiNha_, String iID_MaDoiKhach_) {
 		super(id, name);
 		this.sMagiai = magiai;
 		this.sMadoinha = madoinha;
 		this.sMadoikhach = madoikhach;
 		this.iID_MaGiai = idmagiai;
+		this.iID_MaTran = iID_MaTran_;
+		this.sLogoDoiNha = sLogoDoiNha_;
+		this.sLogoDoiKhach = sLogoDoiKhach_;
+		this.iID_MaDoiNha = iID_MaDoiNha_;
+		this.iID_MaDoiKhach = iID_MaDoiKhach_;
 	}
 
 	public String magiai() {
@@ -52,5 +62,29 @@ public class GiaiDau extends BaseItem {
 
 	public String sLogoGiai() {
 		return sLogoGiai;
+	}
+	
+	public String iID_MaTran(){
+		return iID_MaTran;
+	}
+
+	public String sLogoDoiNha() {
+		// TODO Auto-generated method stub
+		return sLogoDoiNha;
+	}
+
+	public String sLogoDoiKhach() {
+		// TODO Auto-generated method stub
+		return sLogoDoiKhach;
+	}
+
+	public String iID_MaDoiNha() {
+		// TODO Auto-generated method stub
+		return iID_MaDoiNha;
+	}
+
+	public String iID_MaDoiKhach() {
+		// TODO Auto-generated method stub
+		return iID_MaDoiKhach;
 	}
 }

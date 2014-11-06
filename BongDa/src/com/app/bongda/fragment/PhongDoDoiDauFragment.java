@@ -84,9 +84,6 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 	}
 
 	ICallbackAPI callbackAPI, callbackAPI_Chitiet, callbackAPI_tuongthuat;
-	private String iID_MaDoiNha;
-	private String iID_MaDoiKhach;
-	private String iID_MaGiai;
 	private PhongDodoiItemView PhongDodoiItemView1, PhongDodoiItemView2;
 	private PhongDodoiItemTanCongPhongThuView PhongDodoiItemTanCongPhongThuView1,
 			PhongDodoiItemTanCongPhongThuView2;
@@ -135,89 +132,10 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 	String DoiKhach_SoTran_LotLuoi;
 	String DoiKhach_Hieu_So_Ban_Thua;
 
-	public String iCN_BanThang_DoiKhach;
-	public String iCN_BanThang_DoiKhach_HT;
-	public String iCN_BanThang_DoiNha;
-	public String iCN_BanThang_DoiNha_HT;
-	public String sTenDoiKhach;
-	public String sTenDoiNha;
-	public String sTenGiai;
-	public String sLogoGiai;
-	public String sLogoDoiNha;
-	public String sLogoDoiKhach;
-
 	@Override
 	public void onInitData() {
-		callbackAPI_tuongthuat = new ICallbackAPI() {
-			@Override
-			public void onSuccess(String response) {
-				// CommonAndroid.showDialog(getActivity(), "data2:" + response ,
-				// null);
-				String string_temp = CommonAndroid.parseXMLAction(response);
-				if (!string_temp.equalsIgnoreCase("")) {
-					try {
-						JSONArray jsonarray = new JSONArray(string_temp);
-						for (int i = 0; i < jsonarray.length(); i++) {
-							// parse
-							sTenGiai = jsonarray.getJSONObject(i).getString(
-									"sTenGiai");
-							sTenDoiNha = jsonarray.getJSONObject(i).getString(
-									"sTenDoiNha");
-							sTenDoiKhach = jsonarray.getJSONObject(i)
-									.getString("sTenDoiKhach");
-							iCN_BanThang_DoiNha = jsonarray.getJSONObject(i)
-									.getString("iCN_BanThang_DoiNha");
-							iCN_BanThang_DoiKhach = jsonarray.getJSONObject(i)
-									.getString("iCN_BanThang_DoiKhach");
-							iCN_BanThang_DoiNha_HT = jsonarray.getJSONObject(i)
-									.getString("iCN_BanThang_DoiNha_HT");
-							iCN_BanThang_DoiKhach_HT = jsonarray.getJSONObject(
-									i).getString("iCN_BanThang_DoiKhach_HT");
-							sLogoGiai = jsonarray.getJSONObject(i).getString(
-									"sLogoGiai");
-							sLogoDoiNha = jsonarray.getJSONObject(i).getString(
-									"sLogoDoiNha");
-							sLogoDoiKhach = jsonarray.getJSONObject(i)
-									.getString("sLogoDoiKhach");
-
-							iID_MaDoiNha = jsonarray.getJSONObject(i)
-									.getString("iID_MaDoiNha");
-							iID_MaDoiKhach = jsonarray.getJSONObject(i)
-									.getString("iID_MaDoiKhach");
-							iID_MaGiai = jsonarray.getJSONObject(i).getString(
-									"iID_MaGiai");
-
-						}
-						ImageLoaderUtils
-								.getInstance(null)
-								.DisplayImage(
-										sLogoDoiNha,
-										(ImageView) view
-												.findViewById(R.id.logo_doinha));
-						ImageLoaderUtils.getInstance(null).DisplayImage(
-								sLogoDoiKhach,
-								(ImageView) view
-										.findViewById(R.id.logo_doikhach));
-
-						if (!"".equalsIgnoreCase(iID_MaGiai)
-								&& !"".equalsIgnoreCase(iID_MaDoiNha)
-								&& !"".equalsIgnoreCase(iID_MaDoiKhach)) {
-							TenDoiNha = sTenDoiNha;
-							TenDoiKhach = sTenDoiKhach;
-							PhongDoChiTiet();
-						}
-
-					} catch (JSONException e) {
-					}
-
-				}
-
-			}
-
-			@Override
-			public void onError(String message) {
-			}
-		};
+		ImageLoaderUtils.getInstance(null).DisplayImage(giaidau.sLogoDoiNha(),(ImageView) view.findViewById(R.id.logo_doinha));
+		ImageLoaderUtils.getInstance(null).DisplayImage(giaidau.sLogoDoiKhach(),(ImageView) view.findViewById(R.id.logo_doikhach));
 
 		callbackAPI = new ICallbackAPI() {
 			@Override
@@ -225,9 +143,10 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 				// CommonAndroid.showDialog(getActivity(), "data2:" + response ,
 				// null);
 				// Log.e("aaaaa", "data::" + response);
-				String string_temp = CommonAndroid.parseXMLAction(response);
+				String string_temp = response == null ? "" : CommonAndroid.parseXMLAction(response);
 				if (!string_temp.equalsIgnoreCase("")) {
 					try {
+//						Log.e("aaaaa", "data::" + string_temp);
 						JSONArray jsonarray = new JSONArray(string_temp);
 						for (int i = 0; i < jsonarray.length(); i++) {
 							String id = jsonarray.getJSONObject(i).getString(
@@ -286,218 +205,173 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 			public void onSuccess(String response) {
 				// CommonAndroid.showDialog(getActivity(), "data2:" + response ,
 				// null);
-				String string_temp = CommonAndroid.parseXMLAction(response);
+				String tran_txt = "" + phongdodoidau_bangephang_listitem.getContext().getResources().getString(R.string.tran);
+				String string_temp = response == null ? "" : CommonAndroid.parseXMLAction(response);
 				if (!string_temp.equalsIgnoreCase("")) {
 					try {
 						JSONArray jsonarray = new JSONArray(string_temp);
 						for (int i = 0; i < jsonarray.length(); i++) {
-							// parse
-							// String callbackAPI_Chitiet =
-							// jsonarray.get(i).toString();
-							// Log.e("callbackAPI_Chitiet",i + "::"+
-							// callbackAPI_Chitiet );
 							DoiNha_SoTran_GhiBan_SanNha = jsonarray
 									.getJSONObject(i).getString(
 											"DoiNha_SoTran_GhiBan_SanNha")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiNha_SoTran_GhiBan_SanKhach = jsonarray
 									.getJSONObject(i).getString(
 											"DoiNha_SoTran_GhiBan_SanKhach")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiNha_TyLe_GhiBan_SanNha = jsonarray
 									.getJSONObject(i).getString(
 											"DoiNha_TyLe_GhiBan_SanNha")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiNha_TyLe_GhiBan_SanKhach = jsonarray
 									.getJSONObject(i).getString(
 											"DoiNha_TyLe_GhiBan_SanKhach")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiNha_SoTran_Khong_GhiBan_SanNha = jsonarray
 									.getJSONObject(i)
 									.getString(
 											"DoiNha_SoTran_Khong_GhiBan_SanNha")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiNha_SoTran_Khong_GhiBan_SanKhach = jsonarray
 									.getJSONObject(i)
 									.getString(
 											"DoiNha_SoTran_Khong_GhiBan_SanKhach")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiNha_SoTran_SachLuoi_SanNha = jsonarray
 									.getJSONObject(i).getString(
 											"DoiNha_SoTran_SachLuoi_SanNha")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiNha_SoTran_SachLuoi_SanKhach = jsonarray
 									.getJSONObject(i).getString(
 											"DoiNha_SoTran_SachLuoi_SanKhach")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiNha_SoTran_LotLuoi_SanNha = jsonarray
 									.getJSONObject(i).getString(
 											"DoiNha_SoTran_LotLuoi_SanNha")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiNha_SoTran_LotLuoi_SanKhach = jsonarray
 									.getJSONObject(i).getString(
 											"DoiNha_SoTran_LotLuoi_SanKhach")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiNha_TyLe_LotLuoi_SanNha = jsonarray
 									.getJSONObject(i).getString(
 											"DoiNha_TyLe_LotLuoi_SanNha")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiNha_TyLe_LotLuoi_SanKhach = jsonarray
 									.getJSONObject(i).getString(
 											"DoiNha_TyLe_LotLuoi_SanKhach")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiNha_TyLe_GhiBan_TrungBinh = jsonarray
 									.getJSONObject(i).getString(
 											"DoiNha_TyLe_GhiBan_TrungBinh")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiNha_SoTran_Khong_GhiBan = jsonarray
 									.getJSONObject(i).getString(
 											"DoiNha_SoTran_Khong_GhiBan")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiNha_SoTran_GhiBan = jsonarray.getJSONObject(i)
 									.getString("DoiNha_SoTran_GhiBan")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiNha_Hieu_So_Ban_Thang = jsonarray.getJSONObject(
 									i).getString("DoiNha_Hieu_So_Ban_Thang")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiNha_TyLe_LotLuoi_TrungBinh = jsonarray
 									.getJSONObject(i).getString(
 											"DoiNha_TyLe_LotLuoi_TrungBinh")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiNha_SoTran_Khong_LotLuoi = jsonarray
 									.getJSONObject(i).getString(
 											"DoiNha_SoTran_Khong_LotLuoi")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiNha_SoTran_LotLuoi = jsonarray.getJSONObject(i)
 									.getString("DoiNha_SoTran_LotLuoi")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiNha_Hieu_So_Ban_Thua = jsonarray
 									.getJSONObject(i).getString(
 											"DoiNha_Hieu_So_Ban_Thua")
-									+ " "
-									+ getResources().getString(R.string.tran);
-
+									+ tran_txt;
 							DoiKhach_SoTran_GhiBan_SanNha = jsonarray
 									.getJSONObject(i).getString(
 											"DoiKhach_SoTran_GhiBan_SanNha")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiKhach_SoTran_GhiBan_SanKhach = jsonarray
 									.getJSONObject(i).getString(
 											"DoiKhach_SoTran_GhiBan_SanKhach")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiKhach_TyLe_GhiBan_SanNha = jsonarray
 									.getJSONObject(i).getString(
 											"DoiKhach_TyLe_GhiBan_SanNha")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiKhach_TyLe_GhiBan_SanKhach = jsonarray
 									.getJSONObject(i).getString(
 											"DoiKhach_TyLe_GhiBan_SanKhach")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiKhach_SoTran_Khong_GhiBan_SanNha = jsonarray
 									.getJSONObject(i)
 									.getString(
 											"DoiKhach_SoTran_Khong_GhiBan_SanNha")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiKhach_SoTran_Khong_GhiBan_SanKhach = jsonarray
 									.getJSONObject(i)
 									.getString(
 											"DoiKhach_SoTran_Khong_GhiBan_SanKhach")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiKhach_SoTran_SachLuoi_SanNha = jsonarray
 									.getJSONObject(i).getString(
 											"DoiKhach_SoTran_SachLuoi_SanNha")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiKhach_SoTran_SachLuoi_SanKhach = jsonarray
 									.getJSONObject(i)
 									.getString(
 											"DoiKhach_SoTran_SachLuoi_SanKhach")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiKhach_SoTran_LotLuoi_SanNha = jsonarray
 									.getJSONObject(i).getString(
 											"DoiKhach_SoTran_LotLuoi_SanNha")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiKhach_SoTran_LotLuoi_SanKhach = jsonarray
 									.getJSONObject(i).getString(
 											"DoiKhach_SoTran_LotLuoi_SanKhach")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiKhach_TyLe_LotLuoi_SanNha = jsonarray
 									.getJSONObject(i).getString(
 											"DoiKhach_TyLe_LotLuoi_SanNha")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiKhach_TyLe_LotLuoi_SanKhach = jsonarray
 									.getJSONObject(i).getString(
 											"DoiKhach_TyLe_LotLuoi_SanKhach")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiKhach_TyLe_GhiBan_TrungBinh = jsonarray
 									.getJSONObject(i).getString(
 											"DoiKhach_TyLe_GhiBan_TrungBinh")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiKhach_SoTran_Khong_GhiBan = jsonarray
 									.getJSONObject(i).getString(
 											"DoiKhach_SoTran_Khong_GhiBan")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiKhach_SoTran_GhiBan = jsonarray.getJSONObject(i)
 									.getString("DoiKhach_SoTran_GhiBan")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiKhach_Hieu_So_Ban_Thang = jsonarray
 									.getJSONObject(i).getString(
 											"DoiKhach_Hieu_So_Ban_Thang")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiKhach_TyLe_LotLuoi_TrungBinh = jsonarray
 									.getJSONObject(i).getString(
 											"DoiKhach_TyLe_LotLuoi_TrungBinh")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiKhach_SoTran_Khong_LotLuoi = jsonarray
 									.getJSONObject(i).getString(
 											"DoiKhach_SoTran_Khong_LotLuoi")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiKhach_SoTran_LotLuoi = jsonarray
 									.getJSONObject(i).getString(
 											"DoiKhach_SoTran_LotLuoi")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 							DoiKhach_Hieu_So_Ban_Thua = jsonarray
 									.getJSONObject(i).getString(
 											"DoiKhach_Hieu_So_Ban_Thua")
-									+ " "
-									+ getResources().getString(R.string.tran);
+									+ tran_txt;
 
 						}
 
@@ -649,36 +523,26 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 			}
 		};
 
-		String iID_MaTran = giaidau.getId();// "58167";//
+		String iID_MaTran = giaidau.iID_MaTran();//"58167";//giaidau.getId();
 		Log.e("KKKKKKKKKKKKK",
-				"===" + giaidau.magiai() + "::" + giaidau.madoinha() + ":"
-						+ giaidau.madoikhach() + " : " + iID_MaTran);
+				"===" + giaidau.getId()+ " : " + iID_MaTran);
 		Object aobj[] = new Object[1];
 		aobj[0] = Integer.valueOf(iID_MaTran);
 		String param = String.format(ByUtils.wsFootBall_Phong_Do, aobj);
-
+		Log.e("param_phongdo", "param:" +param);
 		new APICaller(getActivity()).callApi("", false, callbackAPI, param);
+		PhongDoChiTiet();
 		// for(int i = 0; i < 6; i ++){
 		// phongdodoidau_bangephang_listitem.addView(new
 		// BangXepHangItemView(getActivity()));
 		// }
-
-		// iID_MaGiai = CommonUtil.getdata(getActivity(),"iID_MaGiai");
-		// iID_MaDoiNha = CommonUtil.getdata(getActivity(),"iID_MaDoiNha");
-		// iID_MaDoiKhach = CommonUtil.getdata(getActivity(),"iID_MaDoiKhach");
-
-		// laythongtinchitiet
-		String param2 = String.format(ByUtils.wsFootBall_MatchDetail, aobj);
-		new APICaller(getActivity()).callApi("", false, callbackAPI_tuongthuat,
-				param2);
 	}
 
 	private void PhongDoChiTiet() {
 		try {
-			String magiai = iID_MaGiai;
-			String madoinha = iID_MaDoiNha;
-			String madoikhach = iID_MaDoiKhach;
-			Log.e("Tag", iID_MaGiai + ":" + iID_MaDoiNha + ":" + iID_MaDoiKhach);
+			String magiai = giaidau.idmagiai();
+			String madoinha = giaidau.iID_MaDoiNha();
+			String madoikhach = giaidau.iID_MaDoiKhach();
 			String param2 = (ByUtils.wsFootBall_Phong_Do_ChiTiet).replace(
 					"magiai", magiai);
 			param2 = param2.replace("madoinha", madoinha);

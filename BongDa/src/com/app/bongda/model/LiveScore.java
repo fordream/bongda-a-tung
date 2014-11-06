@@ -2,7 +2,8 @@ package com.app.bongda.model;
 
 public class LiveScore extends PhongDo {
 	public LiveScore(boolean isHeader, String id, String giai, String name, String name2,
-			String ht, String phut ,String thoigian, String iC0, String tiso, int trangthai, String magiai, String madoinha, String madoikhach, String IDMagiai, boolean bNhanDinhChuyenGia_, boolean bGameDuDoan_, boolean bDaCapNhapVaoBXH_ , String sLogoGiai_) {
+			String ht, String phut ,String thoigian, String iC0, String tiso, int trangthai, String magiai, String madoinha, String madoikhach, String IDMagiai, boolean bNhanDinhChuyenGia_, boolean bGameDuDoan_, boolean bDaCapNhapVaoBXH_ , String sLogoQuocGia_, String sLogoGiai_, String sLogoDoiNha_, String sLogoDoiKhach_,String iID_MaDoiNha_, String iID_MaDoiKhach_
+) {
 		super(id, name, name2, iC0, thoigian);
 		this.isHeader = isHeader;
 		this.sTenGiai = giai;
@@ -18,7 +19,13 @@ public class LiveScore extends PhongDo {
 		this.bNhanDinhChuyenGia = bNhanDinhChuyenGia_;
 		this.bDaCapNhapVaoBXH = bDaCapNhapVaoBXH_;
 		this.bGameDuDoan = bGameDuDoan_;
+		this.sLogoQuocGia = sLogoQuocGia_;
 		this.sLogoGiai = sLogoGiai_;
+		this.sLogoDoiNha = sLogoDoiNha_;
+		this.sLogoDoiKhach = sLogoDoiKhach_;
+		this.iID_MaTran = id;
+		this.iID_MaDoiNha = iID_MaDoiNha_;
+		this.iID_MaDoiKhach = iID_MaDoiKhach_;
 	}
 	public LiveScore(boolean isHeader, String sTenGiai,String sTenDoiNha,String sTenDoiKhach,int iCN_BanThang_DoiNha,int iCN_BanThang_DoiKhach,int iCN_BanThang_DoiNha_HT,int iCN_BanThang_DoiKhach_HT) {
 		super(null,sTenDoiNha,sTenDoiKhach,null,null);
@@ -56,6 +63,12 @@ public class LiveScore extends PhongDo {
 	private boolean bGameDuDoan;
 	private boolean bDaCapNhapVaoBXH;
 	private String sLogoGiai;
+	private String iID_MaTran;
+	private String sLogoQuocGia;
+	private String sLogoDoiNha;
+	private String sLogoDoiKhach;
+	private String iID_MaDoiNha;
+	private String iID_MaDoiKhach;
 	public boolean isHeader() {
 		return isHeader;
 	}
@@ -140,5 +153,25 @@ public class LiveScore extends PhongDo {
 	public String iID_MaGiai() {
 		// TODO Auto-generated method stub
 		return iID_MaGiai;
+	}
+	public String iID_MaTran() {
+		// TODO Auto-generated method stub
+		return iID_MaTran;
+	}
+	public String sLogoDoiKhach() {
+		// TODO Auto-generated method stub
+		return sLogoDoiKhach;
+	}
+	public String sLogoDoiNha() {
+		// TODO Auto-generated method stub
+		return sLogoDoiNha;
+	}
+	public String iID_MaDoiKhach() {
+		// TODO Auto-generated method stub
+		return iID_MaDoiKhach;
+	}
+	public String iID_MaDoiNha() {
+		// TODO Auto-generated method stub
+		return iID_MaDoiNha;
 	}
 }
