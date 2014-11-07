@@ -84,5 +84,8 @@
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
     <string  name="cannotconnecttoserverr">Can not connect to server, click "Ok" to close application!</string>
+    <string name="nhap_so_dien_thoai_cua_ban">"Nhập số điện thoại của bạn : "</string>
+    <string name="ma_truy_cap_se_duoc_gui_den_sms_cua_ban">Mã truy cập sẽ được gửi đến SMS của bạn.</string>
+    <string name="tiep_tuc">Tiếp tục</string>
 
 </resources>

@@ -8,5 +8,8 @@
     <string name="format_tyledudoan">Thời gian : %s</string>
     <string name="khongcodoiyeuthich">Không có đội yêu thích</string>
     <string name="khongconhandinhchuyengia">Không có nhận định chuyên gia</string>
-
+    <string name="setting_mo_tai_khoan">mở tài khoản</string>
+    <string name="setting_nap_the">nạp thẻ</string>
+	<string name="nap_tien">NẠP TIỀN</string>
+	<string name="create_new_account">TẠO TÀI KHOẢN MỚI</string>
 </resources>
