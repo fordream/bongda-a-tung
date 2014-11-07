@@ -85,11 +85,11 @@ public class LiveScoreFragment extends BaseFragment {
 				
 //				Log.e("KKKKKKKKKK", "AA*" + CommonUtil.listQuanTam.toString() + ":::" + liveScore.getId() + ":::"+ position + ":TypeView:" + TypeView + ":CommonUtil.listQuanTam.size():" + CommonUtil.listQuanTam.size());
 			}
-			String check_quantam = liveScore.getId() + "-" + liveScore.idmagiai();
+			String check_quantam = liveScore.idmagiai() + "-" +  liveScore.getId() ;
 			if (TypeView != null) {
 				if (TypeView.equalsIgnoreCase("quantam") && CommonUtil.listQuanTam.contains( check_quantam ) && !check_quantam.equalsIgnoreCase(value_list_favorite)) {
 					value_list_favorite = check_quantam;
-					Log.e("KKKKKKKKKK", "AA*" + CommonUtil.listQuanTam.toString() + ":::" + check_quantam);
+//					Log.e("KKKKKKKKKK", "AA*" + CommonUtil.listQuanTam.toString() + ":::" + check_quantam);
 					int k = 0;
 					int k2 = 0;
 					String str_check = "";
@@ -105,16 +105,16 @@ public class LiveScoreFragment extends BaseFragment {
 					for(int j = 0; j <= k;j++ ){
 						String str1= CommonUtil.listQuanTam.get(j);
 						String[] temps = str_check.split("-");
-						String str2 = "-" + temps[1];
-						if(str1.indexOf(str2) > 0){
+						String str2 =  temps[0]  + "-";
+						if(str1.indexOf(str2) > -1){
 							k2++;
 							if(k2 > 1)check_header = true;
 //							Log.e("check","=======k"+ k + "::" + str1 + "::" + str2 + ":j:" + j + ":k2:" + k2);
 						}
-						
+//						Log.e("check222","=======k"+ k + "::" + str1 + "::" + str2 + ":j:" + j + ":k2:" + k2);
 						
 					}
-//					Log.e("check","======="+ check_header + "::" + k);
+					Log.e("check","======="+ check_header + "::" + k);
 					if (!check_header) {
 						convertView.findViewById(R.id.livescore_header).setVisibility(View.VISIBLE);
 						convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
@@ -262,7 +262,7 @@ public class LiveScoreFragment extends BaseFragment {
 				convertView.findViewById(R.id.iconlike).setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						String check_quantam = liveScore.getId() + "-" + liveScore.idmagiai();
+						String check_quantam = liveScore.idmagiai() + "-" +  liveScore.getId() ;
 						if (CommonUtil.listQuanTam.contains( check_quantam )) {
 							CommonUtil.listQuanTam.remove( check_quantam );
 							CommonUtil.savedata(v.getContext());
