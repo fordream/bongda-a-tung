@@ -128,12 +128,12 @@ public class NhanDinhChuyenGiaFragment extends BaseFragment {
 		};
 		String matran = data == null ? null : data.iID_MaTran();
 		if (matran == null) {
-			new APICaller(getActivity()).callApi("", true, callbackAPI,
+			new APICaller(listView.getContext()).callApi("", true, callbackAPI,
 					ByUtils.wsFootBall_Nhan_Dinh_Chuyen_Gia);
 			Log.e("nhandinh","nhandinhchuyengia");
 			
 		} else {
-			new APICaller(getActivity()).callApi("", true, callbackAPI,
+			new APICaller(listView.getContext()).callApi("", true, callbackAPI,
 					(ByUtils.wsFootBall_Nhan_Dinh_Chuyen_Gia_Theo_Tran).replace("matran",
 							matran));
 		}
