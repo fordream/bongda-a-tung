@@ -9,11 +9,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
     </com.app.bongda.view.HeaderView>
-
+	<TextView
+	    android:id="@+id/error_txt"
+	    style="@style/bongda_text_item"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:background="#ffffff"
+	    android:text="Giải chưa bắt đầu"
+	    android:gravity="center"
+	    android:visibility="gone"
+	    android:textColor="#000000"
+	    android:textAppearance="?android:attr/textAppearanceLarge" />
     <ListView
         android:id="@+id/listView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/error_txt"
         android:divider="#123456"
         android:dividerHeight="0dp"
         android:listSelector="@drawable/transfer" >

@@ -1,6 +1,7 @@
 package com.app.bongda.util;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -14,21 +15,21 @@ public class CommonUtil {
 	}
 
 	public static void savedata(Context activity) {
-		SharedPreferences pref = activity.getApplicationContext().getSharedPreferences("FavoriteList1", 0);
+		SharedPreferences pref = activity.getApplicationContext().getSharedPreferences("FavoriteList2", 0);
 		Editor editor = pref.edit();
 		StringBuilder csvList = new StringBuilder();
 		for (int i = 0; i < listQuanTam.size(); i++) {
 			csvList.append(listQuanTam.get(i));
 			csvList.append(",");
 		}
-		editor.putString("FList", csvList.toString());
+		editor.putString("FList2", csvList.toString());
 		editor.commit();
 	}
 
 	public static void getdata(Context activity) {
 		try {
-			SharedPreferences pref = activity.getApplicationContext().getSharedPreferences("FavoriteList1", 0);
-			String csvList = pref.getString("FList", null);
+			SharedPreferences pref = activity.getApplicationContext().getSharedPreferences("FavoriteList2", 0);
+			String csvList = pref.getString("FList2", null);
 			String[] items = csvList.split(",");
 			listQuanTam = new ArrayList<String>();
 			listQuanTam.clear();
@@ -39,6 +40,7 @@ public class CommonUtil {
 				}
 				
 			}
+			Collections.sort(listQuanTam);
 		} catch (Exception exception) {
 
 		}
