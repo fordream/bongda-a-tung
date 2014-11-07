@@ -23,19 +23,33 @@ public class BaseActivtiy extends FragmentActivity {
 		lBaseFragments.add(baseFragment);
 	}
 
+	public void showXFragment(BaseFragment baseFragment) {
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		fragmentManager//
+				.beginTransaction()//
+				.replace(R.id.basefragmentactivity_main, baseFragment)//
+				.setCustomAnimations(R.anim.bot_to_top, R.anim.nothing, R.anim.nothing, R.anim.top_to_bot)//
+				.commit();//
+		lBaseFragments = null;
+	}
+
 	@Override
 	public void onBackPressed() {
+
+		if (lBaseFragments == null) {
+			super.onBackPressed();
+			return;
+		}
 		if (lBaseFragments.size() == 0 || lBaseFragments.size() == 1) {
 			super.onBackPressed();
-		}else{
-			lBaseFragments.remove(lBaseFragments.size() -1);
-			changeFragemt(lBaseFragments.get(lBaseFragments.size() -1));
+		} else {
+			lBaseFragments.remove(lBaseFragments.size() - 1);
+			changeFragemt(lBaseFragments.get(lBaseFragments.size() - 1));
 		}
 	}
 
 	private void changeFragemt(BaseFragment fragment) {
 		FragmentManager fragmentManager = getSupportFragmentManager();
-		fragmentManager.beginTransaction()
-				.replace(R.id.basefragmentactivity_main, fragment).commit();
+		fragmentManager.beginTransaction().replace(R.id.basefragmentactivity_main, fragment).commit();
 	}
 }

@@ -1,5 +1,6 @@
 <resources>
-	<string name="msetting">THIẾT ĐẶT THÔNG SÔ</string>
+
+    <string name="msetting">THIẾT ĐẶT THÔNG SÔ</string>
     <string name="setting">DANH SÁCH CHỨC NĂNG</string>
     <string name="setting_txt1">Live Score</string>
     <string name="setting_txt2">Chọn giải đấu</string>
@@ -44,11 +45,12 @@
     <string name="gamedudoan">GAME DỰ ĐOÁN</string>
     <string name="keo">Kèo</string>
     <string name="nhandinhchuyengia">Nhận định chuyên gia</string>
-    
+
     <color name="cccccc">#cccccc</color>
-    
+
     <dimen name="height_phongdo">@dimen/dimen_40dp</dimen>
     <dimen name="width_phongdo">@dimen/dimen_70dp</dimen>
+
     <string name="phongdotinhtrentongsotran">Phong độ tính trên tổng số trận</string>
     <string name="khanangtancongphongthu">Khả năng tấn công / phòng thủ</string>
     <string name="tancong">Tấn công</string>
@@ -63,7 +65,6 @@
     <string name="hieusobanthua">Hiệu số bàn thua</string>
     <string name="check_for_reload">Check for endable reload</string>
     <string name="tran"> trận</string>
-    
     <string name="thecao">Thẻ cào</string>
     <string name="tinnhansms">Tin nhắn SMS</string>
     <string name="appstore">App Store</string>
@@ -77,15 +78,23 @@
         -Vinaphone: Tối đa 100k/ thuê bao/ ngày\n
         -Mobiphone: Tối đa 300k/ thuê bao/ ngày\n\n
         Nạp từ 2 thuê bao khác nhau tính riêng rẽ.\n
-        Cú pháp: TYSO24H NAP Username 1038
-        </string>
-        
+        Cú pháp: TYSO24H NAP Username 1038</string>
     <string name="check_network">Please check your network! Click "Ok" to continue connect to server or click "Cancel" to close application!</string>
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
-    <string  name="cannotconnecttoserverr">Can not connect to server, click "Ok" to close application!</string>
+    <string name="cannotconnecttoserverr">Can not connect to server, click "Ok" to close application!</string>
     <string name="nhap_so_dien_thoai_cua_ban">"Nhập số điện thoại của bạn : "</string>
     <string name="ma_truy_cap_se_duoc_gui_den_sms_cua_ban">Mã truy cập sẽ được gửi đến SMS của bạn.</string>
     <string name="tiep_tuc">Tiếp tục</string>
+    <string name="xac_nhan_so_dien_thoai">Xác nhận số điện thoại</string>
 
+    <string name="xacnhansodienthoai_comfirm">Đây có phải số điện thoại của bạn không?\n
+        %s\n
+        Chúng tôi sẽ gửi một SMS chứa mã truy cập đến số điện thoại này.</string>
+        
+    <string name="thaydoi">Thay đổi</string>
+    <string name="hoan_tat">Hoàn tất</string>
+    <string name="matruycap">Mã truy cập</string>
+    <string name="neukhong">Nếu bạn không nhận được mã truy cập trong vòng 60s.\nXin hãy nhấn vào đây.</string>
+    <string name="chuc_mung_dang_ky_thanh_cong">Chúc mừng bạn đăng ký thành công.</string>
 </resources>

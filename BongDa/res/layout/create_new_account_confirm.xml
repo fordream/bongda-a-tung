@@ -53,6 +53,7 @@
                 android:paddingLeft="@dimen/dimen_10dp"
                 android:paddingRight="@dimen/dimen_10dp"
                 android:singleLine="true"
+                android:hint="@string/matruycap"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/dimen_13dp" />
 
@@ -70,7 +71,7 @@
                 android:layout_marginTop="@dimen/dimen_10dp"
                 android:background="@drawable/a_button_xml"
                 android:gravity="center"
-                android:text="@string/tiep_tuc"
+                android:text="@string/hoan_tat"
                 android:textSize="@dimen/dimen_15dp" />
 
             <TextView
@@ -79,7 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/dimen_10dp"
-                android:text="@string/ma_truy_cap_se_duoc_gui_den_sms_cua_ban"
+                android:text="@string/neukhong"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/dimen_13dp" />
         </LinearLayout>
