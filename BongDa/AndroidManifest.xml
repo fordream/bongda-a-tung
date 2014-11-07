@@ -40,7 +40,7 @@
         </activity>
         <activity android:name=".X4Activity" >
         </activity>
-        <activity android:name=".X5Activity" android:windowSoftInputMode="adjustPan">
+        <activity android:name=".X5Activity" android:windowSoftInputMode="adjustPan" android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale">
         </activity>
         <activity
             android:name=".PhongDoCacDoiActivity"
@@ -78,10 +78,10 @@
             android:enabled="true"
             android:exported="true" >
         </service>
-        <activity android:name="com.app.bongda.vl.X1VLayoutActivity" android:windowSoftInputMode="adjustPan"></activity>
-        <activity android:name="com.app.bongda.vl.X2VLayoutActivity" android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name="com.app.bongda.vl.X1VLayoutActivity" android:windowSoftInputMode="adjustPan" android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale"></activity>
+        <activity android:name="com.app.bongda.vl.X2VLayoutActivity" android:windowSoftInputMode="adjustPan" android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale"></activity>
         <activity android:name="com.app.bongda.vl.X3VLayoutActivity" android:windowSoftInputMode="adjustPan"></activity>
-        <activity android:name="com.app.bongda.vl.X4VLayoutActivity" android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name="com.app.bongda.vl.X4VLayoutActivity" android:windowSoftInputMode="adjustPan" android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale"></activity>
     </application>
 
 </manifest>
