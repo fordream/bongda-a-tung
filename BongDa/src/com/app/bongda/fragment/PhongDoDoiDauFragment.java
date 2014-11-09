@@ -2,6 +2,7 @@ package com.app.bongda.fragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.util.Log;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.app.bongda.R;
 import com.app.bongda.base.BaseFragment;
@@ -83,7 +85,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 
 	}
 
-	ICallbackAPI callbackAPI, callbackAPI_Chitiet, callbackAPI_tuongthuat;
+	ICallbackAPI callbackAPI_LastMatches,callbackAPI, callbackAPI_Chitiet, callbackAPI_tuongthuat;
 	private PhongDodoiItemView PhongDodoiItemView1, PhongDodoiItemView2;
 	private PhongDodoiItemTanCongPhongThuView PhongDodoiItemTanCongPhongThuView1,
 			PhongDodoiItemTanCongPhongThuView2;
@@ -136,7 +138,49 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 	public void onInitData() {
 		ImageLoaderUtils.getInstance(null).DisplayImage(giaidau.sLogoDoiNha(),(ImageView) view.findViewById(R.id.logo_doinha));
 		ImageLoaderUtils.getInstance(null).DisplayImage(giaidau.sLogoDoiKhach(),(ImageView) view.findViewById(R.id.logo_doikhach));
+		callbackAPI_LastMatches = new ICallbackAPI() {
+			@Override
+			public void onSuccess(String response) {
+				String string_temp = response == null ? "" : CommonAndroid.parseXMLAction(response);
+				if (!string_temp.equalsIgnoreCase("")) {
+					try {
+						Log.e("aaaaa", "data::" + string_temp);
+						JSONObject jsonObject = new JSONObject(string_temp);
+						if (jsonObject != null) {
+							TenDoiNha = jsonObject.getString("sTenDoiNha");
+							TenDoiKhach = jsonObject.getString("sTenDoiKhach");
+							String sLastMatches_DoiNha = jsonObject.getString("sLastMatches_DoiNha");
+							String sLastMatches_DoiKhach = jsonObject.getString("sLastMatches_DoiKhach");
+							String[] temps1 = sLastMatches_DoiNha.split(",");
+							((TextView) view.findViewById(R.id.doinha_t1)).setText(temps1[0]);
+							((TextView) view.findViewById(R.id.doinha_t2)).setText(temps1[1]);
+							((TextView) view.findViewById(R.id.doinha_t3)).setText(temps1[2]);
+							((TextView) view.findViewById(R.id.doinha_t4)).setText(temps1[3]);
+							((TextView) view.findViewById(R.id.doinha_t5)).setText(temps1[4]);
+							
+							String[] temps2 = sLastMatches_DoiKhach.split(",");
+							((TextView) view.findViewById(R.id.doikhach_t1)).setText(temps2[0]);
+							((TextView) view.findViewById(R.id.doikhach_t2)).setText(temps2[1]);
+							((TextView) view.findViewById(R.id.doikhach_t3)).setText(temps2[2]);
+							((TextView) view.findViewById(R.id.doikhach_t4)).setText(temps2[3]);
+							((TextView) view.findViewById(R.id.doikhach_t5)).setText(temps2[4]);
+						}
+						
+						// countryAdapter.notifyDataSetChanged();
+					} catch (Exception e) {
+						Log.e("ERR", e.getMessage());
+					}
 
+				}
+
+			}
+
+			@Override
+			public void onError(String message) {
+				Log.e("ERR", message);
+			}
+		};
+		
 		callbackAPI = new ICallbackAPI() {
 			@Override
 			public void onSuccess(String response) {
@@ -205,7 +249,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 			public void onSuccess(String response) {
 				// CommonAndroid.showDialog(getActivity(), "data2:" + response ,
 				// null);
-				String tran_txt = "" + phongdodoidau_bangephang_listitem.getContext().getResources().getString(R.string.tran);
+				String tran_txt = " " + phongdodoidau_bangephang_listitem.getContext().getResources().getString(R.string.tran);
 				String string_temp = response == null ? "" : CommonAndroid.parseXMLAction(response);
 				if (!string_temp.equalsIgnoreCase("")) {
 					try {
@@ -530,7 +574,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 		aobj[0] = Integer.valueOf(iID_MaTran);
 		String param = String.format(ByUtils.wsFootBall_Phong_Do, aobj);
 		Log.e("param_phongdo", "param:" +param);
-		new APICaller(getActivity()).callApi("", false, callbackAPI, param);
+		new APICaller(getActivity()).callApi("", true, callbackAPI_LastMatches, param);
 		PhongDoChiTiet();
 		// for(int i = 0; i < 6; i ++){
 		// phongdodoidau_bangephang_listitem.addView(new

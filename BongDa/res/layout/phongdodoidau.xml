@@ -64,7 +64,7 @@
                         android:gravity="center" >
 
                         <TextView
-                            android:id="@+id/TextView01"
+                            android:id="@+id/doinha_t1"
                             style="@style/bongda_text_item"
                             android:layout_width="@dimen/dimen_20dp"
                             android:layout_height="@dimen/dimen_20dp"
@@ -74,6 +74,7 @@
                             android:textAppearance="?android:attr/textAppearanceLarge" />
 
                         <TextView
+                            android:id="@+id/doinha_t2"
                             style="@style/bongda_text_item"
                             android:layout_width="@dimen/dimen_20dp"
                             android:layout_height="@dimen/dimen_20dp"
@@ -83,6 +84,7 @@
                             android:textAppearance="?android:attr/textAppearanceLarge" />
 
                         <TextView
+                            android:id="@+id/doinha_t3"
                             style="@style/bongda_text_item"
                             android:layout_width="@dimen/dimen_20dp"
                             android:layout_height="@dimen/dimen_20dp"
@@ -92,6 +94,7 @@
                             android:textAppearance="?android:attr/textAppearanceLarge" />
 
                         <TextView
+                            android:id="@+id/doinha_t4"
                             style="@style/bongda_text_item"
                             android:layout_width="@dimen/dimen_20dp"
                             android:layout_height="@dimen/dimen_20dp"
@@ -101,6 +104,7 @@
                             android:textAppearance="?android:attr/textAppearanceLarge" />
 
                         <TextView
+                            android:id="@+id/doinha_t5"
                             style="@style/bongda_text_item"
                             android:layout_width="@dimen/dimen_20dp"
                             android:layout_height="@dimen/dimen_20dp"
@@ -119,7 +123,7 @@
                         android:gravity="center" >
 
                         <TextView
-                            android:id="@+id/TextView05"
+                            android:id="@+id/doikhach_t1"
                             style="@style/bongda_text_item"
                             android:layout_width="@dimen/dimen_20dp"
                             android:layout_height="@dimen/dimen_20dp"
@@ -129,6 +133,7 @@
                             android:textAppearance="?android:attr/textAppearanceLarge" />
 
                         <TextView
+                            android:id="@+id/doikhach_t2"
                             style="@style/bongda_text_item"
                             android:layout_width="@dimen/dimen_20dp"
                             android:layout_height="@dimen/dimen_20dp"
@@ -138,6 +143,7 @@
                             android:textAppearance="?android:attr/textAppearanceLarge" />
 
                         <TextView
+                            android:id="@+id/doikhach_t3"
                             style="@style/bongda_text_item"
                             android:layout_width="@dimen/dimen_20dp"
                             android:layout_height="@dimen/dimen_20dp"
@@ -147,6 +153,7 @@
                             android:textAppearance="?android:attr/textAppearanceLarge" />
 
                         <TextView
+                            android:id="@+id/doikhach_t4"
                             style="@style/bongda_text_item"
                             android:layout_width="@dimen/dimen_20dp"
                             android:layout_height="@dimen/dimen_20dp"
@@ -156,6 +163,7 @@
                             android:textAppearance="?android:attr/textAppearanceLarge" />
 
                         <TextView
+                            android:id="@+id/doikhach_t5"
                             style="@style/bongda_text_item"
                             android:layout_width="@dimen/dimen_20dp"
                             android:layout_height="@dimen/dimen_20dp"
