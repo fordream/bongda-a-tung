@@ -75,8 +75,8 @@
 
             <ImageView
                 android:id="@+id/logo_doinha"
-                android:layout_width="@dimen/dimen_100dp"
-                android:layout_height="@dimen/dimen_100dp"
+                android:layout_width="@dimen/dimen_70dp"
+                android:layout_height="@dimen/dimen_70dp"
                 android:background="@null" />
 
             <TextView
@@ -144,8 +144,8 @@
 
             <ImageView
                 android:id="@+id/logo_doikhach"
-                android:layout_width="@dimen/dimen_100dp"
-                android:layout_height="@dimen/dimen_100dp"
+                android:layout_width="@dimen/dimen_70dp"
+                android:layout_height="@dimen/dimen_70dp"
                 android:background="@null" />
 
             <TextView

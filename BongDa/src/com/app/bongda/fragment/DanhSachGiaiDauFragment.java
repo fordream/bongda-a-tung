@@ -83,12 +83,15 @@ public class DanhSachGiaiDauFragment extends BaseFragment {
 		Cursor cursor = BongDaServiceManager.getInstance().getBongDaService()
 				.query(new GiaiDauTable().getTableName(), where);
 		if (cursor != null) {
+			progressBar.setVisibility(View.GONE);
 			if (cursor.getCount() >= 1) {
-				progressBar.setVisibility(View.GONE);
+				cusorAdapter = new DanhSachGiaiDauCusorAdapter(
+						listView.getContext(), cursor, true);
+				listView.setAdapter(cusorAdapter);
 			}
-			cusorAdapter = new DanhSachGiaiDauCusorAdapter(
-					listView.getContext(), cursor, true);
-			listView.setAdapter(cusorAdapter);
+			
+		}else{
+			progressBar.setVisibility(View.GONE);
 		}
 	}
 
