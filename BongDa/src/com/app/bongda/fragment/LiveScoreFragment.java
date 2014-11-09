@@ -89,30 +89,12 @@ public class LiveScoreFragment extends BaseFragment {
 			String check_quantam = liveScore.idmagiai() + "-" +  liveScore.getId() ;
 			if (TypeView != null && "quantam".equalsIgnoreCase(TypeView)) {
 				if(CommonUtil.listQuanTam.contains( check_quantam ) && !check_quantam.equalsIgnoreCase(value_list_favorite)){
-						value_list_favorite = check_quantam;
-						check_favorite = true;
-						convertView.findViewById(R.id.livescore_header).setVisibility(View.GONE);
-						convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
-						showdata = true;
-				}else{
-					convertView.findViewById(R.id.livescore_header).setVisibility(View.GONE);
-					convertView.findViewById(R.id.livescore_main).setVisibility(View.GONE);
-					showdata = false;
-				}
-			}else{
-				if (liveScore.isHeader()) {
-					convertView.findViewById(R.id.livescore_header).setVisibility(View.VISIBLE);
-					convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
-				} else {
-					convertView.findViewById(R.id.livescore_header).setVisibility(View.GONE);
-					convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
-				}
-				showdata = true;
-			}
-			/*if (TypeView != null) {
-				if (TypeView.equalsIgnoreCase("quantam") && CommonUtil.listQuanTam.contains( check_quantam ) && !check_quantam.equalsIgnoreCase(value_list_favorite)) {
 					value_list_favorite = check_quantam;
 					check_favorite = true;
+					convertView.findViewById(R.id.livescore_header).setVisibility(View.GONE);
+					convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
+					showdata = true;
+					/*check header*/
 					int k = 0;
 					int k2 = 0;
 					String str_check = "";
@@ -128,14 +110,10 @@ public class LiveScoreFragment extends BaseFragment {
 						String str1= CommonUtil.listQuanTam.get(j);
 						String[] temps = str_check.split("-");
 						String str2 =  temps[0]  + "-";
-						if(str1.indexOf(str2) > -1){
-							k2++;
-							if(k2 > 1)check_header = true;
+						if(str1.indexOf(str2) > -1 && !str_check.equalsIgnoreCase(str1)){
+							check_header = true;
 						}
-//						Log.e("check222","=======k"+ k + "::" + str1 + "::" + str2 + ":j:" + j + ":k2:" + k2);
-						
 					}
-//					Log.e("check","======="+ check_header + "::" + k);
 					if (!check_header) {
 						convertView.findViewById(R.id.livescore_header).setVisibility(View.VISIBLE);
 						convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
@@ -143,23 +121,21 @@ public class LiveScoreFragment extends BaseFragment {
 						convertView.findViewById(R.id.livescore_header).setVisibility(View.GONE);
 						convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
 					}
-					convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
 				}else{
 					convertView.findViewById(R.id.livescore_header).setVisibility(View.GONE);
 					convertView.findViewById(R.id.livescore_main).setVisibility(View.GONE);
+					showdata = false;
 				}
 			}else{
 				if (liveScore.isHeader()) {
 					convertView.findViewById(R.id.livescore_header).setVisibility(View.VISIBLE);
+					convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
 				} else {
+					convertView.findViewById(R.id.livescore_header).setVisibility(View.GONE);
 					convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
 				}
-				if(CommonUtil.listQuanTam.contains( check_quantam )){
-					convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
-				}else{
-					convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
-				}
-			}*/
+				showdata = true;
+			}
 
 			/*if(position >= count_showdata){
 				if ( TypeView != null ) {
@@ -178,6 +154,11 @@ public class LiveScoreFragment extends BaseFragment {
 			
 			if(showdata){
 				convertView.findViewById(R.id.livescore_row).setVisibility(View.VISIBLE);
+				if(CommonUtil.listQuanTam.contains( check_quantam )){
+					convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
+				}else{
+					convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
+				}
 				// cogamedudoan
 				if (liveScore.isGameDuDoan()) {
 					convertView.findViewById(R.id.gamedudoan_icon).setVisibility(View.VISIBLE);
