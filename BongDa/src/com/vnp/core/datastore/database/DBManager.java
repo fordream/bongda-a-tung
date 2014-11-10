@@ -42,6 +42,9 @@ public class DBManager {
 	public void close() {
 		dbHelper.close();
 	}
+	
+	
+	
 
 	class DataBaseWrapper extends SQLiteOpenHelper {
 
@@ -217,6 +220,88 @@ public class DBManager {
 		}
 
 		return id;
+	}
 
+	public long insetLiveScore(ContentValues values) {
+
+		LiveScoreLikeTable table = new LiveScoreLikeTable();
+		// String iID_MaMayChu = values.getAsString("iID_MaMayChu");
+		/**
+		 * add giai dau
+		 */
+		String iID_MaGiai = values.getAsString("iID_MaGiai");
+		String sTenGiai = values.getAsString("sTenGiai");
+		String sLogoQuocGia = values.getAsString("sLogoQuocGia");
+
+		String where = String.format(//
+				"iID_MaGiai = '%s' and bdposition='0' "//
+				, iID_MaGiai//
+				);
+		Cursor cursor = database.query(table.getTableName(), null, where, null, null, null, null);
+		ContentValues dataGiaiDauValues = new ContentValues();
+		dataGiaiDauValues.put("bdposition", "0");
+		dataGiaiDauValues.put("iID_MaGiai", iID_MaGiai);
+		dataGiaiDauValues.put("sTenGiai", sTenGiai);
+		dataGiaiDauValues.put("sLogoQuocGia", sLogoQuocGia);
+		dataGiaiDauValues.put("bdneedshow", "1");
+
+		if (cursor != null && cursor.getCount() >= 1) {
+			database.update(table.getTableName(), dataGiaiDauValues, where, null);
+		} else {
+			database.insert(table.getTableName(), null, dataGiaiDauValues);
+		}
+
+		/**
+		 * insert or update tran
+		 */
+		String iID_MaTran = values.getAsString("iID_MaTran");
+		String iID_MaDoiNha = values.getAsString("iID_MaDoiNha");
+		String iID_MaDoiKhach = values.getAsString("iID_MaDoiKhach");
+
+		String whereTranDau = String.format(//
+				"iID_MaTran ='%s' and iID_MaGiai='%s' and iID_MaDoiNha='%s' and iID_MaDoiKhach='%s' ",//
+				iID_MaTran//
+				, iID_MaGiai//
+				, iID_MaDoiNha//
+				, iID_MaDoiKhach//
+				);
+
+		Cursor cursorCheck = database.query(table.getTableName(), null, whereTranDau, null, null, null, null);
+		long id = -1;
+		values.put("bdposition", "1");
+		values.put("bdneedshow", "1");
+		
+		if (cursorCheck != null && cursorCheck.getCount() >= 1) {
+			id = database.update(table.getTableName(), values, whereTranDau, null);
+		} else {
+			id = database.insert(table.getTableName(), null, values);
+		}
+
+		return id;
+	}
+
+	public long likeLiveScore(String iID_MaTran) {
+		String where = String.format(//
+				"iID_MaTran ='%s' bdneedshow ='1'",//
+				iID_MaTran//
+				);
+		LiveScoreLikeTable table = new LiveScoreLikeTable();
+		Cursor cursor = database.query(table.getTableName(), null, where, null, null, null, null);
+		if (cursor != null && cursor.getCount() >= 1) {
+			cursor.moveToNext();
+			String bdliked = cursor.getString(cursor.getColumnIndex("bdliked"));
+
+			if (bdliked == null || "0".equals(bdliked) || "".equals(bdliked)) {
+				bdliked = "1";
+			} else {
+				bdliked = "0";
+			}
+
+			ContentValues values = new ContentValues();
+			values.put("bdliked", bdliked);
+			return database.update(table.getTableName(), values, where, null);
+		}
+
+		return -1;
 	}
 }
