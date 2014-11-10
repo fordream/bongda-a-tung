@@ -257,6 +257,8 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 						liveScore.iID_MaTran(), liveScore.sLogoDoiNha(), liveScore.sLogoDoiKhach(), liveScore.iID_MaDoiNha(), liveScore.iID_MaDoiKhach());
 				if (position == 0) {
 					dau.sLogoGiai(liveScore.sLogoGiai());
+					dau.iID_MaDoiNha(liveScore.iID_MaDoiNha());
+					dau.iID_MaDoiKhach(liveScore.iID_MaDoiKhach());
 					addPhongDoDoiDauFragment(dau);
 				} else if (position == 1) {
 					addGameDuDoan(null);

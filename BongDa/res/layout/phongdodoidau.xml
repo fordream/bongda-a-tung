@@ -33,7 +33,7 @@
 
                 <ImageView
                     android:id="@+id/logo_doikhach"
-                          android:layout_marginTop="@dimen/dimen_5dp"
+                    android:layout_marginTop="@dimen/dimen_5dp"
                     android:layout_marginRight="@dimen/dimen_5dp"
                     android:layout_width="@dimen/dimen_75dp"
                     android:layout_height="@dimen/dimen_75dp"
@@ -57,137 +57,42 @@
                         android:text="@string/ketqua5trangannhat"
                         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-                    <LinearLayout
-                        android:layout_width="@dimen/dimen_125dp"
-                        android:layout_height="@dimen/dimen_25dp"
-                        android:background="@drawable/nam_tran_gan_nhat_bg1"
-                        android:gravity="center" >
-
-                        <TextView
-                            android:id="@+id/doinha_t1"
-                            style="@style/bongda_text_item"
-                            android:layout_width="@dimen/dimen_20dp"
-                            android:layout_height="@dimen/dimen_20dp"
-                            android:gravity="center"
-                            android:padding="@dimen/dimen_0dp"
-                            android:text="W"
-                            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-                        <TextView
-                            android:id="@+id/doinha_t2"
-                            style="@style/bongda_text_item"
-                            android:layout_width="@dimen/dimen_20dp"
-                            android:layout_height="@dimen/dimen_20dp"
-                            android:gravity="center"
-                            android:padding="@dimen/dimen_0dp"
-                            android:text="W"
-                            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-                        <TextView
-                            android:id="@+id/doinha_t3"
-                            style="@style/bongda_text_item"
-                            android:layout_width="@dimen/dimen_20dp"
-                            android:layout_height="@dimen/dimen_20dp"
-                            android:gravity="center"
-                            android:padding="@dimen/dimen_0dp"
-                            android:text="W"
-                            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-                        <TextView
-                            android:id="@+id/doinha_t4"
-                            style="@style/bongda_text_item"
-                            android:layout_width="@dimen/dimen_20dp"
-                            android:layout_height="@dimen/dimen_20dp"
-                            android:gravity="center"
-                            android:padding="@dimen/dimen_0dp"
-                            android:text="W"
-                            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-                        <TextView
-                            android:id="@+id/doinha_t5"
-                            style="@style/bongda_text_item"
-                            android:layout_width="@dimen/dimen_20dp"
-                            android:layout_height="@dimen/dimen_20dp"
-                            android:gravity="center"
-                            android:padding="@dimen/dimen_0dp"
-                            android:text="W"
-                            android:textAppearance="?android:attr/textAppearanceLarge" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_marginTop="@dimen/dimen_5dp"
-                        android:layout_marginBottom="@dimen/dimen_5dp"
-                        android:layout_width="@dimen/dimen_125dp"
-                        android:layout_height="@dimen/dimen_25dp"
-                        android:background="@drawable/nam_tran_gan_nhat_bg2"
-                        android:gravity="center" >
-
-                        <TextView
-                            android:id="@+id/doikhach_t1"
-                            style="@style/bongda_text_item"
-                            android:layout_width="@dimen/dimen_20dp"
-                            android:layout_height="@dimen/dimen_20dp"
-                            android:gravity="center"
-                            android:padding="@dimen/dimen_0dp"
-                            android:text="W"
-                            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-                        <TextView
-                            android:id="@+id/doikhach_t2"
-                            style="@style/bongda_text_item"
-                            android:layout_width="@dimen/dimen_20dp"
-                            android:layout_height="@dimen/dimen_20dp"
-                            android:gravity="center"
-                            android:padding="@dimen/dimen_0dp"
-                            android:text="W"
-                            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-                        <TextView
-                            android:id="@+id/doikhach_t3"
-                            style="@style/bongda_text_item"
-                            android:layout_width="@dimen/dimen_20dp"
-                            android:layout_height="@dimen/dimen_20dp"
-                            android:gravity="center"
-                            android:padding="@dimen/dimen_0dp"
-                            android:text="W"
-                            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-                        <TextView
-                            android:id="@+id/doikhach_t4"
-                            style="@style/bongda_text_item"
-                            android:layout_width="@dimen/dimen_20dp"
-                            android:layout_height="@dimen/dimen_20dp"
-                            android:gravity="center"
-                            android:padding="@dimen/dimen_0dp"
-                            android:text="W"
-                            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-                        <TextView
-                            android:id="@+id/doikhach_t5"
-                            style="@style/bongda_text_item"
-                            android:layout_width="@dimen/dimen_20dp"
-                            android:layout_height="@dimen/dimen_20dp"
-                            android:gravity="center"
-                            android:padding="@dimen/dimen_0dp"
-                            android:text="W"
-                            android:textAppearance="?android:attr/textAppearanceLarge" />
-                    </LinearLayout>
+                    <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dimen_5dp" android:layout_centerHorizontal="true">
+                        <View android:background="@drawable/nam_tran_gan_nhat_bg1" android:layout_width="@dimen/dimen_135dp" android:layout_height="@dimen/dimen_25dp" android:layout_centerHorizontal="true" />
+                        <TextView android:gravity="center" android:id="@+id/doinha_t1" android:background="#ffffff" android:layout_width="@dimen/dimen_20dp" android:layout_height="@dimen/dimen_20dp" android:layout_marginLeft="@dimen/dimen_12dp" android:layout_marginTop="@dimen/dimen_3dp" android:text="" android:layout_alignParentLeft="true" />
+                        <TextView android:gravity="center" android:id="@+id/doinha_t2" android:background="#ffffff" android:layout_width="@dimen/dimen_20dp" android:layout_height="@dimen/dimen_20dp" android:layout_marginLeft="@dimen/dimen_3dp" android:layout_marginTop="@dimen/dimen_3dp" android:text="" android:layout_toRightOf="@+id/doinha_t1" />
+                        <TextView android:gravity="center" android:id="@+id/doinha_t3" android:background="#ffffff" android:layout_width="@dimen/dimen_20dp" android:layout_height="@dimen/dimen_20dp" android:layout_marginLeft="@dimen/dimen_3dp" android:layout_marginTop="@dimen/dimen_3dp" android:text="" android:layout_toRightOf="@+id/doinha_t2" />
+                        <TextView android:gravity="center" android:id="@+id/doinha_t4" android:background="#ffffff" android:layout_width="@dimen/dimen_20dp" android:layout_height="@dimen/dimen_20dp" android:layout_marginLeft="@dimen/dimen_3dp" android:layout_marginTop="@dimen/dimen_3dp" android:text="" android:layout_toRightOf="@+id/doinha_t3" />
+                        <TextView android:gravity="center" android:id="@+id/doinha_t5" android:background="#ffffff" android:layout_width="@dimen/dimen_20dp" android:layout_height="@dimen/dimen_20dp" android:layout_marginLeft="@dimen/dimen_3dp" android:layout_marginTop="@dimen/dimen_3dp" android:text="" android:layout_toRightOf="@+id/doinha_t4" />
+                    </RelativeLayout>
+                    <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dimen_10dp" android:layout_marginBottom="@dimen/dimen_10dp" android:layout_centerHorizontal="true">
+                        <View android:background="@drawable/nam_tran_gan_nhat_bg2" android:layout_width="@dimen/dimen_135dp" android:layout_height="@dimen/dimen_25dp" android:layout_centerHorizontal="true" />
+                        <TextView android:gravity="center" android:id="@+id/doikhach_t1" android:background="#ffffff" android:layout_width="@dimen/dimen_20dp" android:layout_height="@dimen/dimen_20dp" android:layout_marginLeft="@dimen/dimen_12dp" android:layout_marginTop="@dimen/dimen_3dp" android:text="" android:layout_alignParentLeft="true" />
+                        <TextView android:gravity="center" android:id="@+id/doikhach_t2" android:background="#ffffff" android:layout_width="@dimen/dimen_20dp" android:layout_height="@dimen/dimen_20dp" android:layout_marginLeft="@dimen/dimen_3dp" android:layout_marginTop="@dimen/dimen_3dp" android:text="" android:layout_toRightOf="@+id/doikhach_t1" />
+                        <TextView android:gravity="center" android:id="@+id/doikhach_t3" android:background="#ffffff" android:layout_width="@dimen/dimen_20dp" android:layout_height="@dimen/dimen_20dp" android:layout_marginLeft="@dimen/dimen_3dp" android:layout_marginTop="@dimen/dimen_3dp" android:text="" android:layout_toRightOf="@+id/doikhach_t2" />
+                        <TextView android:gravity="center" android:id="@+id/doikhach_t4" android:background="#ffffff" android:layout_width="@dimen/dimen_20dp" android:layout_height="@dimen/dimen_20dp" android:layout_marginLeft="@dimen/dimen_3dp" android:layout_marginTop="@dimen/dimen_3dp" android:text="" android:layout_toRightOf="@+id/doikhach_t3" />
+                        <TextView android:gravity="center" android:id="@+id/doikhach_t5" android:background="#ffffff" android:layout_width="@dimen/dimen_20dp" android:layout_height="@dimen/dimen_20dp" android:layout_marginLeft="@dimen/dimen_3dp" android:layout_marginTop="@dimen/dimen_3dp" android:text="" android:layout_toRightOf="@+id/doikhach_t4" />
+                    </RelativeLayout>
+                    
                 </LinearLayout>
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/bangxephang_header"
                 style="@style/bongda_text_item"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_30dp"
                 android:background="#999999"
                 android:gravity="center|left"
                 android:text="@string/bangephang2doi"
+                android:visibility="gone"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <com.app.bongda.view.BangXepHangItemView
                 android:id="@+id/bangXepHangItemView1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content" 
+                android:visibility="gone">
             </com.app.bongda.view.BangXepHangItemView>
 
 
@@ -205,6 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/bangxephang_listview" 
+                android:visibility="gone"
                 android:orientation="vertical" >
             </LinearLayout>
 

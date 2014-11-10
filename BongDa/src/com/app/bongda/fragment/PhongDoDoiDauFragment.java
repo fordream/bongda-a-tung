@@ -65,7 +65,9 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 	}
 
 	LinearLayout phongdodoidau_bangephang_listitem;
-
+	TextView bangxephang_header;
+	private String iID_MaDoiNha;
+	private String iID_MaDoiKhach;
 	@Override
 	public void onInitCreateView(View view) {
 		/**
@@ -82,6 +84,10 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 		// ListView listView = (ListView)
 		// view.findViewById(R.id.bangxephang_listview);
 		// listView.setAdapter(countryAdapter);
+		bangxephang_header = (TextView) view.findViewById(R.id.bangxephang_header);
+		iID_MaDoiNha = giaidau.iID_MaDoiNha();
+		iID_MaDoiKhach = giaidau.iID_MaDoiKhach();
+		Log.e("onInitCreateView", "onInitCreateView" + iID_MaDoiNha + "::" + iID_MaDoiKhach);
 		this.view = view;
 
 	}
@@ -145,53 +151,76 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 				String string_temp = response == null ? "" : CommonAndroid.parseXMLAction(response);
 				if (!string_temp.equalsIgnoreCase("")) {
 					try {
-						Log.e("aaaaa", "callbackAPI_LastMatches::" + string_temp);
+//						Log.e("aaaaa", "callbackAPI_LastMatches::" + string_temp);
 						JSONArray jsonArray = new JSONArray(string_temp);
 						String iID_MaGiai = null;
 						if (jsonArray != null) {
+							String sLastMatches_DoiNha = "";
+							String sLastMatches_DoiKhach = "";
 							for (int i = 0; i < jsonArray.length(); i++) {
-								iID_MaGiai = jsonArray.getJSONObject(i).getString("iID_MaGiai");
-								if(jsonArray.getJSONObject(i).has("sTenDoiNha")){
-									TenDoiNha = jsonArray.getJSONObject(i).getString("sTenDoiNha");
+								//iID_MaBXH_ChiTiet
+								if(jsonArray.getJSONObject(i).has("iID_MaBXH_ChiTiet")){
+									//co bang xep hang
+									bangxephang_header.setVisibility(View.VISIBLE);
+									phongdodoidau_bangephang_listitem.setVisibility(View.VISIBLE);
+									Log.e("onInitData", "onInitData==doi nha" + iID_MaDoiNha + ":::" + jsonArray.getJSONObject(i).getString("iID_MaDoi"));
+									if((jsonArray.getJSONObject(i).getString("iID_MaDoi")).equalsIgnoreCase(iID_MaDoiNha)){
+										Log.e("onInitData", "onInitData==doi nha");
+										sLastMatches_DoiNha = jsonArray.getJSONObject(i).getString("sLast5Match");
+									}
+									if((jsonArray.getJSONObject(i).getString("iID_MaDoi")).equalsIgnoreCase(iID_MaDoiKhach)){
+										sLastMatches_DoiKhach = jsonArray.getJSONObject(i).getString("sLast5Match");
+									}
+									
+								}else{
+									//ko co bang xep hang
+									bangxephang_header.setVisibility(View.GONE);
+									phongdodoidau_bangephang_listitem.setVisibility(View.GONE);
+									iID_MaGiai = jsonArray.getJSONObject(i).getString("iID_MaGiai");
+									if(jsonArray.getJSONObject(i).has("sTenDoiNha")){
+										TenDoiNha = jsonArray.getJSONObject(i).getString("sTenDoiNha");
+									}
+									if(jsonArray.getJSONObject(i).has("sTenDoiKhach")){
+										TenDoiKhach = jsonArray.getJSONObject(i).getString("sTenDoiKhach");
+									}
+									sLastMatches_DoiNha = jsonArray.getJSONObject(i).getString("sLastMatches_DoiNha");
+									sLastMatches_DoiKhach = jsonArray.getJSONObject(i).getString("sLastMatches_DoiKhach");
+									
 								}
-								if(jsonArray.getJSONObject(i).has("sTenDoiKhach")){
-									TenDoiKhach = jsonArray.getJSONObject(i).getString("sTenDoiKhach");
-								}
-								String sLastMatches_DoiNha = jsonArray.getJSONObject(i).getString("sLastMatches_DoiNha");
-								String sLastMatches_DoiKhach = jsonArray.getJSONObject(i).getString("sLastMatches_DoiKhach");
-								String[] temps1 = sLastMatches_DoiNha.split(",");
-								((TextView) view.findViewById(R.id.doinha_t1)).setText(temps1[0]);
-								((TextView) view.findViewById(R.id.doinha_t2)).setText(temps1[1]);
-								((TextView) view.findViewById(R.id.doinha_t3)).setText(temps1[2]);
-								((TextView) view.findViewById(R.id.doinha_t4)).setText(temps1[3]);
-								((TextView) view.findViewById(R.id.doinha_t5)).setText(temps1[4]);
 								
-								String[] temps2 = sLastMatches_DoiKhach.split(",");
-								((TextView) view.findViewById(R.id.doikhach_t1)).setText(temps2[0]);
-								((TextView) view.findViewById(R.id.doikhach_t2)).setText(temps2[1]);
-								((TextView) view.findViewById(R.id.doikhach_t3)).setText(temps2[2]);
-								((TextView) view.findViewById(R.id.doikhach_t4)).setText(temps2[3]);
-								((TextView) view.findViewById(R.id.doikhach_t5)).setText(temps2[4]);
 							}
+							String[] temps1 = sLastMatches_DoiNha.split(",");
+							((TextView) view.findViewById(R.id.doinha_t1)).setText(temps1[0]);
+							((TextView) view.findViewById(R.id.doinha_t2)).setText(temps1[1]);
+							((TextView) view.findViewById(R.id.doinha_t3)).setText(temps1[2]);
+							((TextView) view.findViewById(R.id.doinha_t4)).setText(temps1[3]);
+							((TextView) view.findViewById(R.id.doinha_t5)).setText(temps1[4]);
+							
+							String[] temps2 = sLastMatches_DoiKhach.split(",");
+							((TextView) view.findViewById(R.id.doikhach_t1)).setText(temps2[0]);
+							((TextView) view.findViewById(R.id.doikhach_t2)).setText(temps2[1]);
+							((TextView) view.findViewById(R.id.doikhach_t3)).setText(temps2[2]);
+							((TextView) view.findViewById(R.id.doikhach_t4)).setText(temps2[3]);
+							((TextView) view.findViewById(R.id.doikhach_t5)).setText(temps2[4]);
 							
 						}
-						String maGiaiDau = iID_MaGiai;
-						if (maGiaiDau == null) {
-							maGiaiDau = "";
-						}
-						BongDaServiceManager
-								.getInstance()
-								.getBongDaService()
-								.callApi(
-										System.currentTimeMillis(),
-										callbackAPI_bangxephang,
-										ByUtils.wsFootBall_BangXepHang.replace("bangxephangId",
-												maGiaiDau));
-						countryAdapter.notifyDataSetChanged();
+//						String maGiaiDau = iID_MaGiai;
+//						if (maGiaiDau == null) {
+//							maGiaiDau = "";
+//						}
+//						BongDaServiceManager
+//								.getInstance()
+//								.getBongDaService()
+//								.callApi(
+//										System.currentTimeMillis(),
+//										callbackAPI_bangxephang,
+//										ByUtils.wsFootBall_BangXepHang.replace("bangxephangId",
+//												maGiaiDau));
+//						countryAdapter.notifyDataSetChanged();
 						PhongDoChiTiet();
 						// countryAdapter.notifyDataSetChanged();
 					} catch (Exception e) {
-						Log.e("ERR", e.getMessage());
+						Log.e("ERR", "callbackAPI_LastMatches" +e.getMessage());
 					}
 
 				}
@@ -216,6 +245,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 //						Log.e("aaaaa", "data::" + string_temp);
 						JSONArray jsonarray = new JSONArray(string_temp);
 						for (int i = 0; i < jsonarray.length(); i++) {
+							Log.e("onInitData", "onInitData==doi nha" + iID_MaDoiNha + ":::" + jsonarray.getJSONObject(i).getString("iID_MaDoi"));
 							String id = jsonarray.getJSONObject(i).getString(
 									"iID_MaDoi");
 							String name = jsonarray.getJSONObject(i).getString(
@@ -618,5 +648,18 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 		} catch (Exception exception) {
 
 		}
+	}
+	
+	//l, w, d
+	private String CheckLastMatches(String values){
+		String color = "";
+		if(values.equalsIgnoreCase("B") || values.equalsIgnoreCase("l") ){
+			color = "#ffff0000";
+		}else if(values.equalsIgnoreCase("T") || values.equalsIgnoreCase("w") ){
+			color = "#ff00ff00";
+		}else if(values.equalsIgnoreCase("H") || values.equalsIgnoreCase("d") ){
+			color = "#ffffff00";
+		}
+		return color;
 	}
 }

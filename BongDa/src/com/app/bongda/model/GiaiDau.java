@@ -87,4 +87,14 @@ public class GiaiDau extends BaseItem {
 		// TODO Auto-generated method stub
 		return iID_MaDoiKhach;
 	}
+
+	public void iID_MaDoiNha(String iID_MaDoiNha2) {
+		// TODO Auto-generated method stub
+		this.iID_MaDoiNha = iID_MaDoiNha2;
+	}
+
+	public void iID_MaDoiKhach(String iID_MaDoiKhach2) {
+		// TODO Auto-generated method stub
+		this.iID_MaDoiKhach = iID_MaDoiKhach2;
+	}
 }
