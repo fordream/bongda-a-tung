@@ -290,7 +290,7 @@ public class DBManager {
 
 	public long liveScoreLike(String iID_MaTran) {
 		String where = String.format(//
-				"iID_MaTran ='%s' bdneedshow ='1'",//
+				"iID_MaTran ='%s' and bdneedshow ='1'",//
 				iID_MaTran//
 				);
 		LiveScoreLikeTable table = new LiveScoreLikeTable();
