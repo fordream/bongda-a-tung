@@ -47,6 +47,8 @@ public class GiaiDau extends BaseItem {
 
 	private String iID_MaQuocGia;
 	private String sLogoGiai;
+	private String sTenDoiNha;
+	private String sTenDoiKhach;
 
 	public String getiID_MaQuocGia() {
 		return iID_MaQuocGia;
@@ -96,5 +98,25 @@ public class GiaiDau extends BaseItem {
 	public void iID_MaDoiKhach(String iID_MaDoiKhach2) {
 		// TODO Auto-generated method stub
 		this.iID_MaDoiKhach = iID_MaDoiKhach2;
+	}
+
+	public void sTenDoiNha(String sTenDoiNha2) {
+		// TODO Auto-generated method stub
+		this.sTenDoiNha = sTenDoiNha2;
+	}
+
+	public void sTenDoiKhach(String sTenDoiKhach2) {
+		// TODO Auto-generated method stub
+		this.sTenDoiKhach = sTenDoiKhach2;
+	}
+
+	public String sTenDoiNha() {
+		// TODO Auto-generated method stub
+		return sTenDoiNha;
+	}
+
+	public String sTenDoiKhach() {
+		// TODO Auto-generated method stub
+		return sTenDoiKhach;
 	}
 }

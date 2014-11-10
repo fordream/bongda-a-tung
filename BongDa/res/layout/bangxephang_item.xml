@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_toLeftOf="@+id/llm1"
-            android:gravity="center" >
+            android:gravity="left" >
 
             <TextView
                 android:id="@+id/stt"
@@ -30,6 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/tendoi"
+                android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
 

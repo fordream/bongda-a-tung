@@ -188,6 +188,10 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 						liveScore.iID_MaTran(), liveScore.sLogoDoiNha(), liveScore.sLogoDoiKhach(), liveScore.iID_MaDoiNha(), liveScore.iID_MaDoiKhach());
 				if (position == 0) {
 					dau.sLogoGiai(liveScore.sLogoGiai());
+					dau.iID_MaDoiNha(liveScore.iID_MaDoiNha());
+					dau.iID_MaDoiKhach(liveScore.iID_MaDoiKhach());
+					dau.sTenDoiNha(liveScore.sTenDoiNha());
+					dau.sTenDoiKhach(liveScore.sTenDoiKhach());
 					Log.e("livescore_phong do", "liveScore.iID_MaTran()===" + dau.iID_MaTran());
 					addPhongDoDoiDauFragment(dau);
 				} else if (position == 1) {
@@ -259,6 +263,8 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 					dau.sLogoGiai(liveScore.sLogoGiai());
 					dau.iID_MaDoiNha(liveScore.iID_MaDoiNha());
 					dau.iID_MaDoiKhach(liveScore.iID_MaDoiKhach());
+					dau.sTenDoiNha(liveScore.sTenDoiNha());
+					dau.sTenDoiKhach(liveScore.sTenDoiKhach());
 					addPhongDoDoiDauFragment(dau);
 				} else if (position == 1) {
 					addGameDuDoan(null);

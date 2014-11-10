@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView.OnItemClickListener;
@@ -89,7 +90,9 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 		bangxephangitem = (BangXepHangItemView) view.findViewById(R.id.bangXepHangItemView1);
 		iID_MaDoiNha = giaidau.iID_MaDoiNha();
 		iID_MaDoiKhach = giaidau.iID_MaDoiKhach();
-		Log.e("onInitCreateView", "onInitCreateView" + iID_MaDoiNha + "::" + iID_MaDoiKhach);
+		TenDoiNha = giaidau.sTenDoiNha();
+		TenDoiKhach = giaidau.sTenDoiKhach();
+		Log.e("onInitCreateView", "onInitCreateView::" + TenDoiNha + "::" + iID_MaDoiKhach);
 		this.view = view;
 
 	}
@@ -174,7 +177,40 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 //									if((jsonArray.getJSONObject(i).getString("iID_MaDoi")).equalsIgnoreCase(iID_MaDoiKhach)){
 										sLastMatches_DoiKhach = jsonArray.getJSONObject(i).getString("sLast5Match");
 //									}
-									
+									//add bang xep hang
+									String id = jsonArray.getJSONObject(i).getString(
+											"iID_MaDoi");
+									String name = jsonArray.getJSONObject(i).getString(
+											"sTenDoi");
+									String sViTri = jsonArray.getJSONObject(i)
+											.getString("sViTri");
+									String sSoTranDau = jsonArray.getJSONObject(i)
+											.getString("sSoTranDau");
+									String sDiem = jsonArray.getJSONObject(i)
+											.getString("sDiem");
+									String sSoTranThang = jsonArray.getJSONObject(i)
+											.getString("sSoTranThang");
+									String sSoTranHoa = jsonArray.getJSONObject(i)
+											.getString("sSoTranHoa");
+									String sSoTranThua = jsonArray.getJSONObject(i)
+											.getString("sSoTranThua");
+									String sBanThang = jsonArray.getJSONObject(i)
+											.getString("sBanThang");
+									String sBanThua = jsonArray.getJSONObject(i)
+											.getString("sBanThua");
+									String sHeSo = jsonArray.getJSONObject(i)
+											.getString("sHeSo");
+									PhongDo phongdo = new PhongDo(id, name, sViTri,
+											sSoTranDau, sDiem, sSoTranThang,
+											sSoTranHoa, sSoTranThua, sBanThang,
+											sBanThua, sHeSo);
+									// countryAdapter.addItem(new PhongDo( id, name,
+									// sViTri, sSoTranDau, sDiem, sSoTranThang,
+									// sSoTranHoa, sSoTranThua, sBanThang, sBanThua,
+									// sHeSo));
+									phongdodoidau_bangephang_listitem
+											.addView(new BangXepHangItemView(view
+													.getContext(), phongdo));
 								}else{
 									//ko co bang xep hang
 									bangxephang_header.setVisibility(View.GONE);
@@ -193,18 +229,31 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 								
 							}
 							String[] temps1 = sLastMatches_DoiNha.split(",");
-							((TextView) view.findViewById(R.id.doinha_t1)).setText(temps1[0]);
-							((TextView) view.findViewById(R.id.doinha_t2)).setText(temps1[1]);
-							((TextView) view.findViewById(R.id.doinha_t3)).setText(temps1[2]);
-							((TextView) view.findViewById(R.id.doinha_t4)).setText(temps1[3]);
-							((TextView) view.findViewById(R.id.doinha_t5)).setText(temps1[4]);
+							((TextView) view.findViewById(R.id.doinha_t1)).setText(CheckLastMatches2(temps1[0]));
+							((TextView) view.findViewById(R.id.doinha_t2)).setText(CheckLastMatches2(temps1[1]));
+							((TextView) view.findViewById(R.id.doinha_t3)).setText(CheckLastMatches2(temps1[2]));
+							((TextView) view.findViewById(R.id.doinha_t4)).setText(CheckLastMatches2(temps1[3]));
+							((TextView) view.findViewById(R.id.doinha_t5)).setText(CheckLastMatches2(temps1[4]));
+							
+							((TextView) view.findViewById(R.id.doinha_t1)).setBackgroundColor(CheckLastMatches(temps1[0]));
+							((TextView) view.findViewById(R.id.doinha_t2)).setBackgroundColor(CheckLastMatches(temps1[1]));
+							((TextView) view.findViewById(R.id.doinha_t3)).setBackgroundColor(CheckLastMatches(temps1[2]));
+							((TextView) view.findViewById(R.id.doinha_t4)).setBackgroundColor(CheckLastMatches(temps1[3]));
+							((TextView) view.findViewById(R.id.doinha_t5)).setBackgroundColor(CheckLastMatches(temps1[4]));
+							
 							
 							String[] temps2 = sLastMatches_DoiKhach.split(",");
-							((TextView) view.findViewById(R.id.doikhach_t1)).setText(temps2[0]);
-							((TextView) view.findViewById(R.id.doikhach_t2)).setText(temps2[1]);
-							((TextView) view.findViewById(R.id.doikhach_t3)).setText(temps2[2]);
-							((TextView) view.findViewById(R.id.doikhach_t4)).setText(temps2[3]);
-							((TextView) view.findViewById(R.id.doikhach_t5)).setText(temps2[4]);
+							((TextView) view.findViewById(R.id.doikhach_t1)).setText(CheckLastMatches2(temps2[0]));
+							((TextView) view.findViewById(R.id.doikhach_t2)).setText(CheckLastMatches2(temps2[1]));
+							((TextView) view.findViewById(R.id.doikhach_t3)).setText(CheckLastMatches2(temps2[2]));
+							((TextView) view.findViewById(R.id.doikhach_t4)).setText(CheckLastMatches2(temps2[3]));
+							((TextView) view.findViewById(R.id.doikhach_t5)).setText(CheckLastMatches2(temps2[4]));
+							
+							((TextView) view.findViewById(R.id.doikhach_t1)).setBackgroundColor(CheckLastMatches(temps2[0]));
+							((TextView) view.findViewById(R.id.doikhach_t2)).setBackgroundColor(CheckLastMatches(temps2[1]));
+							((TextView) view.findViewById(R.id.doikhach_t3)).setBackgroundColor(CheckLastMatches(temps2[2]));
+							((TextView) view.findViewById(R.id.doikhach_t4)).setBackgroundColor(CheckLastMatches(temps2[3]));
+							((TextView) view.findViewById(R.id.doikhach_t5)).setBackgroundColor(CheckLastMatches(temps2[4]));
 							
 						}
 //						String maGiaiDau = iID_MaGiai;
@@ -655,15 +704,27 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 	}
 	
 	//l, w, d
-	private String CheckLastMatches(String values){
-		String color = "";
-		if(values.equalsIgnoreCase("B") || values.equalsIgnoreCase("l") ){
-			color = "#ffff0000";
-		}else if(values.equalsIgnoreCase("T") || values.equalsIgnoreCase("w") ){
-			color = "#ff00ff00";
-		}else if(values.equalsIgnoreCase("H") || values.equalsIgnoreCase("d") ){
-			color = "#ffffff00";
+	private int CheckLastMatches(String values){
+		int color = 1;
+		if(values.equalsIgnoreCase("B") || values.equalsIgnoreCase("L") ){
+			color = Color.RED;
+		}else if(values.equalsIgnoreCase("T") || values.equalsIgnoreCase("W") ){
+			color = Color.GREEN;
+		}else if(values.equalsIgnoreCase("H") || values.equalsIgnoreCase("D") ){
+			color = Color.YELLOW;
 		}
 		return color;
+	}
+	
+	private String CheckLastMatches2(String values){
+		String txt = "";
+		if(values.equalsIgnoreCase("B") || values.equalsIgnoreCase("L") ){
+			txt = "B";
+		}else if(values.equalsIgnoreCase("T") || values.equalsIgnoreCase("W") ){
+			txt = "T";
+		}else if(values.equalsIgnoreCase("H") || values.equalsIgnoreCase("D") ){
+			txt = "H";
+		}
+		return txt;
 	}
 }

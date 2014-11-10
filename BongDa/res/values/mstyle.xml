@@ -16,13 +16,11 @@
     <style name="bongda_text_item_small" parent="@style/bongda_text_item">
         <item name="android:textSize">@dimen/dimen_10dp</item>
     </style>
-
-    <style name="bongda_text_item_small_bangxephang" parent="@style/bongda_text_item_small">
+	<style name="bongda_text_item_small_bangxephang" parent="@style/bongda_text_item_small">
         <item name="android:textSize">@dimen/dimen_10dp</item>
         <item name="android:padding">@dimen/dimen_0dp</item>
-        <item name="android:gravity">center</item>
+        <item name="android:gravity">left</item>
     </style>
-
     <style name="bongda_text_item_phongdo" parent="bongda_text_item">
         <item name="android:paddingLeft">@dimen/dimen_3dp</item>
         <item name="android:paddingRight">@dimen/dimen_3dp</item>
