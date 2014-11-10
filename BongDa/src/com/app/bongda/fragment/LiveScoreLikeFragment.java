@@ -36,10 +36,10 @@ public class LiveScoreLikeFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		if (inflater == null){
+		if (inflater == null) {
 			inflater = (LayoutInflater) container.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		}
-		
+
 		if (view == null) {
 			view = inflater.inflate(R.layout.livesocre, null);
 		} else {
@@ -54,12 +54,17 @@ public class LiveScoreLikeFragment extends Fragment {
 		return view;
 	}
 
+	private LiveScoreLikeCusorAdapter likeCusorAdapter;
+
 	public void reloadData() {
 		try {
+			int first = listView.getFirstVisiblePosition();
 			Cursor c = BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreQueryLiked();
-			listView.setAdapter(new LiveScoreLikeCusorAdapter(view.getContext(), c, false, onItemClickListener, callBackListenner));
+			likeCusorAdapter = new LiveScoreLikeCusorAdapter(view.getContext(), c, false, onItemClickListener, callBackListenner);
+			listView.setAdapter(likeCusorAdapter);
+			
+			listView.setSelection(first);
 		} catch (Exception exception) {
-
 		}
 	}
 }
