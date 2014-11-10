@@ -232,10 +232,9 @@ public class DBManager {
 		LiveScoreLikeTable table = new LiveScoreLikeTable();
 		// String iID_MaMayChu = values.getAsString("iID_MaMayChu");
 		/**
-		 * add giai dau.
-		 * neu giai dau chua co, insert giai dau
-		 * neu giai dau da ton tai thi update lai thong tin giai dau
-		 * giai dau luon co bdposition = 0
+		 * add giai dau. neu giai dau chua co, insert giai dau neu giai dau da
+		 * ton tai thi update lai thong tin giai dau giai dau luon co bdposition
+		 * = 0
 		 */
 		String iID_MaGiai = values.getAsString("iID_MaGiai");
 		String sTenGiai = values.getAsString("sTenGiai");
@@ -313,9 +312,10 @@ public class DBManager {
 		return -1;
 	}
 
-	public Cursor liveScoreQuery() {
-		String where = "bdneedshow='1'";
+	public Cursor liveScoreQueryLiked() {
+		String where = " bdliked='1' or bdposition ='0'";
 		String orderBy = "iID_MaGiai,bdposition";
 		return database.query(new LiveScoreLikeTable().getTableName(), null, where, null, null, null, orderBy);
 	}
+
 }
