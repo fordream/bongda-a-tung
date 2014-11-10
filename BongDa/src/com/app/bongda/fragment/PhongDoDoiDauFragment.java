@@ -65,6 +65,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 	}
 
 	LinearLayout phongdodoidau_bangephang_listitem;
+	BangXepHangItemView bangxephangitem;
 	TextView bangxephang_header;
 	private String iID_MaDoiNha;
 	private String iID_MaDoiKhach;
@@ -85,6 +86,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 		// view.findViewById(R.id.bangxephang_listview);
 		// listView.setAdapter(countryAdapter);
 		bangxephang_header = (TextView) view.findViewById(R.id.bangxephang_header);
+		bangxephangitem = (BangXepHangItemView) view.findViewById(R.id.bangXepHangItemView1);
 		iID_MaDoiNha = giaidau.iID_MaDoiNha();
 		iID_MaDoiKhach = giaidau.iID_MaDoiKhach();
 		Log.e("onInitCreateView", "onInitCreateView" + iID_MaDoiNha + "::" + iID_MaDoiKhach);
@@ -163,14 +165,15 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 									//co bang xep hang
 									bangxephang_header.setVisibility(View.VISIBLE);
 									phongdodoidau_bangephang_listitem.setVisibility(View.VISIBLE);
-									Log.e("onInitData", "onInitData==doi nha" + iID_MaDoiNha + ":::" + jsonArray.getJSONObject(i).getString("iID_MaDoi"));
-									if((jsonArray.getJSONObject(i).getString("iID_MaDoi")).equalsIgnoreCase(iID_MaDoiNha)){
-										Log.e("onInitData", "onInitData==doi nha");
+									bangxephangitem.setVisibility(View.VISIBLE);
+									Log.e("onInitData", "onInitData==doi nha" + iID_MaDoiNha + ":::" + jsonArray.getJSONObject(i).getString("iID_MaDoi") + ":tendoi:" + jsonArray.getJSONObject(i).getString("sTenDoi"));
+//									if((jsonArray.getJSONObject(i).getString("iID_MaDoi")).equalsIgnoreCase(iID_MaDoiNha)){
+//										Log.e("onInitData", "onInitData==doi nha");
 										sLastMatches_DoiNha = jsonArray.getJSONObject(i).getString("sLast5Match");
-									}
-									if((jsonArray.getJSONObject(i).getString("iID_MaDoi")).equalsIgnoreCase(iID_MaDoiKhach)){
+//									}
+//									if((jsonArray.getJSONObject(i).getString("iID_MaDoi")).equalsIgnoreCase(iID_MaDoiKhach)){
 										sLastMatches_DoiKhach = jsonArray.getJSONObject(i).getString("sLast5Match");
-									}
+//									}
 									
 								}else{
 									//ko co bang xep hang
@@ -643,6 +646,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 					"magiai", magiai);
 			param2 = param2.replace("madoinha", madoinha);
 			param2 = param2.replace("madoikhach", madoikhach);
+			Log.e("PhongDoChiTiet", "PhongDoChiTiet::" + param2);
 			new APICaller(view.getContext()).callApi("", true, callbackAPI_Chitiet,
 					param2);
 		} catch (Exception exception) {
