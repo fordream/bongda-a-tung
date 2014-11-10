@@ -31,6 +31,7 @@ import com.app.bongda.base.BongDaBaseAdapter;
 import com.app.bongda.base.ImageLoaderUtils;
 import com.app.bongda.callback.APICaller;
 import com.app.bongda.callback.APICaller.ICallbackAPI;
+import com.app.bongda.callback.progress.LiveScorePorgressExecute;
 import com.app.bongda.inter.CallBackListenner;
 import com.app.bongda.model.GiaiDau;
 import com.app.bongda.model.LiveScore;
@@ -385,6 +386,8 @@ public class LiveScoreFragment extends BaseFragment {
 			callbackAPI = new ICallbackAPI() {
 				@Override
 				public void onSuccess(String response) {
+					
+					new LiveScorePorgressExecute(response, views_err.getContext()).executeAsynCallBack();
 					countryAdapter.clear();
 					String string_temp = CommonAndroid.parseXMLAction(response);
 					if (!string_temp.equalsIgnoreCase("")) {
