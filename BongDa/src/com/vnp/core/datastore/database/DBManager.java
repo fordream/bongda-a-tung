@@ -42,9 +42,6 @@ public class DBManager {
 	public void close() {
 		dbHelper.close();
 	}
-	
-	
-	
 
 	class DataBaseWrapper extends SQLiteOpenHelper {
 
@@ -222,12 +219,23 @@ public class DBManager {
 		return id;
 	}
 
-	public long insetLiveScore(ContentValues values) {
+	// -------------------------------------------------
+	// LVIESCORE
+	// -------------------------------------------------
+	public void liveScoreHiddenAll() {
+		ContentValues values = new ContentValues();
+		values.put("bdneedshow", "0");
+		database.update(new LiveScoreLikeTable().getTableName(), values, null, null);
+	}
 
+	public long liveScoreAdd(ContentValues values) {
 		LiveScoreLikeTable table = new LiveScoreLikeTable();
 		// String iID_MaMayChu = values.getAsString("iID_MaMayChu");
 		/**
-		 * add giai dau
+		 * add giai dau.
+		 * neu giai dau chua co, insert giai dau
+		 * neu giai dau da ton tai thi update lai thong tin giai dau
+		 * giai dau luon co bdposition = 0
 		 */
 		String iID_MaGiai = values.getAsString("iID_MaGiai");
 		String sTenGiai = values.getAsString("sTenGiai");
@@ -270,7 +278,7 @@ public class DBManager {
 		long id = -1;
 		values.put("bdposition", "1");
 		values.put("bdneedshow", "1");
-		
+
 		if (cursorCheck != null && cursorCheck.getCount() >= 1) {
 			id = database.update(table.getTableName(), values, whereTranDau, null);
 		} else {
@@ -280,7 +288,7 @@ public class DBManager {
 		return id;
 	}
 
-	public long likeLiveScore(String iID_MaTran) {
+	public long liveScoreLike(String iID_MaTran) {
 		String where = String.format(//
 				"iID_MaTran ='%s' bdneedshow ='1'",//
 				iID_MaTran//
@@ -303,5 +311,11 @@ public class DBManager {
 		}
 
 		return -1;
+	}
+
+	public Cursor liveScoreQuery() {
+		String where = "bdneedshow='1'";
+		String orderBy = "iID_MaGiai,bdposition";
+		return database.query(new LiveScoreLikeTable().getTableName(), null, where, null, null, null, orderBy);
 	}
 }
