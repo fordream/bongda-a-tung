@@ -210,9 +210,38 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 		OnItemClickListener liveScoreOnItemClickListener = new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				LiveScore liveScore = (LiveScore) parent.getItemAtPosition(position);
+				Cursor arg1 = (Cursor) parent.getItemAtPosition(position);
 
-				// phong do doi dau
+				if (!"1".equals(arg1.getString(arg1.getColumnIndex("bdposition")))) {
+					return;
+				}
+				final LiveScore liveScore = new LiveScore(//
+						false,//
+						arg1.getString(arg1.getColumnIndex("iID_MaTran"))//
+						, arg1.getString(arg1.getColumnIndex("sTenGiai"))//
+						, arg1.getString(arg1.getColumnIndex("sTenDoiNha"))//
+						, arg1.getString(arg1.getColumnIndex("sTenDoiKhach"))//
+						, null//
+						, null//
+						, null//
+						, null//
+						, null//
+						, 0//
+						, arg1.getString(arg1.getColumnIndex("sMaGiai"))//
+						, null//
+						, null//
+						, arg1.getString(arg1.getColumnIndex("iID_MaGiai"))// /
+						, false//
+						, false//
+						, false//
+						, arg1.getString(arg1.getColumnIndex("sLogoQuocGia"))//
+						, arg1.getString(arg1.getColumnIndex("sLogoGiai"))//
+						, arg1.getString(arg1.getColumnIndex("sLogoDoiNha"))//
+						, arg1.getString(arg1.getColumnIndex("sLogoDoiKhach"))//
+						, arg1.getString(arg1.getColumnIndex("iID_MaDoiNha"))//
+						, arg1.getString(arg1.getColumnIndex("iID_MaDoiKhach"))//
+				);//
+					// phong do doi dau
 
 				// xem tuong thuat a
 				if (!liveScore.isHeader()) {
