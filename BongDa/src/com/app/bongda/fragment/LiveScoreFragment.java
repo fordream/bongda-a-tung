@@ -271,6 +271,9 @@ public class LiveScoreFragment extends BaseFragment {
 					convertView.findViewById(R.id.iconlike).setOnClickListener(new OnClickListener() {
 						@Override
 						public void onClick(View v) {
+							//TODO add live score
+							BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLike( liveScore.getId());
+							
 							String check_quantam = liveScore.idmagiai() + "-" +  liveScore.getId() ;
 							if (CommonUtil.listQuanTam.contains( check_quantam )) {
 								CommonUtil.listQuanTam.remove( check_quantam );
