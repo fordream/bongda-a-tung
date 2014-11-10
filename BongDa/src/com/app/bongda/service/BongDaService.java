@@ -378,4 +378,8 @@ public class BongDaService extends Service {
 			String where) {
 		dbManager.inset(tableName, contentValues, where);
 	}
+
+	public DBManager getDBManager() {
+		return dbManager;
+	}
 }

@@ -8,12 +8,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.RotateAnimation;
 
-import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.callback.progress.CountryProgressExecute;
 import com.app.bongda.service.BongDaServiceManager;
 import com.app.bongda.service.BongDaServiceManager.BongDaServiceManagerListener;
@@ -32,8 +30,7 @@ public class MainSplashActivity extends Activity {
 				rotate = rotate + 10;
 				float pivotX = ic_logo.getWidth() / 2;
 				float pivotY = ic_logo.getHeight() / 2;
-				RotateAnimation animation = new RotateAnimation(start, rotate,
-						pivotX, pivotY);
+				RotateAnimation animation = new RotateAnimation(start, rotate, pivotX, pivotY);
 				animation.setDuration(10);
 				ic_logo.startAnimation(animation);
 				handler.sendEmptyMessageDelayed(0, 10);
@@ -62,24 +59,24 @@ public class MainSplashActivity extends Activity {
 		ic_logo = (View) findViewById(R.id.ic_logo);
 		handler.sendEmptyMessage(0);
 
-		BongDaServiceManager.getInstance().onResume(
-				new BongDaServiceManagerListener() {
+		BongDaServiceManager.getInstance().onResume(new BongDaServiceManagerListener() {
 
-					@Override
-					public void onSuccess() {
-						onCheckForNetwork();
-					}
+			@Override
+			public void onSuccess() {
+				BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreHiddenAll();
+				onCheckForNetwork();
+			}
 
-					@Override
-					public void onFail() {
+			@Override
+			public void onFail() {
 
-					}
+			}
 
-					@Override
-					public void onDisconnected() {
+			@Override
+			public void onDisconnected() {
 
-					}
-				});
+			}
+		});
 
 	}
 
@@ -110,70 +107,7 @@ public class MainSplashActivity extends Activity {
 			builder.show();
 		} else {
 
-//			ICallbackAPI callbackAPI = new ICallbackAPI() {
-//
-//				@Override
-//				public void onSuccess(String response) {
-//					// Log.e("callApi", "onSuccess");
-//					if (isFinishing()) {
-//						return;
-//					}
-//
-//					String string_temp = CommonAndroid.parseXMLAction(response);
-//					if (!string_temp.equalsIgnoreCase("")) {
-//
-//						Intent intent = new Intent(MainSplashActivity.this,
-//								SplashActivity.class);
-//
-//						startActivity(intent);
-//						finish();
-//						overridePendingTransition(R.anim.bot_to_top,
-//								R.anim.nothing);
-//					} else {
-//						Builder builder = new Builder(MainSplashActivity.this);
-//						builder.setCancelable(false);
-//						builder.setMessage(R.string.cannotconnecttoserverr);
-//						builder.setPositiveButton(R.string.ok,
-//								new OnClickListener() {
-//
-//									@Override
-//									public void onClick(DialogInterface dialog,
-//											int which) {
-//										finish();
-//										overridePendingTransition(
-//												R.anim.bot_to_top,
-//												R.anim.nothing);
-//									}
-//								});
-//						builder.show();
-//					}
-//				}
-//
-//				@Override
-//				public void onError(String message) {
-//					if (isFinishing()) {
-//						return;
-//					}
-//					// show dialog and cancel
-//					Builder builder = new Builder(MainSplashActivity.this);
-//					builder.setCancelable(false);
-//					builder.setMessage(R.string.cannotconnecttoserverr);
-//					builder.setPositiveButton(R.string.ok,
-//							new OnClickListener() {
-//
-//								@Override
-//								public void onClick(DialogInterface dialog,
-//										int which) {
-//									finish();
-//									overridePendingTransition(
-//											R.anim.bot_to_top, R.anim.nothing);
-//								}
-//							});
-//					builder.show();
-//				}
-//			};
-			CountryProgressExecute countryProgressExecute = new CountryProgressExecute(
-					null, MainSplashActivity.this) {
+			CountryProgressExecute countryProgressExecute = new CountryProgressExecute(null, MainSplashActivity.this) {
 				@Override
 				public void onProgressStartFail() {
 					super.onProgressStartFail();
@@ -184,17 +118,14 @@ public class MainSplashActivity extends Activity {
 					Builder builder = new Builder(MainSplashActivity.this);
 					builder.setCancelable(false);
 					builder.setMessage(R.string.cannotconnecttoserverr);
-					builder.setPositiveButton(R.string.ok,
-							new OnClickListener() {
+					builder.setPositiveButton(R.string.ok, new OnClickListener() {
 
-								@Override
-								public void onClick(DialogInterface dialog,
-										int which) {
-									finish();
-									overridePendingTransition(
-											R.anim.bot_to_top, R.anim.nothing);
-								}
-							});
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							finish();
+							overridePendingTransition(R.anim.bot_to_top, R.anim.nothing);
+						}
+					});
 					builder.show();
 				}
 
@@ -206,8 +137,7 @@ public class MainSplashActivity extends Activity {
 						return;
 					}
 
-					Intent intent = new Intent(MainSplashActivity.this,
-							SplashActivity.class);
+					Intent intent = new Intent(MainSplashActivity.this, SplashActivity.class);
 
 					startActivity(intent);
 					finish();
@@ -215,13 +145,7 @@ public class MainSplashActivity extends Activity {
 
 				}
 			};
-			BongDaServiceManager
-					.getInstance()
-					.getBongDaService()
-					.callApi(System.currentTimeMillis(),
-							countryProgressExecute, ByUtils.wsFootBall_Quocgia);
-			// BongDaServiceManager.getInstance().getBongDaService().callApi(System.currentTimeMillis(),
-			// callbackAPI, ByUtils.wsFootBall_Lives);
+			BongDaServiceManager.getInstance().getBongDaService().callApi(System.currentTimeMillis(), countryProgressExecute, ByUtils.wsFootBall_Quocgia);
 
 		}
 	}
