@@ -1,6 +1,8 @@
 package com.app.bongda.fragment;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -234,7 +236,7 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 	public String sLogoGiai;
 	public String sLogoDoiNha;
 	public String sLogoDoiKhach;
-
+	JSONArray jsonArray_the = new JSONArray();
 	@Override
 	public void onInitData() {
 
@@ -245,6 +247,7 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 				if (!string_temp.equalsIgnoreCase("")) {
 					try {
 						JSONArray jsonarray = new JSONArray(string_temp);
+						jsonArray_the = new JSONArray();
 						for (int i = 0; i < jsonarray.length(); i++) {
 							// parse
 							sTenGiai = jsonarray.getJSONObject(i).getString(
@@ -277,7 +280,6 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 									.getString("iID_MaDoiKhach");
 							iID_MaGiai = jsonarray.getJSONObject(i).getString(
 									"iID_MaGiai");
-
 							loadItem(jsonarray.getJSONObject(i),
 									"sThongTin_DoiNha", 1);// GOAL_HOME
 							loadItem(jsonarray.getJSONObject(i),
@@ -286,7 +288,42 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 									"sThongTinThe_DoiNha", 3);// YELLOW_CARD_HOME
 							loadItem(jsonarray.getJSONObject(i),
 									"sThongTinThe_DoiKhach", 4);// YELLOW_CARD_AWAY
+							Log.e("data-check", "sThongTin_DoiNha" + jsonarray.getJSONObject(i).getString("sThongTin_DoiNha"));
+							Log.e("data-check", "sThongTin_DoiKhach" + jsonarray.getJSONObject(i).getString("sThongTin_DoiKhach"));
+							Log.e("data-check", "sThongTinThe_DoiNha" + jsonarray.getJSONObject(i).getString("sThongTinThe_DoiNha"));
+							Log.e("data-check", "sThongTinThe_DoiKhach" + jsonarray.getJSONObject(i).getString("sThongTinThe_DoiKhach"));
 						}
+
+						//sort data
+						ArrayList<JSONObject> array = new ArrayList<JSONObject>();
+						array.clear();
+						for(int j = 0; j < jsonArray_the.length();j++){
+							Log.e("aaaaaaaaaa", "data:::" + jsonArray_the.getJSONObject(j).toString());
+							array.add(jsonArray_the.getJSONObject(j));
+						}
+						Collections.emptyList();
+						Collections.sort(array, new Comparator<JSONObject>() {
+
+							@Override
+							public int compare(JSONObject lhs, JSONObject rhs) {
+								// TODO Auto-generated method stub
+
+								try {
+									return (lhs.getString("No").toLowerCase().compareTo(rhs.getString("No").toLowerCase()));
+								} catch (JSONException e) {
+									// TODO Auto-generated catch
+									// block
+									e.printStackTrace();
+									return 0;
+								}
+							}
+						});
+						for (int i = 0; i < array.size(); i++) {
+							Log.e("aaaaaaaaaa", "data2:::" + array.get(i).toString());
+							countryAdapter.addItem(new TuongThuatTran(
+									array.get(i).getInt("doi"), null, array.get(i).getString("No"), array.get(i).getString("Values"), array.get(i).getInt("Status")));
+						}	
+						
 						String HT = "";
 						StringBuilder stringbuilder1 = new StringBuilder("HT ");
 						HT = stringbuilder1.append(iCN_BanThang_DoiNha_HT)
@@ -346,6 +383,7 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 	}
 
 	private void loadItem(JSONObject jsonobject, String s, int status) {
+//		Log.e("tuongthuat", "loadItem" + jsonobject.toString());
 		int doi = 1;
 		if (status == 2 || status == 4) {
 			doi = 2;
@@ -363,6 +401,7 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 					if (j > 0) {
 						temp1 = s3.split(",");
 						for (int i = 0; i < temp1.length; i++) {
+							JSONObject itemObj = new JSONObject();
 							String temp2[];
 							int k = temp1[i].indexOf(" ");
 							if (k > 0) {
@@ -392,14 +431,24 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 											tem = Values
 													.substring(0, lastcheck);
 										}
-										countryAdapter
-												.addItem(new TuongThuatTran(
-														doi, null, No, tem, 10));
+//										countryAdapter
+//												.addItem(new TuongThuatTran(
+//														doi, null, No, tem, 10));
+										itemObj.put("No", No);
+										itemObj.put("doi", doi);
+										itemObj.put("Values", Values);
+										itemObj.put("Status", 10);
+										jsonArray_the.put(itemObj);
 									} else {
-										countryAdapter
-												.addItem(new TuongThuatTran(
-														doi, null, No, Values,
-														1));
+//										countryAdapter
+//												.addItem(new TuongThuatTran(
+//														doi, null, No, Values,
+//														1));
+										itemObj.put("No", No);
+										itemObj.put("doi", doi);
+										itemObj.put("Values", Values);
+										itemObj.put("Status", 1);
+										jsonArray_the.put(itemObj);
 									}
 								} else {
 									if (status == 3 || status == 4) {
@@ -411,10 +460,15 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 												tem = Values.substring(0,
 														lastcheck);
 											}
-											countryAdapter
-													.addItem(new TuongThuatTran(
-															doi, null, No, tem,
-															20));
+//											countryAdapter
+//													.addItem(new TuongThuatTran(
+//															doi, null, No, tem,
+//															20));
+											itemObj.put("No", No);
+											itemObj.put("doi", doi);
+											itemObj.put("Values", Values);
+											itemObj.put("Status", 20);
+											jsonArray_the.put(itemObj);
 										} else {
 											int lastcheck = Values
 													.lastIndexOf("(TD)");
@@ -423,10 +477,15 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 												tem = Values.substring(0,
 														lastcheck);
 											}
-											countryAdapter
-													.addItem(new TuongThuatTran(
-															doi, null, No, tem,
-															2));
+//											countryAdapter
+//													.addItem(new TuongThuatTran(
+//															doi, null, No, tem,
+//															2));
+											itemObj.put("No", No);
+											itemObj.put("doi", doi);
+											itemObj.put("Values", Values);
+											itemObj.put("Status", 2);
+											jsonArray_the.put(itemObj);
 										}
 									}
 								}
@@ -444,6 +503,7 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 							String Values = temp2[1];
 							boolean Pen_check = Values.indexOf("(Pen)") > 0;
 							boolean TV_check = Values.indexOf("(TV)") > 0;
+							JSONObject itemObj = new JSONObject();
 							Log.e("test", "aa" + Pen_check);
 							if (status == 1 || status == 2) {
 								if (Pen_check) {
@@ -452,11 +512,21 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 									if (lastcheck != -1) {
 										tem = Values.substring(0, lastcheck);
 									}
-									countryAdapter.addItem(new TuongThuatTran(
-											doi, null, No, tem, 10));
+//									countryAdapter.addItem(new TuongThuatTran(
+//											doi, null, No, tem, 10));
+									itemObj.put("No", No);
+									itemObj.put("doi", doi);
+									itemObj.put("Values", Values);
+									itemObj.put("Status", 10);
+									jsonArray_the.put(itemObj);
 								} else {
-									countryAdapter.addItem(new TuongThuatTran(
-											doi, null, No, Values, 1));
+//									countryAdapter.addItem(new TuongThuatTran(
+//											doi, null, No, Values, 1));
+									itemObj.put("No", No);
+									itemObj.put("doi", doi);
+									itemObj.put("Values", Values);
+									itemObj.put("Status", 1);
+									jsonArray_the.put(itemObj);
 								}
 							} else {
 								if (status == 3 || status == 4) {
@@ -468,9 +538,14 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 											tem = Values
 													.substring(0, lastcheck);
 										}
-										countryAdapter
-												.addItem(new TuongThuatTran(
-														doi, null, No, tem, 20));
+//										countryAdapter
+//												.addItem(new TuongThuatTran(
+//														doi, null, No, tem, 20));
+										itemObj.put("No", No);
+										itemObj.put("doi", doi);
+										itemObj.put("Values", Values);
+										itemObj.put("Status", 20);
+										jsonArray_the.put(itemObj);
 									} else {
 										int lastcheck = Values
 												.lastIndexOf("(TD)");
@@ -479,9 +554,14 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 											tem = Values
 													.substring(0, lastcheck);
 										}
-										countryAdapter
-												.addItem(new TuongThuatTran(
-														doi, null, No, tem, 2));
+//										countryAdapter
+//												.addItem(new TuongThuatTran(
+//														doi, null, No, tem, 2));
+										itemObj.put("No", No);
+										itemObj.put("doi", doi);
+										itemObj.put("Values", Values);
+										itemObj.put("Status", 2);
+										jsonArray_the.put(itemObj);
 									}
 								}
 							}
