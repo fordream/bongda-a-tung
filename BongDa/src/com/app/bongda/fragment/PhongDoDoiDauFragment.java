@@ -21,6 +21,7 @@ import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.model.GiaiDau;
 import com.app.bongda.model.NhanDinhChuyenGia;
 import com.app.bongda.model.PhongDo;
+import com.app.bongda.service.BongDaServiceManager;
 import com.app.bongda.util.ByUtils;
 import com.app.bongda.util.CommonAndroid;
 import com.app.bongda.util.CommonUtil;
@@ -85,7 +86,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 
 	}
 
-	ICallbackAPI callbackAPI_LastMatches,callbackAPI, callbackAPI_Chitiet, callbackAPI_tuongthuat;
+	ICallbackAPI callbackAPI_LastMatches,callbackAPI_bangxephang, callbackAPI_Chitiet, callbackAPI_tuongthuat;
 	private PhongDodoiItemView PhongDodoiItemView1, PhongDodoiItemView2;
 	private PhongDodoiItemTanCongPhongThuView PhongDodoiItemTanCongPhongThuView1,
 			PhongDodoiItemTanCongPhongThuView2;
@@ -144,28 +145,50 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 				String string_temp = response == null ? "" : CommonAndroid.parseXMLAction(response);
 				if (!string_temp.equalsIgnoreCase("")) {
 					try {
-						Log.e("aaaaa", "data::" + string_temp);
-						JSONObject jsonObject = new JSONObject(string_temp);
-						if (jsonObject != null) {
-							TenDoiNha = jsonObject.getString("sTenDoiNha");
-							TenDoiKhach = jsonObject.getString("sTenDoiKhach");
-							String sLastMatches_DoiNha = jsonObject.getString("sLastMatches_DoiNha");
-							String sLastMatches_DoiKhach = jsonObject.getString("sLastMatches_DoiKhach");
-							String[] temps1 = sLastMatches_DoiNha.split(",");
-							((TextView) view.findViewById(R.id.doinha_t1)).setText(temps1[0]);
-							((TextView) view.findViewById(R.id.doinha_t2)).setText(temps1[1]);
-							((TextView) view.findViewById(R.id.doinha_t3)).setText(temps1[2]);
-							((TextView) view.findViewById(R.id.doinha_t4)).setText(temps1[3]);
-							((TextView) view.findViewById(R.id.doinha_t5)).setText(temps1[4]);
+						Log.e("aaaaa", "callbackAPI_LastMatches::" + string_temp);
+						JSONArray jsonArray = new JSONArray(string_temp);
+						String iID_MaGiai = null;
+						if (jsonArray != null) {
+							for (int i = 0; i < jsonArray.length(); i++) {
+								iID_MaGiai = jsonArray.getJSONObject(i).getString("iID_MaGiai");
+								if(jsonArray.getJSONObject(i).has("sTenDoiNha")){
+									TenDoiNha = jsonArray.getJSONObject(i).getString("sTenDoiNha");
+								}
+								if(jsonArray.getJSONObject(i).has("sTenDoiKhach")){
+									TenDoiKhach = jsonArray.getJSONObject(i).getString("sTenDoiKhach");
+								}
+								String sLastMatches_DoiNha = jsonArray.getJSONObject(i).getString("sLastMatches_DoiNha");
+								String sLastMatches_DoiKhach = jsonArray.getJSONObject(i).getString("sLastMatches_DoiKhach");
+								String[] temps1 = sLastMatches_DoiNha.split(",");
+								((TextView) view.findViewById(R.id.doinha_t1)).setText(temps1[0]);
+								((TextView) view.findViewById(R.id.doinha_t2)).setText(temps1[1]);
+								((TextView) view.findViewById(R.id.doinha_t3)).setText(temps1[2]);
+								((TextView) view.findViewById(R.id.doinha_t4)).setText(temps1[3]);
+								((TextView) view.findViewById(R.id.doinha_t5)).setText(temps1[4]);
+								
+								String[] temps2 = sLastMatches_DoiKhach.split(",");
+								((TextView) view.findViewById(R.id.doikhach_t1)).setText(temps2[0]);
+								((TextView) view.findViewById(R.id.doikhach_t2)).setText(temps2[1]);
+								((TextView) view.findViewById(R.id.doikhach_t3)).setText(temps2[2]);
+								((TextView) view.findViewById(R.id.doikhach_t4)).setText(temps2[3]);
+								((TextView) view.findViewById(R.id.doikhach_t5)).setText(temps2[4]);
+							}
 							
-							String[] temps2 = sLastMatches_DoiKhach.split(",");
-							((TextView) view.findViewById(R.id.doikhach_t1)).setText(temps2[0]);
-							((TextView) view.findViewById(R.id.doikhach_t2)).setText(temps2[1]);
-							((TextView) view.findViewById(R.id.doikhach_t3)).setText(temps2[2]);
-							((TextView) view.findViewById(R.id.doikhach_t4)).setText(temps2[3]);
-							((TextView) view.findViewById(R.id.doikhach_t5)).setText(temps2[4]);
 						}
-						
+						String maGiaiDau = iID_MaGiai;
+						if (maGiaiDau == null) {
+							maGiaiDau = "";
+						}
+						BongDaServiceManager
+								.getInstance()
+								.getBongDaService()
+								.callApi(
+										System.currentTimeMillis(),
+										callbackAPI_bangxephang,
+										ByUtils.wsFootBall_BangXepHang.replace("bangxephangId",
+												maGiaiDau));
+						countryAdapter.notifyDataSetChanged();
+						PhongDoChiTiet();
 						// countryAdapter.notifyDataSetChanged();
 					} catch (Exception e) {
 						Log.e("ERR", e.getMessage());
@@ -181,12 +204,12 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 			}
 		};
 		
-		callbackAPI = new ICallbackAPI() {
+		callbackAPI_bangxephang = new ICallbackAPI() {
 			@Override
 			public void onSuccess(String response) {
 				// CommonAndroid.showDialog(getActivity(), "data2:" + response ,
 				// null);
-				 Log.e("aaaaa", "data::" + response);
+				 Log.e("aaaaa", "callbackAPI_bangxephang::" + response);
 				String string_temp = response == null ? "" : CommonAndroid.parseXMLAction(response);
 				if (!string_temp.equalsIgnoreCase("")) {
 					try {
@@ -228,9 +251,8 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 											.getContext(), phongdo));
 						}
 						// countryAdapter.notifyDataSetChanged();
-					} catch (JSONException e) {
-						// CommonAndroid.showDialog(getActivity(), "data2json:"
-						// + e.getMessage() , null);
+					} catch (Exception e) {
+						Log.e("ERR", e.getMessage());
 					}
 
 				}
@@ -574,8 +596,8 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 		aobj[0] = Integer.valueOf(iID_MaTran);
 		String param = String.format(ByUtils.wsFootBall_Phong_Do, aobj);
 		Log.e("param_phongdo", "param:" +param);
-		new APICaller(getActivity()).callApi("", true, callbackAPI_LastMatches, param);
-		PhongDoChiTiet();
+		new APICaller(view.getContext()).callApi("", true, callbackAPI_LastMatches, param);
+		
 		// for(int i = 0; i < 6; i ++){
 		// phongdodoidau_bangephang_listitem.addView(new
 		// BangXepHangItemView(getActivity()));
@@ -591,7 +613,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 					"magiai", magiai);
 			param2 = param2.replace("madoinha", madoinha);
 			param2 = param2.replace("madoikhach", madoikhach);
-			new APICaller(getActivity()).callApi("", true, callbackAPI_Chitiet,
+			new APICaller(view.getContext()).callApi("", true, callbackAPI_Chitiet,
 					param2);
 		} catch (Exception exception) {
 

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.bongda.R;
 import com.app.bongda.base.BaseFragment;
@@ -129,6 +130,9 @@ public class BangXepHangFragment extends BaseFragment {
 													"sBanThua"), jsonarray
 											.getJSONObject(i)
 											.getString("sHeSo")));
+						}
+						if(jsonarray.length() == 0){
+							Toast.makeText(mHeader.getContext(), mHeader.getContext().getResources().getString(R.string.khongconthongtinbangxephang), Toast.LENGTH_LONG).show();
 						}
 						countryAdapter.notifyDataSetChanged();
 					} catch (JSONException e) {
