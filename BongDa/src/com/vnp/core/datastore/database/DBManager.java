@@ -59,6 +59,7 @@ public class DBManager {
 			addTable(new CountryTable());
 			addTable(new DoiBongTable());
 			addTable(new GiaiDauTable());
+			addTable(new LiveScoreLikeTable());
 		}
 
 		@Override
