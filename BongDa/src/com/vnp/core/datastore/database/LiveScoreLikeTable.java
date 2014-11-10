@@ -5,10 +5,14 @@ public class LiveScoreLikeTable extends Table {
 	public LiveScoreLikeTable() {
 		addColumns("iID_MaTran");
 		addColumns("iID_MaGiai");
+		
 		addColumns("iID_MaDoiNha");
 		addColumns("iID_MaDoiKhach");
 		addColumns("iID_MaMayChu");
-
+		addColumns("sLogoQuocGia");
+		addColumns("sLogoGiai");
+		addColumns("sLogoDoiNha");
+		addColumns("sLogoDoiKhach");
 		addColumns("sThoiGian");
 		addColumns("iCServer");
 		addColumns("dThoiGianThiDau");
@@ -150,8 +154,16 @@ public class LiveScoreLikeTable extends Table {
 		/**
 		 * add new
 		 */
-		addColumns("bdsession");
+
+		// 1 show
+		// 0 hidden
+		addColumns("bdneedshow");
+		// contry 0
+		// item 1
 		addColumns("bdposition");
+		// 1 liked
+		// 0 unlike
+		addColumns("bdliked");
 
 	}
 
