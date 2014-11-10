@@ -31,7 +31,6 @@ import com.app.bongda.base.BongDaBaseAdapter;
 import com.app.bongda.base.ImageLoaderUtils;
 import com.app.bongda.callback.APICaller;
 import com.app.bongda.callback.APICaller.ICallbackAPI;
-import com.app.bongda.fragment.Backup_LiveScoreFragment.MyTouchListener;
 import com.app.bongda.inter.CallBackListenner;
 import com.app.bongda.model.GiaiDau;
 import com.app.bongda.model.LiveScore;
