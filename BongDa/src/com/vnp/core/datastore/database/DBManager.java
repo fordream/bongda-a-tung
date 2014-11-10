@@ -313,7 +313,21 @@ public class DBManager {
 	}
 
 	public Cursor liveScoreQueryLiked() {
-		String where = " bdliked='1' or bdposition ='0'";
+		String whereTeamFiller = " bdliked='1' and bdposition ='1'";
+		Cursor cursorTeam = database.query(new LiveScoreLikeTable().getTableName(), null, whereTeamFiller, null, null, null, null);
+		String where = " bdliked='1' or ( bdposition ='0' and iID_MaGiai IN(%s))";
+		String in = "";
+		if (cursorTeam != null) {
+			while (cursorTeam.moveToNext()) {
+				String iID_MaGiai = cursorTeam.getString(cursorTeam.getColumnIndex("iID_MaGiai"));
+				if ("".equals(in)) {
+					in = String.format("'%s'", iID_MaGiai);
+				} else {
+					in = String.format("%s,'%s'", in, iID_MaGiai);
+				}
+			}
+		}
+		where = String.format(where, in);
 		String orderBy = "iID_MaGiai,bdposition";
 		return database.query(new LiveScoreLikeTable().getTableName(), null, where, null, null, null, orderBy);
 	}
