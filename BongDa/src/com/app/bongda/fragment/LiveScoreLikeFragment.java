@@ -36,9 +36,10 @@ public class LiveScoreLikeFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		if (inflater == null)
+		if (inflater == null){
 			inflater = (LayoutInflater) container.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
+		}
+		
 		if (view == null) {
 			view = inflater.inflate(R.layout.livesocre, null);
 		} else {
@@ -49,9 +50,16 @@ public class LiveScoreLikeFragment extends Fragment {
 		headerView.setTextHeader(R.string.tranquantam);
 		listView = (ListView) view.findViewById(R.id.listView1);
 		listView.setOnItemClickListener(onItemClickListener);
-		Cursor c = BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreQueryLiked();
-		listView.setAdapter(new LiveScoreLikeCusorAdapter(container.getContext(), c, false, onItemClickListener, callBackListenner));
-
+		reloadData();
 		return view;
+	}
+
+	public void reloadData() {
+		try {
+			Cursor c = BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreQueryLiked();
+			listView.setAdapter(new LiveScoreLikeCusorAdapter(view.getContext(), c, false, onItemClickListener, callBackListenner));
+		} catch (Exception exception) {
+
+		}
 	}
 }

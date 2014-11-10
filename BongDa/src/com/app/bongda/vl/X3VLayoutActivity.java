@@ -18,6 +18,13 @@ public class X3VLayoutActivity extends Activity {
 
 		
 	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		
+		bongDaViewPager.onResume();
+	}
 
 	@Override
 	public void onBackPressed() {

@@ -67,6 +67,7 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 				pager.setAdapter(BaseViewOfFaragmentPagerAdapter.this);
 				notifyDataSetChanged();
 				pager.setCurrentItem(getCount() - 1);
+				onResume();
 			} else if (msg.what == 2) {
 				// next
 				pager.setCurrentItem(getCount() - 1);
@@ -201,7 +202,6 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 				}
 			}
 		};
-		Log.e("difference", "type--" + type);
 
 		addFragement(new LiveScoreFragment(liveScoreOnItemClickListener, callBackListenner, data, type));
 	}
@@ -269,8 +269,8 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 				}
 			}
 		};
-
-		addFragement(new LiveScoreLikeFragment(liveScoreOnItemClickListener, callBackListenner));
+		liveScoreLikeFragment = new LiveScoreLikeFragment(liveScoreOnItemClickListener, callBackListenner);
+		addFragement(liveScoreLikeFragment);
 	}
 
 	public void addGameDuDoan(GiaiDau dau) {
@@ -352,4 +352,14 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 		}
 		return false;
 	}
+
+	public void onResume() {
+		if (getCount() == 1) {
+			if (pager.getContext() instanceof X3VLayoutActivity && liveScoreLikeFragment != null) {
+				liveScoreLikeFragment.reloadData();
+			}
+		}
+	}
+
+	LiveScoreLikeFragment liveScoreLikeFragment;
 }

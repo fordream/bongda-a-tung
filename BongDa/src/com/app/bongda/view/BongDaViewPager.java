@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+
 //com.app.bongda.view.BongDaViewPager
 public class BongDaViewPager extends ViewPager {
 	private BaseViewOfFaragmentPagerAdapter adapter;
@@ -29,5 +30,9 @@ public class BongDaViewPager extends ViewPager {
 
 	public boolean onBackPressed() {
 		return adapter.onBackPressed();
+	}
+
+	public void onResume() {
+		adapter.onResume();
 	}
 }
