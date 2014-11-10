@@ -1,8 +1,31 @@
 package com.app.bongda.model;
 
 public class LiveScore extends PhongDo {
-	public LiveScore(boolean isHeader, String id, String giai, String name, String name2,
-			String ht, String phut ,String thoigian, String iC0, String tiso, int trangthai, String magiai, String madoinha, String madoikhach, String IDMagiai, boolean bNhanDinhChuyenGia_, boolean bGameDuDoan_, boolean bDaCapNhapVaoBXH_ , String sLogoQuocGia_, String sLogoGiai_, String sLogoDoiNha_, String sLogoDoiKhach_,String iID_MaDoiNha_, String iID_MaDoiKhach_
+	public LiveScore(
+			boolean isHeader
+			, String id
+			, String giai
+			, String name
+			, String name2,
+			String ht
+			, String phut
+			,String thoigian
+			, String iC0
+			, String tiso
+			, int trangthai
+			, String magiai
+			, String madoinha
+			, String madoikhach
+			, String IDMagiai
+			, boolean bNhanDinhChuyenGia_
+			, boolean bGameDuDoan_
+			, boolean bDaCapNhapVaoBXH_ 
+			, String sLogoQuocGia_
+			, String sLogoGiai_
+			, String sLogoDoiNha_
+			, String sLogoDoiKhach_
+			,String iID_MaDoiNha_
+			, String iID_MaDoiKhach_
 ) {
 		super(id, name, name2, iC0, thoigian);
 		this.isHeader = isHeader;

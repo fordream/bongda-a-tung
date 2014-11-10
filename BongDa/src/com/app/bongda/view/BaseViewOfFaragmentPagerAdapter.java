@@ -216,13 +216,6 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 
 				// xem tuong thuat a
 				if (!liveScore.isHeader()) {
-					// GiaiDau dau = new GiaiDau(liveScore.getId(),
-					// liveScore.getName());
-					// GiaiDau dau = new GiaiDau(liveScore.getId(),
-					// liveScore.getName(), liveScore.sMaGiai(),
-					// liveScore.madoinha(), liveScore.madoikhach(),
-					// liveScore.idmagiai());
-
 					addTuongThuatTranLiveScoreFragment(liveScore);
 				}
 			}

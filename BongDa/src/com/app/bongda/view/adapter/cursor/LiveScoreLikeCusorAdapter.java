@@ -15,6 +15,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import com.app.bongda.R;
 import com.app.bongda.base.ImageLoaderUtils;
 import com.app.bongda.inter.CallBackListenner;
+import com.app.bongda.model.LiveScore;
 
 public class LiveScoreLikeCusorAdapter extends CursorAdapter {
 	private OnItemClickListener onItemClickListener;
@@ -64,9 +65,10 @@ public class LiveScoreLikeCusorAdapter extends CursorAdapter {
 			if (status >= 2) {
 				view.findViewById(R.id.TextView03).setVisibility(View.VISIBLE);// live
 				view.findViewById(R.id.TextView02_ketqua).setVisibility(View.VISIBLE);
-				setText(view, R.id.TextView02_ketqua, arg1.getString(arg1.getColumnIndex("iTiso")));// tiso
+				String tiso = arg1.getString(arg1.getColumnIndex("iCN_BanThang_DoiNha")) + " - " + arg1.getString(arg1.getColumnIndex("iCN_BanThang_DoiKhach"));
+				setText(view, R.id.TextView02_ketqua, tiso);// tiso
 				view.findViewById(R.id.ImageView031).setVisibility(View.GONE);
-				setText(view, R.id.tv1, arg1.getString(arg1.getColumnIndex("HT")));
+				setText(view, R.id.tv1, "HT");
 
 				if (status == 5) {
 					setText(view, R.id.TextView01, "FT");// time
@@ -112,29 +114,54 @@ public class LiveScoreLikeCusorAdapter extends CursorAdapter {
 				setText(view, R.id.tv1, String.format("%d/%d", arrayOfObject2));
 			}
 
-			// setText(convertView, R.id.TextView01, liveScore.getTime());
 			// sTenDoiNha
-			String sTenDoiNha = arg1.getString(arg1.getColumnIndex("sTenDoiNha"));
-			setText(view, R.id.TextView02, sTenDoiNha);
+			setText(view, R.id.TextView02, arg1.getString(arg1.getColumnIndex("sTenDoiNha")));
 
 			// sTenDoiKhach
-			String sTenDoiKhach = arg1.getString(arg1.getColumnIndex("sTenDoiKhach"));
-			setText(view, R.id.TextView023, sTenDoiKhach);
+			setText(view, R.id.TextView023, arg1.getString(arg1.getColumnIndex("sTenDoiKhach")));
 
 			// sLogoGiai
 			String sLogoGiai = arg1.getString(arg1.getColumnIndex("sLogoGiai"));
 			ImageLoaderUtils.getInstance(null).DisplayImage(sLogoGiai, (ImageView) view.findViewById(R.id.logogiai));
+
+			final LiveScore liveScore = new LiveScore(//
+					false,//
+					arg1.getString(arg1.getColumnIndex("iID_MaTran"))//
+					, arg1.getString(arg1.getColumnIndex("sTenGiai"))//
+					, arg1.getString(arg1.getColumnIndex("sTenDoiNha"))//
+					, arg1.getString(arg1.getColumnIndex("sTenDoiKhach"))//
+					, null//
+					, null//
+					, null//
+					, null//
+					, null//
+					, 0//
+					, arg1.getString(arg1.getColumnIndex("sMaGiai"))//
+					, null//
+					, null//
+					, arg1.getString(arg1.getColumnIndex("iID_MaGiai"))// /
+					, false//
+					, false//
+					, false//
+					, arg1.getString(arg1.getColumnIndex("sLogoQuocGia"))//
+					, arg1.getString(arg1.getColumnIndex("sLogoGiai"))//
+					, arg1.getString(arg1.getColumnIndex("sLogoDoiNha"))//
+					, arg1.getString(arg1.getColumnIndex("sLogoDoiKhach"))//
+					, arg1.getString(arg1.getColumnIndex("iID_MaDoiNha"))//
+					, arg1.getString(arg1.getColumnIndex("iID_MaDoiKhach"))//
+			);//
+
+			liveScore.iID_MaGiai();
 			view.findViewById(R.id.image_bangxephang).setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// callBackListenner.onCallBackListenner(2, liveScore);
+					callBackListenner.onCallBackListenner(2, liveScore);
 				}
 			});
-			// convertView.findViewById(R.id.bangxephang_icon).setVisibility(View.VISIBLE);
 			view.findViewById(R.id.phongdo_icon).setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// callBackListenner.onCallBackListenner(0, liveScore);
+					callBackListenner.onCallBackListenner(0, liveScore);
 				}
 			});
 		}

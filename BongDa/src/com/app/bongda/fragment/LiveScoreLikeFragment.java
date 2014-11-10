@@ -41,14 +41,16 @@ public class LiveScoreLikeFragment extends Fragment {
 
 		if (view == null) {
 			view = inflater.inflate(R.layout.livesocre, null);
+		} else {
+			return view;
 		}
 
 		HeaderView headerView = (HeaderView) view.findViewById(R.id.headerView1);
 		headerView.setTextHeader(R.string.tranquantam);
 		listView = (ListView) view.findViewById(R.id.listView1);
 		Cursor c = BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreQueryLiked();
-		listView.setAdapter(new LiveScoreLikeCusorAdapter(container.getContext(), c, true,onItemClickListener,callBackListenner));
-		
+		listView.setAdapter(new LiveScoreLikeCusorAdapter(container.getContext(), c, true, onItemClickListener, callBackListenner));
+
 		return view;
 	}
 }
