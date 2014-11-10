@@ -40,6 +40,10 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 	public static View views;
 	SharedPreferences pref_tuongthuat;
 	private boolean ListItem = false;
+	private int bong = 1;
+	private int bong_pen = 2;
+	private int thevang = 3;
+	private int thedo = 4;
 
 	public TuongThuatTranLiveScoreFragment(LiveScore dau,
 			OnItemClickListener onItemClickListener,
@@ -95,17 +99,17 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 					setText(convertView, R.id.name1, tuongthuattran.getName());
 					ImageView localImageView1 = (ImageView) convertView
 							.findViewById(R.id.icon_tuongthuat1);
-					if (tuongthuattran.isTrangthai() == 1) { // quabongthuong
+					if (tuongthuattran.isTrangthai() == bong) { // quabongthuong
 						localImageView1
 								.setImageResource(R.drawable.chitiettrandau_32);
-					} else if (tuongthuattran.isTrangthai() == 10) { // quabongchu
+					} else if (tuongthuattran.isTrangthai() == bong_pen) { // quabongchu
 																		// P
 						localImageView1
 								.setImageResource(R.drawable.chitiettrandau_28);
-					} else if (tuongthuattran.isTrangthai() == 2) { // thevang
+					} else if (tuongthuattran.isTrangthai() == thevang) { // thevang
 						localImageView1
 								.setImageResource(R.drawable.chitiettrandau_40);
-					} else { // thedo
+					} else  if (tuongthuattran.isTrangthai() == thedo){ // thedo
 						localImageView1
 								.setImageResource(R.drawable.chitiettrandau_43);
 					}
@@ -119,17 +123,17 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 					setText(convertView, R.id.name2, tuongthuattran.getName());
 					ImageView localImageView2 = (ImageView) convertView
 							.findViewById(R.id.icon_tuongthuat2);
-					if (tuongthuattran.isTrangthai() == 1) { // quabongthuong
+					if (tuongthuattran.isTrangthai() == bong) { // quabongthuong
 						localImageView2
 								.setImageResource(R.drawable.chitiettrandau_32);
-					} else if (tuongthuattran.isTrangthai() == 10) { // quabongchu
+					} else if (tuongthuattran.isTrangthai() == bong_pen) { // quabongchu
 																		// P
 						localImageView2
 								.setImageResource(R.drawable.chitiettrandau_28);
-					} else if (tuongthuattran.isTrangthai() == 2) { // thevang
+					} else if (tuongthuattran.isTrangthai() == thevang) { // thevang
 						localImageView2
 								.setImageResource(R.drawable.chitiettrandau_40);
-					} else { // thedo
+					} else if (tuongthuattran.isTrangthai() == thedo){ // thedo
 						localImageView2
 								.setImageResource(R.drawable.chitiettrandau_43);
 					}
@@ -436,8 +440,8 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 //														doi, null, No, tem, 10));
 										itemObj.put("No", No);
 										itemObj.put("doi", doi);
-										itemObj.put("Values", Values);
-										itemObj.put("Status", 10);
+										itemObj.put("Values", tem);
+										itemObj.put("Status", bong_pen);
 										jsonArray_the.put(itemObj);
 									} else {
 //										countryAdapter
@@ -447,7 +451,7 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 										itemObj.put("No", No);
 										itemObj.put("doi", doi);
 										itemObj.put("Values", Values);
-										itemObj.put("Status", 1);
+										itemObj.put("Status", bong);
 										jsonArray_the.put(itemObj);
 									}
 								} else {
@@ -466,8 +470,8 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 //															20));
 											itemObj.put("No", No);
 											itemObj.put("doi", doi);
-											itemObj.put("Values", Values);
-											itemObj.put("Status", 20);
+											itemObj.put("Values", tem);
+											itemObj.put("Status", thevang);
 											jsonArray_the.put(itemObj);
 										} else {
 											int lastcheck = Values
@@ -483,8 +487,8 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 //															2));
 											itemObj.put("No", No);
 											itemObj.put("doi", doi);
-											itemObj.put("Values", Values);
-											itemObj.put("Status", 2);
+											itemObj.put("Values", tem);
+											itemObj.put("Status", thedo);
 											jsonArray_the.put(itemObj);
 										}
 									}
@@ -516,8 +520,8 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 //											doi, null, No, tem, 10));
 									itemObj.put("No", No);
 									itemObj.put("doi", doi);
-									itemObj.put("Values", Values);
-									itemObj.put("Status", 10);
+									itemObj.put("Values", tem);
+									itemObj.put("Status", bong_pen);
 									jsonArray_the.put(itemObj);
 								} else {
 //									countryAdapter.addItem(new TuongThuatTran(
@@ -525,7 +529,7 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 									itemObj.put("No", No);
 									itemObj.put("doi", doi);
 									itemObj.put("Values", Values);
-									itemObj.put("Status", 1);
+									itemObj.put("Status", bong);
 									jsonArray_the.put(itemObj);
 								}
 							} else {
@@ -543,8 +547,8 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 //														doi, null, No, tem, 20));
 										itemObj.put("No", No);
 										itemObj.put("doi", doi);
-										itemObj.put("Values", Values);
-										itemObj.put("Status", 20);
+										itemObj.put("Values", tem);
+										itemObj.put("Status", thevang);
 										jsonArray_the.put(itemObj);
 									} else {
 										int lastcheck = Values
@@ -559,8 +563,8 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 //														doi, null, No, tem, 2));
 										itemObj.put("No", No);
 										itemObj.put("doi", doi);
-										itemObj.put("Values", Values);
-										itemObj.put("Status", 2);
+										itemObj.put("Values", tem);
+										itemObj.put("Status", thedo);
 										jsonArray_the.put(itemObj);
 									}
 								}
