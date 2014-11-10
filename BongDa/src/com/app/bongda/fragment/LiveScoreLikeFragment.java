@@ -49,7 +49,7 @@ public class LiveScoreLikeFragment extends Fragment {
 		headerView.setTextHeader(R.string.tranquantam);
 		listView = (ListView) view.findViewById(R.id.listView1);
 		Cursor c = BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreQueryLiked();
-		listView.setAdapter(new LiveScoreLikeCusorAdapter(container.getContext(), c, true, onItemClickListener, callBackListenner));
+		listView.setAdapter(new LiveScoreLikeCusorAdapter(container.getContext(), c, false, onItemClickListener, callBackListenner));
 
 		return view;
 	}
