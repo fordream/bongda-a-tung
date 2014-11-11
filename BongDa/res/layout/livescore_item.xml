@@ -54,28 +54,41 @@
                 android:layout_height="wrap_content"
                 android:gravity="right" >
 
+               <LinearLayout
+                android:id="@+id/gamedudoan_icon"
+                android:layout_width="@dimen/dimen_35dp"
+                android:layout_height="@dimen/dimen_35dp"
+                android:background="@null">
                 <ImageView
-                    android:id="@+id/gamedudoan_icon"
                     android:layout_width="@dimen/size_button_live_score"
                     android:layout_height="@dimen/size_button_live_score"
                     android:layout_marginRight="@dimen/dimen_5dp"
                     android:background="@drawable/game_dudoan_recovered_23" />
-
+               </LinearLayout> 
+               
+				<LinearLayout
+				android:id="@+id/persion"
+                android:layout_width="@dimen/dimen_35dp"
+                android:layout_height="@dimen/dimen_35dp"
+                android:background="@null">
                 <ImageView
-                    android:id="@+id/persion"
                     android:layout_width="@dimen/size_button_live_score"
                     android:layout_height="@dimen/size_button_live_score"
                     android:background="@drawable/game_dudoan_recovered_25" />
-
+				</LinearLayout>
+				<LinearLayout
+				android:id="@+id/phongdo_icon"
+                android:layout_width="@dimen/dimen_35dp"
+                android:layout_height="@dimen/dimen_35dp"
+                android:background="@null">
                 <ImageView
-                    android:id="@+id/phongdo_icon"
                     android:layout_width="@dimen/size_button_live_score"
                     android:layout_height="@dimen/size_button_live_score"
                     android:layout_marginLeft="@dimen/dimen_5dp"
                     android:layout_marginRight="@dimen/dimen_5dp"
                     android:background="@drawable/game_dudoan_recovered_18" />
-
-                <ImageView
+				</LinearLayout>
+				<ImageView
                     android:id="@+id/traitim"
                     android:layout_width="@dimen/size_button_live_score"
                     android:layout_height="@dimen/size_button_live_score"

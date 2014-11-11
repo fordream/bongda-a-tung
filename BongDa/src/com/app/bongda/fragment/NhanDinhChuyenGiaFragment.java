@@ -38,7 +38,7 @@ public class NhanDinhChuyenGiaFragment extends BaseFragment {
 	public NhanDinhChuyenGiaFragment(GiaiDau dau, Object object) {
 		// TODO Auto-generated constructor stub
 		super();
-//		this.data = dau;
+		this.data = dau;
 	}
 
 	private CountryAdapter countryAdapter = new CountryAdapter();

@@ -258,6 +258,13 @@ public class LiveScoreFragment extends BaseFragment {
 					}
 				});
 				
+				convertView.findViewById(R.id.persion).setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						callBackListenner.onCallBackListenner(3, liveScore);
+					}
+				});
+				
 				if (addfavorite) {
 					convertView.findViewById(R.id.iconlike).setVisibility(View.VISIBLE);
 					// show tran quan tam

@@ -24,6 +24,7 @@ import com.app.bongda.fragment.DanhSachGiaiDauFragment;
 import com.app.bongda.fragment.GameDuDoanFragment;
 import com.app.bongda.fragment.LiveScoreFragment;
 import com.app.bongda.fragment.LiveScoreLikeFragment;
+import com.app.bongda.fragment.NhanDinhChuyenGiaFragment;
 import com.app.bongda.fragment.PhongDoDoiDauFragment;
 import com.app.bongda.fragment.TuongThuatTranLiveScoreFragment;
 import com.app.bongda.fragment.TyLeDuDoanFragment;
@@ -202,6 +203,7 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 					addBangXepHang(dau);
 				} else if (position == 3) {
 					// nhandinhchuyengia
+					showNhanDinhChuyenGia(dau);
 				} else {
 					addTuongThuatTranLiveScoreFragment(liveScore);
 				}
@@ -370,6 +372,10 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 				liveScoreLikeFragment.reloadData();
 			}
 		}
+	}
+	
+	public void showNhanDinhChuyenGia(GiaiDau dau) {
+		addFragement(new NhanDinhChuyenGiaFragment(dau, null));
 	}
 
 	LiveScoreLikeFragment liveScoreLikeFragment;
