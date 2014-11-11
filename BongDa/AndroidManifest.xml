@@ -47,7 +47,6 @@
         </activity>
         <activity
             android:name=".PhongDoCacDoiActivity"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale"
             android:screenOrientation="portrait" >
         </activity>
         <activity android:name=".group.X1GroupActivity" >

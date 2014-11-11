@@ -103,7 +103,11 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 		this.pager = mpager;
 		pager.setAdapter(this);
 		pager.setOnPageChangeListener(changeListener);
-		if (mpager.getContext() instanceof X4VLayoutActivity || mpager.getContext() instanceof X2VLayoutActivity || mpager.getContext() instanceof PhongDoCacDoiActivity || mpager.getContext() instanceof NhanDinhChuyenGiaActivity) {
+		if (mpager.getContext() instanceof X4VLayoutActivity//
+				|| mpager.getContext() instanceof X2VLayoutActivity //
+				|| mpager.getContext() instanceof PhongDoCacDoiActivity //
+				|| mpager.getContext() instanceof NhanDinhChuyenGiaActivity//
+				) {
 			addCountry();
 		} else if (mpager.getContext() instanceof X1VLayoutActivity) {
 			addLiveScore(null, null);
