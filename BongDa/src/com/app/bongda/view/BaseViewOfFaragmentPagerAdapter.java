@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
+import com.app.bongda.NhanDinhChuyenGiaActivity;
 import com.app.bongda.PhongDoCacDoiActivity;
 import com.app.bongda.fragment.BangXepHangFragment;
 import com.app.bongda.fragment.CountryFragment;
@@ -101,7 +102,7 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 		this.pager = mpager;
 		pager.setAdapter(this);
 		pager.setOnPageChangeListener(changeListener);
-		if (mpager.getContext() instanceof X4VLayoutActivity || mpager.getContext() instanceof X2VLayoutActivity || mpager.getContext() instanceof PhongDoCacDoiActivity) {
+		if (mpager.getContext() instanceof X4VLayoutActivity || mpager.getContext() instanceof X2VLayoutActivity || mpager.getContext() instanceof PhongDoCacDoiActivity || mpager.getContext() instanceof NhanDinhChuyenGiaActivity) {
 			addCountry();
 		} else if (mpager.getContext() instanceof X1VLayoutActivity) {
 			addLiveScore(null, null);
@@ -314,7 +315,9 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 				} else if (pager.getContext() instanceof X2VLayoutActivity) {
 					addLiveScore(dau, "");
 				} else if (pager.getContext() instanceof PhongDoCacDoiActivity) {
-					addLiveScore(dau, "");
+					addLiveScore(dau, "phongdo");
+				} else if (pager.getContext() instanceof NhanDinhChuyenGiaActivity) {
+					addLiveScore(dau, "nhandinhchuyengia");
 				}
 			}
 		};

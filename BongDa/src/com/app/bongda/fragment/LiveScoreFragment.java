@@ -338,13 +338,16 @@ public class LiveScoreFragment extends BaseFragment {
 		listView = (ListView) view.findViewById(R.id.listView1);
 		listView.setAdapter(countryAdapter);
 
-		headerView.findViewById(R.id.Button05).setVisibility(View.VISIBLE);
-		headerView.findViewById(R.id.Button05).setOnClickListener(clickListener);
-		if (TypeView != null) {
-			if (TypeView.equalsIgnoreCase("quantam") ){
-				CommonUtil.getdata(getActivity());
+		if(TypeView == null ){
+			headerView.findViewById(R.id.Button05).setVisibility(View.VISIBLE);
+			headerView.findViewById(R.id.Button05).setOnClickListener(clickListener);
+			if (TypeView != null) {
+				if (TypeView.equalsIgnoreCase("quantam") ){
+					CommonUtil.getdata(getActivity());
+				}
 			}
-		}	
+		}
+		
 		views_err = (TextView) view.findViewById(R.id.error_txt);
 	}
 
@@ -458,65 +461,68 @@ public class LiveScoreFragment extends BaseFragment {
 
 								// String kk =
 								// array.get(i).getString("sTenGiai");
-								String HT = "";
-								StringBuilder stringbuilder1 = new StringBuilder("HT ");
-								HT = stringbuilder1.append(array.get(i).getString("iCN_BanThang_DoiNha_HT")).append(" - ").append(array.get(i).getString("iCN_BanThang_DoiKhach_HT")).toString();
+								if(TypeView == null || ((TypeView != null && "nhandinhchuyengia".equalsIgnoreCase(TypeView) && bNhanDinhChuyenGia) ) || ( (TypeView != null && "phongdo".equalsIgnoreCase(TypeView)) ) ){
+									String HT = "";
+									StringBuilder stringbuilder1 = new StringBuilder("HT ");
+									HT = stringbuilder1.append(array.get(i).getString("iCN_BanThang_DoiNha_HT")).append(" - ").append(array.get(i).getString("iCN_BanThang_DoiKhach_HT")).toString();
 
-								String Banthang = (new StringBuilder()).append(array.get(i).getString("iCN_BanThang_DoiNha")).append(" - ").append(array.get(i).getString("iCN_BanThang_DoiKhach"))
-										.toString();
-								String iID_MaGiai = array.get(i).getString("iID_MaGiai");
-								String sTenGiai = array.get(i).getString("sTenGiai");
-								String sTenDoiNha = array.get(i).getString("sTenDoiNha");
-								String sTenDoiKhach = array.get(i).getString("sTenDoiKhach");
-								int iTrangThai = Integer.parseInt(array.get(i).getString("iTrangThai"));
-								String iID_MaTran = array.get(i).getString("iID_MaTran");
-								String iC0 = array.get(i).getString("iC0");// ngay
-																			// thi
-																			// dau
-								String iPhut = array.get(i).getString("iPhut");
-								String sThoiGian = array.get(i).getString("sThoiGian");// thoi
-																						// gian
-																						// thi
-																						// dau
-								String tiso = array.get(i).getString("iCN_BanThang_DoiNha") + " - " + array.get(i).getString("iCN_BanThang_DoiKhach");
-								String sMaGiai = array.get(i).getString("sMaGiai");
-								String sMaDoiNha = array.get(i).getString("sMaDoiNha");
-								String sMaDoiKhach = array.get(i).getString("sMaDoiKhach");
-								String sLogoQuocGia = "";
-								String sLogoGiai = "";
-								String sLogoDoiNha = "";
-								String sLogoDoiKhach = "";
-								if (array.get(i).has("sLogoQuocGia")){
-									sLogoQuocGia = array.get(i).getString("sLogoQuocGia");
-								}
-								if (array.get(i).has("sLogoGiai")){
-									sLogoGiai = array.get(i).getString("sLogoGiai");
-								}
-								if (array.get(i).has("sLogoDoiNha")){
-									sLogoDoiNha = array.get(i).getString("sLogoDoiNha");
-								}
-								if (array.get(i).has("sLogoDoiKhach")){
-									sLogoDoiKhach = array.get(i).getString("sLogoDoiKhach");
-								}
-								String iID_MaDoiNha = array.get(i).getString("iID_MaDoiNha");
-								String iID_MaDoiKhach = array.get(i).getString("iID_MaDoiKhach");
-								// Log.e("kkk",sTenGiai +":" +iTrangThai + ":"
-								// +sTenDoiNha);iID_MaGiai
-								if (i == 0) {
-									countryAdapter.addItem(new LiveScore(true, iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut, sThoiGian, iC0, tiso, iTrangThai, sMaGiai, sMaDoiNha,
-											sMaDoiKhach, iID_MaGiai, bNhanDinhChuyenGia, bGameDuDoan, bDaCapNhapVaoBXH, sLogoQuocGia, sLogoGiai, sLogoDoiNha, sLogoDoiKhach, iID_MaDoiNha, iID_MaDoiKhach));
-									count_showdata = count_showdata + 1;
-								} else if (i > 0) {
-									if ((array.get(i).getString("sTenGiai")).equalsIgnoreCase(array.get(i - 1).getString("sTenGiai"))) {
-										countryAdapter.addItem(new LiveScore(false, iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut, sThoiGian, iC0, tiso, iTrangThai, sMaGiai, sMaDoiNha,
-												sMaDoiKhach, iID_MaGiai, bNhanDinhChuyenGia, bGameDuDoan, bDaCapNhapVaoBXH, sLogoQuocGia, sLogoGiai, sLogoDoiNha, sLogoDoiKhach, iID_MaDoiNha, iID_MaDoiKhach));
-										count_showdata = count_showdata + 1;
-									} else {
+									String Banthang = (new StringBuilder()).append(array.get(i).getString("iCN_BanThang_DoiNha")).append(" - ").append(array.get(i).getString("iCN_BanThang_DoiKhach"))
+											.toString();
+									String iID_MaGiai = array.get(i).getString("iID_MaGiai");
+									String sTenGiai = array.get(i).getString("sTenGiai");
+									String sTenDoiNha = array.get(i).getString("sTenDoiNha");
+									String sTenDoiKhach = array.get(i).getString("sTenDoiKhach");
+									int iTrangThai = Integer.parseInt(array.get(i).getString("iTrangThai"));
+									String iID_MaTran = array.get(i).getString("iID_MaTran");
+									String iC0 = array.get(i).getString("iC0");// ngay
+																				// thi
+																				// dau
+									String iPhut = array.get(i).getString("iPhut");
+									String sThoiGian = array.get(i).getString("sThoiGian");// thoi
+																							// gian
+																							// thi
+																							// dau
+									String tiso = array.get(i).getString("iCN_BanThang_DoiNha") + " - " + array.get(i).getString("iCN_BanThang_DoiKhach");
+									String sMaGiai = array.get(i).getString("sMaGiai");
+									String sMaDoiNha = array.get(i).getString("sMaDoiNha");
+									String sMaDoiKhach = array.get(i).getString("sMaDoiKhach");
+									String sLogoQuocGia = "";
+									String sLogoGiai = "";
+									String sLogoDoiNha = "";
+									String sLogoDoiKhach = "";
+									if (array.get(i).has("sLogoQuocGia")){
+										sLogoQuocGia = array.get(i).getString("sLogoQuocGia");
+									}
+									if (array.get(i).has("sLogoGiai")){
+										sLogoGiai = array.get(i).getString("sLogoGiai");
+									}
+									if (array.get(i).has("sLogoDoiNha")){
+										sLogoDoiNha = array.get(i).getString("sLogoDoiNha");
+									}
+									if (array.get(i).has("sLogoDoiKhach")){
+										sLogoDoiKhach = array.get(i).getString("sLogoDoiKhach");
+									}
+									String iID_MaDoiNha = array.get(i).getString("iID_MaDoiNha");
+									String iID_MaDoiKhach = array.get(i).getString("iID_MaDoiKhach");
+									// Log.e("kkk",sTenGiai +":" +iTrangThai + ":"
+									// +sTenDoiNha);iID_MaGiai
+									if (i == 0) {
 										countryAdapter.addItem(new LiveScore(true, iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut, sThoiGian, iC0, tiso, iTrangThai, sMaGiai, sMaDoiNha,
 												sMaDoiKhach, iID_MaGiai, bNhanDinhChuyenGia, bGameDuDoan, bDaCapNhapVaoBXH, sLogoQuocGia, sLogoGiai, sLogoDoiNha, sLogoDoiKhach, iID_MaDoiNha, iID_MaDoiKhach));
 										count_showdata = count_showdata + 1;
+									} else if (i > 0) {
+										if ((array.get(i).getString("sTenGiai")).equalsIgnoreCase(array.get(i - 1).getString("sTenGiai"))) {
+											countryAdapter.addItem(new LiveScore(false, iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut, sThoiGian, iC0, tiso, iTrangThai, sMaGiai, sMaDoiNha,
+													sMaDoiKhach, iID_MaGiai, bNhanDinhChuyenGia, bGameDuDoan, bDaCapNhapVaoBXH, sLogoQuocGia, sLogoGiai, sLogoDoiNha, sLogoDoiKhach, iID_MaDoiNha, iID_MaDoiKhach));
+											count_showdata = count_showdata + 1;
+										} else {
+											countryAdapter.addItem(new LiveScore(true, iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut, sThoiGian, iC0, tiso, iTrangThai, sMaGiai, sMaDoiNha,
+													sMaDoiKhach, iID_MaGiai, bNhanDinhChuyenGia, bGameDuDoan, bDaCapNhapVaoBXH, sLogoQuocGia, sLogoGiai, sLogoDoiNha, sLogoDoiKhach, iID_MaDoiNha, iID_MaDoiKhach));
+											count_showdata = count_showdata + 1;
+										}
 									}
 								}
+								
 
 							}
 							Log.e("aaaaaaa","count_showdata::" +count_showdata);

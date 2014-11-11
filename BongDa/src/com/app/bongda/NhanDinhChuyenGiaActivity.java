@@ -12,15 +12,28 @@ import com.app.bongda.fragment.DanhSachGiaiDauFragment;
 import com.app.bongda.fragment.PhongDoFragment;
 import com.app.bongda.model.Country;
 import com.app.bongda.model.GiaiDau;
+import com.app.bongda.view.BongDaViewPager;
 
 public class NhanDinhChuyenGiaActivity extends BaseX1X2Activity {
-	ICallbackAPI callbackAPI;
-
+//	ICallbackAPI callbackAPI;
+	private BongDaViewPager bongDaViewPager;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+//		overridePendingTransition(R.anim.bot_to_top, R.anim.nothing);
+//		showNhanDinhChuyenGia(null);
+		setContentView(R.layout.vlayout);
 		overridePendingTransition(R.anim.bot_to_top, R.anim.nothing);
-		showNhanDinhChuyenGia(null);
+		bongDaViewPager = (BongDaViewPager) findViewById(R.id.bongdaviewpager);
+	}
+	
+	@Override
+	public void onBackPressed() {
+
+		if (bongDaViewPager.onBackPressed()) {
+			return;
+		}
+		super.onBackPressed();
 	}
 
 	@Override
