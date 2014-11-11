@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -155,10 +156,10 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 					sLogoGiai, (ImageView) views.findViewById(R.id.logogiai));
 			ImageLoaderUtils.getInstance(views.getContext()).DisplayImage(
 					sLogoDoiNha,
-					(ImageView) views.findViewById(R.id.logo_doinha));
+					(ImageView) views.findViewById(R.id.logo_doinha), BitmapFactory.decodeResource(views.getResources(), R.drawable.noimg));
 			ImageLoaderUtils.getInstance(views.getContext()).DisplayImage(
 					sLogoDoiKhach,
-					(ImageView) views.findViewById(R.id.logo_doikhach));
+					(ImageView) views.findViewById(R.id.logo_doikhach), BitmapFactory.decodeResource(views.getResources(), R.drawable.noimg));
 			Log.e("aaaa", "sLogoDoiNha" + sLogoDoiNha + "::sLogoDoiKhach"
 					+ sLogoDoiKhach);
 
