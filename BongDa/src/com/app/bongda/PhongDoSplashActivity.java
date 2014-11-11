@@ -20,7 +20,7 @@ import com.app.bongda.vl.X2VLayoutActivity;
 import com.app.bongda.vl.X3VLayoutActivity;
 import com.app.bongda.vl.X4VLayoutActivity;
 
-public class SplashActivity extends TabActivity implements OnTabChangeListener {
+public class PhongDoSplashActivity extends TabActivity implements OnTabChangeListener {
 	private static final String CHANGETAG = "CHANGETAG";
 
 	public static final void changTab(int index, Context context) {
@@ -38,15 +38,16 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.tabexampleslide);
+		setContentView(R.layout.tabexample0slide);
 		getTabHost().setOnTabChangedListener(this);
 		getTabHost().setVisibility(View.VISIBLE);
-		
+
 		if (ByUtils.USEGROUPVIEW) {
-			addTab(X1VLayoutActivity.class, "Home", "Home", R.drawable.menu_1);
-			addTab(X2VLayoutActivity.class, "M1", "M1", R.drawable.menu_2);
-			addTab(X3VLayoutActivity.class, "M2", "M2", R.drawable.menu_3);
-			addTab(X4VLayoutActivity.class, "M3", "M3", R.drawable.menu_4);
+			// addTab(X1VLayoutActivity.class, "Home", "Home",
+			// R.drawable.menu_1);
+			// addTab(X2VLayoutActivity.class, "M1", "M1", R.drawable.menu_2);
+			// addTab(X3VLayoutActivity.class, "M2", "M2", R.drawable.menu_3);
+			// addTab(X4VLayoutActivity.class, "M3", "M3", R.drawable.menu_4);
 		} else {
 			// addTab(X1Activity.class, "Home", "Home", R.drawable.menu_1);
 			// addTab(X2Activity.class, "M1", "M1", R.drawable.menu_2);
@@ -54,7 +55,7 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 			// addTab(X4Activity.class, "M3", "M3", R.drawable.menu_4);
 		}
 
-		addTab(X5Activity.class, "M4", "M4", R.drawable.menu_5);
+		addTab(PhongDoCacDoiActivity.class, "M4", "M4", R.drawable.menu_5);
 	}
 
 	@Override
@@ -89,19 +90,19 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 			} else if (index == 7) {
 				// phong do cac doi
 				// country -> cac giai dau -> phong do
-				startActivity(new Intent(SplashActivity.this, PhongDoSplashActivity.class));
+				startActivity(new Intent(PhongDoSplashActivity.this, PhongDoCacDoiActivity.class));
 			} else if (index == 6) {
 				// May tinh du doan
 				// chua co
-				startActivity(new Intent(SplashActivity.this, MayTinhDuDoanActivity.class));
+				startActivity(new Intent(PhongDoSplashActivity.this, MayTinhDuDoanActivity.class));
 			} else if (index == 5) {
 				// nhan dinh cua chuyen gia
 				// crash
-				startActivity(new Intent(SplashActivity.this, NhanDinhCuaChuyenGiaSplashActivity.class));
+				startActivity(new Intent(PhongDoSplashActivity.this, NhanDinhChuyenGiaActivity.class));
 			} else if (index == 4) {
 				// game du doan
 				// chua co
-				startActivity(new Intent(SplashActivity.this, GameDuDoanActivity.class));
+				startActivity(new Intent(PhongDoSplashActivity.this, GameDuDoanActivity.class));
 
 			}
 		}

@@ -30,7 +30,7 @@ public class PhongDoCacDoiActivity extends Activity {
 	@Override
 	public void onBackPressed() {
 
-		if (bongDaViewPager.onBackPressed()) {
+		if (bongDaViewPager != null && bongDaViewPager.onBackPressed()) {
 			return;
 		}
 		super.onBackPressed();
