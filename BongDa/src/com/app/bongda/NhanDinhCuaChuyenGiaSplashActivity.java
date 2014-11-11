@@ -39,6 +39,7 @@ public class NhanDinhCuaChuyenGiaSplashActivity extends TabActivity implements O
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tabexample0slide);
+		overridePendingTransition(R.anim.bot_to_top, R.anim.nothing);
 		getTabHost().setOnTabChangedListener(this);
 		getTabHost().setVisibility(View.VISIBLE);
 

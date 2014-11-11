@@ -38,6 +38,7 @@ public class PhongDoSplashActivity extends TabActivity implements OnTabChangeLis
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		overridePendingTransition(R.anim.bot_to_top, R.anim.nothing);
 		setContentView(R.layout.tabexample0slide);
 		getTabHost().setOnTabChangedListener(this);
 		getTabHost().setVisibility(View.VISIBLE);
