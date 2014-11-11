@@ -9,6 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -52,7 +53,7 @@ public class LiveScoreFragment extends BaseFragment {
 	private String value_list_favorite = "";
 	private boolean check_favorite = false;
 	private int count_showdata = 0;
-	private MyTouchListener mOnTouchListener;
+//	private MyTouchListener mOnTouchListener;
 	public LiveScoreFragment(OnItemClickListener onItemClickListener, CallBackListenner callBackListenner, GiaiDau data, String type) {
 		super();
 		this.callBackListenner = callBackListenner;
@@ -265,17 +266,23 @@ public class LiveScoreFragment extends BaseFragment {
 					}
 				});
 				
+				// show tran quan tam
+				img_favorite = (ImageView) convertView.findViewById(R.id.iconlike);
+				if(BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLikeCheck( liveScore.getId())){
+					convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
+				}else{
+					convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
+				}
+				if (CommonUtil.listQuanTam.contains( check_quantam )) {
+//					convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
+					img_favorite.setImageResource(R.drawable.ico_favorite_on);
+				} else {
+//					convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
+					img_favorite.setImageResource(R.drawable.ico_favorite_off);
+				}
+				
 				if (addfavorite) {
 					convertView.findViewById(R.id.iconlike).setVisibility(View.VISIBLE);
-					// show tran quan tam
-					img_favorite = (ImageView) convertView.findViewById(R.id.iconlike);
-					if (CommonUtil.listQuanTam.contains( check_quantam )) {
-						// convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
-						img_favorite.setImageResource(R.drawable.ico_favorite_on);
-					} else {
-						// convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
-						img_favorite.setImageResource(R.drawable.ico_favorite_off);
-					}
 					convertView.findViewById(R.id.iconlike).setOnClickListener(new OnClickListener() {
 						@Override
 						public void onClick(View v) {
@@ -299,8 +306,44 @@ public class LiveScoreFragment extends BaseFragment {
 				} else {
 					convertView.findViewById(R.id.iconlike).setVisibility(View.GONE);
 				}
-				mOnTouchListener = new MyTouchListener(liveScore);
-				convertView.setOnTouchListener(mOnTouchListener);
+//				mOnTouchListener = new MyTouchListener(liveScore);
+				convertView.setOnTouchListener(new OnTouchListener() {
+					
+					@Override
+					public boolean onTouch(View v, MotionEvent event) {
+						// TODO Auto-generated method stub
+						int action = event.getAction();
+						switch (action) {
+						case MotionEvent.ACTION_DOWN:
+							Log.e("action", "ACTION_DOWN - " + action_down_x);
+							action_down_x = (int) event.getX();
+							break;
+						case MotionEvent.ACTION_MOVE:
+							action_up_x = (int) event.getX();
+							Log.e("action", "ACTION_MOVE :: " + action_down_x + ":::"+ action_up_x);
+							
+							difference = action_down_x - action_up_x;
+							if(difference > delta1 || difference <  delta2){
+								calcuateDifference(liveScore);
+							}
+							break;
+						case MotionEvent.ACTION_UP:
+							Log.e("action", "ACTION_UP - ");
+							
+							if (!addfavorite) {
+								callBackListenner.onCallBackListenner(5, liveScore);
+							}else{
+								 if(difference <= delta1 && difference >= delta2){
+									 callBackListenner.onCallBackListenner(5, liveScore);
+								 }else{
+									 calcuateDifference(liveScore);
+								 }
+							}
+							break;
+						}
+						return true;
+					}
+				});
 			
 			}else{
 				convertView.findViewById(R.id.livescore_row).setVisibility(View.GONE);
@@ -554,8 +597,9 @@ public class LiveScoreFragment extends BaseFragment {
 		loadData();
 
 	}
-
-	class MyTouchListener implements OnTouchListener {
+	private int delta1 = 20;
+	private int delta2 = -20;
+	/*class MyTouchListener implements OnTouchListener {
 		LiveScore liveScore;
 
 		public MyTouchListener(LiveScore liveScore1) {
@@ -566,29 +610,49 @@ public class LiveScoreFragment extends BaseFragment {
 		@Override
 		public boolean onTouch(View v, MotionEvent event) {
 
-			int action = event.getAction();
-			switch (action) {
-			case MotionEvent.ACTION_DOWN:
-				action_down_x = (int) event.getX();
-				break;
-			case MotionEvent.ACTION_MOVE:
-				Log.e("action", "ACTION_MOVE - ");
-				action_up_x = (int) event.getX();
-				difference = action_down_x - action_up_x;
-				break;
-			case MotionEvent.ACTION_UP:
-				Log.e("action", "ACTION_UP - ");
-				// if(difference <= 10 && difference >= -10){
-				// callBackListenner.onCallBackListenner(5, liveScore);
-				// }else{
-				// calcuateDifference(liveScore);
-				// }
-				if (!addfavorite) {
-					callBackListenner.onCallBackListenner(5, liveScore);
-				}
-				break;
-			}
+			
 			return true;
 		}
+	}
+	*/
+	private void calcuateDifference(final LiveScore liveScore) {
+		((Activity) listView.getContext()).runOnUiThread(new Runnable() {
+
+			@Override
+			public void run() {
+				if (CommonUtil.listQuanTam == null) {
+					CommonUtil.listQuanTam = new ArrayList<String>();
+					CommonUtil.getdata(listView.getContext());
+				}
+				
+				String check_quantam = liveScore.idmagiai() + "-" +  liveScore.getId() ;
+				if(TypeView == null ){
+					Log.e("KKKKKKKKKK", "difference:::" + difference + ":::" + delta2);
+					if (difference > delta1) {
+						if(BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLikeCheck( liveScore.getId())){
+							//TODO add live score
+							BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLike( liveScore.getId() , "0");
+							countryAdapter.notifyDataSetChanged();
+							Toast.makeText(listView.getContext(), "Remove favorite", Toast.LENGTH_LONG).show();
+						}
+						
+					}else if (difference < delta2) {
+						if(!BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLikeCheck( liveScore.getId())){
+							Log.e("KKKKKKKKKK", "B*" + CommonUtil.listQuanTam.toString());
+							//TODO add live score
+							BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLike( liveScore.getId(), "1");
+							countryAdapter.notifyDataSetChanged();
+							Toast.makeText(listView.getContext(), "Add to Favorite", Toast.LENGTH_LONG).show();
+						}
+						
+					}
+				}
+				
+//				action_down_x = 0;
+//				action_up_x = 0;
+				difference = 0;
+
+			}
+		});
 	}
 }

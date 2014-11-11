@@ -311,6 +311,53 @@ public class DBManager {
 
 		return -1;
 	}
+	
+	public long liveScoreLike(String iID_MaTran, String bdliked_new) {
+		String where = String.format(//
+				"iID_MaTran ='%s' and bdneedshow ='1'",//
+				iID_MaTran//
+				);
+		LiveScoreLikeTable table = new LiveScoreLikeTable();
+		Cursor cursor = database.query(table.getTableName(), null, where, null, null, null, null);
+		if (cursor != null && cursor.getCount() >= 1) {
+			cursor.moveToNext();
+			String bdliked = cursor.getString(cursor.getColumnIndex("bdliked"));
+
+			if (bdliked == null || "0".equals(bdliked) || "".equals(bdliked)) {
+				bdliked = "1";
+			} else {
+				bdliked = "0";
+			}
+			bdliked = bdliked_new;
+			ContentValues values = new ContentValues();
+			values.put("bdliked", bdliked);
+			return database.update(table.getTableName(), values, where, null);
+		}
+
+		return -1;
+	}
+	
+	public boolean liveScoreLikeCheck(String iID_MaTran) {
+		String where = String.format(//
+				"iID_MaTran ='%s' and bdneedshow ='1'",//
+				iID_MaTran//
+				);
+		LiveScoreLikeTable table = new LiveScoreLikeTable();
+		Cursor cursor = database.query(table.getTableName(), null, where, null, null, null, null);
+		if (cursor != null && cursor.getCount() >= 1) {
+			cursor.moveToNext();
+			String bdliked = cursor.getString(cursor.getColumnIndex("bdliked"));
+
+			if (bdliked == null || "0".equals(bdliked) || "".equals(bdliked)) {
+				return false;
+			} else {
+				return true;
+			}
+			
+		}
+
+		return false;
+	}
 
 	public Cursor liveScoreQueryLiked() {
 		String whereTeamFiller = " bdliked='1' and bdposition ='1'";
