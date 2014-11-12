@@ -31,8 +31,13 @@ public class ByUtils {
 	public static final String wsFootBall_Lives_dudoan = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsFootBall_Lives_Co_GameDuDoan xmlns=\"http://tempuri.org/\" />  </soap:Body></soap:Envelope>";
 	public static final String wsFootBall_Lives_TyLeDuDoan = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsFootBall_Lives_TyLeDuDoan xmlns=\"http://tempuri.org/\">      <iID_MaTran>matran</iID_MaTran>    </wsFootBall_Lives_TyLeDuDoan>  </soap:Body></soap:Envelope>";
 
-	public static final String wsFootBall_Lives_page = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>   <wsFootBall_Lives xmlns=\"http://tempuri.org/\">      <page>1</page>    </wsFootBall_Lives> </soap:Body></soap:Envelope>";
+	public static final String wsFootBall_Lives_page = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>   <wsFootBall_Lives xmlns=\"http://tempuri.org/\">      <page>pageload</page>    </wsFootBall_Lives> </soap:Body></soap:Envelope>";
 	public static final int REQUEST = 1000;
+	
+	//add 20141111-WS live
+	public static final String wsFootBall_Quocgia_Live = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsFootBall_Quocgia_Live xmlns=\"http://tempuri.org/\" />  </soap:Body></soap:Envelope>";
+	public static final String wsFootBall_Giai_Theo_QuocGia_Live = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsFootBall_Giai_Theo_QuocGia_Live xmlns=\"http://tempuri.org/\">      <iID_MaQuocGia>quocgiaid</iID_MaQuocGia>    </wsFootBall_Giai_Theo_QuocGia_Live>  </soap:Body></soap:Envelope>";
+	
 
 	public static List<String> getFilePath(Context context) {
 		List<String> list = new ArrayList<String>();

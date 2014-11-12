@@ -319,7 +319,7 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 				if (pager.getContext() instanceof X4VLayoutActivity) {
 					addBangXepHang(dau);
 				} else if (pager.getContext() instanceof X2VLayoutActivity) {
-					addLiveScore(dau, null);
+					addLiveScore(dau, "theogiai");
 				} else if (pager.getContext() instanceof PhongDoCacDoiActivity) {
 					addLiveScore(dau, "phongdo");
 				} else if (pager.getContext() instanceof NhanDinhChuyenGiaActivity) {

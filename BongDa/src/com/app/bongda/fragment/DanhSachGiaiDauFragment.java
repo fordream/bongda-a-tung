@@ -97,7 +97,7 @@ public class DanhSachGiaiDauFragment extends BaseFragment {
 
 	private void loadData() {
 		String country_id = country.getId();
-		String ws = (ByUtils.wsFootBall_Giai_Theo_QuocGia).replace("quocgiaid",
+		String ws = (ByUtils.wsFootBall_Giai_Theo_QuocGia_Live).replace("quocgiaid",
 				country_id);
 
 		DanhSachGiaiDauProgressExecute danhSachGiaiDauProgressExecute = new DanhSachGiaiDauProgressExecute(

@@ -50,6 +50,10 @@ public class LiveScoreLikeCusorAdapter extends CursorAdapter {
 		boolean isHeader = "0".equals(bdposition);
 		view.findViewById(R.id.livescore_header).setVisibility(isHeader ? View.VISIBLE : View.GONE);
 		view.findViewById(R.id.livescore_main).setVisibility(isHeader ? View.GONE : View.VISIBLE);
+		view.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
+		view.findViewById(R.id.gamedudoan_icon).setVisibility(View.GONE);
+		view.findViewById(R.id.persion).setVisibility(View.GONE);
+		view.findViewById(R.id.phongdo_icon).setVisibility(View.GONE);
 		if (isHeader) {
 			String sLogoQuocGia = arg1.getString(arg1.getColumnIndex("sLogoQuocGia"));
 			String sTenGiai = arg1.getString(arg1.getColumnIndex("sTenGiai"));

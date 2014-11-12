@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -19,6 +20,8 @@ import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -155,11 +158,11 @@ public class LiveScoreFragment extends BaseFragment {
 			
 			if(showdata){
 				convertView.findViewById(R.id.livescore_row).setVisibility(View.VISIBLE);
-				if(CommonUtil.listQuanTam.contains( check_quantam )){
-					convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
-				}else{
-					convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
-				}
+//				if(CommonUtil.listQuanTam.contains( check_quantam )){
+//					convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
+//				}else{
+//					convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
+//				}
 				// cogamedudoan
 				if (liveScore.isGameDuDoan()) {
 					convertView.findViewById(R.id.gamedudoan_icon).setVisibility(View.VISIBLE);
@@ -242,7 +245,7 @@ public class LiveScoreFragment extends BaseFragment {
 				setText(convertView, R.id.TextView02, liveScore.getName());
 				setText(convertView, R.id.TextView023, liveScore.getName2());
 				// setText(convertView, R.id.tv1, liveScore.getDate());
-				ImageLoaderUtils.getInstance(getActivity()).DisplayImage(liveScore.sLogoGiai(), (ImageView) convertView.findViewById(R.id.logogiai));
+				ImageLoaderUtils.getInstance(getActivity()).DisplayImage(liveScore.sLogoGiai(), (ImageView) convertView.findViewById(R.id.logogiai), BitmapFactory.decodeResource(listView.getResources(), R.drawable.noimg));
 	
 				convertView.findViewById(R.id.image_bangxephang).setOnClickListener(new OnClickListener() {
 					@Override
@@ -268,18 +271,13 @@ public class LiveScoreFragment extends BaseFragment {
 				
 				// show tran quan tam
 				img_favorite = (ImageView) convertView.findViewById(R.id.iconlike);
-				if(BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLikeCheck( liveScore.getId())){
+				/*if(BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLikeCheck( liveScore.getId())){
 					convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
+					img_favorite.setImageResource(R.drawable.ico_favorite_on);
 				}else{
 					convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
-				}
-				if (CommonUtil.listQuanTam.contains( check_quantam )) {
-//					convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
-					img_favorite.setImageResource(R.drawable.ico_favorite_on);
-				} else {
-//					convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
 					img_favorite.setImageResource(R.drawable.ico_favorite_off);
-				}
+				}*/
 				
 				if (addfavorite) {
 					convertView.findViewById(R.id.iconlike).setVisibility(View.VISIBLE);
@@ -315,12 +313,12 @@ public class LiveScoreFragment extends BaseFragment {
 						int action = event.getAction();
 						switch (action) {
 						case MotionEvent.ACTION_DOWN:
-							Log.e("action", "ACTION_DOWN - " + action_down_x);
+//							Log.e("action", "ACTION_DOWN - " + action_down_x);
 							action_down_x = (int) event.getX();
 							break;
 						case MotionEvent.ACTION_MOVE:
 							action_up_x = (int) event.getX();
-							Log.e("action", "ACTION_MOVE :: " + action_down_x + ":::"+ action_up_x);
+//							Log.e("action", "ACTION_MOVE :: " + action_down_x + ":::"+ action_up_x);
 							
 							difference = action_down_x - action_up_x;
 							if(difference > delta1 || difference <  delta2){
@@ -328,7 +326,7 @@ public class LiveScoreFragment extends BaseFragment {
 							}
 							break;
 						case MotionEvent.ACTION_UP:
-							Log.e("action", "ACTION_UP - ");
+//							Log.e("action", "ACTION_UP - ");
 							
 							if (!addfavorite) {
 								callBackListenner.onCallBackListenner(5, liveScore);
@@ -413,23 +411,29 @@ public class LiveScoreFragment extends BaseFragment {
 	};
 
 	ICallbackAPI callbackAPI;
-
+	private int page = 1;
+	private int totalpage = 3;
+	private boolean isLoadMore = true;
 	private void loadData() {
 		Log.e("Liveco", "loadData");
 		check_favorite = false;
 		CommonUtil.getdata(listView.getContext());
 		String maGiaiDau = data == null ? null : data.getId();
-		String ws = ByUtils.wsFootBall_Lives;
+		String ws = ByUtils.wsFootBall_Lives_page; //ByUtils.wsFootBall_Lives
 		if (maGiaiDau == null) {
+			String page_load = ""+page;
+			ws =  ws.replace("pageload", page_load);
+			Log.e("pram", "param==" + ws);
 			new APICaller(listView.getContext()).callApi("", true, callbackAPI,ws);
 		} else {
 			String ws_theogiai = (ByUtils.wsFootBall_Lives_Theo_Giai).replace("magiai", maGiaiDau);
 			Log.e("livaco","param="+ ws_theogiai);
 			new APICaller(listView.getContext()).callApi("", true, callbackAPI, ws_theogiai);
 		}
-//		onLoad++;
+		onLoad++;
 	}
 
+	private boolean check_null = false;
 	@SuppressWarnings("unused")
 	@Override
 	public void onInitData() {
@@ -439,9 +443,10 @@ public class LiveScoreFragment extends BaseFragment {
 			callbackAPI = new ICallbackAPI() {
 				@Override
 				public void onSuccess(String response) {
-					
 					new LiveScorePorgressExecute(response, views_err.getContext()).executeAsynCallBack();
-					countryAdapter.clear();
+					if(page == 1){
+						countryAdapter.clear();
+					}
 					String string_temp = CommonAndroid.parseXMLAction(response);
 					if (!string_temp.equalsIgnoreCase("")) {
 //						Log.e("data", string_temp);
@@ -507,11 +512,12 @@ public class LiveScoreFragment extends BaseFragment {
 								boolean bNhanDinhChuyenGia = array.get(i).getBoolean("bNhanDinhChuyenGia");
 								boolean bGameDuDoan = array.get(i).getBoolean("bGameDuDoan");
 								boolean bDaCapNhapVaoBXH = array.get(i).getBoolean("bDaCapNhapVaoBXH");
-//								Log.e("kkk", i + ":" + array.get(i).getString("iID_MaGiai") + ":" + bNhanDinhChuyenGia + ":" + bGameDuDoan + ":" + bDaCapNhapVaoBXH);
+								Log.e("kkk", i + ":" + array.get(i).getString("iID_MaGiai") + ":" + bNhanDinhChuyenGia + ":" + bGameDuDoan + ":" + bDaCapNhapVaoBXH);
 
 								// String kk =
 								// array.get(i).getString("sTenGiai");
-								if(TypeView == null || ((TypeView != null && "nhandinhchuyengia".equalsIgnoreCase(TypeView) && bNhanDinhChuyenGia) ) || ( (TypeView != null && "phongdo".equalsIgnoreCase(TypeView)) ) ){
+								if(TypeView == null || (("nhandinhchuyengia".equalsIgnoreCase(TypeView) && bNhanDinhChuyenGia) ) || "phongdo".equalsIgnoreCase(TypeView) || "theogiai".equalsIgnoreCase(TypeView) ){
+									check_null = true;
 									String HT = "";
 									StringBuilder stringbuilder1 = new StringBuilder("HT ");
 									HT = stringbuilder1.append(array.get(i).getString("iCN_BanThang_DoiNha_HT")).append(" - ").append(array.get(i).getString("iCN_BanThang_DoiKhach_HT")).toString();
@@ -576,8 +582,14 @@ public class LiveScoreFragment extends BaseFragment {
 
 							}
 							Log.e("aaaaaaa","count_showdata::" +count_showdata);
-							if (onLoad != 1) {
+//							if (onLoad != 1) {
 								countryAdapter.notifyDataSetChanged();
+//							}
+							if(!check_null){
+								if(TypeView != null && "nhandinhchuyengia".equalsIgnoreCase(TypeView)){
+									views_err.setVisibility(View.VISIBLE);
+									views_err.setText(listView.getContext().getResources().getString(R.string.khongconhandinhchuyengia));
+								}
 							}
 						} catch (Exception e) {
 							Log.e("ERR", e.getMessage());
@@ -591,9 +603,33 @@ public class LiveScoreFragment extends BaseFragment {
 
 				@Override
 				public void onError(String message) {
+					isLoadMore = true;
 				}
 			};
 //		}
+		listView.setOnScrollListener(new OnScrollListener(){
+			@Override
+			public void onScrollStateChanged(AbsListView view,
+					int scrollState) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem,
+					int visibleItemCount, int totalItemCount) {
+				// TODO Auto-generated method stub
+				if(totalItemCount > 0 && isLoadMore){
+					if(totalItemCount - 1 <= firstVisibleItem + visibleItemCount){
+						Log.e("load more", "totalItemCount==" + totalItemCount + "::firstVisibleItem==" + firstVisibleItem + "::visibleItemCount==" + visibleItemCount );
+						page = 2;
+						loadData();
+						isLoadMore = false;
+			    	}
+				}
+			}
+			
+		});
 		loadData();
 
 	}

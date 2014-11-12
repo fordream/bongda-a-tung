@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
@@ -148,8 +149,8 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 
 	@Override
 	public void onInitData() {
-		ImageLoaderUtils.getInstance(null).DisplayImage(giaidau.sLogoDoiNha(),(ImageView) view.findViewById(R.id.logo_doinha));
-		ImageLoaderUtils.getInstance(null).DisplayImage(giaidau.sLogoDoiKhach(),(ImageView) view.findViewById(R.id.logo_doikhach));
+		ImageLoaderUtils.getInstance(null).DisplayImage(giaidau.sLogoDoiNha(),(ImageView) view.findViewById(R.id.logo_doinha), BitmapFactory.decodeResource(view.getResources(), R.drawable.noimg));
+		ImageLoaderUtils.getInstance(null).DisplayImage(giaidau.sLogoDoiKhach(),(ImageView) view.findViewById(R.id.logo_doikhach), BitmapFactory.decodeResource(view.getResources(), R.drawable.noimg));
 		callbackAPI_LastMatches = new ICallbackAPI() {
 			@Override
 			public void onSuccess(String response) {
