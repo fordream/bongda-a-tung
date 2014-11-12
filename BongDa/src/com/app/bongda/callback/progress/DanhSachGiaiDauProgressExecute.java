@@ -24,7 +24,7 @@ public class DanhSachGiaiDauProgressExecute extends ProgressExecute {
 
 	@Override
 	public void onProgress(String response) {
-		String string_temp = CommonAndroid.parseXMLAction(response);
+		String string_temp = response == null ? "" : CommonAndroid.parseXMLAction(response);
 		if (!string_temp.equalsIgnoreCase("")) {
 			try {
 				GiaiDauTable dauTable = new GiaiDauTable();
@@ -47,7 +47,7 @@ public class DanhSachGiaiDauProgressExecute extends ProgressExecute {
 					// GiaiDau(jsonarray.getJSONObject(i).getString("iID_MaGiai"),
 					// jsonarray.getJSONObject(i).getString("sTenGiai")));
 				}
-			} catch (JSONException e) {
+			} catch (Exception e) {
 			}
 		}
 	}
