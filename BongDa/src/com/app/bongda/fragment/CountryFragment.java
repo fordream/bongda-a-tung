@@ -30,10 +30,11 @@ import com.vnp.core.datastore.database.CountryTable;
 public class CountryFragment extends BaseFragment {
 	OnItemClickListener onItemClickListener;
 	ICallbackAPI callbackAPI;
-
-	public CountryFragment(OnItemClickListener onItemClickListener) {
+ private String type = null;
+	public CountryFragment(String type_, OnItemClickListener onItemClickListener) {
 		super();
 		this.onItemClickListener = onItemClickListener;
+		this.type = type_;
 	}
 
 	// int count = 0;
@@ -77,7 +78,11 @@ public class CountryFragment extends BaseFragment {
 		// listView.setAdapter(countryAdapter);
 
 		if (ByUtils.USEGROUPVIEW) {
-			Cursor cursor = BongDaServiceManager.getInstance().getBongDaService().query(new CountryTable().getTableName(), null);
+			String where = null;
+			if(type != null){
+				where = String.format("stype ='%s'", type);
+			}
+			Cursor cursor = BongDaServiceManager.getInstance().getBongDaService().query(new CountryTable().getTableName(), where);
 			countryCusorAdapter = new CountryCusorAdapter(view.getContext(), cursor, true);
 			listView.setAdapter(countryCusorAdapter);
 			// listView.setAdapter(new CursorAdapter(view.getContext(), cursor)

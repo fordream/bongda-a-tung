@@ -18,9 +18,14 @@ import com.vnp.core.datastore.database.CountryTable;
 import com.vnp.core.datastore.database.GiaiDauTable;
 
 public class CountryProgressExecute extends ProgressExecute {
-
+	private String table_new = null;
 	public CountryProgressExecute(String response, Context context) {
 		super(response, context);
+	}
+
+	public CountryProgressExecute(String response, Context context, String table_new_) {
+		super(response, context);
+		this.table_new = table_new_;
 	}
 
 	@Override
@@ -31,10 +36,13 @@ public class CountryProgressExecute extends ProgressExecute {
 			try {
 				JSONArray jsonarray = new JSONArray(string_temp);
 				for (int i = 0; i < jsonarray.length(); i++) {
+					if(table_new != null){
+						jsonarray.getJSONObject(i).put("stype", table_new);
+					}
+					
 					JSONObject jsonObject = jsonarray.getJSONObject(i);
 					String iID_MaQuocGia = jsonObject
 							.getString("iID_MaQuocGia");
-
 					ContentValues values = new ContentValues();
 					Set<String> columns = countryTable.columNameS();
 					for (String column : columns) {
@@ -44,8 +52,9 @@ public class CountryProgressExecute extends ProgressExecute {
 					}
 					String where = String.format("iID_MaQuocGia ='%s'",
 							iID_MaQuocGia);
-					
-					BongDaServiceManager.getInstance().getBongDaService().insert(countryTable.getTableName(), values, where);
+					String where2 = where + " and " + String.format("stype ='%s'",
+							table_new);
+					BongDaServiceManager.getInstance().getBongDaService().insert(countryTable.getTableName(), values, where2);
 //					long id = dbManager.insertContry(values);
 				}
 			} catch (JSONException e) {

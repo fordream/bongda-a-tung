@@ -244,13 +244,13 @@ public class BongDaService extends Service {
 			public void onError(String message) {
 
 			}
-		}, ByUtils.wsFootBall_Quocgia);
+		}, ByUtils.wsFootBall_Quocgia_Live);
 	}
 
 	private void startLoadContentGiaiDauBase() {
 		if (idCountrys.size() > 0) {
 			final String idCountry = idCountrys.get(0);
-			String ws = (ByUtils.wsFootBall_Giai_Theo_QuocGia).replace(
+			String ws = (ByUtils.wsFootBall_Giai_Theo_QuocGia_Live).replace(
 					"quocgiaid", idCountry);
 
 			callApi(System.currentTimeMillis(), new ICallbackAPI() {

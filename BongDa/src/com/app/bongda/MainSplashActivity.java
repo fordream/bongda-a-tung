@@ -79,7 +79,7 @@ public class MainSplashActivity extends Activity {
 		});
 
 	}
-
+	CountryProgressExecute countryProgressExecute2, countryProgressExecute;
 	private void onCheckForNetwork() {
 		if (isFinishing()) {
 			return;
@@ -107,7 +107,47 @@ public class MainSplashActivity extends Activity {
 			builder.show();
 		} else {
 
-			CountryProgressExecute countryProgressExecute = new CountryProgressExecute(null, MainSplashActivity.this) {
+			countryProgressExecute = new CountryProgressExecute(null, MainSplashActivity.this, "live") {
+				@Override
+				public void onProgressStartFail() {
+					super.onProgressStartFail();
+					if (isFinishing()) {
+						return;
+					}
+					// show dialog and cancel
+					Builder builder = new Builder(MainSplashActivity.this);
+					builder.setCancelable(false);
+					builder.setMessage(R.string.cannotconnecttoserverr);
+					builder.setPositiveButton(R.string.ok, new OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							finish();
+							overridePendingTransition(R.anim.bot_to_top, R.anim.nothing);
+						}
+					});
+					builder.show();
+				}
+
+				@Override
+				public void onProgressSucess() {
+					super.onProgressSucess();
+
+					if (isFinishing()) {
+						return;
+					}
+
+//					Intent intent = new Intent(MainSplashActivity.this, SplashActivity.class);
+//
+//					startActivity(intent);
+//					finish();
+					BongDaServiceManager.getInstance().getBongDaService().callApi(System.currentTimeMillis(), countryProgressExecute2, ByUtils.wsFootBall_Quocgia);
+//					overridePendingTransition(R.anim.bot_to_top, R.anim.nothing);
+
+				}
+			};
+			
+			countryProgressExecute2 = new CountryProgressExecute(null, MainSplashActivity.this,"new") {
 				@Override
 				public void onProgressStartFail() {
 					super.onProgressStartFail();
@@ -145,7 +185,7 @@ public class MainSplashActivity extends Activity {
 
 				}
 			};
-			BongDaServiceManager.getInstance().getBongDaService().callApi(System.currentTimeMillis(), countryProgressExecute, ByUtils.wsFootBall_Quocgia);
+			BongDaServiceManager.getInstance().getBongDaService().callApi(System.currentTimeMillis(), countryProgressExecute, ByUtils.wsFootBall_Quocgia_Live);
 
 		}
 	}

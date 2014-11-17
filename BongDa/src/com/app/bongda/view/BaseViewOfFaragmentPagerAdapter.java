@@ -108,7 +108,11 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 				|| mpager.getContext() instanceof PhongDoCacDoiActivity //
 				|| mpager.getContext() instanceof NhanDinhChuyenGiaActivity//
 				) {
-			addCountry();
+			if( mpager.getContext() instanceof X2VLayoutActivity){
+				addCountry("live");
+			}else{
+				addCountry("new");
+			}
 		} else if (mpager.getContext() instanceof X1VLayoutActivity) {
 			addLiveScore(null, null);
 		} else if (mpager.getContext() instanceof X3VLayoutActivity) {
@@ -292,8 +296,8 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 		addFragement(new GameDuDoanFragment(null));
 	}
 
-	private void addCountry() {
-		addFragement(new CountryFragment(new OnItemClickListener() {
+	private void addCountry(String type) {
+		addFragement(new CountryFragment(type,new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				Cursor cursor = (Cursor) parent.getItemAtPosition(position);
