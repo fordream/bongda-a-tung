@@ -147,6 +147,13 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 	String DoiKhach_SoTran_LotLuoi;
 	String DoiKhach_Hieu_So_Ban_Thua;
 
+	private boolean show_BXH = false;
+	private int sLastMatches_DoiNha_i1 = 0;
+	private int sLastMatches_DoiNha_i = 0;
+	private int sLastMatches_DoiNha_i2 = 0;
+	private int sLastMatches_DoiKhach_i1 = 0;
+	private int sLastMatches_DoiKhach_i = 0;
+	private int sLastMatches_DoiKhach_i2 = 0;
 	@Override
 	public void onInitData() {
 		ImageLoaderUtils.getInstance(null).DisplayImage(giaidau.sLogoDoiNha(),(ImageView) view.findViewById(R.id.logo_doinha), BitmapFactory.decodeResource(view.getResources(), R.drawable.noimg));
@@ -166,19 +173,74 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 							for (int i = 0; i < jsonArray.length(); i++) {
 								//iID_MaBXH_ChiTiet
 								if(jsonArray.getJSONObject(i).has("iID_MaBXH_ChiTiet")){
+									show_BXH = true;
 									//co bang xep hang
 									bangxephang_header.setVisibility(View.VISIBLE);
 									phongdodoidau_bangephang_listitem.setVisibility(View.VISIBLE);
 									bangxephangitem.setVisibility(View.VISIBLE);
 									Log.e("onInitData", "onInitData==doi nha" + iID_MaDoiNha + ":::" + jsonArray.getJSONObject(i).getString("iID_MaDoi") + ":tendoi:" + jsonArray.getJSONObject(i).getString("sTenDoi"));
-//									if((jsonArray.getJSONObject(i).getString("iID_MaDoi")).equalsIgnoreCase(iID_MaDoiNha)){
+									if((jsonArray.getJSONObject(i).getString("iID_MaDoi")).equalsIgnoreCase(iID_MaDoiNha)){
 //										Log.e("onInitData", "onInitData==doi nha");
 										sLastMatches_DoiNha = jsonArray.getJSONObject(i).getString("sLast5Match");
-//									}
-//									if((jsonArray.getJSONObject(i).getString("iID_MaDoi")).equalsIgnoreCase(iID_MaDoiKhach)){
+										sLastMatches_DoiNha_i = i;
+									}
+									if((jsonArray.getJSONObject(i).getString("iID_MaDoi")).equalsIgnoreCase(iID_MaDoiKhach)){
 										sLastMatches_DoiKhach = jsonArray.getJSONObject(i).getString("sLast5Match");
-//									}
+										sLastMatches_DoiKhach_i = i;
+									}
+									
+								}else{
+									//ko co bang xep hang
+									show_BXH = false;
+									bangxephang_header.setVisibility(View.GONE);
+									phongdodoidau_bangephang_listitem.setVisibility(View.GONE);
+									iID_MaGiai = jsonArray.getJSONObject(i).getString("iID_MaGiai");
+									if(jsonArray.getJSONObject(i).has("sTenDoiNha")){
+										TenDoiNha = jsonArray.getJSONObject(i).getString("sTenDoiNha");
+									}
+									if(jsonArray.getJSONObject(i).has("sTenDoiKhach")){
+										TenDoiKhach = jsonArray.getJSONObject(i).getString("sTenDoiKhach");
+									}
+									sLastMatches_DoiNha = jsonArray.getJSONObject(i).getString("sLastMatches_DoiNha");
+									sLastMatches_DoiKhach = jsonArray.getJSONObject(i).getString("sLastMatches_DoiKhach");
+									
+								}
+								
+							}
+							
+							//show bxh
+							if(show_BXH){
+								try {
+									if(sLastMatches_DoiNha_i == 0){
+										sLastMatches_DoiNha_i1 = 1;
+										sLastMatches_DoiNha_i2 = 2;
+									}else if(sLastMatches_DoiNha_i == (jsonArray.length() - 1)){
+										sLastMatches_DoiNha_i1 = (jsonArray.length() - 2);
+										sLastMatches_DoiNha_i2 = (jsonArray.length() - 3);
+									}else{
+										sLastMatches_DoiNha_i1 = sLastMatches_DoiNha_i - 1;
+										sLastMatches_DoiNha_i2 = sLastMatches_DoiNha_i + 1;
+									}
+									
+									if(sLastMatches_DoiKhach_i == 0){
+										sLastMatches_DoiKhach_i1 = 1;
+										sLastMatches_DoiKhach_i2 = 2;
+									}else if(sLastMatches_DoiKhach_i == (jsonArray.length() - 1)){
+										sLastMatches_DoiKhach_i1 = (jsonArray.length() - 2);
+										sLastMatches_DoiKhach_i2 = (jsonArray.length() - 3);
+									}else{
+										sLastMatches_DoiKhach_i1 = sLastMatches_DoiKhach_i - 1;
+										sLastMatches_DoiKhach_i2 = sLastMatches_DoiKhach_i + 1;
+									}
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								
+								int k= 0;
+								for (int i = 0; i < jsonArray.length(); i++) {
 									//add bang xep hang
+									if(i == sLastMatches_DoiNha_i || i == sLastMatches_DoiNha_i1 || i == sLastMatches_DoiNha_i2 || i == sLastMatches_DoiKhach_i || i == sLastMatches_DoiKhach_i1 || i == sLastMatches_DoiKhach_i2){
 									String id = jsonArray.getJSONObject(i).getString(
 											"iID_MaDoi");
 									String name = jsonArray.getJSONObject(i).getString(
@@ -201,10 +263,11 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 											.getString("sBanThua");
 									String sHeSo = jsonArray.getJSONObject(i)
 											.getString("sHeSo");
+									k++;
 									PhongDo phongdo = new PhongDo(id, name, sViTri,
 											sSoTranDau, sDiem, sSoTranThang,
 											sSoTranHoa, sSoTranThua, sBanThang,
-											sBanThua, sHeSo);
+											sBanThua, sHeSo, k);
 									// countryAdapter.addItem(new PhongDo( id, name,
 									// sViTri, sSoTranDau, sDiem, sSoTranThang,
 									// sSoTranHoa, sSoTranThua, sBanThang, sBanThua,
@@ -212,22 +275,8 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 									phongdodoidau_bangephang_listitem
 											.addView(new BangXepHangItemView(view
 													.getContext(), phongdo));
-								}else{
-									//ko co bang xep hang
-									bangxephang_header.setVisibility(View.GONE);
-									phongdodoidau_bangephang_listitem.setVisibility(View.GONE);
-									iID_MaGiai = jsonArray.getJSONObject(i).getString("iID_MaGiai");
-									if(jsonArray.getJSONObject(i).has("sTenDoiNha")){
-										TenDoiNha = jsonArray.getJSONObject(i).getString("sTenDoiNha");
 									}
-									if(jsonArray.getJSONObject(i).has("sTenDoiKhach")){
-										TenDoiKhach = jsonArray.getJSONObject(i).getString("sTenDoiKhach");
-									}
-									sLastMatches_DoiNha = jsonArray.getJSONObject(i).getString("sLastMatches_DoiNha");
-									sLastMatches_DoiKhach = jsonArray.getJSONObject(i).getString("sLastMatches_DoiKhach");
-									
 								}
-								
 							}
 							String[] temps1 = sLastMatches_DoiNha.split(",");
 							((TextView) view.findViewById(R.id.doinha_t1)).setText(CheckLastMatches2(temps1[0]));
@@ -321,7 +370,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 									.getString("sBanThua");
 							String sHeSo = jsonarray.getJSONObject(i)
 									.getString("sHeSo");
-							PhongDo phongdo = new PhongDo(id, name, sViTri,
+							/*PhongDo phongdo = new PhongDo(id, name, sViTri,
 									sSoTranDau, sDiem, sSoTranThang,
 									sSoTranHoa, sSoTranThua, sBanThang,
 									sBanThua, sHeSo);
@@ -331,7 +380,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 							// sHeSo));
 							phongdodoidau_bangephang_listitem
 									.addView(new BangXepHangItemView(view
-											.getContext(), phongdo));
+											.getContext(), phongdo));*/
 						}
 						// countryAdapter.notifyDataSetChanged();
 					} catch (Exception e) {

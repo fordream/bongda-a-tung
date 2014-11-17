@@ -55,6 +55,7 @@ public class LiveScoreFragment extends BaseFragment {
 	private int listView_size = 0;
 	private String value_list_favorite = "";
 	private boolean check_favorite = false;
+	private int count_showdata_old = 0;
 	private int count_showdata = 0;
 //	private MyTouchListener mOnTouchListener;
 	public LiveScoreFragment(OnItemClickListener onItemClickListener, CallBackListenner callBackListenner, GiaiDau data, String type) {
@@ -82,64 +83,23 @@ public class LiveScoreFragment extends BaseFragment {
 			convertView.findViewById(R.id.livescore_main).setVisibility(View.GONE);
 			convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
 			convertView.findViewById(R.id.livescore_row).setVisibility(View.GONE);
-			if(position < 1){
+			/*if(position < 1){
 				value_list_favorite = "";
 				CommonUtil.getdata(listView.getContext());
 				countryAdapter.notifyDataSetChanged();
 				Log.e("position", "position::" + position);
-			}
+			}*/
 //			Log.e("position", "position::" + position);
 			
 			String check_quantam = liveScore.idmagiai() + "-" +  liveScore.getId() ;
-			if (TypeView != null && "quantam".equalsIgnoreCase(TypeView)) {
-				if(CommonUtil.listQuanTam.contains( check_quantam ) && !check_quantam.equalsIgnoreCase(value_list_favorite)){
-					value_list_favorite = check_quantam;
-					check_favorite = true;
-					convertView.findViewById(R.id.livescore_header).setVisibility(View.GONE);
-					convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
-					showdata = true;
-					/*check header*/
-					int k = 0;
-					int k2 = 0;
-					String str_check = "";
-					boolean check_header = false;
-					for(int i = 0; i < CommonUtil.listQuanTam.size(); i++){
-						String str1= CommonUtil.listQuanTam.get(i);
-						if( str1.equalsIgnoreCase(check_quantam)){
-							k = i;
-							str_check = CommonUtil.listQuanTam.get(i);
-						}
-					}
-					for(int j = 0; j <= k;j++ ){
-						String str1= CommonUtil.listQuanTam.get(j);
-						String[] temps = str_check.split("-");
-						String str2 =  temps[0]  + "-";
-						if(str1.indexOf(str2) > -1 && !str_check.equalsIgnoreCase(str1)){
-							check_header = true;
-						}
-					}
-					if (!check_header) {
-						convertView.findViewById(R.id.livescore_header).setVisibility(View.VISIBLE);
-						convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
-					} else {
-						convertView.findViewById(R.id.livescore_header).setVisibility(View.GONE);
-						convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
-					}
-				}else{
-					convertView.findViewById(R.id.livescore_header).setVisibility(View.GONE);
-					convertView.findViewById(R.id.livescore_main).setVisibility(View.GONE);
-					showdata = false;
-				}
-			}else{
-				if (liveScore.isHeader()) {
-					convertView.findViewById(R.id.livescore_header).setVisibility(View.VISIBLE);
-					convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
-				} else {
-					convertView.findViewById(R.id.livescore_header).setVisibility(View.GONE);
-					convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
-				}
-				showdata = true;
+			if (liveScore.isHeader()) {
+				convertView.findViewById(R.id.livescore_header).setVisibility(View.VISIBLE);
+				convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
+			} else {
+				convertView.findViewById(R.id.livescore_header).setVisibility(View.GONE);
+				convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
 			}
+//			showdata = true;
 
 			/*if(position >= count_showdata){
 				if ( TypeView != null ) {
@@ -156,7 +116,7 @@ public class LiveScoreFragment extends BaseFragment {
 			}*/
 			
 			
-			if(showdata){
+//			if(showdata){
 				convertView.findViewById(R.id.livescore_row).setVisibility(View.VISIBLE);
 //				if(CommonUtil.listQuanTam.contains( check_quantam )){
 //					convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
@@ -343,9 +303,9 @@ public class LiveScoreFragment extends BaseFragment {
 					}
 				});
 			
-			}else{
-				convertView.findViewById(R.id.livescore_row).setVisibility(View.GONE);
-			}
+//			}else{
+//				convertView.findViewById(R.id.livescore_row).setVisibility(View.GONE);
+//			}
 		}
 
 		@Override
@@ -412,7 +372,8 @@ public class LiveScoreFragment extends BaseFragment {
 
 	ICallbackAPI callbackAPI;
 	private int page = 1;
-	private int totalpage = 3;
+	private int totalpage = 1;
+	private int currentPage = 1;
 	private boolean isLoadMore = true;
 	private void loadData() {
 		Log.e("Liveco", "loadData");
@@ -577,11 +538,22 @@ public class LiveScoreFragment extends BaseFragment {
 											count_showdata = count_showdata + 1;
 										}
 									}
+									if(array.get(i).has("totalpage")){
+										totalpage = array.get(i).getInt("totalpage");
+									}
+									
 								}
 								
 
 							}
-							Log.e("aaaaaaa","count_showdata::" +count_showdata);
+							if(count_showdata_old < count_showdata){
+								count_showdata_old = count_showdata;
+								currentPage = page;
+								if(currentPage < totalpage){
+									isLoadMore = true;
+								}
+							}
+							Log.e("aaaaaaa","count_showdata::" +count_showdata + ":totalpage:" + totalpage);
 //							if (onLoad != 1) {
 								countryAdapter.notifyDataSetChanged();
 //							}
@@ -622,7 +594,7 @@ public class LiveScoreFragment extends BaseFragment {
 				if(totalItemCount > 0 && isLoadMore){
 					if(totalItemCount - 1 <= firstVisibleItem + visibleItemCount){
 						Log.e("load more", "totalItemCount==" + totalItemCount + "::firstVisibleItem==" + firstVisibleItem + "::visibleItemCount==" + visibleItemCount );
-						page = 2;
+						page++;
 						loadData();
 						isLoadMore = false;
 			    	}

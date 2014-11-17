@@ -22,7 +22,8 @@ public class PhongDo extends BaseItem {
 	private String sBanThang;
 	private String sBanThua;
 	private String sHeSo;
-	public PhongDo(String id, String name, String sViTri_, String sSoTranDau_, String sDiem_, String sSoTranThang_, String sSoTranHoa_, String sSoTranThua_, String sBanThang_, String sBanThua_, String sHeSo_) {
+	private int No;
+	public PhongDo(String id, String name, String sViTri_, String sSoTranDau_, String sDiem_, String sSoTranThang_, String sSoTranHoa_, String sSoTranThua_, String sBanThang_, String sBanThua_, String sHeSo_, int No_) {
 		super(id, name);
 		this.sViTri = sViTri_;
 		this.sSoTranDau = sSoTranDau_;
@@ -33,6 +34,7 @@ public class PhongDo extends BaseItem {
 		this.sBanThang = sBanThang_;
 		this.sBanThua = sBanThua_;
 		this.sHeSo = sHeSo_;
+		this.No = No_;
 	}
 
 	public String sViTri() {
@@ -93,6 +95,11 @@ public class PhongDo extends BaseItem {
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+
+	public int getNo() {
+		// TODO Auto-generated method stub
+		return No;
 	}
 
 }
