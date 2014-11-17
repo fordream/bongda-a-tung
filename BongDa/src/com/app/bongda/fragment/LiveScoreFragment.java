@@ -91,7 +91,7 @@ public class LiveScoreFragment extends BaseFragment {
 			}*/
 //			Log.e("position", "position::" + position);
 			
-			String check_quantam = liveScore.idmagiai() + "-" +  liveScore.getId() ;
+			String check_quantam = /*liveScore.idmagiai() + "-" +  */ liveScore.getId() ;
 			if (liveScore.isHeader()) {
 				convertView.findViewById(R.id.livescore_header).setVisibility(View.VISIBLE);
 				convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
@@ -239,7 +239,15 @@ public class LiveScoreFragment extends BaseFragment {
 					img_favorite.setImageResource(R.drawable.ico_favorite_off);
 				}*/
 				
-				if (addfavorite) {
+				if (CommonUtil.listQuanTam.contains( check_quantam )) {
+					convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
+					img_favorite.setImageResource(R.drawable.ico_favorite_on);
+				}else{
+					convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
+					img_favorite.setImageResource(R.drawable.ico_favorite_off);
+				}
+				
+				/*if (addfavorite) {
 					convertView.findViewById(R.id.iconlike).setVisibility(View.VISIBLE);
 					convertView.findViewById(R.id.iconlike).setOnClickListener(new OnClickListener() {
 						@Override
@@ -263,7 +271,7 @@ public class LiveScoreFragment extends BaseFragment {
 					});
 				} else {
 					convertView.findViewById(R.id.iconlike).setVisibility(View.GONE);
-				}
+				}*/
 //				mOnTouchListener = new MyTouchListener(liveScore);
 				convertView.setOnTouchListener(new OnTouchListener() {
 					
@@ -347,8 +355,8 @@ public class LiveScoreFragment extends BaseFragment {
 		listView.setAdapter(countryAdapter);
 
 		if(TypeView == null ){
-			headerView.findViewById(R.id.Button05).setVisibility(View.VISIBLE);
-			headerView.findViewById(R.id.Button05).setOnClickListener(clickListener);
+//			headerView.findViewById(R.id.Button05).setVisibility(View.VISIBLE);
+//			headerView.findViewById(R.id.Button05).setOnClickListener(clickListener);
 			if (TypeView != null) {
 				if (TypeView.equalsIgnoreCase("quantam") ){
 					CommonUtil.getdata(getActivity());
@@ -636,10 +644,16 @@ public class LiveScoreFragment extends BaseFragment {
 				String check_quantam = liveScore.idmagiai() + "-" +  liveScore.getId() ;
 				if(TypeView == null ){
 					Log.e("KKKKKKKKKK", "difference:::" + difference + ":::" + delta2);
+					String check_quantam2 = liveScore.getId() ;
 					if (difference > delta1) {
 						if(BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLikeCheck( liveScore.getId())){
 							//TODO add live score
 							BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLike( liveScore.getId() , "0");
+							if (CommonUtil.listQuanTam.contains( check_quantam2 )) {
+								CommonUtil.listQuanTam.remove( check_quantam2 );
+								CommonUtil.savedata((Activity) listView.getContext());
+								CommonUtil.getdata((Activity) listView.getContext());
+							}	
 							countryAdapter.notifyDataSetChanged();
 							Toast.makeText(listView.getContext(), "Remove favorite", Toast.LENGTH_LONG).show();
 						}
@@ -649,6 +663,11 @@ public class LiveScoreFragment extends BaseFragment {
 							Log.e("KKKKKKKKKK", "B*" + CommonUtil.listQuanTam.toString());
 							//TODO add live score
 							BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLike( liveScore.getId(), "1");
+							if (!CommonUtil.listQuanTam.contains( check_quantam2 )) {
+								CommonUtil.listQuanTam.add( check_quantam2 );
+								CommonUtil.savedata((Activity) listView.getContext());
+								CommonUtil.getdata((Activity) listView.getContext());
+							}
 							countryAdapter.notifyDataSetChanged();
 							Toast.makeText(listView.getContext(), "Add to Favorite", Toast.LENGTH_LONG).show();
 						}

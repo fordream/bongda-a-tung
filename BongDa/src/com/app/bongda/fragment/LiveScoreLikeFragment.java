@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class LiveScoreLikeFragment extends Fragment {
@@ -50,19 +51,24 @@ public class LiveScoreLikeFragment extends Fragment {
 		headerView.setTextHeader(R.string.tranquantam);
 		listView = (ListView) view.findViewById(R.id.listView1);
 		listView.setOnItemClickListener(onItemClickListener);
+		views_err = (TextView) view.findViewById(R.id.error_txt);
 		reloadData();
 		return view;
 	}
 
 	private LiveScoreLikeCusorAdapter likeCusorAdapter;
-
+	TextView views_err;
 	public void reloadData() {
 		try {
 			int first = listView.getFirstVisiblePosition();
 			Cursor c = BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreQueryLiked();
 			likeCusorAdapter = new LiveScoreLikeCusorAdapter(view.getContext(), c, false, onItemClickListener, callBackListenner);
 			listView.setAdapter(likeCusorAdapter);
-			
+			views_err.setVisibility(View.GONE);
+			if(likeCusorAdapter.getCount() == 0){
+				views_err.setVisibility(View.VISIBLE);
+				views_err.setText(listView.getContext().getResources().getString(R.string.khongcodoiyeuthich));
+			}
 			listView.setSelection(first);
 		} catch (Exception exception) {
 		}
