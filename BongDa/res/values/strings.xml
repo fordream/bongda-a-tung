@@ -99,4 +99,5 @@
     <string name="chuc_mung_dang_ky_thanh_cong">Chúc mừng bạn đăng ký thành công.</string>
     <string name="chuanhapsodienthoai">Chưa nhập số điện thoại</string>
     <string name="user_register_error">Lỗi trong quá trình xử lý</string>
+    <string name="nhap_ma_xac_thuc_cua_ban">"Nhập mã xác thực của bạn : "</string>
 </resources>

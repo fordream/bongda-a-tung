@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.app.bongda.CreateAccountActivity;
+import com.app.bongda.LoginAccountActivity;
 import com.app.bongda.R;
 import com.app.bongda.SettingActivity;
 
@@ -34,6 +35,7 @@ public class HeaderView extends LinearLayout {
 			@Override
 			public void onClick(View v) {
 				String[] datas = new String[] { //
+						getResources().getString(R.string.setting_login), //
 				getResources().getString(R.string.setting_mo_tai_khoan), //
 						getResources().getString(R.string.setting_nap_the) //
 				};//
@@ -44,8 +46,10 @@ public class HeaderView extends LinearLayout {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						if (which == 0) {
-							getContext().startActivity(new Intent(getContext(), CreateAccountActivity.class));
+							getContext().startActivity(new Intent(getContext(), LoginAccountActivity.class));
 						} else if (which == 1) {
+							getContext().startActivity(new Intent(getContext(), CreateAccountActivity.class));
+						} else if (which == 2) {
 							getContext().startActivity(new Intent(getContext(), SettingActivity.class));
 						}
 					}

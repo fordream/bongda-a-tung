@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/settingdialog_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical" >
+
+        <com.app.bongda.view.HeaderView
+            android:id="@+id/headerView1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+        </com.app.bongda.view.HeaderView>
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#999999" />
+
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dimen_10dp"
+                android:text="@string/nhap_so_dien_thoai_cua_ban"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/dimen_13dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1dp"
+                android:background="@android:color/black"
+                android:textSize="@dimen/dimen_13dp" />
+
+            <EditText
+                android:id="@+id/edit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_45dp"
+                android:background="@null"
+                android:inputType="phone"
+                android:paddingLeft="@dimen/dimen_10dp"
+                android:paddingRight="@dimen/dimen_10dp"
+                android:singleLine="true"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/dimen_13dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1dp"
+                android:background="@android:color/black"
+                android:textSize="@dimen/dimen_13dp" />
+            
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dimen_10dp"
+                android:text="@string/nhap_ma_xac_thuc_cua_ban"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/dimen_13dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1dp"
+                android:background="@android:color/black"
+                android:textSize="@dimen/dimen_13dp" />
+
+            <EditText
+                android:id="@+id/edit2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_45dp"
+                android:background="@null"
+                android:inputType="phone"
+                android:paddingLeft="@dimen/dimen_10dp"
+                android:paddingRight="@dimen/dimen_10dp"
+                android:singleLine="true"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/dimen_13dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1dp"
+                android:background="@android:color/black"
+                android:textSize="@dimen/dimen_13dp" />
+
+            <Button
+                android:id="@+id/mbutton2"
+                android:layout_width="@dimen/dimen_200dp"
+                android:layout_height="@dimen/dimen_45dp"
+                android:layout_marginBottom="@dimen/dimen_5dp"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:background="@drawable/a_button_xml"
+                android:gravity="center"
+                android:text="@string/tiep_tuc"
+                android:textSize="@dimen/dimen_15dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

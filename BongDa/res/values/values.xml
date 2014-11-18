@@ -9,8 +9,10 @@
     <string name="khongcodoiyeuthich">Không có đội yêu thích</string>
     <string name="khongconhandinhchuyengia">Không có nhận định chuyên gia</string>
     <string name="khongconthongtinbangxephang">Không có thông tin bảng xếp hạng</string>
-    <string name="setting_mo_tai_khoan">mở tài khoản</string>
-    <string name="setting_nap_the">nạp thẻ</string>
+    <string name="setting_mo_tai_khoan">Đăng kí tài khoản</string>
+    <string name="setting_nap_the">Nạp tiền</string>
+    <string name="setting_login">Đăng nhập tài khoản</string>
 	<string name="nap_tien">NẠP TIỀN</string>
 	<string name="create_new_account">TẠO TÀI KHOẢN MỚI</string>
+	<string name="login_account">ĐĂNG NHẬP</string>
 </resources>
