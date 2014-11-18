@@ -13,6 +13,7 @@ import android.graphics.BitmapFactory;
 public class ByUtils {
 
 	public static final String BASESERVER = "http://210.245.94.14:84/Services/wsfootball.asmx";
+	public static final String BASESERVER_USER = "http://210.211.100.171/ebank/Services/wsusers.asmx";
 	public static final String wsFootBall_BangXepHang = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsFootBall_BangXepHang xmlns=\"http://tempuri.org/\">      <iID_MaGiai>bangxephangId</iID_MaGiai>    </wsFootBall_BangXepHang>  </soap:Body></soap:Envelope>";
 	public static final String wsFootBall_FocusMatch = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsFootBall_Tran_Quan_Tam xmlns=\"http://tempuri.org/\">    \t<sMaTran>%d</sMaTran>    </wsFootBall_Tran_Quan_Tam>  </soap:Body></soap:Envelope>";
 	public static final String wsFootBall_Giai_Theo_QuocGia = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsFootBall_Giai_Theo_QuocGia xmlns=\"http://tempuri.org/\">      <iID_MaQuocGia>quocgiaid</iID_MaQuocGia>    </wsFootBall_Giai_Theo_QuocGia>  </soap:Body></soap:Envelope>";
@@ -38,7 +39,11 @@ public class ByUtils {
 	public static final String wsFootBall_Quocgia_Live = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsFootBall_Quocgia_Live xmlns=\"http://tempuri.org/\" />  </soap:Body></soap:Envelope>";
 	public static final String wsFootBall_Giai_Theo_QuocGia_Live = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsFootBall_Giai_Theo_QuocGia_Live xmlns=\"http://tempuri.org/\">      <iID_MaQuocGia>quocgiaid</iID_MaQuocGia>    </wsFootBall_Giai_Theo_QuocGia_Live>  </soap:Body></soap:Envelope>";
 	
-
+	//add 20141118 ws user
+	public static final String wsUsers_Register = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsUsers_Register xmlns=\"http://tempuri.org/\">      <sSoDienThoai>nophone</sSoDienThoai>    </wsUsers_Register>  </soap:Body></soap:Envelope>";
+	public static final String wsUsers_Login = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsUsers_Login xmlns=\"http://tempuri.org/\">      <sSoDienThoai>nophone</sSoDienThoai>      <sOTP>maotp</sOTP>    </wsUsers_Login>  </soap:Body></soap:Envelope>";
+	public static final String wsUsers_NapThe = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsUsers_NapThe xmlns=\"http://tempuri.org/\">      <sSoDienThoai>nophone</sSoDienThoai>      <sNhaMang>tennhamang</sNhaMang>      <sMaThe>mathenap</sMaThe>      <sSeri>serithe</sSeri>    </wsUsers_NapThe>  </soap:Body></soap:Envelope>";
+	
 	public static List<String> getFilePath(Context context) {
 		List<String> list = new ArrayList<String>();
 

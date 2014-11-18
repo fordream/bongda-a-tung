@@ -97,4 +97,6 @@
     <string name="matruycap">Mã truy cập</string>
     <string name="neukhong">Nếu bạn không nhận được mã truy cập trong vòng 60s.\nXin hãy nhấn vào đây.</string>
     <string name="chuc_mung_dang_ky_thanh_cong">Chúc mừng bạn đăng ký thành công.</string>
+    <string name="chuanhapsodienthoai">Chưa nhập số điện thoại</string>
+    <string name="user_register_error">Lỗi trong quá trình xử lý</string>
 </resources>

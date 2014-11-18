@@ -11,7 +11,7 @@ import com.app.bongda.util.ByUtils;
 public abstract class ResClientCallBack extends CallBack {
 	private Map<String, String> maps = new HashMap<String, String>();
 	private String ParamInfo = "";
-
+	RestClient client;
 	public final void addParam(String name, String value) {
 		maps.put(name, value);
 	}
@@ -28,7 +28,11 @@ public abstract class ResClientCallBack extends CallBack {
 
 	@Override
 	public Object execute() {
-		RestClient client = new RestClient(ByUtils.BASESERVER + getApiName());
+		if(getApiName().equalsIgnoreCase("")){
+			client = new RestClient(ByUtils.BASESERVER + getApiName());
+		}else{
+			client = new RestClient(ByUtils.BASESERVER_USER);
+		}
 		client.addParam(ParamInfo);
 		Set<String> set = maps.keySet();
 		for (String key : set) {
