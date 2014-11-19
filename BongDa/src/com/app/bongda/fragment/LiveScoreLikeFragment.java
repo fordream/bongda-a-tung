@@ -23,8 +23,8 @@ public class LiveScoreLikeFragment extends Fragment {
 		super.onCreate(savedInstanceState);
 	}
 
-	private OnItemClickListener onItemClickListener;
-	private CallBackListenner callBackListenner;
+	private static OnItemClickListener onItemClickListener;
+	private static CallBackListenner callBackListenner;
 
 	public LiveScoreLikeFragment(OnItemClickListener onItemClickListener, CallBackListenner callBackListenner) {
 		super();
@@ -32,8 +32,8 @@ public class LiveScoreLikeFragment extends Fragment {
 		this.onItemClickListener = onItemClickListener;
 	}
 
-	private View view;
-	ListView listView;
+	private static View view;
+	static ListView listView;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,9 +56,9 @@ public class LiveScoreLikeFragment extends Fragment {
 		return view;
 	}
 
-	private LiveScoreLikeCusorAdapter likeCusorAdapter;
-	TextView views_err;
-	public void reloadData() {
+	private static LiveScoreLikeCusorAdapter likeCusorAdapter;
+	static TextView views_err;
+	public static void reloadData() {
 		try {
 			int first = listView.getFirstVisiblePosition();
 			Cursor c = BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreQueryLiked();

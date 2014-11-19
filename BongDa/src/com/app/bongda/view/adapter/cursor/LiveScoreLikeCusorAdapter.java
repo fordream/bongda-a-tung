@@ -1,36 +1,48 @@
 package com.app.bongda.view.adapter.cursor;
 
+import java.util.ArrayList;
+
+import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v4.widget.CursorAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.app.bongda.R;
 import com.app.bongda.base.ImageLoaderUtils;
+import com.app.bongda.fragment.LiveScoreLikeFragment;
 import com.app.bongda.inter.CallBackListenner;
 import com.app.bongda.model.LiveScore;
+import com.app.bongda.service.BongDaServiceManager;
+import com.app.bongda.util.CommonUtil;
 
 public class LiveScoreLikeCusorAdapter extends CursorAdapter {
 	private OnItemClickListener onItemClickListener;
 	private CallBackListenner callBackListenner;
+	private Context ctx;
 
 	public LiveScoreLikeCusorAdapter(Context context, Cursor c, boolean autoRequery, OnItemClickListener onItemClickListener, CallBackListenner callBackListenner) {
 		super(context, c, autoRequery);
 		this.callBackListenner = callBackListenner;
 		this.onItemClickListener = onItemClickListener;
+		this.ctx = context;
 	}
 
 	public LiveScoreLikeCusorAdapter(Context context, Cursor c, int flags, OnItemClickListener onItemClickListener, CallBackListenner callBackListenner) {
 		super(context, c, flags);
 		this.callBackListenner = callBackListenner;
 		this.onItemClickListener = onItemClickListener;
+		this.ctx = context;
 	}
 
 	@Override
@@ -45,6 +57,10 @@ public class LiveScoreLikeCusorAdapter extends CursorAdapter {
 		return view;
 	}
 
+	private int action_down_x = 0;
+	private int action_up_x = 0;
+	public static int difference = 0;
+	private LiveScore liveScore;
 	private void showData(Cursor arg1, View view) {
 		String bdposition = arg1.getString(arg1.getColumnIndex("bdposition"));
 		boolean isHeader = "0".equals(bdposition);
@@ -128,7 +144,7 @@ public class LiveScoreLikeCusorAdapter extends CursorAdapter {
 			String sLogoGiai = arg1.getString(arg1.getColumnIndex("sLogoGiai"));
 			ImageLoaderUtils.getInstance(null).DisplayImage(sLogoGiai, (ImageView) view.findViewById(R.id.logogiai));
 
-			final LiveScore liveScore = new LiveScore(//
+			liveScore = new LiveScore(//
 					false,//
 					arg1.getString(arg1.getColumnIndex("iID_MaTran"))//
 					, arg1.getString(arg1.getColumnIndex("sTenGiai"))//
@@ -169,10 +185,99 @@ public class LiveScoreLikeCusorAdapter extends CursorAdapter {
 				}
 			});
 		}
+		view.setOnTouchListener(new OnTouchListener() {
+
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				// TODO Auto-generated method stub
+				int action = event.getAction();
+				switch (action) {
+				case MotionEvent.ACTION_DOWN:
+//					Log.e("action", "ACTION_DOWN - " + action_down_x);
+					action_down_x = (int) event.getX();
+					break;
+				case MotionEvent.ACTION_MOVE:
+					action_up_x = (int) event.getX();
+//					Log.e("action", "ACTION_MOVE :: " + action_down_x + ":::"+ action_up_x);
+					
+					difference = action_down_x - action_up_x;
+					if(difference > delta1 || difference <  delta2){
+						calcuateDifference(liveScore);
+					}
+					break;
+				case MotionEvent.ACTION_UP:
+//					Log.e("action", "ACTION_UP - ");
+					 if(difference <= delta1 && difference >= delta2){
+						 callBackListenner.onCallBackListenner(5, liveScore);
+					 }else{
+						 calcuateDifference(liveScore);
+					 }
+					break;
+				}
+				return true;
+			}
+			
+		});
 	}
 
 	private void setText(View view, int res, String string) {
 		TextView text = (TextView) view.findViewById(res);
 		text.setText(string);
+	}
+	
+	private int delta1 = 20;
+	private int delta2 = -20;
+	private void calcuateDifference(final LiveScore liveScore) {
+		((Activity) ctx ).runOnUiThread(new Runnable() {
+
+			@Override
+			public void run() {
+				if (CommonUtil.listQuanTam == null) {
+					CommonUtil.listQuanTam = new ArrayList<String>();
+					CommonUtil.getdata(ctx);
+				}
+				
+				String check_quantam = liveScore.idmagiai() + "-" +  liveScore.getId() ;
+//				if(TypeView == null ){
+					Log.e("KKKKKKKKKK", "difference:::" + difference + ":::" + delta2);
+					String check_quantam2 = liveScore.getId() ;
+					if (difference > delta1) {
+						if(BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLikeCheck( liveScore.getId())){
+							//TODO add live score
+							BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLike( liveScore.getId() , "0");
+							if (CommonUtil.listQuanTam.contains( check_quantam2 )) {
+								CommonUtil.listQuanTam.remove( check_quantam2 );
+								CommonUtil.savedata((Activity) ctx);
+								CommonUtil.getdata((Activity) ctx);
+							}	
+//							countryAdapter.notifyDataSetChanged();
+							LiveScoreLikeFragment.reloadData();
+							Toast.makeText(ctx, "Remove favorite", Toast.LENGTH_LONG).show();
+						}
+						
+					}/*else if (difference < delta2) {
+						if(!BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLikeCheck( liveScore.getId())){
+							Log.e("KKKKKKKKKK", "B*" + CommonUtil.listQuanTam.toString());
+							//TODO add live score
+							BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLike( liveScore.getId(), "1");
+							if (!CommonUtil.listQuanTam.contains( check_quantam2 )) {
+								CommonUtil.listQuanTam.add( check_quantam2 );
+								CommonUtil.savedata((Activity) ctx);
+								CommonUtil.getdata((Activity) ctx);
+							}
+//							countryAdapter.notifyDataSetChanged();
+							LiveScoreLikeFragment.reloadData();
+							Toast.makeText(ctx, "Add to Favorite", Toast.LENGTH_LONG).show();
+						}
+						
+					}*/
+//				}
+				
+//				action_down_x = 0;
+//				action_up_x = 0;
+				difference = 0;
+
+			}
+		});
 	}
 }

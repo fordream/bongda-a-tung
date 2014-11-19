@@ -83,12 +83,12 @@ public class LiveScoreFragment extends BaseFragment {
 			convertView.findViewById(R.id.livescore_main).setVisibility(View.GONE);
 			convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
 			convertView.findViewById(R.id.livescore_row).setVisibility(View.GONE);
-			/*if(position < 1){
-				value_list_favorite = "";
+			if(position < 1){
+//				value_list_favorite = "";
 				CommonUtil.getdata(listView.getContext());
 				countryAdapter.notifyDataSetChanged();
-				Log.e("position", "position::" + position);
-			}*/
+//				Log.e("position", "position::" + position);
+			}
 //			Log.e("position", "position::" + position);
 			
 			String check_quantam = /*liveScore.idmagiai() + "-" +  */ liveScore.getId() ;
