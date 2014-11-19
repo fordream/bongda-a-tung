@@ -77,14 +77,24 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 			String Banthang = CommonUtil
 					.getdata(views.getContext(), "Banthang");
 			String HT = CommonUtil.getdata(views.getContext(), "HT");
+			String iTrangThai= CommonUtil.getdata(views.getContext(), "iTrangThai");
 			((TextView) views.findViewById(R.id.tuongthuat_textTenTran))
 					.setText(sTenGiai);
 			((TextView) views.findViewById(R.id.TextView01))
 					.setText(sTenDoiNha);
 			((TextView) views.findViewById(R.id.TextView02))
 					.setText(sTenDoiKhach);
-			((TextView) views.findViewById(R.id.tuongthuat_time))
-					.setText(iPhut);
+			if(iTrangThai.equalsIgnoreCase("5")){
+				((TextView) views.findViewById(R.id.tuongthuat_time))
+				.setText("FT");
+			}else if(iTrangThai.equalsIgnoreCase("3")){
+				((TextView) views.findViewById(R.id.tuongthuat_time))
+				.setText("HT");
+			}else{
+				((TextView) views.findViewById(R.id.tuongthuat_time))
+				.setText(iPhut);
+			}
+			
 			((TextView) views.findViewById(R.id.tuongthuat_tiso))
 					.setText(Banthang);
 			((TextView) views.findViewById(R.id.tuongthuat_ht)).setText(HT);
@@ -241,6 +251,7 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 	public String sLogoGiai;
 	public String sLogoDoiNha;
 	public String sLogoDoiKhach;
+	public String iTrangThai;
 	JSONArray jsonArray_the = new JSONArray();
 	@Override
 	public void onInitData() {
@@ -285,6 +296,8 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 									.getString("iID_MaDoiKhach");
 							iID_MaGiai = jsonarray.getJSONObject(i).getString(
 									"iID_MaGiai");
+							iTrangThai = jsonarray.getJSONObject(i).getString(
+									"iTrangThai");
 							loadItem(jsonarray.getJSONObject(i),
 									"sThongTin_DoiNha", 1);// GOAL_HOME
 							loadItem(jsonarray.getJSONObject(i),
@@ -363,6 +376,9 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 								iID_MaDoiNha);
 						CommonUtil.savedata(views.getContext(),
 								"iID_MaDoiKhach", iID_MaDoiKhach);
+						CommonUtil.savedata(views.getContext(),
+								"iTrangThai", iTrangThai);
+						
 						if (!ListItem) {
 							countryAdapter.addItem(null);
 						}

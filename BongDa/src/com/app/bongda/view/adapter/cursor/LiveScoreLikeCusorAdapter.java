@@ -242,7 +242,7 @@ public class LiveScoreLikeCusorAdapter extends CursorAdapter {
 					Log.e("KKKKKKKKKK", "difference:::" + difference + ":::" + delta2);
 					String check_quantam2 = liveScore.getId() ;
 					if (difference > delta1) {
-						if(BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLikeCheck( liveScore.getId())){
+//						if(BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLikeCheck( liveScore.getId())){
 							//TODO add live score
 							BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLike( liveScore.getId() , "0");
 							if (CommonUtil.listQuanTam.contains( check_quantam2 )) {
@@ -253,7 +253,7 @@ public class LiveScoreLikeCusorAdapter extends CursorAdapter {
 //							countryAdapter.notifyDataSetChanged();
 							LiveScoreLikeFragment.reloadData();
 							Toast.makeText(ctx, "Remove favorite", Toast.LENGTH_LONG).show();
-						}
+//						}
 						
 					}/*else if (difference < delta2) {
 						if(!BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLikeCheck( liveScore.getId())){
