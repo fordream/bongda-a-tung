@@ -113,8 +113,9 @@ public class LoginPhoneFragment extends BaseFragment {
 				if(check_val){
 					String param = (ByUtils.wsUsers_Login).replace("nophone",
 					numberphone);
-					param = (ByUtils.wsUsers_Login).replace("maotp",
+					param = param.replace("maotp",
 							maxacthuc);
+					Log.e("param", param);
 					new APICaller(views.getContext()).callApi("user", true, callbackAPI,
 								param);
 				}else{
