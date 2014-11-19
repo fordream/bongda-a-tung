@@ -103,7 +103,7 @@
                 android:layout_marginTop="@dimen/dimen_10dp"
                 android:background="@drawable/a_button_xml"
                 android:gravity="center"
-                android:text="@string/tiep_tuc"
+                android:text="@string/dang_nhap"
                 android:textSize="@dimen/dimen_15dp" />
         </LinearLayout>
     </LinearLayout>

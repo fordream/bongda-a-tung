@@ -100,4 +100,9 @@
     <string name="chuanhapsodienthoai">Chưa nhập số điện thoại</string>
     <string name="user_register_error">Lỗi trong quá trình xử lý</string>
     <string name="nhap_ma_xac_thuc_cua_ban">"Nhập mã xác thực của bạn : "</string>
+    <string name="chuanhapmaxacthuc">Chưa nhập mã xác thực</string>
+    <string name="chuanhap_sdt_mxt">Chưa nhập số điện thoại và mã xác thực</string>
+    <string name="chuc_mung_login_thanh_cong">Chúc mừng bạn đăng nhập thành công.</string>
+    <string name="user_login_error">Lỗi trong quá trình xử lý</string>
+    <string name="dang_nhap">Đăng nhập</string>
 </resources>

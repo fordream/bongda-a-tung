@@ -3,6 +3,7 @@ package com.app.bongda.fragment.create;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import android.app.Activity;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.util.Log;
@@ -18,6 +19,7 @@ import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.model.NhanDinhChuyenGia;
 import com.app.bongda.util.ByUtils;
 import com.app.bongda.util.CommonAndroid;
+import com.app.bongda.util.CommonUtil;
 import com.app.bongda.view.HeaderView;
 
 public class CreatePhoneFragment extends BaseFragment {
@@ -39,6 +41,7 @@ public class CreatePhoneFragment extends BaseFragment {
 					if (!string_temp.equalsIgnoreCase("")) {
 						Log.e("data", string_temp);
 						if(string_temp.equalsIgnoreCase("1")){
+							CommonUtil.savedata((Activity) views.getContext(), "numberphone" , numberphone);
 							Builder builder = new Builder(views.getContext());
 							builder.setMessage(R.string.chuc_mung_dang_ky_thanh_cong);
 							builder.setCancelable(false);
