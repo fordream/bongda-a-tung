@@ -16,7 +16,7 @@ public class BangXepHangAdapter extends BongDaBaseAdapter {
 	@Override
 	public void showData(int position, Object item, View convertView) {
 		super.showData(position, item, convertView);
-		setText(convertView, R.id.stt, position + "");
+		setText(convertView, R.id.stt, (position + 1) + "");
 	}
 
 	@Override
