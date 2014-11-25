@@ -37,6 +37,7 @@ import com.app.bongda.callback.APICaller;
 import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.callback.progress.LiveScorePorgressExecute;
 import com.app.bongda.inter.CallBackListenner;
+import com.app.bongda.lazyload.ImageLoader2;
 import com.app.bongda.model.GiaiDau;
 import com.app.bongda.model.LiveScore;
 import com.app.bongda.service.BongDaServiceManager;
@@ -205,7 +206,11 @@ public class LiveScoreFragment extends BaseFragment {
 				setText(convertView, R.id.TextView02, liveScore.getName());
 				setText(convertView, R.id.TextView023, liveScore.getName2());
 				// setText(convertView, R.id.tv1, liveScore.getDate());
-				ImageLoaderUtils.getInstance(getActivity()).DisplayImage(liveScore.sLogoGiai(), (ImageView) convertView.findViewById(R.id.logogiai), BitmapFactory.decodeResource(listView.getResources(), R.drawable.noimg));
+//				ImageLoaderUtils.getInstance(getActivity()).DisplayImage(liveScore.sLogoGiai(), (ImageView) convertView.findViewById(R.id.logogiai), BitmapFactory.decodeResource(listView.getResources(), R.drawable.noimg));
+				
+				ImageView image= (ImageView) convertView.findViewById(R.id.logogiai);
+//		        text.setText("item "+position);
+		        imageLoader.DisplayImage(liveScore.sLogoGiai(), image);
 	
 				convertView.findViewById(R.id.image_bangxephang).setOnClickListener(new OnClickListener() {
 					@Override
@@ -334,6 +339,7 @@ public class LiveScoreFragment extends BaseFragment {
 	private boolean addfavorite = false;
 	ListView listView;
 	TextView views_err;
+	public ImageLoader2 imageLoader; 
 	@Override
 	public void onInitCreateView(View view) {
 		Log.e("livescore", "onInitCreateView===" + TypeView);
@@ -365,6 +371,7 @@ public class LiveScoreFragment extends BaseFragment {
 		}
 		
 		views_err = (TextView) view.findViewById(R.id.error_txt);
+		imageLoader=new ImageLoader2(getActivity());
 	}
 
 	View.OnClickListener clickListener = new OnClickListener() {
