@@ -298,7 +298,9 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 		addFragement(new GameDuDoanFragment(null));
 	}
 
-	private void addCountry(String type) {
+	private String type;
+	private void addCountry(String type_) {
+		type = type_;
 		addFragement(new CountryFragment(type,new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -307,12 +309,12 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 				String name = cursor.getString(cursor.getColumnIndex("sTenQuocGia"));
 				String sLogoCountry = cursor.getString(cursor.getColumnIndex("sLogo"));
 				Country country = new Country(_id, name, sLogoCountry);
-				addDanhSachGiaiDauFragment(country);
+				addDanhSachGiaiDauFragment(country, type);
 			}
 		}));
 	}
 
-	private void addDanhSachGiaiDauFragment(Country country) {
+	private void addDanhSachGiaiDauFragment(Country country,String type) {
 		OnItemClickListener listGiaiDau = new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -333,7 +335,7 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 				}
 			}
 		};
-		addFragement(new DanhSachGiaiDauFragment(country, listGiaiDau));
+		addFragement(new DanhSachGiaiDauFragment(country, listGiaiDau, type));
 	}
 
 	private void addBangXepHang(GiaiDau dau) {

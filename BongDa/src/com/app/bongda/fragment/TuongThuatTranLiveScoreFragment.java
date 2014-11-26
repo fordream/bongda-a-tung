@@ -166,10 +166,10 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 					sLogoGiai, (ImageView) views.findViewById(R.id.logogiai));
 			ImageLoaderUtils.getInstance(views.getContext()).DisplayImage(
 					sLogoDoiNha,
-					(ImageView) views.findViewById(R.id.logo_doinha), BitmapFactory.decodeResource(views.getResources(), R.drawable.noimg));
+					(ImageView) views.findViewById(R.id.logo_doinha));
 			ImageLoaderUtils.getInstance(views.getContext()).DisplayImage(
 					sLogoDoiKhach,
-					(ImageView) views.findViewById(R.id.logo_doikhach), BitmapFactory.decodeResource(views.getResources(), R.drawable.noimg));
+					(ImageView) views.findViewById(R.id.logo_doikhach));
 			Log.e("aaaa", "sLogoDoiNha" + sLogoDoiNha + "::sLogoDoiKhach"
 					+ sLogoDoiKhach);
 

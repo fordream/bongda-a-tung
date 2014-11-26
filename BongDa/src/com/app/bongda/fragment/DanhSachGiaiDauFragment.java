@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import android.database.Cursor;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
@@ -30,12 +31,13 @@ import com.vnp.core.datastore.database.GiaiDauTable;
 public class DanhSachGiaiDauFragment extends BaseFragment {
 	OnItemClickListener onItemClickListener;
 	Country country;
-
+	private String type;
 	public DanhSachGiaiDauFragment(Country country,
-			OnItemClickListener onItemClickListener) {
+			OnItemClickListener onItemClickListener, String type_) {
 		super();
 		this.onItemClickListener = onItemClickListener;
 		this.country = country;
+		this.type = type_;
 	}
 
 	private DanhSachGiaiDauAdapter countryAdapter = new DanhSachGiaiDauAdapter();
@@ -97,9 +99,13 @@ public class DanhSachGiaiDauFragment extends BaseFragment {
 
 	private void loadData() {
 		String country_id = country.getId();
-		String ws = (ByUtils.wsFootBall_Giai_Theo_QuocGia_Live).replace("quocgiaid",
+		String w = ByUtils.wsFootBall_Giai_Theo_QuocGia;
+		if("live".equals(type)){
+			w = ByUtils.wsFootBall_Giai_Theo_QuocGia_Live;
+		}
+		String ws = (w).replace("quocgiaid",
 				country_id);
-
+		Log.e("danhsachgiaidau", "param:::" + ws);
 		DanhSachGiaiDauProgressExecute danhSachGiaiDauProgressExecute = new DanhSachGiaiDauProgressExecute(
 				null, null) {
 			@Override

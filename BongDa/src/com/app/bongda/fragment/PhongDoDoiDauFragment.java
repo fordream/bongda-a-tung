@@ -156,8 +156,8 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 	private int sLastMatches_DoiKhach_i2 = 0;
 	@Override
 	public void onInitData() {
-		ImageLoaderUtils.getInstance(null).DisplayImage(giaidau.sLogoDoiNha(),(ImageView) view.findViewById(R.id.logo_doinha), BitmapFactory.decodeResource(view.getResources(), R.drawable.noimg));
-		ImageLoaderUtils.getInstance(null).DisplayImage(giaidau.sLogoDoiKhach(),(ImageView) view.findViewById(R.id.logo_doikhach), BitmapFactory.decodeResource(view.getResources(), R.drawable.noimg));
+		ImageLoaderUtils.getInstance(null).DisplayImage(giaidau.sLogoDoiNha(),(ImageView) view.findViewById(R.id.logo_doinha)/*, BitmapFactory.decodeResource(view.getResources(), R.drawable.noimg)*/);
+		ImageLoaderUtils.getInstance(null).DisplayImage(giaidau.sLogoDoiKhach(),(ImageView) view.findViewById(R.id.logo_doikhach)/*, BitmapFactory.decodeResource(view.getResources(), R.drawable.noimg)*/);
 		callbackAPI_LastMatches = new ICallbackAPI() {
 			@Override
 			public void onSuccess(String response) {
