@@ -41,6 +41,7 @@ import com.app.bongda.callback.APICaller;
 import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.callback.progress.LiveScorePorgressExecute;
 import com.app.bongda.inter.CallBackListenner;
+import com.app.bongda.lazyload.ImageLoader2;
 import com.app.bongda.model.GiaiDau;
 import com.app.bongda.model.LiveScore;
 import com.app.bongda.service.BongDaServiceManager;
@@ -210,7 +211,9 @@ public class LiveScoreFragment extends BaseFragment {
 				setText(convertView, R.id.TextView023, liveScore.getName2());
 				// setText(convertView, R.id.tv1, liveScore.getDate());
 //				ImageLoaderUtils.getInstance(getActivity()).DisplayImage(liveScore.sLogoGiai(), (ImageView) convertView.findViewById(R.id.logogiai), BitmapFactory.decodeResource(listView.getResources(), R.drawable.noimg));
-				new LoadImage((ImageView) convertView.findViewById(R.id.logogiai), liveScore.sLogoGiai()).execute();
+				ImageView image= (ImageView) convertView.findViewById(R.id.logogiai);
+//		        text.setText("item "+position);
+		        imageLoader.DisplayImage(liveScore.sLogoGiai(), image);
 				convertView.findViewById(R.id.image_bangxephang).setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
@@ -385,6 +388,7 @@ public class LiveScoreFragment extends BaseFragment {
 	private boolean addfavorite = false;
 	ListView listView;
 	TextView views_err;
+	public ImageLoader2 imageLoader; 
 	@Override
 	public void onInitCreateView(View view) {
 		Log.e("livescore", "onInitCreateView===" + TypeView);
@@ -416,6 +420,7 @@ public class LiveScoreFragment extends BaseFragment {
 		}
 		
 		views_err = (TextView) view.findViewById(R.id.error_txt);
+		imageLoader=new ImageLoader2(getActivity());
 	}
 
 	View.OnClickListener clickListener = new OnClickListener() {
@@ -471,8 +476,8 @@ public class LiveScoreFragment extends BaseFragment {
 					if (!string_temp.equalsIgnoreCase("")) {
 //						Log.e("data", string_temp);
 						try {
-							ArrayList<JSONObject> array = new ArrayList<JSONObject>();
-							array.clear();
+//							ArrayList<JSONObject> array = new ArrayList<JSONObject>();
+//							array.clear();
 							JSONArray jsonArray = new JSONArray(string_temp);
 								
 							if (jsonArray.length() == 0) {
@@ -483,7 +488,7 @@ public class LiveScoreFragment extends BaseFragment {
 								views_err.setVisibility(View.GONE);
 							}
 							
-							for (int i = 0; i < jsonArray.length(); i++) {
+							/*for (int i = 0; i < jsonArray.length(); i++) {
 								try {
 									if (TypeView != null) {
 										array.add(jsonArray.getJSONObject(i));
@@ -502,7 +507,7 @@ public class LiveScoreFragment extends BaseFragment {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
-							}
+							}*/
 							if (TypeView != null ) {
 								if(TypeView.equalsIgnoreCase("quantam") && !check_favorite){
 									views_err.setVisibility(View.VISIBLE);
@@ -510,7 +515,7 @@ public class LiveScoreFragment extends BaseFragment {
 								}
 							}
 							listView_size = jsonArray.length();
-							Collections.emptyList();
+							/*Collections.emptyList();
 							Collections.sort(array, new Comparator<JSONObject>() {
 
 								@Override
@@ -526,60 +531,60 @@ public class LiveScoreFragment extends BaseFragment {
 										return 0;
 									}
 								}
-							});
+							});*/
 
-							for (int i = 0; i < array.size(); i++) {
-								boolean bNhanDinhChuyenGia = array.get(i).getBoolean("bNhanDinhChuyenGia");
-								boolean bGameDuDoan = array.get(i).getBoolean("bGameDuDoan");
-								boolean bDaCapNhapVaoBXH = array.get(i).getBoolean("bDaCapNhapVaoBXH");
-								Log.e("kkk", i + ":" + array.get(i).getString("iID_MaGiai") + ":" + bNhanDinhChuyenGia + ":" + bGameDuDoan + ":" + bDaCapNhapVaoBXH);
+							for (int i = 0; i < jsonArray.length(); i++) {
+								boolean bNhanDinhChuyenGia = jsonArray.getJSONObject(i).getBoolean("bNhanDinhChuyenGia");
+								boolean bGameDuDoan = jsonArray.getJSONObject(i).getBoolean("bGameDuDoan");
+								boolean bDaCapNhapVaoBXH = jsonArray.getJSONObject(i).getBoolean("bDaCapNhapVaoBXH");
+//								Log.e("kkk", i + ":" + jsonArray.getJSONObject(i).getString("iID_MaGiai") + ":" + bNhanDinhChuyenGia + ":" + bGameDuDoan + ":" + bDaCapNhapVaoBXH);
 
 								// String kk =
-								// array.get(i).getString("sTenGiai");
+								// jsonArray.getJSONObject(i).getString("sTenGiai");
 								if(TypeView == null || (("nhandinhchuyengia".equalsIgnoreCase(TypeView) && bNhanDinhChuyenGia) ) || "phongdo".equalsIgnoreCase(TypeView) || "theogiai".equalsIgnoreCase(TypeView) ){
 									check_null = true;
 									String HT = "";
 									StringBuilder stringbuilder1 = new StringBuilder("HT ");
-									HT = stringbuilder1.append(array.get(i).getString("iCN_BanThang_DoiNha_HT")).append(" - ").append(array.get(i).getString("iCN_BanThang_DoiKhach_HT")).toString();
+									HT = stringbuilder1.append(jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiNha_HT")).append(" - ").append(jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiKhach_HT")).toString();
 
-									String Banthang = (new StringBuilder()).append(array.get(i).getString("iCN_BanThang_DoiNha")).append(" - ").append(array.get(i).getString("iCN_BanThang_DoiKhach"))
+									String Banthang = (new StringBuilder()).append(jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiNha")).append(" - ").append(jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiKhach"))
 											.toString();
-									String iID_MaGiai = array.get(i).getString("iID_MaGiai");
-									String sTenGiai = array.get(i).getString("sTenGiai");
-									String sTenDoiNha = array.get(i).getString("sTenDoiNha");
-									String sTenDoiKhach = array.get(i).getString("sTenDoiKhach");
-									int iTrangThai = Integer.parseInt(array.get(i).getString("iTrangThai"));
-									String iID_MaTran = array.get(i).getString("iID_MaTran");
-									String iC0 = array.get(i).getString("iC0");// ngay
+									String iID_MaGiai = jsonArray.getJSONObject(i).getString("iID_MaGiai");
+									String sTenGiai = jsonArray.getJSONObject(i).getString("sTenGiai");
+									String sTenDoiNha = jsonArray.getJSONObject(i).getString("sTenDoiNha");
+									String sTenDoiKhach = jsonArray.getJSONObject(i).getString("sTenDoiKhach");
+									int iTrangThai = Integer.parseInt(jsonArray.getJSONObject(i).getString("iTrangThai"));
+									String iID_MaTran = jsonArray.getJSONObject(i).getString("iID_MaTran");
+									String iC0 = jsonArray.getJSONObject(i).getString("iC0");// ngay
 																				// thi
 																				// dau
-									String iPhut = array.get(i).getString("iPhut");
-									String sThoiGian = array.get(i).getString("sThoiGian");// thoi
+									String iPhut = jsonArray.getJSONObject(i).getString("iPhut");
+									String sThoiGian = jsonArray.getJSONObject(i).getString("sThoiGian");// thoi
 																							// gian
 																							// thi
 																							// dau
-									String tiso = array.get(i).getString("iCN_BanThang_DoiNha") + " - " + array.get(i).getString("iCN_BanThang_DoiKhach");
-									String sMaGiai = array.get(i).getString("sMaGiai");
-									String sMaDoiNha = array.get(i).getString("sMaDoiNha");
-									String sMaDoiKhach = array.get(i).getString("sMaDoiKhach");
+									String tiso = jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiNha") + " - " + jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiKhach");
+									String sMaGiai = jsonArray.getJSONObject(i).getString("sMaGiai");
+									String sMaDoiNha = jsonArray.getJSONObject(i).getString("sMaDoiNha");
+									String sMaDoiKhach = jsonArray.getJSONObject(i).getString("sMaDoiKhach");
 									String sLogoQuocGia = "";
 									String sLogoGiai = "";
 									String sLogoDoiNha = "";
 									String sLogoDoiKhach = "";
-									if (array.get(i).has("sLogoQuocGia")){
-										sLogoQuocGia = array.get(i).getString("sLogoQuocGia");
+									if (jsonArray.getJSONObject(i).has("sLogoQuocGia")){
+										sLogoQuocGia = jsonArray.getJSONObject(i).getString("sLogoQuocGia");
 									}
-									if (array.get(i).has("sLogoGiai")){
-										sLogoGiai = array.get(i).getString("sLogoGiai");
+									if (jsonArray.getJSONObject(i).has("sLogoGiai")){
+										sLogoGiai = jsonArray.getJSONObject(i).getString("sLogoGiai");
 									}
-									if (array.get(i).has("sLogoDoiNha")){
-										sLogoDoiNha = array.get(i).getString("sLogoDoiNha");
+									if (jsonArray.getJSONObject(i).has("sLogoDoiNha")){
+										sLogoDoiNha = jsonArray.getJSONObject(i).getString("sLogoDoiNha");
 									}
-									if (array.get(i).has("sLogoDoiKhach")){
-										sLogoDoiKhach = array.get(i).getString("sLogoDoiKhach");
+									if (jsonArray.getJSONObject(i).has("sLogoDoiKhach")){
+										sLogoDoiKhach = jsonArray.getJSONObject(i).getString("sLogoDoiKhach");
 									}
-									String iID_MaDoiNha = array.get(i).getString("iID_MaDoiNha");
-									String iID_MaDoiKhach = array.get(i).getString("iID_MaDoiKhach");
+									String iID_MaDoiNha = jsonArray.getJSONObject(i).getString("iID_MaDoiNha");
+									String iID_MaDoiKhach = jsonArray.getJSONObject(i).getString("iID_MaDoiKhach");
 									// Log.e("kkk",sTenGiai +":" +iTrangThai + ":"
 									// +sTenDoiNha);iID_MaGiai
 									if (i == 0) {
@@ -587,7 +592,7 @@ public class LiveScoreFragment extends BaseFragment {
 												sMaDoiKhach, iID_MaGiai, bNhanDinhChuyenGia, bGameDuDoan, bDaCapNhapVaoBXH, sLogoQuocGia, sLogoGiai, sLogoDoiNha, sLogoDoiKhach, iID_MaDoiNha, iID_MaDoiKhach));
 										count_showdata = count_showdata + 1;
 									} else if (i > 0) {
-										if ((array.get(i).getString("sTenGiai")).equalsIgnoreCase(array.get(i - 1).getString("sTenGiai"))) {
+										if ((jsonArray.getJSONObject(i).getString("sTenGiai")).equalsIgnoreCase(jsonArray.getJSONObject(i - 1).getString("sTenGiai"))) {
 											countryAdapter.addItem(new LiveScore(false, iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut, sThoiGian, iC0, tiso, iTrangThai, sMaGiai, sMaDoiNha,
 													sMaDoiKhach, iID_MaGiai, bNhanDinhChuyenGia, bGameDuDoan, bDaCapNhapVaoBXH, sLogoQuocGia, sLogoGiai, sLogoDoiNha, sLogoDoiKhach, iID_MaDoiNha, iID_MaDoiKhach));
 											count_showdata = count_showdata + 1;
@@ -597,8 +602,8 @@ public class LiveScoreFragment extends BaseFragment {
 											count_showdata = count_showdata + 1;
 										}
 									}
-									if(array.get(i).has("totalpage")){
-										totalpage = array.get(i).getInt("totalpage");
+									if(jsonArray.getJSONObject(i).has("totalpage")){
+										totalpage = jsonArray.getJSONObject(i).getInt("totalpage");
 									}
 									
 								}
@@ -612,7 +617,7 @@ public class LiveScoreFragment extends BaseFragment {
 									isLoadMore = true;
 								}
 							}
-							Log.e("aaaaaaa","count_showdata::" +count_showdata + ":totalpage:" + totalpage);
+//							Log.e("aaaaaaa","count_showdata::" +count_showdata + ":totalpage:" + totalpage);
 //							if (onLoad != 1) {
 								countryAdapter.notifyDataSetChanged();
 //							}
@@ -650,7 +655,7 @@ public class LiveScoreFragment extends BaseFragment {
 			public void onScroll(AbsListView view, int firstVisibleItem,
 					int visibleItemCount, int totalItemCount) {
 				// TODO Auto-generated method stub
-				if(totalItemCount > 0 && isLoadMore){
+				if(totalItemCount > 0 && isLoadMore && totalpage > 1){
 					if(totalItemCount - 1 <= firstVisibleItem + visibleItemCount){
 						Log.e("load more", "totalItemCount==" + totalItemCount + "::firstVisibleItem==" + firstVisibleItem + "::visibleItemCount==" + visibleItemCount );
 						page++;

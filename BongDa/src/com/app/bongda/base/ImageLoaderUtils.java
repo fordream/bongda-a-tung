@@ -31,7 +31,7 @@ public class ImageLoaderUtils {
 
 	public void DisplayImage(String url, ImageView imageView, Bitmap bitmap) {
 		imageView.setImageBitmap(bitmap);
-		imageLoader.DisplayImage(url, imageView);
+//		imageLoader.DisplayImage(url, imageView);
 	}
 
 }

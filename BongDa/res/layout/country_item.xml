@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
+        android:background="#ffffff"
         android:paddingBottom="@dimen/dimen_10dp"
         android:paddingTop="@dimen/dimen_10dp" >
 
@@ -21,7 +22,7 @@
         <TextView
             style="@style/bongda_text_item"
             android:id="@+id/textView1"
-            android:layout_width="@dimen/dimen_260dp"
+            android:layout_width="@dimen/dimen_240dp"
             android:layout_height="wrap_content"
             android:text="Large Text"
             android:textAppearance="?android:attr/textAppearanceLarge"
