@@ -106,8 +106,8 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 		if (mpager.getContext() instanceof X4VLayoutActivity//
 				|| mpager.getContext() instanceof X2VLayoutActivity //
 				|| mpager.getContext() instanceof PhongDoCacDoiActivity //
-				|| mpager.getContext() instanceof NhanDinhChuyenGiaActivity//
-				) {
+				/*|| mpager.getContext() instanceof NhanDinhChuyenGiaActivity//
+*/				) {
 			if( mpager.getContext() instanceof X2VLayoutActivity){
 				addCountry("live");
 			}else{
@@ -117,6 +117,8 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 			addLiveScore(null, null);
 		} else if (mpager.getContext() instanceof X3VLayoutActivity) {
 			addLiveScoreLiked();
+		} else if (mpager.getContext() instanceof NhanDinhChuyenGiaActivity){
+			showNhanDinhChuyenGia(null);
 		}
 	}
 
