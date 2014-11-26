@@ -74,7 +74,8 @@ public class LiveScoreLikeCusorAdapter extends CursorAdapter {
 			String sLogoQuocGia = arg1.getString(arg1.getColumnIndex("sLogoQuocGia"));
 			String sTenGiai = arg1.getString(arg1.getColumnIndex("sTenGiai"));
 			((TextView) view.findViewById(R.id.textView1)).setText(sTenGiai);
-			ImageLoaderUtils.getInstance(null).DisplayImage(sLogoQuocGia, (ImageView) view.findViewById(R.id.logogiai));
+			String sLogoGiai = arg1.getString(arg1.getColumnIndex("sLogoGiai"));
+			ImageLoaderUtils.getInstance(null).DisplayImage(sLogoGiai, (ImageView) view.findViewById(R.id.logogiai));
 		} else {
 			int status = 0;
 			try {

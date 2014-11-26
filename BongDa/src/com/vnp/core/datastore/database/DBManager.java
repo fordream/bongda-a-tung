@@ -239,6 +239,7 @@ public class DBManager {
 		String iID_MaGiai = values.getAsString("iID_MaGiai");
 		String sTenGiai = values.getAsString("sTenGiai");
 		String sLogoQuocGia = values.getAsString("sLogoQuocGia");
+		String sLogoGiai = values.getAsString("sLogoGiai");
 
 		String where = String.format(//
 				"iID_MaGiai = '%s' and bdposition='0' "//
@@ -251,6 +252,7 @@ public class DBManager {
 		dataGiaiDauValues.put("sTenGiai", sTenGiai);
 		dataGiaiDauValues.put("sLogoQuocGia", sLogoQuocGia);
 		dataGiaiDauValues.put("bdneedshow", "1");
+		dataGiaiDauValues.put("sLogoGiai", sLogoGiai);
 
 		if (cursor != null && cursor.getCount() >= 1) {
 			database.update(table.getTableName(), dataGiaiDauValues, where, null);
