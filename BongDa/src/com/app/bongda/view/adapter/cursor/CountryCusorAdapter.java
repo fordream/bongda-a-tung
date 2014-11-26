@@ -2,10 +2,12 @@ package com.app.bongda.view.adapter.cursor;
 
 import com.app.bongda.R;
 import com.app.bongda.base.ImageLoaderUtils;
+import com.app.bongda.lazyload.ImageLoader2;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v4.widget.CursorAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +15,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class CountryCusorAdapter extends CursorAdapter {
-
+	public ImageLoader2 imageLoader; 
 	public CountryCusorAdapter(Context context, Cursor c, boolean autoRequery) {
 		super(context, c, autoRequery);
+		imageLoader=new ImageLoader2(context);
 	}
 
 	public CountryCusorAdapter(Context context, Cursor c, int flags) {
 		super(context, c, flags);
+		imageLoader=new ImageLoader2(context);
 	}
 
 	@Override
@@ -33,7 +37,10 @@ public class CountryCusorAdapter extends CursorAdapter {
 		TextView textView = (TextView) convertView.findViewById(R.id.textView1);
 		textView.setText(cursor.getString(cursor.getColumnIndex("sTenQuocGia")));
 		String image1 = cursor.getString(cursor.getColumnIndex("sLogo"));
-		ImageLoaderUtils.getInstance(null).DisplayImage(image1, (ImageView) convertView.findViewById(R.id.imageView1));
+//		ImageLoaderUtils.getInstance(null).DisplayImage(image1, (ImageView) convertView.findViewById(R.id.imageView1));
+		ImageView image= (ImageView) convertView.findViewById(R.id.imageView1);
+//        Log.e("country_fla", "link==" + image1);
+        imageLoader.DisplayImage(image1, image);
 	}
 
 	@Override

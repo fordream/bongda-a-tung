@@ -6,6 +6,7 @@ import org.json.JSONException;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v4.widget.CursorAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,6 +84,7 @@ public class CountryFragment extends BaseFragment {
 				where = String.format("stype ='%s'", type);
 			}
 			Cursor cursor = BongDaServiceManager.getInstance().getBongDaService().query(new CountryTable().getTableName(), where);
+			Log.e("country","where==" +where);
 			countryCusorAdapter = new CountryCusorAdapter(view.getContext(), cursor, true);
 			listView.setAdapter(countryCusorAdapter);
 			// listView.setAdapter(new CursorAdapter(view.getContext(), cursor)
