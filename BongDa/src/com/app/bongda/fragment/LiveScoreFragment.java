@@ -1,5 +1,6 @@
 package com.app.bongda.fragment;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -11,7 +12,10 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -205,8 +209,8 @@ public class LiveScoreFragment extends BaseFragment {
 				setText(convertView, R.id.TextView02, liveScore.getName());
 				setText(convertView, R.id.TextView023, liveScore.getName2());
 				// setText(convertView, R.id.tv1, liveScore.getDate());
-				ImageLoaderUtils.getInstance(getActivity()).DisplayImage(liveScore.sLogoGiai(), (ImageView) convertView.findViewById(R.id.logogiai), BitmapFactory.decodeResource(listView.getResources(), R.drawable.noimg));
-	
+//				ImageLoaderUtils.getInstance(getActivity()).DisplayImage(liveScore.sLogoGiai(), (ImageView) convertView.findViewById(R.id.logogiai), BitmapFactory.decodeResource(listView.getResources(), R.drawable.noimg));
+				new LoadImage((ImageView) convertView.findViewById(R.id.logogiai), liveScore.sLogoGiai()).execute();
 				convertView.findViewById(R.id.image_bangxephang).setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
@@ -322,6 +326,53 @@ public class LiveScoreFragment extends BaseFragment {
 		}
 
 	}
+	
+	class LoadImage extends AsyncTask<Object, Void, Bitmap>{
+
+        private ImageView imv;
+        private String path;
+
+        public LoadImage(ImageView imv) {
+             this.imv = imv;
+             this.path = imv.getTag().toString();
+        }
+
+    public LoadImage(ImageView findViewById, String sLogoGiai) {
+			// TODO Auto-generated constructor stub
+    	this.imv = findViewById;
+        this.path = sLogoGiai;
+	}
+
+	@Override
+    protected Bitmap doInBackground(Object... params) {
+        Bitmap bitmap = null;
+        File file = new File( 
+                Environment.getExternalStorageDirectory().getAbsolutePath() + path);
+
+        if(file.exists()){
+            bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+        }
+
+        return bitmap;
+    }
+    @Override
+    protected void onPostExecute(Bitmap result) {
+//        if (!imv.getTag().toString().equals(path)) {
+//               /* The path is not same. This means that this
+//                  image view is handled by some other async task. 
+//                  We don't do anything and return. */
+//               return;
+//        }
+
+        if(result != null && imv != null){
+            imv.setVisibility(View.VISIBLE);
+            imv.setImageBitmap(result);
+        }else{
+            imv.setVisibility(View.GONE);
+        }
+    }
+
+}
 
 	@Override
 	public int getLayout() {
