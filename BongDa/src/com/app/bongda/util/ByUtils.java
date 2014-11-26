@@ -11,7 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 public class ByUtils {
-
+//	http://210.245.94.14:84/Livescores
 	public static final String BASESERVER = "http://210.245.94.14:84/Services/wsfootball.asmx";
 	public static final String BASESERVER_USER = "http://210.211.100.171/ebank/Services/wsusers.asmx";
 	public static final String wsFootBall_BangXepHang = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsFootBall_BangXepHang xmlns=\"http://tempuri.org/\">      <iID_MaGiai>bangxephangId</iID_MaGiai>    </wsFootBall_BangXepHang>  </soap:Body></soap:Envelope>";
@@ -29,7 +29,9 @@ public class ByUtils {
 	public static final String wsFootBall_Phong_Do_ChiTiet22 = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"> <soap:Body><wsFootBall_Phong_Do_ChiTiet xmlns=\"http://tempuri.org/\"><sMaGiai>magiai</sMaGiai><sMaDoiNha>madoinha</sMaDoiNha><sMaDoiKhach>madoikhach</sMaDoiKhach></wsFootBall_Phong_Do_ChiTiet></soap:Body></soap:Envelope>";
 	public static final String wsFootBall_Phong_Do_ChiTiet = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsFootBall_Phong_Do_ChiTiet xmlns=\"http://tempuri.org/\">    	<sMaGiai>magiai</sMaGiai>        	<sMaDoiNha>madoinha</sMaDoiNha>        	<sMaDoiKhach>madoikhach</sMaDoiKhach>    </wsFootBall_Phong_Do_ChiTiet>  </soap:Body></soap:Envelope>";
 
-	public static final String wsFootBall_Lives_dudoan = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsFootBall_Lives_Co_GameDuDoan xmlns=\"http://tempuri.org/\" />  </soap:Body></soap:Envelope>";
+	public static final String wsFootBall_Lives_dudoan_old = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsFootBall_Lives_Co_GameDuDoan xmlns=\"http://tempuri.org/\" />  </soap:Body></soap:Envelope>";
+	public static final String wsFootBall_Lives_dudoan = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>     <wsFootBall_Lives_Co_GameDuDoan xmlns=\"http://tempuri.org/\">      <page>pageload</page>    </wsFootBall_Lives_Co_GameDuDoan>  </soap:Body></soap:Envelope>";
+	
 	public static final String wsFootBall_Lives_TyLeDuDoan = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsFootBall_Lives_TyLeDuDoan xmlns=\"http://tempuri.org/\">      <iID_MaTran>matran</iID_MaTran>    </wsFootBall_Lives_TyLeDuDoan>  </soap:Body></soap:Envelope>";
 
 	public static final String wsFootBall_Lives_page = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>   <wsFootBall_Lives xmlns=\"http://tempuri.org/\">      <page>pageload</page>    </wsFootBall_Lives> </soap:Body></soap:Envelope>";
@@ -44,6 +46,7 @@ public class ByUtils {
 	public static final String wsUsers_Login = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsUsers_Login xmlns=\"http://tempuri.org/\">      <sSoDienThoai>nophone</sSoDienThoai>      <sOTP>maotp</sOTP>    </wsUsers_Login>  </soap:Body></soap:Envelope>";
 	public static final String wsUsers_NapThe = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsUsers_NapThe xmlns=\"http://tempuri.org/\">      <sSoDienThoai>nophone</sSoDienThoai>      <sNhaMang>tennhamang</sNhaMang>      <sMaThe>mathenap</sMaThe>      <sSeri>serithe</sSeri>    </wsUsers_NapThe>  </soap:Body></soap:Envelope>";
 	
+	public static final String wsFootBall_Lives_Co_MayTinhDuDoan = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsFootBall_Lives_Co_MayTinhDuDoan xmlns=\"http://tempuri.org/\">      <page>pageload</page>    </wsFootBall_Lives_Co_MayTinhDuDoan>  </soap:Body></soap:Envelope>";
 	public static List<String> getFilePath(Context context) {
 		List<String> list = new ArrayList<String>();
 

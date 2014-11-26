@@ -18,6 +18,7 @@ public class XmlHandler extends DefaultHandler
     private final String REGISTER_RESULT = "wsUsers_RegisterResult";
     private final String LOGIN_RESULT = "wsUsers_LoginResult";
     private final String NAPTHE_RESULT = "wsUsers_NapTheResult";
+    private final String MAYTINHDUDOAN_RESULT = "wsFootBall_Lives_Co_MayTinhDuDoanResult";
     
     StringBuilder builder;
     String result;
@@ -41,7 +42,7 @@ public class XmlHandler extends DefaultHandler
         throws SAXException
     {
         super.endElement(s, s1, s2);
-        if (( s1.equals(REGISTER_RESULT) || s1.equals(LOGIN_RESULT) || s1.equals(NAPTHE_RESULT) || s1.equals("wsFootBall_Giai_Theo_QuocGia_LiveResult") || s1.equals("wsFootBall_Quocgia_LiveResult") || s1.equals("wsFootBall_Lives_Co_GameDuDoanResult") || s1.equals("wsFootBall_Phong_Do_ChiTietResult") || s1.equals("wsFootBall_Lives_TyLeDuDoanResult") || s1.equals("wsFootBall_Nhan_Dinh_Chuyen_GiaResult") || s1.equals("wsFootBall_ChiTiet_TranResult") || s1.equals("wsFootBall_QuocgiaResult") || s1.equals("wsFootBall_Giai_Theo_QuocGiaResult") || s1.equals("wsFootBall_BangXepHangResult") || s1.equals("wsFootBall_LivesResult") || s1.equals("wsFootBall_Lives_Theo_GiaiResult") || s1.equals("wsFootBall_Phong_DoResult") || s1.equals("wsFootBall_Nhan_Dinh_Chuyen_Gia_Theo_TranResult")) && builder != null)
+        if (( s1.equals(MAYTINHDUDOAN_RESULT) || s1.equals(REGISTER_RESULT) || s1.equals(LOGIN_RESULT) || s1.equals(NAPTHE_RESULT) || s1.equals("wsFootBall_Giai_Theo_QuocGia_LiveResult") || s1.equals("wsFootBall_Quocgia_LiveResult") || s1.equals("wsFootBall_Lives_Co_GameDuDoanResult") || s1.equals("wsFootBall_Phong_Do_ChiTietResult") || s1.equals("wsFootBall_Lives_TyLeDuDoanResult") || s1.equals("wsFootBall_Nhan_Dinh_Chuyen_GiaResult") || s1.equals("wsFootBall_ChiTiet_TranResult") || s1.equals("wsFootBall_QuocgiaResult") || s1.equals("wsFootBall_Giai_Theo_QuocGiaResult") || s1.equals("wsFootBall_BangXepHangResult") || s1.equals("wsFootBall_LivesResult") || s1.equals("wsFootBall_Lives_Theo_GiaiResult") || s1.equals("wsFootBall_Phong_DoResult") || s1.equals("wsFootBall_Nhan_Dinh_Chuyen_Gia_Theo_TranResult")) && builder != null)
         {
             result = builder.toString();
             builder = null;
@@ -63,7 +64,7 @@ public class XmlHandler extends DefaultHandler
         throws SAXException
     {
         super.startElement(s, s1, s2, attributes);
-        if (( s1.equals(REGISTER_RESULT) || s1.equals(LOGIN_RESULT) || s1.equals(NAPTHE_RESULT) || s1.equals("wsFootBall_Giai_Theo_QuocGia_LiveResult") || s1.equals("wsFootBall_Quocgia_LiveResult") || s1.equals("wsFootBall_Lives_Co_GameDuDoanResult") || s1.equals("wsFootBall_Phong_Do_ChiTietResult") ||s1.equals("wsFootBall_Lives_TyLeDuDoanResult") || s1.equals("wsFootBall_Nhan_Dinh_Chuyen_GiaResult") || s1.equals("wsFootBall_ChiTiet_TranResult") || s1.equals("wsFootBall_QuocgiaResult") || s1.equals("wsFootBall_Giai_Theo_QuocGiaResult") || s1.equals("wsFootBall_BangXepHangResult") || s1.equals("wsFootBall_LivesResult") || s1.equals("wsFootBall_Lives_Theo_GiaiResult") || s1.equals("wsFootBall_Phong_DoResult") || s1.equals("wsFootBall_Nhan_Dinh_Chuyen_Gia_Theo_TranResult")) && builder != null)
+        if (( s1.equals(MAYTINHDUDOAN_RESULT) || s1.equals(REGISTER_RESULT) || s1.equals(LOGIN_RESULT) || s1.equals(NAPTHE_RESULT) || s1.equals("wsFootBall_Giai_Theo_QuocGia_LiveResult") || s1.equals("wsFootBall_Quocgia_LiveResult") || s1.equals("wsFootBall_Lives_Co_GameDuDoanResult") || s1.equals("wsFootBall_Phong_Do_ChiTietResult") ||s1.equals("wsFootBall_Lives_TyLeDuDoanResult") || s1.equals("wsFootBall_Nhan_Dinh_Chuyen_GiaResult") || s1.equals("wsFootBall_ChiTiet_TranResult") || s1.equals("wsFootBall_QuocgiaResult") || s1.equals("wsFootBall_Giai_Theo_QuocGiaResult") || s1.equals("wsFootBall_BangXepHangResult") || s1.equals("wsFootBall_LivesResult") || s1.equals("wsFootBall_Lives_Theo_GiaiResult") || s1.equals("wsFootBall_Phong_DoResult") || s1.equals("wsFootBall_Nhan_Dinh_Chuyen_Gia_Theo_TranResult")) && builder != null)
         {
             result = builder.toString();
             builder = null;

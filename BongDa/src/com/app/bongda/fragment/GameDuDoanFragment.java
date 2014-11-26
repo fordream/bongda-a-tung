@@ -91,7 +91,10 @@ public class GameDuDoanFragment extends BaseFragment {
 	}
 
 	ICallbackAPI callbackAPI;
-
+	private int page = 1;
+	private int totalpage = 1;
+	private int currentPage = 1;
+	private boolean isLoadMore = true;
 	private Context getContext() {
 		return listView.getContext();
 	}
@@ -104,7 +107,7 @@ public class GameDuDoanFragment extends BaseFragment {
 				String string_temp = CommonAndroid.parseXMLAction(response);
 				if (!string_temp.equalsIgnoreCase("")) {
 					try {
-
+						Log.e("gamedudoan", "string_temp==" + string_temp);
 						ArrayList<JSONObject> array = new ArrayList<JSONObject>();
 						array.clear();
 						JSONArray jsonArray = new JSONArray(string_temp);
@@ -184,7 +187,11 @@ public class GameDuDoanFragment extends BaseFragment {
 			public void onError(String message) {
 			}
 		};
+		String ws = ByUtils.wsFootBall_Lives_dudoan;
+		String page_load = ""+page;
+		ws =  ws.replace("pageload", page_load);
+		Log.e("gamedudoan", "param==" + ws);
 		new APICaller(getContext()).callApi("", true, callbackAPI,
-				ByUtils.wsFootBall_Lives_dudoan);
+				ws);
 	}
 }
