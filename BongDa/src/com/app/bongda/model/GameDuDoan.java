@@ -1,7 +1,7 @@
 package com.app.bongda.model;
 
 public class GameDuDoan extends PhongDo {
-	public GameDuDoan(boolean isHeader, String sTenDoiNha_, String sTenDoiKhach_ ,String iCN_BanThang_DoiNha_,String iCN_BanThang_DoiKhach_, String iC0_,String sThoiGian_,String sTyLe_ChauAu_ ,String sTyLe_ChapBong_, String sTyLe_TaiSuu_) {
+	public GameDuDoan(boolean isHeader, String sTenDoiNha_, String sTenDoiKhach_ ,String iCN_BanThang_DoiNha_,String iCN_BanThang_DoiKhach_, String iC0_,String sThoiGian_,String sTyLe_ChauAu_ ,String sTyLe_ChapBong_, String sTyLe_TaiSuu_,String sTenGiai_, String sLogoQuocGia_, String sLogoGiai_) {
 		super(null,sTenDoiNha_,sTenDoiKhach_,null,null);
 		this.isHeader = isHeader;
 		this.sTenDoiNha = sTenDoiNha_;
@@ -13,6 +13,9 @@ public class GameDuDoan extends PhongDo {
 		this.sTyLe_ChapBong = sTyLe_ChapBong_;
 		this.sTyLe_ChauAu = sTyLe_ChauAu_;
 		this.sTyLe_TaiSuu = sTyLe_TaiSuu_;
+		this.sTenGiai = sTenGiai_;
+		this.sLogoGiai = sLogoGiai_;
+		this.sLogoQuocGia = sLogoQuocGia_;
 	}
 
 	private boolean isHeader;
@@ -25,9 +28,23 @@ public class GameDuDoan extends PhongDo {
 	private String sTyLe_ChauAu;
 	private String sTyLe_ChapBong;
 	private String sTyLe_TaiSuu;
-	
+	private String sTenGiai;
+	private String sLogoQuocGia;
+	private String sLogoGiai;
 	public boolean isHeader() {
 		return isHeader;
+	}
+	
+	public String sTenGiai() {
+		return sTenGiai;
+	}
+	
+	public String sLogoQuocGia() {
+		return sLogoQuocGia;
+	}
+	
+	public String sLogoGiai() {
+		return sLogoGiai;
 	}
 	
 	public String sTenDoiNha() {

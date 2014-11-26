@@ -20,13 +20,13 @@
             android:paddingTop="@dimen/dimen_2dp" >
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/logo_giai"
                 android:layout_width="@dimen/dimen_30dp"
                 android:layout_height="@dimen/dimen_20dp"
-                android:background="@drawable/vietnam" />
+                android:background="@null" />
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/tengiai"
                 style="@style/bongda_text_item"
                 android:layout_width="@dimen/dimen_240dp"
                 android:layout_height="wrap_content"

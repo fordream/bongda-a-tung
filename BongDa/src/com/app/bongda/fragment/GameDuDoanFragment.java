@@ -12,12 +12,14 @@ import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.app.bongda.R;
 import com.app.bongda.base.BaseFragment;
 import com.app.bongda.base.BongDaBaseAdapter;
+import com.app.bongda.base.ImageLoaderUtils;
 import com.app.bongda.callback.APICaller;
 import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.model.GameDuDoan;
@@ -46,6 +48,8 @@ public class GameDuDoanFragment extends BaseFragment {
 		@Override
 		public void showData(Object item, View convertView) {
 			final GameDuDoan dudoan = (GameDuDoan) item;
+			ImageLoaderUtils.getInstance(getActivity()).DisplayImage(dudoan.sLogoGiai(), (ImageView) convertView.findViewById(R.id.logo_giai));
+			setText(convertView, R.id.tengiai, dudoan.sTenGiai());
 			setText(convertView, R.id.TextView02, dudoan.sTenDoiNha());
 			setText(convertView, R.id.TextView03, dudoan.sTenDoiKhach());
 			setText(convertView,
@@ -169,11 +173,21 @@ public class GameDuDoanFragment extends BaseFragment {
 									"sTyLe_ChapBong");
 							sTyLe_TaiSuu = array.get(i).getString(
 									"sTyLe_TaiSuu");
+							String sTenGiai = jsonArray.getJSONObject(i).getString("sTenGiai");
+							String sLogoQuocGia = "";
+							String sLogoGiai = "";
+							if (jsonArray.getJSONObject(i).has("sLogoQuocGia")){
+								sLogoQuocGia = jsonArray.getJSONObject(i).getString("sLogoQuocGia");
+							}
+							if (jsonArray.getJSONObject(i).has("sLogoGiai")){
+								sLogoGiai = jsonArray.getJSONObject(i).getString("sLogoGiai");
+							}
 							countryAdapter.addItem(new GameDuDoan(false,
 									sTenDoiNha, sTenDoiKhach,
 									iCN_BanThang_DoiNha, iCN_BanThang_DoiKhach,
 									iC0, sThoiGian, sTyLe_ChauAu,
-									sTyLe_ChapBong, sTyLe_TaiSuu));
+									sTyLe_ChapBong, sTyLe_TaiSuu,
+									sTenGiai, sLogoQuocGia, sLogoGiai));
 
 						}
 						countryAdapter.notifyDataSetChanged();
