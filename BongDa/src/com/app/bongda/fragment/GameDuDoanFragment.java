@@ -47,6 +47,7 @@ public class GameDuDoanFragment extends BaseFragment {
 
 		@Override
 		public void showData(Object item, View convertView) {
+			Log.e("aaaaaaa", "cccccccccccccc");
 			final GameDuDoan dudoan = (GameDuDoan) item;
 			ImageLoaderUtils.getInstance(getActivity()).DisplayImage(dudoan.sLogoGiai(), (ImageView) convertView.findViewById(R.id.logo_giai));
 			setText(convertView, R.id.tengiai, dudoan.sTenGiai());
@@ -213,6 +214,7 @@ public class GameDuDoanFragment extends BaseFragment {
 
 						}
 						countryAdapter.notifyDataSetChanged();
+						Log.e("aaaaaaa", "bbbbbbbbbbbbbb");
 					} catch (JSONException e) {
 					}
 				}
