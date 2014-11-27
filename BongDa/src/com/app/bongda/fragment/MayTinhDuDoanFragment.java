@@ -3,6 +3,7 @@ package com.app.bongda.fragment;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.StringTokenizer;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,8 +50,29 @@ public class MayTinhDuDoanFragment extends BaseFragment {
 		}
 
 		@Override
-		public void showData(Object item, View convertView) {
+		public void showData(int position,Object item, View convertView) {
 			final LiveScore liveScore = (LiveScore) item;
+			convertView.findViewById(R.id.livescore_header).setVisibility(View.GONE);
+			convertView.findViewById(R.id.livescore_main).setVisibility(View.GONE);
+			convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
+			if(position < 1){
+				CommonUtil.getdata(listView.getContext());
+//				countryAdapter.notifyDataSetChanged();
+			}
+			String check_quantam = /*liveScore.idmagiai() + "-" +  */ liveScore.getId() ;
+			if (liveScore.isHeader()) {
+				convertView.findViewById(R.id.livescore_header).setVisibility(View.VISIBLE);
+				convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
+			} else {
+				convertView.findViewById(R.id.livescore_header).setVisibility(View.GONE);
+				convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
+			}
+			if (CommonUtil.listQuanTam.contains( check_quantam )) {
+				convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
+			}else{
+				convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
+			}
+			
 			setText(convertView, R.id.text_tengiai, liveScore.sTenGiai()); //ok
 			
 			int status = 0;
@@ -98,9 +120,57 @@ public class MayTinhDuDoanFragment extends BaseFragment {
 			// setText(convertView, R.id.TextView01, liveScore.getTime());
 			setText(convertView, R.id.TextView_tendoinha, liveScore.getName());//ok
 			setText(convertView, R.id.TextView_tendoikhach, liveScore.getName2());//ok
+			String tiletem = liveScore.sTyLe_ChapBong();
+			tiletem = tiletem.replace("/", ",");
+			Log.e("tylechapbong", "sTyLe_ChapBong=====" +tiletem);
+			
+			try {
+				String temp1[];
+				int j = tiletem.indexOf(":");
+				if (j > 0) {
+					temp1 = tiletem.split(":");
+					String keo1 = temp1[0];
+					String keo2 = temp1[1];
+//					
+					StringTokenizer st = new StringTokenizer(keo1,"*");
+					int noOfColumns = st.countTokens();
+					String dbcolumn[],dbcolumn2[];
+					dbcolumn = new String[noOfColumns];
+					int i = 0;
+					//System.out.println("Column"+dbcolumn);
+					while (st.hasMoreElements()) {
+						dbcolumn [i++] = st.nextToken();
+					}
+					String keo11 = dbcolumn[1];
+					
+					StringTokenizer st2 = new StringTokenizer(keo2,"*");
+					int noOfColumns2 = st2.countTokens();
+					dbcolumn2 = new String[noOfColumns2];
+					i = 0;
+					//System.out.println("Column"+dbcolumn);
+					while (st.hasMoreElements()) {
+						dbcolumn2 [i++] = st.nextToken();
+					}
+					String keo12 = dbcolumn2[0];
+					Log.e("tylechapbong", "sTyLe_ChapBong==" +keo11 + "::::" +keo12);
+					setText(convertView, R.id.TextView_keo,keo11 + ":" +keo12);
+				}else{
+					setText(convertView, R.id.TextView_keo, "0:0");
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				setText(convertView, R.id.TextView_keo, "0:0");
+				e.printStackTrace();
+			}
 			
 			ImageView image= (ImageView) convertView.findViewById(R.id.logogiai);//ok
 			imageLoader.DisplayImage(liveScore.sLogoGiai(), image);
+		}
+
+		@Override
+		public void showData(Object item, View convertView) {
+			// TODO Auto-generated method stub
+			
 		}
 
 	}
@@ -121,7 +191,7 @@ public class MayTinhDuDoanFragment extends BaseFragment {
 		headerView.setTextHeader(R.string.dudoanketqua);
 		/** init data */
 		listView = (ListView) view.findViewById(R.id.listView1);
-		listView.setOnItemClickListener(onItemClickListener);
+//		listView.setOnItemClickListener(onItemClickListener);
 
 		listView.setAdapter(countryAdapter);
 		imageLoader=new ImageLoader2(getActivity());
@@ -156,11 +226,16 @@ public class MayTinhDuDoanFragment extends BaseFragment {
 							boolean bNhanDinhChuyenGia = jsonArray.getJSONObject(i).getBoolean("bNhanDinhChuyenGia");
 							boolean bGameDuDoan = jsonArray.getJSONObject(i).getBoolean("bGameDuDoan");
 							boolean bDaCapNhapVaoBXH = jsonArray.getJSONObject(i).getBoolean("bDaCapNhapVaoBXH");
-							Log.e("kkk", i + ":" + jsonArray.getJSONObject(i).getString("iID_MaGiai") + ":" + bNhanDinhChuyenGia + ":" + bGameDuDoan + ":" + bDaCapNhapVaoBXH);
+//							Log.e("kkk", i + ":" + jsonArray.getJSONObject(i).getString("iID_MaGiai") + ":" + bNhanDinhChuyenGia + ":" + bGameDuDoan + ":" + bDaCapNhapVaoBXH);
 
-
+							String sTyLe_ChapBong_H1 = jsonArray.getJSONObject(i).getString("sTyLe_ChapBong_H1");
+							String sTyLe_ChapBong = jsonArray.getJSONObject(i).getString("sTyLe_ChapBong");
+							if(sTyLe_ChapBong.equals(null) || sTyLe_ChapBong.equals("")){
+								sTyLe_ChapBong = "0*1:1*0";
+							}
 //							if(TypeView == null || (("nhandinhchuyengia".equalsIgnoreCase(TypeView) && bNhanDinhChuyenGia) ) || "phongdo".equalsIgnoreCase(TypeView) || "theogiai".equalsIgnoreCase(TypeView) ){
 //								check_null = true;
+							
 								String HT = "";
 								StringBuilder stringbuilder1 = new StringBuilder("HT ");
 								HT = stringbuilder1.append(jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiNha_HT")).append(" - ").append(jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiKhach_HT")).toString();
@@ -207,16 +282,16 @@ public class MayTinhDuDoanFragment extends BaseFragment {
 								// +sTenDoiNha);iID_MaGiai
 								if (i == 0) {
 									countryAdapter.addItem(new LiveScore(true, iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut, sThoiGian, iC0, tiso, iTrangThai, sMaGiai, sMaDoiNha,
-											sMaDoiKhach, iID_MaGiai, bNhanDinhChuyenGia, bGameDuDoan, bDaCapNhapVaoBXH, sLogoQuocGia, sLogoGiai, sLogoDoiNha, sLogoDoiKhach, iID_MaDoiNha, iID_MaDoiKhach));
+											sMaDoiKhach, iID_MaGiai, bNhanDinhChuyenGia, bGameDuDoan, bDaCapNhapVaoBXH, sLogoQuocGia, sLogoGiai, sLogoDoiNha, sLogoDoiKhach, iID_MaDoiNha, iID_MaDoiKhach,sTyLe_ChapBong));
 									count_showdata = count_showdata + 1;
 								} else if (i > 0) {
 									if ((jsonArray.getJSONObject(i).getString("sTenGiai")).equalsIgnoreCase(jsonArray.getJSONObject(i - 1).getString("sTenGiai"))) {
 										countryAdapter.addItem(new LiveScore(false, iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut, sThoiGian, iC0, tiso, iTrangThai, sMaGiai, sMaDoiNha,
-												sMaDoiKhach, iID_MaGiai, bNhanDinhChuyenGia, bGameDuDoan, bDaCapNhapVaoBXH, sLogoQuocGia, sLogoGiai, sLogoDoiNha, sLogoDoiKhach, iID_MaDoiNha, iID_MaDoiKhach));
+												sMaDoiKhach, iID_MaGiai, bNhanDinhChuyenGia, bGameDuDoan, bDaCapNhapVaoBXH, sLogoQuocGia, sLogoGiai, sLogoDoiNha, sLogoDoiKhach, iID_MaDoiNha, iID_MaDoiKhach,sTyLe_ChapBong));
 										count_showdata = count_showdata + 1;
 									} else {
 										countryAdapter.addItem(new LiveScore(true, iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut, sThoiGian, iC0, tiso, iTrangThai, sMaGiai, sMaDoiNha,
-												sMaDoiKhach, iID_MaGiai, bNhanDinhChuyenGia, bGameDuDoan, bDaCapNhapVaoBXH, sLogoQuocGia, sLogoGiai, sLogoDoiNha, sLogoDoiKhach, iID_MaDoiNha, iID_MaDoiKhach));
+												sMaDoiKhach, iID_MaGiai, bNhanDinhChuyenGia, bGameDuDoan, bDaCapNhapVaoBXH, sLogoQuocGia, sLogoGiai, sLogoDoiNha, sLogoDoiKhach, iID_MaDoiNha, iID_MaDoiKhach,sTyLe_ChapBong));
 										count_showdata = count_showdata + 1;
 									}
 								}
@@ -235,6 +310,7 @@ public class MayTinhDuDoanFragment extends BaseFragment {
 								isLoadMore = true;
 							}
 						}
+						countryAdapter.notifyDataSetChanged();
 					} catch (Exception e) {
 						Log.e("ERR", e.getMessage());
 					}

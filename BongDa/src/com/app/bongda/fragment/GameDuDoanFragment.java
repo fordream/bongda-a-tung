@@ -67,6 +67,28 @@ public class GameDuDoanFragment extends BaseFragment {
 			String times = String.format("%d/%d", arrayOfObject2) + ", "
 					+ dudoan.sThoiGian();
 			setText(convertView, R.id.TextView05, times);
+			String tiletem = dudoan.sTyLe_ChapBong();
+			Log.e("tylechapbong", "sTyLe_ChapBong==" +tiletem);
+			try {
+				String temp1[];
+				int i = tiletem.indexOf(":");
+				if (i > 0) {
+					temp1 = tiletem.split(":");
+					String keo1 = temp1[0];
+					String keo2 = temp1[1];
+					String temp11[];
+					temp11 = keo1.split("*");
+					String keo11 = temp11[1].trim();
+					String temp12[];
+					temp12 = keo2.split("*");
+					String keo12 = temp12[0].trim();
+					setText(convertView, R.id.TextView_keo,keo11 + ":" +keo12);
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				setText(convertView, R.id.TextView_keo, "0:0");
+				e.printStackTrace();
+			}
 			Log.e("aaaaaaaaa", dudoan.sTyLe_ChapBong());
 		}
 

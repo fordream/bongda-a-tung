@@ -52,6 +52,60 @@ public class LiveScore extends PhongDo {
 		this.sTenDoiNha = name;
 		this.sTenDoiKhach = name2;
 	}
+	
+	public LiveScore(
+			boolean isHeader
+			, String id
+			, String giai
+			, String name
+			, String name2,
+			String ht
+			, String phut
+			,String thoigian
+			, String iC0
+			, String tiso
+			, int trangthai
+			, String magiai
+			, String madoinha
+			, String madoikhach
+			, String IDMagiai
+			, boolean bNhanDinhChuyenGia_
+			, boolean bGameDuDoan_
+			, boolean bDaCapNhapVaoBXH_ 
+			, String sLogoQuocGia_
+			, String sLogoGiai_
+			, String sLogoDoiNha_
+			, String sLogoDoiKhach_
+			,String iID_MaDoiNha_
+			, String iID_MaDoiKhach_
+			, String sTyLe_ChapBong_
+) {
+		super(id, name, name2, iC0, thoigian);
+		this.isHeader = isHeader;
+		this.sTenGiai = giai;
+		this.iTrangThai = trangthai;
+		this.iPhut = phut;
+		this.iTiso = tiso;
+		this.HT = ht;
+		this.sThoiGian = thoigian;
+		this.sMaGiai = magiai;
+		this.sMaDoiNha = madoinha;
+		this.sMaDoiKhach = madoikhach;
+		this.iID_MaGiai = IDMagiai;
+		this.bNhanDinhChuyenGia = bNhanDinhChuyenGia_;
+		this.bDaCapNhapVaoBXH = bDaCapNhapVaoBXH_;
+		this.bGameDuDoan = bGameDuDoan_;
+		this.sLogoQuocGia = sLogoQuocGia_;
+		this.sLogoGiai = sLogoGiai_;
+		this.sLogoDoiNha = sLogoDoiNha_;
+		this.sLogoDoiKhach = sLogoDoiKhach_;
+		this.iID_MaTran = id;
+		this.iID_MaDoiNha = iID_MaDoiNha_;
+		this.iID_MaDoiKhach = iID_MaDoiKhach_;
+		this.sTenDoiNha = name;
+		this.sTenDoiKhach = name2;
+		this.sTyLe_ChapBong = sTyLe_ChapBong_;
+	}
 	public LiveScore(boolean isHeader, String sTenGiai,String sTenDoiNha,String sTenDoiKhach,int iCN_BanThang_DoiNha,int iCN_BanThang_DoiKhach,int iCN_BanThang_DoiNha_HT,int iCN_BanThang_DoiKhach_HT) {
 		super(null,sTenDoiNha,sTenDoiKhach,null,null);
 		this.isHeader = isHeader;
@@ -94,6 +148,7 @@ public class LiveScore extends PhongDo {
 	private String sLogoDoiKhach;
 	private String iID_MaDoiNha;
 	private String iID_MaDoiKhach;
+	private String sTyLe_ChapBong;
 	public boolean isHeader() {
 		return isHeader;
 	}
@@ -198,5 +253,10 @@ public class LiveScore extends PhongDo {
 	public String iID_MaDoiNha() {
 		// TODO Auto-generated method stub
 		return iID_MaDoiNha;
+	}
+
+	public String sTyLe_ChapBong() {
+		// TODO Auto-generated method stub
+		return sTyLe_ChapBong;
 	}
 }

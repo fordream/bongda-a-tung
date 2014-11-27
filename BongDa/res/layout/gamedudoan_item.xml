@@ -164,7 +164,7 @@
             android:layout_height="@dimen/dimen_35dp" >
 
             <TextView
-                android:id="@+id/TextView012"
+                android:id="@+id/TextView_keo"
                 style="@style/bongda_text_item"
                 android:layout_width="@dimen/dimen_50dp"
                 android:layout_height="wrap_content"
@@ -184,7 +184,7 @@
                 android:layout_width="@dimen/dimen_100dp"
                 android:layout_height="@dimen/dimen_30dp"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/TextView012"
+                android:layout_toLeftOf="@+id/TextView_keo"
                 android:text=""
                 android:hint="Nhập sao"
                 android:background="@drawable/edittext"
@@ -196,7 +196,7 @@
                 android:layout_width="@dimen/dimen_100dp"
                 android:layout_height="@dimen/dimen_30dp"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/TextView012"
+                android:layout_toRightOf="@+id/TextView_keo"
                 android:text=""
                 android:hint="Nhập sao"
                 android:background="@drawable/edittext"
