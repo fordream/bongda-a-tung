@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#ffffff"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -19,13 +20,13 @@
             android:paddingTop="@dimen/dimen_2dp" >
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/logogiai"
                 android:layout_width="@dimen/dimen_30dp"
                 android:layout_height="@dimen/dimen_20dp"
-                android:background="@drawable/vietnam" />
+                android:background="@null" />
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/text_tengiai"
                 style="@style/bongda_text_item"
                 android:layout_width="@dimen/dimen_240dp"
                 android:layout_height="wrap_content"
@@ -129,7 +130,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/TextView05"
+                android:id="@+id/TextView_live"
                 style="@style/bongda_text_item"
                 android:layout_width="@dimen/dimen_50dp"
                 android:layout_height="fill_parent"
@@ -162,7 +163,7 @@
                 android:textSize="@dimen/dimen_13dp" />
 
             <TextView
-                android:id="@+id/TextView02"
+                android:id="@+id/TextView_tendoinha"
                 style="@style/bongda_text_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -172,7 +173,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
-                android:id="@+id/TextView03"
+                android:id="@+id/TextView_tendoikhach"
                 style="@style/bongda_text_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
