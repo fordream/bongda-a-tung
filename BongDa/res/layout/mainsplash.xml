@@ -12,11 +12,16 @@
         android:layout_height="@dimen/dimen_133dp"
         android:background="@drawable/logo" />
 
-    <ImageView
+    <!-- <ImageView
         android:id="@+id/ic_logo"
         android:layout_width="@dimen/dimen_30dp"
         android:layout_height="@dimen/dimen_30dp"
         android:layout_marginTop="@dimen/dimen_20dp"
-        android:background="@drawable/img_load" />
+        android:background="@drawable/img_load" /> -->
+    <ProgressBar
+        android:id="@+id/ic_logo"
+        android:layout_width="@dimen/dimen_30dp"
+        android:layout_height="@dimen/dimen_30dp"
+        android:layout_marginTop="@dimen/dimen_20dp"/>
 
 </LinearLayout>
