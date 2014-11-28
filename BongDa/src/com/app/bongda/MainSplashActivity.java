@@ -77,7 +77,7 @@ public class MainSplashActivity extends Activity {
 
 			}
 		});
-
+		GcmBroadcastReceiver.register(MainSplashActivity.this);
 	}
 	CountryProgressExecute countryProgressExecute2, countryProgressExecute;
 	private void onCheckForNetwork() {
