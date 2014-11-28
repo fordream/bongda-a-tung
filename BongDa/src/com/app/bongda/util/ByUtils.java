@@ -47,6 +47,8 @@ public class ByUtils {
 	public static final String wsUsers_NapThe = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsUsers_NapThe xmlns=\"http://tempuri.org/\">      <sSoDienThoai>nophone</sSoDienThoai>      <sNhaMang>tennhamang</sNhaMang>      <sMaThe>mathenap</sMaThe>      <sSeri>serithe</sSeri>    </wsUsers_NapThe>  </soap:Body></soap:Envelope>";
 	
 	public static final String wsFootBall_Lives_Co_MayTinhDuDoan = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsFootBall_Lives_Co_MayTinhDuDoan xmlns=\"http://tempuri.org/\">      <page>pageload</page>    </wsFootBall_Lives_Co_MayTinhDuDoan>  </soap:Body></soap:Envelope>";
+	
+	public static final String wsFootBall_MayTinhDuDoan = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">  <soap:Body>    <wsFootBall_MayTinhDuDoan xmlns=\"http://tempuri.org/\">      <iID_MaTran>%d</iID_MaTran>    </wsFootBall_MayTinhDuDoan>  </soap:Body></soap:Envelope>";
 	public static List<String> getFilePath(Context context) {
 		List<String> list = new ArrayList<String>();
 

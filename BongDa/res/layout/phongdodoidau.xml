@@ -139,11 +139,80 @@
                 android:layout_height="wrap_content" >
             </com.app.bongda.view.PhongDodoiItemTanCongPhongThuView>
 
-            <LinearLayout
+            <!-- <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_40dp" >
 
-            </LinearLayout>
+            </LinearLayout> -->
+            <RelativeLayout android:visibility="visible" 
+                android:layout_width="fill_parent" 
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:layout_marginBottom="@dimen/dimen_10dp"
+                android:layout_below="@+id/phongDodoiItemTanCongPhongThuView2">
+                <TextView android:textSize="@dimen/dimen_36dp" 
+                    android:textStyle="bold" 
+                    android:textColor="#ffc06020" 
+                    android:gravity="center" 
+                    android:id="@+id/text_result_predict" 
+                    android:paddingLeft="@dimen/dimen_5dp" 
+                    android:paddingRight="@dimen/dimen_5dp" 
+                    android:layout_width="wrap_content" 
+                    android:layout_height="@dimen/dimen_60dp" 
+                    android:text="0 - 0" 
+                    android:layout_centerHorizontal="true" />
+                <RelativeLayout android:id="@+id/layout_predict_home_team_score" 
+                    android:layout_width="wrap_content" 
+                    android:layout_height="wrap_content" 
+                    android:layout_toLeftOf="@id/text_result_predict" 
+                    android:layout_centerVertical="true">
+                    <TextView android:textStyle="bold" 
+                        android:gravity="center" 
+                        android:textColor="#000000" 
+                        android:id="@+id/text_result_predict_home_team_name" 
+                        android:paddingLeft="@dimen/dimen_5dp" 
+                    	android:paddingRight="@dimen/dimen_5dp" 
+                        android:layout_width="wrap_content" 
+                        android:layout_height="wrap_content" 
+                        android:text="Tên đội nhà" 
+                        android:layout_centerHorizontal="true" />
+                    <TextView android:gravity="center" 
+                        android:textColor="#000000" 
+                        android:id="@+id/text_result_predict_home_team_goal" 
+                        android:paddingLeft="@dimen/dimen_5dp" 
+                    	android:paddingRight="@dimen/dimen_5dp" 
+                        android:layout_width="wrap_content" 
+                        android:layout_height="wrap_content" 
+                        android:text="Số bàn có thể ghi: 0" 
+                        android:layout_below="@id/text_result_predict_home_team_name" 
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+                <RelativeLayout android:id="@+id/layout_predict_away_team_score" 
+                    android:visibility="visible" 
+                    android:layout_width="wrap_content" 
+                    android:layout_height="wrap_content" 
+                    android:layout_toRightOf="@id/text_result_predict" 
+                    android:layout_centerVertical="true">
+                    <TextView android:textStyle="bold" 
+                        android:gravity="center" 
+                        android:textColor="#000000" 
+                        android:id="@+id/text_result_predict_away_team_name" 
+                        android:paddingLeft="@dimen/dimen_5dp" 
+                    	android:paddingRight="@dimen/dimen_5dp" 
+                        android:layout_width="wrap_content" android:layout_height="wrap_content" 
+                        android:text="Tên đội khách" 
+                        android:layout_centerHorizontal="true" />
+                    <TextView android:gravity="center" 
+                        android:textColor="#000000" 
+                        android:id="@+id/text_result_predict_away_team_goal" 
+                        android:paddingLeft="@dimen/dimen_5dp" 
+                    	android:paddingRight="@dimen/dimen_5dp" 
+                        android:layout_width="wrap_content" android:layout_height="wrap_content" 
+                        android:text="Số bàn có thể ghi: 0" 
+                        android:layout_below="@id/text_result_predict_away_team_name" 
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 

@@ -71,6 +71,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 	TextView bangxephang_header;
 	private String iID_MaDoiNha;
 	private String iID_MaDoiKhach;
+	private int iID_MaTran;
 	@Override
 	public void onInitCreateView(View view) {
 		/**
@@ -98,7 +99,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 
 	}
 
-	ICallbackAPI callbackAPI_LastMatches,callbackAPI_bangxephang, callbackAPI_Chitiet, callbackAPI_tuongthuat;
+	ICallbackAPI callbackAPI_LastMatches,callbackAPI_bangxephang, callbackAPI_Chitiet, callbackAPI_tuongthuat, callbackAPI_MayTinhDuDoan;
 	private PhongDodoiItemView PhongDodoiItemView1, PhongDodoiItemView2;
 	private PhongDodoiItemTanCongPhongThuView PhongDodoiItemTanCongPhongThuView1,
 			PhongDodoiItemTanCongPhongThuView2;
@@ -178,7 +179,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 									bangxephang_header.setVisibility(View.VISIBLE);
 									phongdodoidau_bangephang_listitem.setVisibility(View.VISIBLE);
 									bangxephangitem.setVisibility(View.VISIBLE);
-									Log.e("onInitData", "onInitData==doi nha" + iID_MaDoiNha + ":::" + jsonArray.getJSONObject(i).getString("iID_MaDoi") + ":tendoi:" + jsonArray.getJSONObject(i).getString("sTenDoi"));
+//									Log.e("onInitData", "onInitData==doi nha" + iID_MaDoiNha + ":::" + jsonArray.getJSONObject(i).getString("iID_MaDoi") + ":tendoi:" + jsonArray.getJSONObject(i).getString("sTenDoi"));
 									if((jsonArray.getJSONObject(i).getString("iID_MaDoi")).equalsIgnoreCase(iID_MaDoiNha)){
 //										Log.e("onInitData", "onInitData==doi nha");
 										sLastMatches_DoiNha = jsonArray.getJSONObject(i).getString("sLast5Match");
@@ -321,7 +322,9 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 //						countryAdapter.notifyDataSetChanged();
 						PhongDoChiTiet();
 						// countryAdapter.notifyDataSetChanged();
+						maytinhdudoan();
 					} catch (Exception e) {
+						maytinhdudoan();
 						Log.e("ERR", "callbackAPI_LastMatches" +e.getMessage());
 					}
 
@@ -331,6 +334,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 
 			@Override
 			public void onError(String message) {
+				maytinhdudoan();
 				Log.e("ERR", message);
 			}
 		};
@@ -340,14 +344,14 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 			public void onSuccess(String response) {
 				// CommonAndroid.showDialog(getActivity(), "data2:" + response ,
 				// null);
-				 Log.e("aaaaa", "callbackAPI_bangxephang::" + response);
+//				 Log.e("aaaaa", "callbackAPI_bangxephang::" + response);
 				String string_temp = response == null ? "" : CommonAndroid.parseXMLAction(response);
 				if (!string_temp.equalsIgnoreCase("")) {
 					try {
 //						Log.e("aaaaa", "data::" + string_temp);
 						JSONArray jsonarray = new JSONArray(string_temp);
 						for (int i = 0; i < jsonarray.length(); i++) {
-							Log.e("onInitData", "onInitData==doi nha" + iID_MaDoiNha + ":::" + jsonarray.getJSONObject(i).getString("iID_MaDoi"));
+//							Log.e("onInitData", "onInitData==doi nha" + iID_MaDoiNha + ":::" + jsonarray.getJSONObject(i).getString("iID_MaDoi"));
 							String id = jsonarray.getJSONObject(i).getString(
 									"iID_MaDoi");
 							String name = jsonarray.getJSONObject(i).getString(
@@ -721,14 +725,48 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 			}
 		};
 
-		String iID_MaTran = giaidau.iID_MaTran();//"58167";//giaidau.getId();
-		Log.e("KKKKKKKKKKKKK",
-				"===mg:" + giaidau.idmagiai()+ " :mt " + giaidau.iID_MaTran() + "::"+ iID_MaTran );
+		callbackAPI_MayTinhDuDoan = new ICallbackAPI() {
+			@Override
+			public void onSuccess(String response) {
+				String string_temp = response == null ? "" : CommonAndroid.parseXMLAction(response);
+				if (!string_temp.equalsIgnoreCase("")) {
+					try {
+						Log.e("callbackAPI_MayTinhDuDoan", "callbackAPI_MayTinhDuDoan::" + string_temp);
+						JSONArray jsonarray = new JSONArray(string_temp);
+//						"rBanThang_DoiNha":3,"rBanThang_DoiKhach":1,"rSoBanCoTheGhi_DoiNha":3,"rSoBanCoTheGhi_DoiKhach":1.5
+						String sobancotheghi = phongdodoidau_bangephang_listitem.getContext().getResources().getString(R.string.sobancotheghi) + " ";
+						String rBanThang_DoiNha = jsonarray.getJSONObject(0).getString("rBanThang_DoiNha");
+						String rBanThang_DoiKhach = jsonarray.getJSONObject(0).getString("rBanThang_DoiKhach");
+						String rSoBanCoTheGhi_DoiNha = jsonarray.getJSONObject(0).getString("rSoBanCoTheGhi_DoiNha");
+						String rSoBanCoTheGhi_DoiKhach = jsonarray.getJSONObject(0).getString("rSoBanCoTheGhi_DoiKhach");
+						((TextView) view.findViewById(R.id.text_result_predict)).setText(rBanThang_DoiNha + " - " + rBanThang_DoiKhach);
+						((TextView) view.findViewById(R.id.text_result_predict_home_team_goal)).setText(sobancotheghi + rSoBanCoTheGhi_DoiNha);
+						((TextView) view.findViewById(R.id.text_result_predict_away_team_goal)).setText(sobancotheghi + rSoBanCoTheGhi_DoiKhach);
+						((TextView) view.findViewById(R.id.text_result_predict_home_team_name)).setText(TenDoiNha);
+						((TextView) view.findViewById(R.id.text_result_predict_away_team_name)).setText(TenDoiKhach);
+					} catch (Exception e) {
+						Log.e("ERR", e.getMessage());
+					}
+
+				}
+
+			}
+
+			@Override
+			public void onError(String message) {
+				Log.e("ERR", message);
+			}
+		};
+		String iID_MaTran_ = giaidau.iID_MaTran();//"58167";//giaidau.getId();
+//		Log.e("KKKKKKKKKKKKK",
+//				"===mg:" + giaidau.idmagiai()+ " :mt " + giaidau.iID_MaTran() + "::"+ iID_MaTran );
 		Object aobj[] = new Object[1];
-		aobj[0] = Integer.valueOf(iID_MaTran);
+		aobj[0] = Integer.valueOf(iID_MaTran_);
+		iID_MaTran = Integer.valueOf(iID_MaTran_);
 		String param = String.format(ByUtils.wsFootBall_Phong_Do, aobj);
-		Log.e("param_phongdo", "param:" +param);
+//		Log.e("param_phongdo", "param:" +param);
 		new APICaller(view.getContext()).callApi("", true, callbackAPI_LastMatches, param);
+		
 		
 		// for(int i = 0; i < 6; i ++){
 		// phongdodoidau_bangephang_listitem.addView(new
@@ -776,5 +814,11 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 			txt = "H";
 		}
 		return txt;
+	}
+	
+	private void maytinhdudoan(){
+		String param2 = String.format(ByUtils.wsFootBall_MayTinhDuDoan, iID_MaTran);
+//		Log.e("param_phongdo", "param2:" +param2);
+		new APICaller(view.getContext()).callApi("", false, callbackAPI_MayTinhDuDoan, param2);
 	}
 }
