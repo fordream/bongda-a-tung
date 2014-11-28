@@ -121,39 +121,25 @@ public class MayTinhDuDoanFragment extends BaseFragment {
 			setText(convertView, R.id.TextView_tendoinha, liveScore.getName());//ok
 			setText(convertView, R.id.TextView_tendoikhach, liveScore.getName2());//ok
 			String tiletem = liveScore.sTyLe_ChapBong();
-			tiletem = tiletem.replace("/", ",");
-			Log.e("tylechapbong", "sTyLe_ChapBong=====" +tiletem);
+//			tiletem = tiletem.replace("/", ",");
+//			Log.e("tylechapbong", "sTyLe_ChapBong=====all:" +tiletem);
 			
 			try {
 				String temp1[];
 				int j = tiletem.indexOf(":");
 				if (j > 0) {
+					String keo1 = "0";
+					String keo2 = "0";
 					temp1 = tiletem.split(":");
-					String keo1 = temp1[0];
-					String keo2 = temp1[1];
-//					
-					StringTokenizer st = new StringTokenizer(keo1,"*");
-					int noOfColumns = st.countTokens();
-					String dbcolumn[],dbcolumn2[];
-					dbcolumn = new String[noOfColumns];
-					int i = 0;
-					//System.out.println("Column"+dbcolumn);
-					while (st.hasMoreElements()) {
-						dbcolumn [i++] = st.nextToken();
+					String keo1_ = temp1[0].trim();
+					String keo2_ = temp1[1].trim();
+					if(keo1_.indexOf("*") > 0){
+						keo1 = keo1_.substring( (keo1_.indexOf("*") + 1));
 					}
-					String keo11 = dbcolumn[1];
-					
-					StringTokenizer st2 = new StringTokenizer(keo2,"*");
-					int noOfColumns2 = st2.countTokens();
-					dbcolumn2 = new String[noOfColumns2];
-					i = 0;
-					//System.out.println("Column"+dbcolumn);
-					while (st.hasMoreElements()) {
-						dbcolumn2 [i++] = st.nextToken();
+					if(keo2_.indexOf("*") > 0){
+						keo2 = keo2_.substring(0,keo2_.indexOf("*"));
 					}
-					String keo12 = dbcolumn2[0];
-					Log.e("tylechapbong", "sTyLe_ChapBong==" +keo11 + "::::" +keo12);
-					setText(convertView, R.id.TextView_keo,keo11 + ":" +keo12);
+					setText(convertView, R.id.TextView_keo,keo1 + ":" +keo2);
 				}else{
 					setText(convertView, R.id.TextView_keo, "0:0");
 				}

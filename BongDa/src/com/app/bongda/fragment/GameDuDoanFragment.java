@@ -72,18 +72,22 @@ public class GameDuDoanFragment extends BaseFragment {
 			Log.e("tylechapbong", "sTyLe_ChapBong==" +tiletem);
 			try {
 				String temp1[];
-				int i = tiletem.indexOf(":");
-				if (i > 0) {
+				int j2 = tiletem.indexOf(":");
+				if (j2 > 0) {
+					String keo1 = "0";
+					String keo2 = "0";
 					temp1 = tiletem.split(":");
-					String keo1 = temp1[0];
-					String keo2 = temp1[1];
-					String temp11[];
-					temp11 = keo1.split("*");
-					String keo11 = temp11[1].trim();
-					String temp12[];
-					temp12 = keo2.split("*");
-					String keo12 = temp12[0].trim();
-					setText(convertView, R.id.TextView_keo,keo11 + ":" +keo12);
+					String keo1_ = temp1[0].trim();
+					String keo2_ = temp1[1].trim();
+					if(keo1_.indexOf("*") > 0){
+						keo1 = keo1_.substring( (keo1_.indexOf("*") + 1));
+					}
+					if(keo2_.indexOf("*") > 0){
+						keo2 = keo2_.substring(0,keo2_.indexOf("*"));
+					}
+					setText(convertView, R.id.TextView_keo,keo1 + ":" +keo2);
+				}else{
+					setText(convertView, R.id.TextView_keo, "0:0");
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -112,7 +116,7 @@ public class GameDuDoanFragment extends BaseFragment {
 		headerView.setTextHeader(R.string.gamedudoan);
 		/** init data */
 		listView = (ListView) view.findViewById(R.id.listView1);
-		listView.setOnItemClickListener(onItemClickListener);
+//		listView.setOnItemClickListener(onItemClickListener);
 
 		listView.setAdapter(countryAdapter);
 	}
