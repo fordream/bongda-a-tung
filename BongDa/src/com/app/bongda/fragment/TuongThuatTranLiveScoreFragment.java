@@ -327,8 +327,8 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 								// TODO Auto-generated method stub
 
 								try {
-									return (lhs.getString("No").toLowerCase().compareTo(rhs.getString("No").toLowerCase()));
-//									return (lhs.getInt("No"));
+//									return (lhs.getString("No").toLowerCase().compareTo(rhs.getString("No").toLowerCase()));
+									return lhs.getInt("No") - rhs.getInt("No");
 								} catch (JSONException e) {
 									// TODO Auto-generated catch
 									// block
