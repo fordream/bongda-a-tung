@@ -75,7 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="90&apos;"
+                android:text=""
                 android:textSize="@dimen/dimen_15dp"
                 android:textColor="#ff000000"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -135,7 +135,7 @@
                 android:layout_width="@dimen/dimen_110dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="a"
+                android:text=""
                 android:textAppearance="?android:attr/textAppearanceLarge" />
  		<TextView
                 android:id="@+id/TextView02"
@@ -145,7 +145,7 @@
                 android:paddingRight="@dimen/dimen_2dp"
                 android:layout_marginLeft="@dimen/dimen_100dp"
                 android:gravity="center"
-                android:text="b"
+                android:text=""
                 android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>
 	<LinearLayout

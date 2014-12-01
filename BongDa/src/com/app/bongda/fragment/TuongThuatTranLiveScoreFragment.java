@@ -11,12 +11,15 @@ import org.json.JSONObject;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.app.bongda.R;
@@ -57,12 +60,27 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 	}
 
 	private CountryAdapter countryAdapter = new CountryAdapter();
-
+	LinearLayout doi1,doi2;
 	private class CountryAdapter extends BongDaBaseAdapter {
 
 		@Override
 		public int getLayout() {
 			return R.layout.tuongthuattructiep_item;
+		}
+		
+		@Override
+		public void showData(int position, Object item, View convertView) {
+			/*doi1 = (LinearLayout) convertView.findViewById(R.id.doi1);
+			doi2 = (LinearLayout) convertView.findViewById(R.id.doi2);
+			if(position % 2 == 0){
+				//trang
+				doi1.setBackgroundColor(Color.WHITE);
+				doi2.setBackgroundColor(Color.WHITE);
+			}else{
+				//xam
+				doi1.setBackgroundColor(Color.GRAY);
+				doi2.setBackgroundColor(Color.GRAY);
+			}*/
 		}
 
 		@Override
@@ -77,27 +95,50 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 			String Banthang = CommonUtil
 					.getdata(views.getContext(), "Banthang");
 			String HT = CommonUtil.getdata(views.getContext(), "HT");
-			String iTrangThai= CommonUtil.getdata(views.getContext(), "iTrangThai");
+			int iTrangThai= Integer.parseInt(CommonUtil.getdata(views.getContext(), "iTrangThai"));
 			((TextView) views.findViewById(R.id.tuongthuat_textTenTran))
 					.setText(sTenGiai);
 			((TextView) views.findViewById(R.id.TextView01))
 					.setText(sTenDoiNha);
 			((TextView) views.findViewById(R.id.TextView02))
 					.setText(sTenDoiKhach);
-			if(iTrangThai.equalsIgnoreCase("5")){
-				((TextView) views.findViewById(R.id.tuongthuat_time))
-				.setText("FT");
-			}else if(iTrangThai.equalsIgnoreCase("3")){
-				((TextView) views.findViewById(R.id.tuongthuat_time))
-				.setText("HT");
-			}else{
-				((TextView) views.findViewById(R.id.tuongthuat_time))
-				.setText(iPhut);
-			}
+			((TextView) views.findViewById(R.id.tuongthuat_ht)).setText(HT);
 			
+			if (iTrangThai >= 2) {
+				if(iTrangThai == 5){
+					((TextView) views.findViewById(R.id.tuongthuat_time))
+					.setText("FT");
+				}else if(iTrangThai == 3){
+					((TextView) views.findViewById(R.id.tuongthuat_time))
+					.setText("HT");
+				}else if(iTrangThai >= 10){
+					((TextView) views.findViewById(R.id.tuongthuat_time))
+					.setText(convertView.getContext().getResources().getString(R.string.hoanthidau));
+					String getDate = CommonUtil.getdata(views.getContext(), "iC0");
+					java.util.Date localDate1 = new java.util.Date(1000L * Integer.valueOf(getDate));
+					Object[] arrayOfObject1 = new Object[2];
+					arrayOfObject1[0] = Integer.valueOf(localDate1.getDate());
+					arrayOfObject1[1] = Integer.valueOf(1 + localDate1.getMonth());
+					((TextView) views.findViewById(R.id.tuongthuat_ht))
+					.setText(String.format("%d/%d", arrayOfObject1));
+				}else{
+					((TextView) views.findViewById(R.id.tuongthuat_time))
+					.setText(iPhut);
+				}
+			}else{
+				String getTime = CommonUtil.getdata(views.getContext(), "sThoiGian");
+				String getDate = CommonUtil.getdata(views.getContext(), "iC0");
+				((TextView) views.findViewById(R.id.tuongthuat_time))
+				.setText(getTime);
+				java.util.Date localDate1 = new java.util.Date(1000L * Integer.valueOf(getDate));
+				Object[] arrayOfObject1 = new Object[2];
+				arrayOfObject1[0] = Integer.valueOf(localDate1.getDate());
+				arrayOfObject1[1] = Integer.valueOf(1 + localDate1.getMonth());
+				((TextView) views.findViewById(R.id.tuongthuat_ht))
+				.setText(String.format("%d/%d", arrayOfObject1));
+			}
 			((TextView) views.findViewById(R.id.tuongthuat_tiso))
 					.setText(Banthang);
-			((TextView) views.findViewById(R.id.tuongthuat_ht)).setText(HT);
 			if (item != null) {
 				final TuongThuatTran tuongthuattran = (TuongThuatTran) item;
 				if (tuongthuattran.isDoi() == 1) {
@@ -252,6 +293,8 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 	public String sLogoDoiNha;
 	public String sLogoDoiKhach;
 	public String iTrangThai;
+	private String iC0;
+	private String sThoiGian;
 	JSONArray jsonArray_the = new JSONArray();
 	@Override
 	public void onInitData() {
@@ -298,6 +341,10 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 									"iID_MaGiai");
 							iTrangThai = jsonarray.getJSONObject(i).getString(
 									"iTrangThai");
+							
+							iC0 = jsonarray.getJSONObject(i).getString("iC0");
+							sThoiGian = jsonarray.getJSONObject(i).getString("sThoiGian");
+							
 							loadItem(jsonarray.getJSONObject(i),
 									"sThongTin_DoiNha", 1);// GOAL_HOME
 							loadItem(jsonarray.getJSONObject(i),
@@ -380,6 +427,10 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 						CommonUtil.savedata(views.getContext(),
 								"iTrangThai", iTrangThai);
 						
+						CommonUtil.savedata(views.getContext(),
+								"iC0", iC0);
+						CommonUtil.savedata(views.getContext(),
+								"sThoiGian", sThoiGian);
 						if (!ListItem) {
 							countryAdapter.addItem(null);
 						}
