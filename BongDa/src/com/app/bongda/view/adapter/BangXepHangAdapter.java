@@ -1,13 +1,16 @@
 package com.app.bongda.view.adapter;
 
+import android.graphics.Color;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.app.bongda.R;
 import com.app.bongda.base.BongDaBaseAdapter;
 import com.app.bongda.model.BangXepHang;
 
 public class BangXepHangAdapter extends BongDaBaseAdapter {
-
+	RelativeLayout bangxephang_row2;
 	@Override
 	public int getLayout() {
 		return R.layout.bangxephang_item;
@@ -17,6 +20,14 @@ public class BangXepHangAdapter extends BongDaBaseAdapter {
 	public void showData(int position, Object item, View convertView) {
 		super.showData(position, item, convertView);
 		setText(convertView, R.id.stt, (position + 1) + "");
+		bangxephang_row2 = (RelativeLayout) convertView.findViewById(R.id.bangxephang_row);
+		if(position % 2 == 0){
+			//trang
+			bangxephang_row2.setBackgroundColor(Color.WHITE);
+		}else{
+			//xam
+			bangxephang_row2.setBackgroundColor(Color.GRAY);
+		}
 	}
 
 	@Override

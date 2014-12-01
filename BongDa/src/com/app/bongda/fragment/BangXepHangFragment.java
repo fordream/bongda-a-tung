@@ -66,7 +66,7 @@ public class BangXepHangFragment extends BaseFragment {
 		} else {
 			mHeader = ((LayoutInflater) view.getContext().getSystemService(
 					Context.LAYOUT_INFLATER_SERVICE)).inflate(
-					R.layout.bangxephang_item, null);
+					R.layout.bangxephang_item_header, null);
 		}
 
 		listView.addHeaderView(mHeader);

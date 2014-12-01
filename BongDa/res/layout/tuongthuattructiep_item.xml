@@ -16,9 +16,9 @@
 
         <ImageView
             android:id="@+id/icon_tuongthuat2"
-            android:layout_width="@dimen/dimen_20dp"
-            android:layout_height="@dimen/dimen_20dp"
-            android:background="@drawable/vietnam" />
+            android:layout_width="@dimen/dimen_15dp"
+            android:layout_height="@dimen/dimen_15dp"
+            android:background="@null" />
 
         <TextView
             android:id="@+id/name2"
@@ -54,9 +54,9 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 		<ImageView
             android:id="@+id/icon_tuongthuat1"
-            android:layout_width="@dimen/dimen_20dp"
-            android:layout_height="@dimen/dimen_20dp"
-            android:background="@drawable/vietnam" />
+            android:layout_width="@dimen/dimen_15dp"
+            android:layout_height="@dimen/dimen_15dp"
+            android:background="@null" />
         <TextView
             android:id="@+id/name1"
             style="@style/bongda_text_item"
