@@ -1,7 +1,7 @@
 package com.app.bongda.model;
 
 public class GameDuDoan extends PhongDo {
-	public GameDuDoan(boolean isHeader, String sTenDoiNha_, String sTenDoiKhach_ ,String iCN_BanThang_DoiNha_,String iCN_BanThang_DoiKhach_, String iC0_,String sThoiGian_,String sTyLe_ChauAu_ ,String sTyLe_ChapBong_, String sTyLe_TaiSuu_,String sTenGiai_, String sLogoQuocGia_, String sLogoGiai_) {
+	public GameDuDoan(boolean isHeader, String sTenDoiNha_, String sTenDoiKhach_ ,String iCN_BanThang_DoiNha_,String iCN_BanThang_DoiKhach_, String iC0_,String sThoiGian_,String sTyLe_ChauAu_ ,String sTyLe_ChapBong_, String sTyLe_TaiSuu_,String sTenGiai_, String sLogoQuocGia_, String sLogoGiai_,String iID_MaTran_,String iID_MaDoiNha_ ,String iID_MaDoiKhach_) {
 		super(null,sTenDoiNha_,sTenDoiKhach_,null,null);
 		this.isHeader = isHeader;
 		this.sTenDoiNha = sTenDoiNha_;
@@ -16,6 +16,9 @@ public class GameDuDoan extends PhongDo {
 		this.sTenGiai = sTenGiai_;
 		this.sLogoGiai = sLogoGiai_;
 		this.sLogoQuocGia = sLogoQuocGia_;
+		this.iID_MaTran = iID_MaTran_;
+		this.iID_MaDoiNha = iID_MaDoiNha_;
+		this.iID_MaDoiKhach = iID_MaDoiKhach_;
 	}
 
 	private boolean isHeader;
@@ -31,6 +34,9 @@ public class GameDuDoan extends PhongDo {
 	private String sTenGiai;
 	private String sLogoQuocGia;
 	private String sLogoGiai;
+	private String iID_MaTran;
+	private String iID_MaDoiNha;
+	private String iID_MaDoiKhach;
 	public boolean isHeader() {
 		return isHeader;
 	}
@@ -81,6 +87,21 @@ public class GameDuDoan extends PhongDo {
 	
 	public String sTyLe_TaiSuu(){
 		return sTyLe_TaiSuu;
+	}
+
+	public String iID_MaTran() {
+		// TODO Auto-generated method stub
+		return iID_MaTran;
+	}
+
+	public String iID_MaDoiNha() {
+		// TODO Auto-generated method stub
+		return iID_MaDoiNha;
+	}
+
+	public String iID_MaDoiKhach() {
+		// TODO Auto-generated method stub
+		return iID_MaDoiKhach;
 	}
 	
 }

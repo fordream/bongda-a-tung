@@ -8,13 +8,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.bongda.R;
@@ -27,6 +32,7 @@ import com.app.bongda.model.GameDuDoan;
 import com.app.bongda.model.LiveScore;
 import com.app.bongda.util.ByUtils;
 import com.app.bongda.util.CommonAndroid;
+import com.app.bongda.util.CommonUtil;
 import com.app.bongda.view.HeaderView;
 
 public class GameDuDoanFragment extends BaseFragment {
@@ -40,7 +46,8 @@ public class GameDuDoanFragment extends BaseFragment {
 	private CountryAdapter countryAdapter = new CountryAdapter();
 
 	private class CountryAdapter extends BongDaBaseAdapter {
-
+		int option_doivote = 1;
+		EditText edit1,edit2;
 		@Override
 		public int getLayout() {
 			return R.layout.gamedudoan_item;
@@ -50,6 +57,7 @@ public class GameDuDoanFragment extends BaseFragment {
 		public void showData(Object item, View convertView) {
 			Log.e("aaaaaaa", "cccccccccccccc");
 			final GameDuDoan dudoan = (GameDuDoan) item;
+			final View convertView_ = convertView;
 			ImageLoaderUtils.getInstance(getActivity()).DisplayImage(dudoan.sLogoGiai(), (ImageView) convertView.findViewById(R.id.logo_giai));
 			setText(convertView, R.id.tengiai, dudoan.sTenGiai());
 			setText(convertView, R.id.TextView02, dudoan.sTenDoiNha());
@@ -96,18 +104,68 @@ public class GameDuDoanFragment extends BaseFragment {
 				e.printStackTrace();
 			}
 			Log.e("aaaaaaaaa", dudoan.sTyLe_ChapBong());
+			edit1 = ((EditText) convertView.findViewById(R.id.nhapsao_1));
+			edit2 = ((EditText) convertView.findViewById(R.id.nhapsao_2));
+			convertView.findViewById(R.id.nhapsao_1).setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					edit2.setText("");
+					option_doivote = 1;
+					Log.e("aaaaaaaaaa", "option1");
+				}
+			});
+			convertView.findViewById(R.id.nhapsao_2).setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					edit1.setText("");
+					option_doivote = 2;
+					Log.e("aaaaaaaaaa", "option2");
+				}
+			});
 			convertView.findViewById(R.id.submit_vote).setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					updateVote();
+					updateVote(dudoan, v, option_doivote, edit1.getText().toString().trim(), edit2.getText().toString().trim());
 				}
 			});
 		}
 
 	}
 
-	private void updateVote(){
-		
+	private String numberphone;
+	private void updateVote(GameDuDoan dudoan, View v, int option_doivote,String value1,String value2){
+		String numberphone_temp = CommonUtil.getdata((Activity) v.getContext(), "numberphonelogin");
+		numberphone = numberphone_temp == null ? "" : numberphone_temp;
+		Log.e("number", numberphone);
+		if(!"".equalsIgnoreCase(numberphone)){
+			String iID_MaTran = dudoan.iID_MaTran();
+			String iID_MaDoiNha = dudoan.iID_MaDoiNha();
+			String iID_MaDoiKhach = dudoan.iID_MaDoiKhach();
+			String madoivote = iID_MaDoiNha;
+			String novote = value1;
+			if(option_doivote == 2){
+				madoivote = iID_MaDoiKhach;
+				novote = value2;
+			}
+			String ws = ByUtils.wsFootBall_Lives_Co_GameDuDoan_SetBet;
+			ws =  ws.replace("matranvote", iID_MaTran);
+			ws =  ws.replace("madoivote", madoivote);
+			ws =  ws.replace("nophone", numberphone);
+			ws =  ws.replace("novote", novote);
+			Log.e("gamedudoan", "param==" + ws);
+			new APICaller(getContext()).callApi("", true, callbackAPIVote,
+					ws);
+		}else{
+			Builder builder = new Builder(v.getContext());
+			builder.setMessage(R.string.gamedudoan_login);
+			builder.setCancelable(false);
+			builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+				}
+			});
+			builder.create().show();
+		}
 	}
 	
 	@Override
@@ -127,7 +185,7 @@ public class GameDuDoanFragment extends BaseFragment {
 		headerView.setTextHeader(R.string.gamedudoan);
 		/** init data */
 		listView = (ListView) view.findViewById(R.id.listView1);
-		listView.setOnItemClickListener(onItemClickListener);
+//		listView.setOnItemClickListener(onItemClickListener);
 
 		listView.setAdapter(countryAdapter);
 	}
@@ -167,7 +225,7 @@ public class GameDuDoanFragment extends BaseFragment {
 								e.printStackTrace();
 							}
 						}
-						Collections.emptyList();
+						/*Collections.emptyList();
 						Collections.sort(array, new Comparator<JSONObject>() {
 
 							@Override
@@ -184,7 +242,7 @@ public class GameDuDoanFragment extends BaseFragment {
 									return 0;
 								}
 							}
-						});
+						});*/
 
 						String sTenDoiNha;
 						String sTenDoiKhach;
@@ -220,12 +278,16 @@ public class GameDuDoanFragment extends BaseFragment {
 							if (jsonArray.getJSONObject(i).has("sLogoGiai")){
 								sLogoGiai = jsonArray.getJSONObject(i).getString("sLogoGiai");
 							}
+							String iID_MaTran = jsonArray.getJSONObject(i).getString("iID_MaTran");
+							String iID_MaDoiNha = jsonArray.getJSONObject(i).getString("iID_MaDoiNha");
+							String iID_MaDoiKhach = jsonArray.getJSONObject(i).getString("iID_MaDoiKhach");
+							
 							countryAdapter.addItem(new GameDuDoan(false,
 									sTenDoiNha, sTenDoiKhach,
 									iCN_BanThang_DoiNha, iCN_BanThang_DoiKhach,
 									iC0, sThoiGian, sTyLe_ChauAu,
 									sTyLe_ChapBong, sTyLe_TaiSuu,
-									sTenGiai, sLogoQuocGia, sLogoGiai));
+									sTenGiai, sLogoQuocGia, sLogoGiai, iID_MaTran, iID_MaDoiNha ,iID_MaDoiKhach));
 
 						}
 						countryAdapter.notifyDataSetChanged();

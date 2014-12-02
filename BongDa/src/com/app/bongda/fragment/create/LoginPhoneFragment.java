@@ -62,6 +62,7 @@ public class LoginPhoneFragment extends BaseFragment {
 						if(string_temp.equalsIgnoreCase("1")){
 							CommonUtil.savedata((Activity) views.getContext(), "numberphone" , numberphone);
 							CommonUtil.savedata((Activity) views.getContext(), "maxacthuc" , maxacthuc);
+							CommonUtil.savedata((Activity) views.getContext(), "numberphonelogin" , numberphone);
 							Builder builder = new Builder(views.getContext());
 							builder.setMessage(R.string.chuc_mung_login_thanh_cong);
 							builder.setCancelable(false);

@@ -114,4 +114,5 @@
     <string name="user_napthe_error3">Không có tài khoản mạng</string>
     <string name="user_napthe_error4">Không có tài khoản nhận</string>
     <string name="sobancotheghi">Số bàn có thể ghi:</string>
+    <string name="gamedudoan_login">Vui lòng đăng nhập</string>
 </resources>
