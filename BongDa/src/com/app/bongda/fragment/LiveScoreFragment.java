@@ -62,7 +62,8 @@ public class LiveScoreFragment extends BaseFragment {
 	private boolean check_favorite = false;
 	private int count_showdata_old = 0;
 	private int count_showdata = 0;
-//	private MyTouchListener mOnTouchListener;
+
+	// private MyTouchListener mOnTouchListener;
 	public LiveScoreFragment(OnItemClickListener onItemClickListener, CallBackListenner callBackListenner, GiaiDau data, String type) {
 		super();
 		this.callBackListenner = callBackListenner;
@@ -75,6 +76,7 @@ public class LiveScoreFragment extends BaseFragment {
 
 	private class CountryAdapter extends BongDaBaseAdapter {
 		private boolean showdata = false;
+
 		@Override
 		public int getLayout() {
 			return R.layout.livescore_item;
@@ -88,15 +90,15 @@ public class LiveScoreFragment extends BaseFragment {
 			convertView.findViewById(R.id.livescore_main).setVisibility(View.GONE);
 			convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
 			convertView.findViewById(R.id.livescore_row).setVisibility(View.GONE);
-			if(position < 1){
-//				value_list_favorite = "";
+			if (position < 1) {
+				// value_list_favorite = "";
 				CommonUtil.getdata(listView.getContext());
 				countryAdapter.notifyDataSetChanged();
-//				Log.e("position", "position::" + position);
+				// Log.e("position", "position::" + position);
 			}
-//			Log.e("position", "position::" + position);
-			
-			String check_quantam = /*liveScore.idmagiai() + "-" +  */ liveScore.getId() ;
+			// Log.e("position", "position::" + position);
+
+			String check_quantam = /* liveScore.idmagiai() + "-" + */liveScore.getId();
 			if (liveScore.isHeader()) {
 				convertView.findViewById(R.id.livescore_header).setVisibility(View.VISIBLE);
 				convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
@@ -104,223 +106,226 @@ public class LiveScoreFragment extends BaseFragment {
 				convertView.findViewById(R.id.livescore_header).setVisibility(View.GONE);
 				convertView.findViewById(R.id.livescore_main).setVisibility(View.VISIBLE);
 			}
-//			showdata = true;
+			// showdata = true;
 
-			/*if(position >= count_showdata){
-				if ( TypeView != null ) {
-					if(TypeView.equalsIgnoreCase("quantam")){
-						if(!check_favorite){
-							views_err.setVisibility(View.VISIBLE);
-							views_err.setText(listView.getContext().getResources().getString(R.string.khongcodoiyeuthich));
-						}else{
-							views_err.setVisibility(View.GONE);
-						}
-						
+			/*
+			 * if(position >= count_showdata){ if ( TypeView != null ) {
+			 * if(TypeView.equalsIgnoreCase("quantam")){ if(!check_favorite){
+			 * views_err.setVisibility(View.VISIBLE);
+			 * views_err.setText(listView.
+			 * getContext().getResources().getString(R
+			 * .string.khongcodoiyeuthich)); }else{
+			 * views_err.setVisibility(View.GONE); }
+			 * 
+			 * } } }
+			 */
+
+			// if(showdata){
+			convertView.findViewById(R.id.livescore_row).setVisibility(View.VISIBLE);
+			// if(CommonUtil.listQuanTam.contains( check_quantam )){
+			// convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
+			// }else{
+			// convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
+			// }
+			// cogamedudoan
+			if (liveScore.isGameDuDoan()) {
+				convertView.findViewById(R.id.gamedudoan_icon).setVisibility(View.VISIBLE);
+				convertView.findViewById(R.id.gamedudoan_icon).setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						callBackListenner.onCallBackListenner(1, liveScore);
 					}
-				}
-			}*/
-			
-			
-//			if(showdata){
-				convertView.findViewById(R.id.livescore_row).setVisibility(View.VISIBLE);
-//				if(CommonUtil.listQuanTam.contains( check_quantam )){
-//					convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
-//				}else{
-//					convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
-//				}
-				// cogamedudoan
-				if (liveScore.isGameDuDoan()) {
-					convertView.findViewById(R.id.gamedudoan_icon).setVisibility(View.VISIBLE);
-					convertView.findViewById(R.id.gamedudoan_icon).setOnClickListener(new OnClickListener() {
-						@Override
-						public void onClick(View v) {
-							callBackListenner.onCallBackListenner(1, liveScore);
-						}
-					});
-				} else {
-					convertView.findViewById(R.id.gamedudoan_icon).setVisibility(View.GONE);
-				}
-	
-				// coykienchuyengia
-				if (liveScore.isNhanDinhChuyenGia()) {
-					convertView.findViewById(R.id.persion).setVisibility(View.VISIBLE);
-				} else {
-					convertView.findViewById(R.id.persion).setVisibility(View.GONE);
-				}
-	
-				// cobangxephang
-				/*
-				 * if (liveScore.isDaCapNhapVaoBXH()) {
-				 * convertView.findViewById(R.id
-				 * .bangxephang_icon).setVisibility(View.VISIBLE);
-				 * convertView.findViewById
-				 * (R.id.bangxephang_icon).setOnClickListener(new OnClickListener()
-				 * {
-				 * 
-				 * @Override public void onClick(View v) {
-				 * callBackListenner.onCallBackListenner(0, liveScore); } }); } else
-				 * {
-				 * convertView.findViewById(R.id.bangxephang_icon).setVisibility(View
-				 * .GONE); }
-				 */
-	
-				setText(convertView, R.id.textView1, liveScore.sTenGiai());
-	
-				int status = 0;
-				status = liveScore.iTrangThai();
-				if (status >= 2) {
-					convertView.findViewById(R.id.TextView03).setVisibility(View.VISIBLE);// live
-					convertView.findViewById(R.id.TextView02_ketqua).setVisibility(View.VISIBLE);
-					setText(convertView, R.id.TextView02_ketqua, liveScore.iTiso());// tiso
-					convertView.findViewById(R.id.ImageView031).setVisibility(View.GONE);
-					setText(convertView, R.id.tv1, liveScore.iHT());
-					if (status == 5) {
-						setText(convertView, R.id.TextView01, "FT");// time
-						convertView.findViewById(R.id.TextView03).setVisibility(View.GONE);// live
-					} else if (status == 3) {
-						setText(convertView, R.id.TextView01, "HT");// time
-					} else if (status >= 10) {
-						setText(convertView, R.id.TextView01, convertView.getContext().getResources().getString(R.string.hoanthidau));
-						convertView.findViewById(R.id.TextView02_ketqua).setVisibility(View.GONE);
-						convertView.findViewById(R.id.TextView03).setVisibility(View.GONE);// live
-						convertView.findViewById(R.id.ImageView031).setVisibility(View.VISIBLE);
-						java.util.Date localDate1 = new java.util.Date(1000L * Integer.valueOf(liveScore.getDate()));
-						Object[] arrayOfObject1 = new Object[2];
-						arrayOfObject1[0] = Integer.valueOf(localDate1.getDate());
-						arrayOfObject1[1] = Integer.valueOf(1 + localDate1.getMonth());
-						setText(convertView, R.id.tv1, String.format("%d/%d", arrayOfObject1));
-					} else {
-						setText(convertView, R.id.TextView01, liveScore.iPhut() + " '");// time
-					}
-				} else {
+				});
+			} else {
+				convertView.findViewById(R.id.gamedudoan_icon).setVisibility(View.GONE);
+			}
+
+			// coykienchuyengia
+			if (liveScore.isNhanDinhChuyenGia()) {
+				convertView.findViewById(R.id.persion).setVisibility(View.VISIBLE);
+			} else {
+				convertView.findViewById(R.id.persion).setVisibility(View.GONE);
+			}
+
+			// cobangxephang
+			/*
+			 * if (liveScore.isDaCapNhapVaoBXH()) {
+			 * convertView.findViewById(R.id
+			 * .bangxephang_icon).setVisibility(View.VISIBLE);
+			 * convertView.findViewById
+			 * (R.id.bangxephang_icon).setOnClickListener(new OnClickListener()
+			 * {
+			 * 
+			 * @Override public void onClick(View v) {
+			 * callBackListenner.onCallBackListenner(0, liveScore); } }); } else
+			 * {
+			 * convertView.findViewById(R.id.bangxephang_icon).setVisibility(View
+			 * .GONE); }
+			 */
+
+			setText(convertView, R.id.textView1, liveScore.sTenGiai());
+
+			int status = 0;
+			status = liveScore.iTrangThai();
+			if (status >= 2) {
+				convertView.findViewById(R.id.TextView03).setVisibility(View.VISIBLE);// live
+				convertView.findViewById(R.id.TextView02_ketqua).setVisibility(View.VISIBLE);
+				setText(convertView, R.id.TextView02_ketqua, liveScore.iTiso());// tiso
+				convertView.findViewById(R.id.ImageView031).setVisibility(View.GONE);
+				setText(convertView, R.id.tv1, liveScore.iHT());
+				if (status == 5) {
+					setText(convertView, R.id.TextView01, "FT");// time
+					convertView.findViewById(R.id.TextView03).setVisibility(View.GONE);// live
+				} else if (status == 3) {
+					setText(convertView, R.id.TextView01, "HT");// time
+				} else if (status >= 10) {
+					setText(convertView, R.id.TextView01, convertView.getContext().getResources().getString(R.string.hoanthidau));
+					convertView.findViewById(R.id.TextView02_ketqua).setVisibility(View.GONE);
 					convertView.findViewById(R.id.TextView03).setVisibility(View.GONE);// live
 					convertView.findViewById(R.id.ImageView031).setVisibility(View.VISIBLE);
-					convertView.findViewById(R.id.TextView02_ketqua).setVisibility(View.GONE);
-					setText(convertView, R.id.TextView01, liveScore.getTime());// time
-					int j = Integer.valueOf(liveScore.getDate());
-					java.util.Date localDate2 = new java.util.Date(1000L * j);
-					System.currentTimeMillis();
-					new java.sql.Date(j * 1000);
-					Object[] arrayOfObject2 = new Object[2];
-					arrayOfObject2[0] = Integer.valueOf(localDate2.getDate());
-					arrayOfObject2[1] = Integer.valueOf(1 + localDate2.getMonth());
-					setText(convertView, R.id.tv1, String.format("%d/%d", arrayOfObject2));
-				}
-				// setText(convertView, R.id.TextView01, liveScore.getTime());
-				setText(convertView, R.id.TextView02, liveScore.getName());
-				setText(convertView, R.id.TextView023, liveScore.getName2());
-				// setText(convertView, R.id.tv1, liveScore.getDate());
-//				ImageLoaderUtils.getInstance(getActivity()).DisplayImage(liveScore.sLogoGiai(), (ImageView) convertView.findViewById(R.id.logogiai), BitmapFactory.decodeResource(listView.getResources(), R.drawable.noimg));
-				ImageView image= (ImageView) convertView.findViewById(R.id.logogiai);
-//		        text.setText("item "+position);
-		        imageLoader.DisplayImage(liveScore.sLogoGiai(), image);
-				convertView.findViewById(R.id.image_bangxephang).setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						callBackListenner.onCallBackListenner(2, liveScore);
-					}
-				});
-				// convertView.findViewById(R.id.bangxephang_icon).setVisibility(View.VISIBLE);
-				convertView.findViewById(R.id.phongdo_icon).setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						Log.e("livescore", "liveScore.iID_MaTran===" + liveScore.iID_MaTran());
-						callBackListenner.onCallBackListenner(0, liveScore);
-					}
-				});
-				
-				convertView.findViewById(R.id.persion).setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						callBackListenner.onCallBackListenner(3, liveScore);
-					}
-				});
-				
-				// show tran quan tam
-				img_favorite = (ImageView) convertView.findViewById(R.id.iconlike);
-				/*if(BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLikeCheck( liveScore.getId())){
-					convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
-					img_favorite.setImageResource(R.drawable.ico_favorite_on);
-				}else{
-					convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
-					img_favorite.setImageResource(R.drawable.ico_favorite_off);
-				}*/
-				
-				if (CommonUtil.listQuanTam.contains( check_quantam )) {
-					convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
-					img_favorite.setImageResource(R.drawable.ico_favorite_on);
-				}else{
-					convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
-					img_favorite.setImageResource(R.drawable.ico_favorite_off);
-				}
-				
-				/*if (addfavorite) {
-					convertView.findViewById(R.id.iconlike).setVisibility(View.VISIBLE);
-					convertView.findViewById(R.id.iconlike).setOnClickListener(new OnClickListener() {
-						@Override
-						public void onClick(View v) {
-							//TODO add live score
-							BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLike( liveScore.getId());
-							
-							String check_quantam = liveScore.idmagiai() + "-" +  liveScore.getId() ;
-							if (CommonUtil.listQuanTam.contains( check_quantam )) {
-								CommonUtil.listQuanTam.remove( check_quantam );
-								CommonUtil.savedata(v.getContext());
-								img_favorite.setImageResource(R.drawable.ico_favorite_on);
-							} else {
-								CommonUtil.listQuanTam.add( check_quantam );
-								CommonUtil.savedata(v.getContext());
-								img_favorite.setImageResource(R.drawable.ico_favorite_off);
-							}
-							CommonUtil.getdata(listView.getContext());
-							countryAdapter.notifyDataSetChanged();
-						}
-					});
+					java.util.Date localDate1 = new java.util.Date(1000L * Integer.valueOf(liveScore.getDate()));
+					Object[] arrayOfObject1 = new Object[2];
+					arrayOfObject1[0] = Integer.valueOf(localDate1.getDate());
+					arrayOfObject1[1] = Integer.valueOf(1 + localDate1.getMonth());
+					setText(convertView, R.id.tv1, String.format("%d/%d", arrayOfObject1));
 				} else {
-					convertView.findViewById(R.id.iconlike).setVisibility(View.GONE);
-				}*/
-//				mOnTouchListener = new MyTouchListener(liveScore);
-				convertView.setOnTouchListener(new OnTouchListener() {
-					
-					@Override
-					public boolean onTouch(View v, MotionEvent event) {
-						// TODO Auto-generated method stub
-						int action = event.getAction();
-						switch (action) {
-						case MotionEvent.ACTION_DOWN:
-//							Log.e("action", "ACTION_DOWN - " + action_down_x);
-							action_down_x = (int) event.getX();
-							break;
-						case MotionEvent.ACTION_MOVE:
-							action_up_x = (int) event.getX();
-//							Log.e("action", "ACTION_MOVE :: " + action_down_x + ":::"+ action_up_x);
-							
-							difference = action_down_x - action_up_x;
-							if(difference > delta1 || difference <  delta2){
+					setText(convertView, R.id.TextView01, liveScore.iPhut() + " '");// time
+				}
+			} else {
+				convertView.findViewById(R.id.TextView03).setVisibility(View.GONE);// live
+				convertView.findViewById(R.id.ImageView031).setVisibility(View.VISIBLE);
+				convertView.findViewById(R.id.TextView02_ketqua).setVisibility(View.GONE);
+				setText(convertView, R.id.TextView01, liveScore.getTime());// time
+				int j = Integer.valueOf(liveScore.getDate());
+				java.util.Date localDate2 = new java.util.Date(1000L * j);
+				System.currentTimeMillis();
+				new java.sql.Date(j * 1000);
+				Object[] arrayOfObject2 = new Object[2];
+				arrayOfObject2[0] = Integer.valueOf(localDate2.getDate());
+				arrayOfObject2[1] = Integer.valueOf(1 + localDate2.getMonth());
+				setText(convertView, R.id.tv1, String.format("%d/%d", arrayOfObject2));
+			}
+			// setText(convertView, R.id.TextView01, liveScore.getTime());
+			setText(convertView, R.id.TextView02, liveScore.getName());
+			setText(convertView, R.id.TextView023, liveScore.getName2());
+			// setText(convertView, R.id.tv1, liveScore.getDate());
+			// ImageLoaderUtils.getInstance(getActivity()).DisplayImage(liveScore.sLogoGiai(),
+			// (ImageView) convertView.findViewById(R.id.logogiai),
+			// BitmapFactory.decodeResource(listView.getResources(),
+			// R.drawable.noimg));
+			ImageView image = (ImageView) convertView.findViewById(R.id.logogiai);
+			// text.setText("item "+position);
+			imageLoader.DisplayImage(liveScore.sLogoGiai(), image);
+			convertView.findViewById(R.id.image_bangxephang).setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					callBackListenner.onCallBackListenner(2, liveScore);
+				}
+			});
+			// convertView.findViewById(R.id.bangxephang_icon).setVisibility(View.VISIBLE);
+			convertView.findViewById(R.id.phongdo_icon).setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					Log.e("livescore", "liveScore.iID_MaTran===" + liveScore.iID_MaTran());
+					callBackListenner.onCallBackListenner(0, liveScore);
+				}
+			});
+
+			convertView.findViewById(R.id.persion).setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					callBackListenner.onCallBackListenner(3, liveScore);
+				}
+			});
+
+			// show tran quan tam
+			img_favorite = (ImageView) convertView.findViewById(R.id.iconlike);
+			/*
+			 * if(BongDaServiceManager.getInstance().getBongDaService().getDBManager
+			 * ().liveScoreLikeCheck( liveScore.getId())){
+			 * convertView.findViewById
+			 * (R.id.traitim).setVisibility(View.VISIBLE);
+			 * img_favorite.setImageResource(R.drawable.ico_favorite_on); }else{
+			 * convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
+			 * img_favorite.setImageResource(R.drawable.ico_favorite_off); }
+			 */
+
+			if (CommonUtil.listQuanTam.contains(check_quantam)) {
+				convertView.findViewById(R.id.traitim).setVisibility(View.VISIBLE);
+				img_favorite.setImageResource(R.drawable.ico_favorite_on);
+			} else {
+				convertView.findViewById(R.id.traitim).setVisibility(View.GONE);
+				img_favorite.setImageResource(R.drawable.ico_favorite_off);
+			}
+
+			/*
+			 * if (addfavorite) {
+			 * convertView.findViewById(R.id.iconlike).setVisibility
+			 * (View.VISIBLE);
+			 * convertView.findViewById(R.id.iconlike).setOnClickListener(new
+			 * OnClickListener() {
+			 * 
+			 * @Override public void onClick(View v) { //TODO add live score
+			 * BongDaServiceManager
+			 * .getInstance().getBongDaService().getDBManager().liveScoreLike(
+			 * liveScore.getId());
+			 * 
+			 * String check_quantam = liveScore.idmagiai() + "-" +
+			 * liveScore.getId() ; if (CommonUtil.listQuanTam.contains(
+			 * check_quantam )) { CommonUtil.listQuanTam.remove( check_quantam
+			 * ); CommonUtil.savedata(v.getContext());
+			 * img_favorite.setImageResource(R.drawable.ico_favorite_on); } else
+			 * { CommonUtil.listQuanTam.add( check_quantam );
+			 * CommonUtil.savedata(v.getContext());
+			 * img_favorite.setImageResource(R.drawable.ico_favorite_off); }
+			 * CommonUtil.getdata(listView.getContext());
+			 * countryAdapter.notifyDataSetChanged(); } }); } else {
+			 * convertView.findViewById(R.id.iconlike).setVisibility(View.GONE);
+			 * }
+			 */
+			// mOnTouchListener = new MyTouchListener(liveScore);
+			convertView.setOnTouchListener(new OnTouchListener() {
+
+				@Override
+				public boolean onTouch(View v, MotionEvent event) {
+					// TODO Auto-generated method stub
+					int action = event.getAction();
+					switch (action) {
+					case MotionEvent.ACTION_DOWN:
+						// Log.e("action", "ACTION_DOWN - " + action_down_x);
+						action_down_x = (int) event.getX();
+						break;
+					case MotionEvent.ACTION_MOVE:
+						action_up_x = (int) event.getX();
+						// Log.e("action", "ACTION_MOVE :: " + action_down_x +
+						// ":::"+ action_up_x);
+
+						difference = action_down_x - action_up_x;
+						if (difference > delta1 || difference < delta2) {
+							calcuateDifference(liveScore);
+						}
+						break;
+					case MotionEvent.ACTION_UP:
+						// Log.e("action", "ACTION_UP - ");
+
+						if (!addfavorite) {
+							callBackListenner.onCallBackListenner(5, liveScore);
+						} else {
+							if (difference <= delta1 && difference >= delta2) {
+								callBackListenner.onCallBackListenner(5, liveScore);
+							} else {
 								calcuateDifference(liveScore);
 							}
-							break;
-						case MotionEvent.ACTION_UP:
-//							Log.e("action", "ACTION_UP - ");
-							
-							if (!addfavorite) {
-								callBackListenner.onCallBackListenner(5, liveScore);
-							}else{
-								 if(difference <= delta1 && difference >= delta2){
-									 callBackListenner.onCallBackListenner(5, liveScore);
-								 }else{
-									 calcuateDifference(liveScore);
-								 }
-							}
-							break;
 						}
-						return true;
+						break;
 					}
-				});
-			
-//			}else{
-//				convertView.findViewById(R.id.livescore_row).setVisibility(View.GONE);
-//			}
+					return true;
+				}
+			});
+
+			// }else{
+			// convertView.findViewById(R.id.livescore_row).setVisibility(View.GONE);
+			// }
 		}
 
 		@Override
@@ -329,53 +334,53 @@ public class LiveScoreFragment extends BaseFragment {
 		}
 
 	}
-	
-	class LoadImage extends AsyncTask<Object, Void, Bitmap>{
 
-        private ImageView imv;
-        private String path;
+	class LoadImage extends AsyncTask<Object, Void, Bitmap> {
 
-        public LoadImage(ImageView imv) {
-             this.imv = imv;
-             this.path = imv.getTag().toString();
-        }
+		private ImageView imv;
+		private String path;
 
-    public LoadImage(ImageView findViewById, String sLogoGiai) {
+		public LoadImage(ImageView imv) {
+			this.imv = imv;
+			this.path = imv.getTag().toString();
+		}
+
+		public LoadImage(ImageView findViewById, String sLogoGiai) {
 			// TODO Auto-generated constructor stub
-    	this.imv = findViewById;
-        this.path = sLogoGiai;
+			this.imv = findViewById;
+			this.path = sLogoGiai;
+		}
+
+		@Override
+		protected Bitmap doInBackground(Object... params) {
+			Bitmap bitmap = null;
+			File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + path);
+
+			if (file.exists()) {
+				bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+			}
+
+			return bitmap;
+		}
+
+		@Override
+		protected void onPostExecute(Bitmap result) {
+			// if (!imv.getTag().toString().equals(path)) {
+			// /* The path is not same. This means that this
+			// image view is handled by some other async task.
+			// We don't do anything and return. */
+			// return;
+			// }
+
+			if (result != null && imv != null) {
+				imv.setVisibility(View.VISIBLE);
+				imv.setImageBitmap(result);
+			} else {
+				imv.setVisibility(View.GONE);
+			}
+		}
+
 	}
-
-	@Override
-    protected Bitmap doInBackground(Object... params) {
-        Bitmap bitmap = null;
-        File file = new File( 
-                Environment.getExternalStorageDirectory().getAbsolutePath() + path);
-
-        if(file.exists()){
-            bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-        }
-
-        return bitmap;
-    }
-    @Override
-    protected void onPostExecute(Bitmap result) {
-//        if (!imv.getTag().toString().equals(path)) {
-//               /* The path is not same. This means that this
-//                  image view is handled by some other async task. 
-//                  We don't do anything and return. */
-//               return;
-//        }
-
-        if(result != null && imv != null){
-            imv.setVisibility(View.VISIBLE);
-            imv.setImageBitmap(result);
-        }else{
-            imv.setVisibility(View.GONE);
-        }
-    }
-
-}
 
 	@Override
 	public int getLayout() {
@@ -388,7 +393,8 @@ public class LiveScoreFragment extends BaseFragment {
 	private boolean addfavorite = false;
 	ListView listView;
 	TextView views_err;
-	public ImageLoader2 imageLoader; 
+	public ImageLoader2 imageLoader;
+
 	@Override
 	public void onInitCreateView(View view) {
 		Log.e("livescore", "onInitCreateView===" + TypeView);
@@ -396,6 +402,23 @@ public class LiveScoreFragment extends BaseFragment {
 		 * init header view
 		 */
 		HeaderView headerView = (HeaderView) view.findViewById(R.id.headerView1);
+		View customeProgressbar = headerView.findViewById(R.id.Button01);
+		customeProgressbar.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				/*
+				 * clear data and reload new data
+				 */
+
+				countryAdapter.clear();
+				page = 1;
+				totalpage = 1;
+				currentPage = 1;
+				loadData();
+			}
+		});
+
 		if (TypeView == null) {
 			headerView.setTextHeader(R.string.livescore);
 		} else {
@@ -409,18 +432,18 @@ public class LiveScoreFragment extends BaseFragment {
 		listView = (ListView) view.findViewById(R.id.listView1);
 		listView.setAdapter(countryAdapter);
 
-		if(TypeView == null ){
-//			headerView.findViewById(R.id.Button05).setVisibility(View.VISIBLE);
-//			headerView.findViewById(R.id.Button05).setOnClickListener(clickListener);
+		if (TypeView == null) {
+			// headerView.findViewById(R.id.Button05).setVisibility(View.VISIBLE);
+			// headerView.findViewById(R.id.Button05).setOnClickListener(clickListener);
 			if (TypeView != null) {
-				if (TypeView.equalsIgnoreCase("quantam") ){
+				if (TypeView.equalsIgnoreCase("quantam")) {
 					CommonUtil.getdata(getActivity());
 				}
 			}
 		}
-		
+
 		views_err = (TextView) view.findViewById(R.id.error_txt);
-		imageLoader=new ImageLoader2(getActivity());
+		imageLoader = new ImageLoader2(getActivity());
 	}
 
 	View.OnClickListener clickListener = new OnClickListener() {
@@ -439,254 +462,256 @@ public class LiveScoreFragment extends BaseFragment {
 	private int totalpage = 1;
 	private int currentPage = 1;
 	private boolean isLoadMore = true;
+
 	private void loadData() {
 		Log.e("Liveco", "loadData");
 		check_favorite = false;
 		CommonUtil.getdata(listView.getContext());
 		String maGiaiDau = data == null ? null : data.getId();
-		String ws = ByUtils.wsFootBall_Lives_page; //ByUtils.wsFootBall_Lives
+		String ws = ByUtils.wsFootBall_Lives_page; // ByUtils.wsFootBall_Lives
 		if (maGiaiDau == null) {
-			String page_load = ""+page;
-			ws =  ws.replace("pageload", page_load);
+			String page_load = "" + page;
+			ws = ws.replace("pageload", page_load);
 			Log.e("pram", "param==" + ws);
-			new APICaller(listView.getContext()).callApi("", true, callbackAPI,ws);
+			new APICaller(listView.getContext()).callApi("", true, callbackAPI, ws);
 		} else {
 			String ws_theogiai = (ByUtils.wsFootBall_Lives_Theo_Giai).replace("magiai", maGiaiDau);
-			Log.e("livaco","param="+ ws_theogiai);
+			Log.e("livaco", "param=" + ws_theogiai);
 			new APICaller(listView.getContext()).callApi("", true, callbackAPI, ws_theogiai);
 		}
 		onLoad++;
 	}
 
 	private boolean check_null = false;
+
 	@SuppressWarnings("unused")
 	@Override
 	public void onInitData() {
 		views_err.setVisibility(View.GONE);
 		Log.e("Liveco", "onInitData");
-//		if (callbackAPI == null) {
-			callbackAPI = new ICallbackAPI() {
-				@Override
-				public void onSuccess(String response) {
-					new LiveScorePorgressExecute(response, views_err.getContext()).executeAsynCallBack();
-					if(page == 1){
-						countryAdapter.clear();
-					}
-					String string_temp = CommonAndroid.parseXMLAction(response);
-					if (!string_temp.equalsIgnoreCase("")) {
-//						Log.e("data", string_temp);
-						try {
-//							ArrayList<JSONObject> array = new ArrayList<JSONObject>();
-//							array.clear();
-							JSONArray jsonArray = new JSONArray(string_temp);
-								
-							if (jsonArray.length() == 0) {
-								views_err.setVisibility(View.VISIBLE);
-								views_err.setText(listView.getContext().getResources().getString(R.string.giaichuabatdau));
-//								Toast.makeText(listView.getContext(), listView.getContext().getResources().getString(R.string.giaichuabatdau), Toast.LENGTH_LONG).show();
-							}else{
-								views_err.setVisibility(View.GONE);
-							}
-							
-							/*for (int i = 0; i < jsonArray.length(); i++) {
-								try {
-									if (TypeView != null) {
-										array.add(jsonArray.getJSONObject(i));
-										if (TypeView.equalsIgnoreCase("quantam")) {
-											String check_quantam =jsonArray.getJSONObject(i).getString("iID_MaGiai") + "-" +  jsonArray.getJSONObject(i).getString("iID_MaTran");
-//											String matran = jsonArray.getJSONObject(i).getString("iID_MaTran");
-											if (CommonUtil.listQuanTam.contains(check_quantam)) {
-												check_favorite = true;
-											}
-										}
-									} else {
-										array.add(jsonArray.getJSONObject(i));
-									}
+		// if (callbackAPI == null) {
+		callbackAPI = new ICallbackAPI() {
+			@Override
+			public void onSuccess(String response) {
+				new LiveScorePorgressExecute(response, views_err.getContext()).executeAsynCallBack();
+				if (page == 1) {
+					countryAdapter.clear();
+				}
+				String string_temp = CommonAndroid.parseXMLAction(response);
+				if (!string_temp.equalsIgnoreCase("")) {
+					// Log.e("data", string_temp);
+					try {
+						// ArrayList<JSONObject> array = new
+						// ArrayList<JSONObject>();
+						// array.clear();
+						JSONArray jsonArray = new JSONArray(string_temp);
 
-								} catch (JSONException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-							}*/
-							if (TypeView != null ) {
-								if(TypeView.equalsIgnoreCase("quantam") && !check_favorite){
-									views_err.setVisibility(View.VISIBLE);
-									views_err.setText(listView.getContext().getResources().getString(R.string.khongcodoiyeuthich));
-								}
-							}
-							listView_size = jsonArray.length();
-							/*Collections.emptyList();
-							Collections.sort(array, new Comparator<JSONObject>() {
-
-								@Override
-								public int compare(JSONObject lhs, JSONObject rhs) {
-									// TODO Auto-generated method stub
-
-									try {
-										return (lhs.getString("sTenGiai").toLowerCase().compareTo(rhs.getString("sTenGiai").toLowerCase()));
-									} catch (JSONException e) {
-										// TODO Auto-generated catch
-										// block
-										e.printStackTrace();
-										return 0;
-									}
-								}
-							});*/
-
-							for (int i = 0; i < jsonArray.length(); i++) {
-								boolean bNhanDinhChuyenGia = jsonArray.getJSONObject(i).getBoolean("bNhanDinhChuyenGia");
-								boolean bGameDuDoan = jsonArray.getJSONObject(i).getBoolean("bGameDuDoan");
-								boolean bDaCapNhapVaoBXH = jsonArray.getJSONObject(i).getBoolean("bDaCapNhapVaoBXH");
-//								Log.e("kkk", i + ":" + jsonArray.getJSONObject(i).getString("iID_MaGiai") + ":" + bNhanDinhChuyenGia + ":" + bGameDuDoan + ":" + bDaCapNhapVaoBXH);
-
-								// String kk =
-								// jsonArray.getJSONObject(i).getString("sTenGiai");
-								if(TypeView == null || (("nhandinhchuyengia".equalsIgnoreCase(TypeView) && bNhanDinhChuyenGia) ) || "phongdo".equalsIgnoreCase(TypeView) || "theogiai".equalsIgnoreCase(TypeView) ){
-									check_null = true;
-									String HT = "";
-									StringBuilder stringbuilder1 = new StringBuilder("HT ");
-									HT = stringbuilder1.append(jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiNha_HT")).append(" - ").append(jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiKhach_HT")).toString();
-
-									String Banthang = (new StringBuilder()).append(jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiNha")).append(" - ").append(jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiKhach"))
-											.toString();
-									String iID_MaGiai = jsonArray.getJSONObject(i).getString("iID_MaGiai");
-									String sTenGiai = jsonArray.getJSONObject(i).getString("sTenGiai");
-									String sTenDoiNha = jsonArray.getJSONObject(i).getString("sTenDoiNha");
-									String sTenDoiKhach = jsonArray.getJSONObject(i).getString("sTenDoiKhach");
-									int iTrangThai = Integer.parseInt(jsonArray.getJSONObject(i).getString("iTrangThai"));
-									String iID_MaTran = jsonArray.getJSONObject(i).getString("iID_MaTran");
-									String iC0 = jsonArray.getJSONObject(i).getString("iC0");// ngay
-																				// thi
-																				// dau
-									String iPhut = jsonArray.getJSONObject(i).getString("iPhut");
-									String sThoiGian = jsonArray.getJSONObject(i).getString("sThoiGian");// thoi
-																							// gian
-																							// thi
-																							// dau
-									String tiso = jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiNha") + " - " + jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiKhach");
-									String sMaGiai = jsonArray.getJSONObject(i).getString("sMaGiai");
-									String sMaDoiNha = jsonArray.getJSONObject(i).getString("sMaDoiNha");
-									String sMaDoiKhach = jsonArray.getJSONObject(i).getString("sMaDoiKhach");
-									String sLogoQuocGia = "";
-									String sLogoGiai = "";
-									String sLogoDoiNha = "";
-									String sLogoDoiKhach = "";
-									if (jsonArray.getJSONObject(i).has("sLogoQuocGia")){
-										sLogoQuocGia = jsonArray.getJSONObject(i).getString("sLogoQuocGia");
-									}
-									if (jsonArray.getJSONObject(i).has("sLogoGiai")){
-										sLogoGiai = jsonArray.getJSONObject(i).getString("sLogoGiai");
-									}
-									if (jsonArray.getJSONObject(i).has("sLogoDoiNha")){
-										sLogoDoiNha = jsonArray.getJSONObject(i).getString("sLogoDoiNha");
-									}
-									if (jsonArray.getJSONObject(i).has("sLogoDoiKhach")){
-										sLogoDoiKhach = jsonArray.getJSONObject(i).getString("sLogoDoiKhach");
-									}
-									String iID_MaDoiNha = jsonArray.getJSONObject(i).getString("iID_MaDoiNha");
-									String iID_MaDoiKhach = jsonArray.getJSONObject(i).getString("iID_MaDoiKhach");
-									// Log.e("kkk",sTenGiai +":" +iTrangThai + ":"
-									// +sTenDoiNha);iID_MaGiai
-									if (i == 0) {
-										countryAdapter.addItem(new LiveScore(true, iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut, sThoiGian, iC0, tiso, iTrangThai, sMaGiai, sMaDoiNha,
-												sMaDoiKhach, iID_MaGiai, bNhanDinhChuyenGia, bGameDuDoan, bDaCapNhapVaoBXH, sLogoQuocGia, sLogoGiai, sLogoDoiNha, sLogoDoiKhach, iID_MaDoiNha, iID_MaDoiKhach));
-										count_showdata = count_showdata + 1;
-									} else if (i > 0) {
-										if ((jsonArray.getJSONObject(i).getString("sTenGiai")).equalsIgnoreCase(jsonArray.getJSONObject(i - 1).getString("sTenGiai"))) {
-											countryAdapter.addItem(new LiveScore(false, iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut, sThoiGian, iC0, tiso, iTrangThai, sMaGiai, sMaDoiNha,
-													sMaDoiKhach, iID_MaGiai, bNhanDinhChuyenGia, bGameDuDoan, bDaCapNhapVaoBXH, sLogoQuocGia, sLogoGiai, sLogoDoiNha, sLogoDoiKhach, iID_MaDoiNha, iID_MaDoiKhach));
-											count_showdata = count_showdata + 1;
-										} else {
-											countryAdapter.addItem(new LiveScore(true, iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut, sThoiGian, iC0, tiso, iTrangThai, sMaGiai, sMaDoiNha,
-													sMaDoiKhach, iID_MaGiai, bNhanDinhChuyenGia, bGameDuDoan, bDaCapNhapVaoBXH, sLogoQuocGia, sLogoGiai, sLogoDoiNha, sLogoDoiKhach, iID_MaDoiNha, iID_MaDoiKhach));
-											count_showdata = count_showdata + 1;
-										}
-									}
-									if(jsonArray.getJSONObject(i).has("totalpage")){
-										totalpage = jsonArray.getJSONObject(i).getInt("totalpage");
-									}
-									
-								}
-								
-
-							}
-							if(count_showdata_old < count_showdata){
-								count_showdata_old = count_showdata;
-								currentPage = page;
-								if(currentPage < totalpage){
-									isLoadMore = true;
-								}
-							}
-//							Log.e("aaaaaaa","count_showdata::" +count_showdata + ":totalpage:" + totalpage);
-//							if (onLoad != 1) {
-								countryAdapter.notifyDataSetChanged();
-//							}
-							if(!check_null){
-								if(TypeView != null && "nhandinhchuyengia".equalsIgnoreCase(TypeView)){
-									views_err.setVisibility(View.VISIBLE);
-									views_err.setText(listView.getContext().getResources().getString(R.string.khongconhandinhchuyengia));
-								}
-							}
-						} catch (Exception e) {
-							Log.e("ERR", e.getMessage());
-//							views_err.setVisibility(View.VISIBLE);
-//							views_err.setText(listView.getContext().getResources().getString(R.string.giaichuabatdau));
+						if (jsonArray.length() == 0) {
+							views_err.setVisibility(View.VISIBLE);
+							views_err.setText(listView.getContext().getResources().getString(R.string.giaichuabatdau));
+							// Toast.makeText(listView.getContext(),
+							// listView.getContext().getResources().getString(R.string.giaichuabatdau),
+							// Toast.LENGTH_LONG).show();
+						} else {
+							views_err.setVisibility(View.GONE);
 						}
 
+						/*
+						 * for (int i = 0; i < jsonArray.length(); i++) { try {
+						 * if (TypeView != null) {
+						 * array.add(jsonArray.getJSONObject(i)); if
+						 * (TypeView.equalsIgnoreCase("quantam")) { String
+						 * check_quantam
+						 * =jsonArray.getJSONObject(i).getString("iID_MaGiai") +
+						 * "-" +
+						 * jsonArray.getJSONObject(i).getString("iID_MaTran");
+						 * // String matran =
+						 * jsonArray.getJSONObject(i).getString("iID_MaTran");
+						 * if (CommonUtil.listQuanTam.contains(check_quantam)) {
+						 * check_favorite = true; } } } else {
+						 * array.add(jsonArray.getJSONObject(i)); }
+						 * 
+						 * } catch (JSONException e) { // TODO Auto-generated
+						 * catch block e.printStackTrace(); } }
+						 */
+						if (TypeView != null) {
+							if (TypeView.equalsIgnoreCase("quantam") && !check_favorite) {
+								views_err.setVisibility(View.VISIBLE);
+								views_err.setText(listView.getContext().getResources().getString(R.string.khongcodoiyeuthich));
+							}
+						}
+						listView_size = jsonArray.length();
+						/*
+						 * Collections.emptyList(); Collections.sort(array, new
+						 * Comparator<JSONObject>() {
+						 * 
+						 * @Override public int compare(JSONObject lhs,
+						 * JSONObject rhs) { // TODO Auto-generated method stub
+						 * 
+						 * try { return
+						 * (lhs.getString("sTenGiai").toLowerCase().
+						 * compareTo(rhs.getString("sTenGiai").toLowerCase()));
+						 * } catch (JSONException e) { // TODO Auto-generated
+						 * catch // block e.printStackTrace(); return 0; } } });
+						 */
+
+						for (int i = 0; i < jsonArray.length(); i++) {
+							boolean bNhanDinhChuyenGia = jsonArray.getJSONObject(i).getBoolean("bNhanDinhChuyenGia");
+							boolean bGameDuDoan = jsonArray.getJSONObject(i).getBoolean("bGameDuDoan");
+							boolean bDaCapNhapVaoBXH = jsonArray.getJSONObject(i).getBoolean("bDaCapNhapVaoBXH");
+							// Log.e("kkk", i + ":" +
+							// jsonArray.getJSONObject(i).getString("iID_MaGiai")
+							// + ":" + bNhanDinhChuyenGia + ":" + bGameDuDoan +
+							// ":" + bDaCapNhapVaoBXH);
+
+							// String kk =
+							// jsonArray.getJSONObject(i).getString("sTenGiai");
+							if (TypeView == null || (("nhandinhchuyengia".equalsIgnoreCase(TypeView) && bNhanDinhChuyenGia)) || "phongdo".equalsIgnoreCase(TypeView)
+									|| "theogiai".equalsIgnoreCase(TypeView)) {
+								check_null = true;
+								String HT = "";
+								StringBuilder stringbuilder1 = new StringBuilder("HT ");
+								HT = stringbuilder1.append(jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiNha_HT")).append(" - ")
+										.append(jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiKhach_HT")).toString();
+
+								String Banthang = (new StringBuilder()).append(jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiNha")).append(" - ")
+										.append(jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiKhach")).toString();
+								String iID_MaGiai = jsonArray.getJSONObject(i).getString("iID_MaGiai");
+								String sTenGiai = jsonArray.getJSONObject(i).getString("sTenGiai");
+								String sTenDoiNha = jsonArray.getJSONObject(i).getString("sTenDoiNha");
+								String sTenDoiKhach = jsonArray.getJSONObject(i).getString("sTenDoiKhach");
+								int iTrangThai = Integer.parseInt(jsonArray.getJSONObject(i).getString("iTrangThai"));
+								String iID_MaTran = jsonArray.getJSONObject(i).getString("iID_MaTran");
+								String iC0 = jsonArray.getJSONObject(i).getString("iC0");// ngay
+								// thi
+								// dau
+								String iPhut = jsonArray.getJSONObject(i).getString("iPhut");
+								String sThoiGian = jsonArray.getJSONObject(i).getString("sThoiGian");// thoi
+								// gian
+								// thi
+								// dau
+								String tiso = jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiNha") + " - " + jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiKhach");
+								String sMaGiai = jsonArray.getJSONObject(i).getString("sMaGiai");
+								String sMaDoiNha = jsonArray.getJSONObject(i).getString("sMaDoiNha");
+								String sMaDoiKhach = jsonArray.getJSONObject(i).getString("sMaDoiKhach");
+								String sLogoQuocGia = "";
+								String sLogoGiai = "";
+								String sLogoDoiNha = "";
+								String sLogoDoiKhach = "";
+								if (jsonArray.getJSONObject(i).has("sLogoQuocGia")) {
+									sLogoQuocGia = jsonArray.getJSONObject(i).getString("sLogoQuocGia");
+								}
+								if (jsonArray.getJSONObject(i).has("sLogoGiai")) {
+									sLogoGiai = jsonArray.getJSONObject(i).getString("sLogoGiai");
+								}
+								if (jsonArray.getJSONObject(i).has("sLogoDoiNha")) {
+									sLogoDoiNha = jsonArray.getJSONObject(i).getString("sLogoDoiNha");
+								}
+								if (jsonArray.getJSONObject(i).has("sLogoDoiKhach")) {
+									sLogoDoiKhach = jsonArray.getJSONObject(i).getString("sLogoDoiKhach");
+								}
+								String iID_MaDoiNha = jsonArray.getJSONObject(i).getString("iID_MaDoiNha");
+								String iID_MaDoiKhach = jsonArray.getJSONObject(i).getString("iID_MaDoiKhach");
+								// Log.e("kkk",sTenGiai +":" +iTrangThai + ":"
+								// +sTenDoiNha);iID_MaGiai
+								if (i == 0) {
+									countryAdapter.addItem(new LiveScore(true, iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut, sThoiGian, iC0, tiso, iTrangThai, sMaGiai, sMaDoiNha,
+											sMaDoiKhach, iID_MaGiai, bNhanDinhChuyenGia, bGameDuDoan, bDaCapNhapVaoBXH, sLogoQuocGia, sLogoGiai, sLogoDoiNha, sLogoDoiKhach, iID_MaDoiNha,
+											iID_MaDoiKhach));
+									count_showdata = count_showdata + 1;
+								} else if (i > 0) {
+									if ((jsonArray.getJSONObject(i).getString("sTenGiai")).equalsIgnoreCase(jsonArray.getJSONObject(i - 1).getString("sTenGiai"))) {
+										countryAdapter.addItem(new LiveScore(false, iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut, sThoiGian, iC0, tiso, iTrangThai, sMaGiai, sMaDoiNha,
+												sMaDoiKhach, iID_MaGiai, bNhanDinhChuyenGia, bGameDuDoan, bDaCapNhapVaoBXH, sLogoQuocGia, sLogoGiai, sLogoDoiNha, sLogoDoiKhach, iID_MaDoiNha,
+												iID_MaDoiKhach));
+										count_showdata = count_showdata + 1;
+									} else {
+										countryAdapter.addItem(new LiveScore(true, iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut, sThoiGian, iC0, tiso, iTrangThai, sMaGiai, sMaDoiNha,
+												sMaDoiKhach, iID_MaGiai, bNhanDinhChuyenGia, bGameDuDoan, bDaCapNhapVaoBXH, sLogoQuocGia, sLogoGiai, sLogoDoiNha, sLogoDoiKhach, iID_MaDoiNha,
+												iID_MaDoiKhach));
+										count_showdata = count_showdata + 1;
+									}
+								}
+								if (jsonArray.getJSONObject(i).has("totalpage")) {
+									totalpage = jsonArray.getJSONObject(i).getInt("totalpage");
+								}
+
+							}
+
+						}
+						if (count_showdata_old < count_showdata) {
+							count_showdata_old = count_showdata;
+							currentPage = page;
+							if (currentPage < totalpage) {
+								isLoadMore = true;
+							}
+						}
+						// Log.e("aaaaaaa","count_showdata::" +count_showdata +
+						// ":totalpage:" + totalpage);
+						// if (onLoad != 1) {
+						countryAdapter.notifyDataSetChanged();
+						// }
+						if (!check_null) {
+							if (TypeView != null && "nhandinhchuyengia".equalsIgnoreCase(TypeView)) {
+								views_err.setVisibility(View.VISIBLE);
+								views_err.setText(listView.getContext().getResources().getString(R.string.khongconhandinhchuyengia));
+							}
+						}
+					} catch (Exception e) {
+						Log.e("ERR", e.getMessage());
+						// views_err.setVisibility(View.VISIBLE);
+						// views_err.setText(listView.getContext().getResources().getString(R.string.giaichuabatdau));
 					}
 
 				}
 
-				@Override
-				public void onError(String message) {
-					isLoadMore = true;
-				}
-			};
-//		}
-		listView.setOnScrollListener(new OnScrollListener(){
-			@Override
-			public void onScrollStateChanged(AbsListView view,
-					int scrollState) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
-			public void onScroll(AbsListView view, int firstVisibleItem,
-					int visibleItemCount, int totalItemCount) {
+			public void onError(String message) {
+				isLoadMore = true;
+			}
+		};
+		// }
+		listView.setOnScrollListener(new OnScrollListener() {
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
 				// TODO Auto-generated method stub
-				if(totalItemCount > 0 && isLoadMore && totalpage > 1){
-					if(totalItemCount - 1 <= firstVisibleItem + visibleItemCount){
-						Log.e("load more", "totalItemCount==" + totalItemCount + "::firstVisibleItem==" + firstVisibleItem + "::visibleItemCount==" + visibleItemCount );
+
+			}
+
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+				// TODO Auto-generated method stub
+				if (totalItemCount > 0 && isLoadMore && totalpage > 1) {
+					if (totalItemCount - 1 <= firstVisibleItem + visibleItemCount) {
+						Log.e("load more", "totalItemCount==" + totalItemCount + "::firstVisibleItem==" + firstVisibleItem + "::visibleItemCount==" + visibleItemCount);
 						page++;
 						loadData();
 						isLoadMore = false;
-			    	}
+					}
 				}
 			}
-			
+
 		});
 		loadData();
 
 	}
+
 	private int delta1 = 20;
 	private int delta2 = -20;
-	/*class MyTouchListener implements OnTouchListener {
-		LiveScore liveScore;
 
-		public MyTouchListener(LiveScore liveScore1) {
-			// TODO Auto-generated constructor stub
-			this.liveScore = liveScore1;
-		}
-
-		@Override
-		public boolean onTouch(View v, MotionEvent event) {
-
-			
-			return true;
-		}
-	}
-	*/
+	/*
+	 * class MyTouchListener implements OnTouchListener { LiveScore liveScore;
+	 * 
+	 * public MyTouchListener(LiveScore liveScore1) { // TODO Auto-generated
+	 * constructor stub this.liveScore = liveScore1; }
+	 * 
+	 * @Override public boolean onTouch(View v, MotionEvent event) {
+	 * 
+	 * 
+	 * return true; } }
+	 */
 	private void calcuateDifference(final LiveScore liveScore) {
 		((Activity) listView.getContext()).runOnUiThread(new Runnable() {
 
@@ -696,43 +721,43 @@ public class LiveScoreFragment extends BaseFragment {
 					CommonUtil.listQuanTam = new ArrayList<String>();
 					CommonUtil.getdata(listView.getContext());
 				}
-				
-				String check_quantam = liveScore.idmagiai() + "-" +  liveScore.getId() ;
-				if(TypeView == null ){
+
+				String check_quantam = liveScore.idmagiai() + "-" + liveScore.getId();
+				if (TypeView == null) {
 					Log.e("KKKKKKKKKK", "difference:::" + difference + ":::" + delta2);
-					String check_quantam2 = liveScore.getId() ;
+					String check_quantam2 = liveScore.getId();
 					if (difference > delta1) {
-						if(BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLikeCheck( liveScore.getId())){
-							//TODO add live score
-							BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLike( liveScore.getId() , "0");
-							if (CommonUtil.listQuanTam.contains( check_quantam2 )) {
-								CommonUtil.listQuanTam.remove( check_quantam2 );
+						if (BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLikeCheck(liveScore.getId())) {
+							// TODO add live score
+							BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLike(liveScore.getId(), "0");
+							if (CommonUtil.listQuanTam.contains(check_quantam2)) {
+								CommonUtil.listQuanTam.remove(check_quantam2);
 								CommonUtil.savedata((Activity) listView.getContext());
 								CommonUtil.getdata((Activity) listView.getContext());
-							}	
+							}
 							countryAdapter.notifyDataSetChanged();
 							Toast.makeText(listView.getContext(), "Remove favorite", Toast.LENGTH_LONG).show();
 						}
-						
-					}else if (difference < delta2) {
-						if(!BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLikeCheck( liveScore.getId())){
+
+					} else if (difference < delta2) {
+						if (!BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLikeCheck(liveScore.getId())) {
 							Log.e("KKKKKKKKKK", "B*" + CommonUtil.listQuanTam.toString());
-							//TODO add live score
-							BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLike( liveScore.getId(), "1");
-							if (!CommonUtil.listQuanTam.contains( check_quantam2 )) {
-								CommonUtil.listQuanTam.add( check_quantam2 );
+							// TODO add live score
+							BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLike(liveScore.getId(), "1");
+							if (!CommonUtil.listQuanTam.contains(check_quantam2)) {
+								CommonUtil.listQuanTam.add(check_quantam2);
 								CommonUtil.savedata((Activity) listView.getContext());
 								CommonUtil.getdata((Activity) listView.getContext());
 							}
 							countryAdapter.notifyDataSetChanged();
 							Toast.makeText(listView.getContext(), "Add to Favorite", Toast.LENGTH_LONG).show();
 						}
-						
+
 					}
 				}
-				
-//				action_down_x = 0;
-//				action_up_x = 0;
+
+				// action_down_x = 0;
+				// action_up_x = 0;
 				difference = 0;
 
 			}
