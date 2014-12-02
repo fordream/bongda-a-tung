@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -95,10 +96,20 @@ public class GameDuDoanFragment extends BaseFragment {
 				e.printStackTrace();
 			}
 			Log.e("aaaaaaaaa", dudoan.sTyLe_ChapBong());
+			convertView.findViewById(R.id.submit_vote).setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					updateVote();
+				}
+			});
 		}
 
 	}
 
+	private void updateVote(){
+		
+	}
+	
 	@Override
 	public int getLayout() {
 		return R.layout.gamedudoan;
@@ -116,12 +127,12 @@ public class GameDuDoanFragment extends BaseFragment {
 		headerView.setTextHeader(R.string.gamedudoan);
 		/** init data */
 		listView = (ListView) view.findViewById(R.id.listView1);
-//		listView.setOnItemClickListener(onItemClickListener);
+		listView.setOnItemClickListener(onItemClickListener);
 
 		listView.setAdapter(countryAdapter);
 	}
 
-	ICallbackAPI callbackAPI;
+	ICallbackAPI callbackAPI, callbackAPIVote;
 	private int page = 1;
 	private int totalpage = 1;
 	private int currentPage = 1;
@@ -229,6 +240,25 @@ public class GameDuDoanFragment extends BaseFragment {
 			public void onError(String message) {
 			}
 		};
+		
+		callbackAPIVote = new ICallbackAPI() {
+			@Override
+			public void onSuccess(String response) {
+				String string_temp = CommonAndroid.parseXMLAction(response);
+				if (!string_temp.equalsIgnoreCase("")) {
+					try {
+						Log.e("gamedudoan", "string_temp_vote==" + string_temp);
+					} catch (Exception e) {
+					}
+				}
+
+			}
+
+			@Override
+			public void onError(String message) {
+			}
+		};
+		
 		String ws = ByUtils.wsFootBall_Lives_dudoan;
 		String page_load = ""+page;
 		ws =  ws.replace("pageload", page_load);

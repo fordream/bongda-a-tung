@@ -74,6 +74,7 @@
         </activity>
         <activity
             android:name=".GameDuDoanActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale"
             android:screenOrientation="portrait" >
         </activity>
