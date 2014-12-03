@@ -353,10 +353,68 @@ public class LiveScoreFragment extends BaseFragment {
 				// save and compare data
 				String string_temp = CommonAndroid.parseXMLAction(response);
 				if (!string_temp.equalsIgnoreCase("")) {
+					// FIXME TRUONGVV
+					try {
+						JSONArray jsonArray = new JSONArray(string_temp);
 
+						for (int i = 0; i < jsonArray.length(); i++) {
+							boolean bNhanDinhChuyenGia = jsonArray.getJSONObject(i).getBoolean("bNhanDinhChuyenGia");
+							boolean bGameDuDoan = jsonArray.getJSONObject(i).getBoolean("bGameDuDoan");
+							boolean bDaCapNhapVaoBXH = jsonArray.getJSONObject(i).getBoolean("bDaCapNhapVaoBXH");
+							if (TypeView == null || (("nhandinhchuyengia".equalsIgnoreCase(TypeView) && bNhanDinhChuyenGia)) //
+									|| "phongdo".equalsIgnoreCase(TypeView) || "theogiai".equalsIgnoreCase(TypeView)//
+							) {
+								String HT = "";
+								StringBuilder stringbuilder1 = new StringBuilder("HT ");
+								HT = stringbuilder1.append(jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiNha_HT")).append(" - ")
+										.append(jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiKhach_HT")).toString();
+
+								String Banthang = (new StringBuilder()).append(jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiNha")).append(" - ")
+										.append(jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiKhach")).toString();
+								String iID_MaGiai = jsonArray.getJSONObject(i).getString("iID_MaGiai");
+								String sTenGiai = jsonArray.getJSONObject(i).getString("sTenGiai");
+								String sTenDoiNha = jsonArray.getJSONObject(i).getString("sTenDoiNha");
+								String sTenDoiKhach = jsonArray.getJSONObject(i).getString("sTenDoiKhach");
+								int iTrangThai = Integer.parseInt(jsonArray.getJSONObject(i).getString("iTrangThai"));
+								String iID_MaTran = jsonArray.getJSONObject(i).getString("iID_MaTran");
+								String iC0 = jsonArray.getJSONObject(i).getString("iC0");// ngay
+								// thi
+								// dau
+								String iPhut = jsonArray.getJSONObject(i).getString("iPhut");
+								String sThoiGian = jsonArray.getJSONObject(i).getString("sThoiGian");// thoi
+								// gian
+								// thi
+								// dau
+								String tiso = jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiNha") + " - " + jsonArray.getJSONObject(i).getString("iCN_BanThang_DoiKhach");
+								String sMaGiai = jsonArray.getJSONObject(i).getString("sMaGiai");
+								String sMaDoiNha = jsonArray.getJSONObject(i).getString("sMaDoiNha");
+								String sMaDoiKhach = jsonArray.getJSONObject(i).getString("sMaDoiKhach");
+								String sLogoQuocGia = "";
+								String sLogoGiai = "";
+								String sLogoDoiNha = "";
+								String sLogoDoiKhach = "";
+								if (jsonArray.getJSONObject(i).has("sLogoQuocGia")) {
+									sLogoQuocGia = jsonArray.getJSONObject(i).getString("sLogoQuocGia");
+								}
+								if (jsonArray.getJSONObject(i).has("sLogoGiai")) {
+									sLogoGiai = jsonArray.getJSONObject(i).getString("sLogoGiai");
+								}
+								if (jsonArray.getJSONObject(i).has("sLogoDoiNha")) {
+									sLogoDoiNha = jsonArray.getJSONObject(i).getString("sLogoDoiNha");
+								}
+								if (jsonArray.getJSONObject(i).has("sLogoDoiKhach")) {
+									sLogoDoiKhach = jsonArray.getJSONObject(i).getString("sLogoDoiKhach");
+								}
+								String iID_MaDoiNha = jsonArray.getJSONObject(i).getString("iID_MaDoiNha");
+								String iID_MaDoiKhach = jsonArray.getJSONObject(i).getString("iID_MaDoiKhach");
+
+								// update list of adapter
+								// FIXME TRUONGVV
+							}
+						}
+					} catch (Exception e) {
+					}
 				}
-
-				// update list of adapter
 
 				// refresh adapter
 				countryAdapter.notifyDataSetChanged();
@@ -433,19 +491,12 @@ public class LiveScoreFragment extends BaseFragment {
 				}
 				String string_temp = CommonAndroid.parseXMLAction(response);
 				if (!string_temp.equalsIgnoreCase("")) {
-					// Log.e("data", string_temp);
 					try {
-						// ArrayList<JSONObject> array = new
-						// ArrayList<JSONObject>();
-						// array.clear();
 						JSONArray jsonArray = new JSONArray(string_temp);
 
 						if (jsonArray.length() == 0) {
 							views_err.setVisibility(View.VISIBLE);
 							views_err.setText(listView.getContext().getResources().getString(R.string.giaichuabatdau));
-							// Toast.makeText(listView.getContext(),
-							// listView.getContext().getResources().getString(R.string.giaichuabatdau),
-							// Toast.LENGTH_LONG).show();
 						} else {
 							views_err.setVisibility(View.GONE);
 						}
@@ -462,13 +513,6 @@ public class LiveScoreFragment extends BaseFragment {
 							boolean bNhanDinhChuyenGia = jsonArray.getJSONObject(i).getBoolean("bNhanDinhChuyenGia");
 							boolean bGameDuDoan = jsonArray.getJSONObject(i).getBoolean("bGameDuDoan");
 							boolean bDaCapNhapVaoBXH = jsonArray.getJSONObject(i).getBoolean("bDaCapNhapVaoBXH");
-							// Log.e("kkk", i + ":" +
-							// jsonArray.getJSONObject(i).getString("iID_MaGiai")
-							// + ":" + bNhanDinhChuyenGia + ":" + bGameDuDoan +
-							// ":" + bDaCapNhapVaoBXH);
-
-							// String kk =
-							// jsonArray.getJSONObject(i).getString("sTenGiai");
 							if (TypeView == null || (("nhandinhchuyengia".equalsIgnoreCase(TypeView) && bNhanDinhChuyenGia)) || "phongdo".equalsIgnoreCase(TypeView)
 									|| "theogiai".equalsIgnoreCase(TypeView)) {
 								check_null = true;
@@ -515,8 +559,6 @@ public class LiveScoreFragment extends BaseFragment {
 								}
 								String iID_MaDoiNha = jsonArray.getJSONObject(i).getString("iID_MaDoiNha");
 								String iID_MaDoiKhach = jsonArray.getJSONObject(i).getString("iID_MaDoiKhach");
-								// Log.e("kkk",sTenGiai +":" +iTrangThai + ":"
-								// +sTenDoiNha);iID_MaGiai
 								if (i == 0) {
 									countryAdapter.addItem(new LiveScore(true, iID_MaTran, sTenGiai, sTenDoiNha, sTenDoiKhach, HT, iPhut, sThoiGian, iC0, tiso, iTrangThai, sMaGiai, sMaDoiNha,
 											sMaDoiKhach, iID_MaGiai, bNhanDinhChuyenGia, bGameDuDoan, bDaCapNhapVaoBXH, sLogoQuocGia, sLogoGiai, sLogoDoiNha, sLogoDoiKhach, iID_MaDoiNha,
@@ -549,11 +591,7 @@ public class LiveScoreFragment extends BaseFragment {
 								isLoadMore = true;
 							}
 						}
-						// Log.e("aaaaaaa","count_showdata::" +count_showdata +
-						// ":totalpage:" + totalpage);
-						// if (onLoad != 1) {
 						countryAdapter.notifyDataSetChanged();
-						// }
 						if (!check_null) {
 							if (TypeView != null && "nhandinhchuyengia".equalsIgnoreCase(TypeView)) {
 								views_err.setVisibility(View.VISIBLE);
@@ -562,8 +600,6 @@ public class LiveScoreFragment extends BaseFragment {
 						}
 					} catch (Exception e) {
 						Log.e("ERR", e.getMessage());
-						// views_err.setVisibility(View.VISIBLE);
-						// views_err.setText(listView.getContext().getResources().getString(R.string.giaichuabatdau));
 					}
 
 				}
