@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AbsListView;
@@ -181,6 +182,21 @@ public class MayTinhDuDoanFragment extends BaseFragment {
 
 		listView.setAdapter(countryAdapter);
 		imageLoader=new ImageLoader2(getActivity());
+		View customeProgressbar = headerView.findViewById(R.id.Button01);
+		customeProgressbar.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				/*
+				 * clear data and reload new data
+				 */
+				page = 1;
+				totalpage = 1;
+				currentPage = 1;
+				countryAdapter.clear();
+				loadData();
+			}
+		});
 	}
 	
 	ICallbackAPI callbackAPI;

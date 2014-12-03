@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -72,6 +73,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 	private String iID_MaDoiNha;
 	private String iID_MaDoiKhach;
 	private int iID_MaTran;
+	private String iID_MaTran_;
 	@Override
 	public void onInitCreateView(View view) {
 		/**
@@ -96,7 +98,19 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 		TenDoiKhach = giaidau.sTenDoiKhach();
 		Log.e("onInitCreateView", "onInitCreateView::" + TenDoiNha + "::" + iID_MaDoiKhach);
 		this.view = view;
+		View customeProgressbar = headerView.findViewById(R.id.Button01);
+		customeProgressbar.setOnClickListener(new OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				/*
+				 * clear data and reload new data
+				 */
+				
+				countryAdapter.clear();
+				loadData();
+			}
+		});
 	}
 
 	ICallbackAPI callbackAPI_LastMatches,callbackAPI_bangxephang, callbackAPI_Chitiet, callbackAPI_tuongthuat, callbackAPI_MayTinhDuDoan;
@@ -239,6 +253,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 								}
 								
 								int k= 0;
+								phongdodoidau_bangephang_listitem.removeAllViews();
 								for (int i = 0; i < jsonArray.length(); i++) {
 									//add bang xep hang
 									if(i == sLastMatches_DoiNha_i || i == sLastMatches_DoiNha_i1 || i == sLastMatches_DoiNha_i2 || i == sLastMatches_DoiKhach_i || i == sLastMatches_DoiKhach_i1 || i == sLastMatches_DoiKhach_i2){
@@ -339,7 +354,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 			}
 		};
 		
-		callbackAPI_bangxephang = new ICallbackAPI() {
+		/*callbackAPI_bangxephang = new ICallbackAPI() {
 			@Override
 			public void onSuccess(String response) {
 				// CommonAndroid.showDialog(getActivity(), "data2:" + response ,
@@ -374,7 +389,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 									.getString("sBanThua");
 							String sHeSo = jsonarray.getJSONObject(i)
 									.getString("sHeSo");
-							/*PhongDo phongdo = new PhongDo(id, name, sViTri,
+							PhongDo phongdo = new PhongDo(id, name, sViTri,
 									sSoTranDau, sDiem, sSoTranThang,
 									sSoTranHoa, sSoTranThua, sBanThang,
 									sBanThua, sHeSo);
@@ -384,7 +399,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 							// sHeSo));
 							phongdodoidau_bangephang_listitem
 									.addView(new BangXepHangItemView(view
-											.getContext(), phongdo));*/
+											.getContext(), phongdo));
 						}
 						// countryAdapter.notifyDataSetChanged();
 					} catch (Exception e) {
@@ -401,7 +416,7 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 						null);
 				Log.e("ERR", message);
 			}
-		};
+		};*/
 		callbackAPI_Chitiet = new ICallbackAPI() {
 			@Override
 			public void onSuccess(String response) {
@@ -757,23 +772,25 @@ public class PhongDoDoiDauFragment extends BaseFragment {
 				Log.e("ERR", message);
 			}
 		};
-		String iID_MaTran_ = giaidau.iID_MaTran();//"58167";//giaidau.getId();
+		iID_MaTran_ = giaidau.iID_MaTran();//"58167";//giaidau.getId();
+		loadData();
 //		Log.e("KKKKKKKKKKKKK",
 //				"===mg:" + giaidau.idmagiai()+ " :mt " + giaidau.iID_MaTran() + "::"+ iID_MaTran );
-		Object aobj[] = new Object[1];
-		aobj[0] = Integer.valueOf(iID_MaTran_);
-		iID_MaTran = Integer.valueOf(iID_MaTran_);
-		String param = String.format(ByUtils.wsFootBall_Phong_Do, aobj);
-//		Log.e("param_phongdo", "param:" +param);
-		new APICaller(view.getContext()).callApi("", true, callbackAPI_LastMatches, param);
-		
-		
 		// for(int i = 0; i < 6; i ++){
 		// phongdodoidau_bangephang_listitem.addView(new
 		// BangXepHangItemView(getActivity()));
 		// }
 	}
 
+	private void loadData(){
+		Object aobj[] = new Object[1];
+		aobj[0] = Integer.valueOf(iID_MaTran_);
+		iID_MaTran = Integer.valueOf(iID_MaTran_);
+		String param = String.format(ByUtils.wsFootBall_Phong_Do, aobj);
+//		Log.e("param_phongdo", "param:" +param);
+		new APICaller(view.getContext()).callApi("", true, callbackAPI_LastMatches, param);
+	}
+	
 	private void PhongDoChiTiet() {
 		try {
 			String magiai = giaidau.idmagiai();

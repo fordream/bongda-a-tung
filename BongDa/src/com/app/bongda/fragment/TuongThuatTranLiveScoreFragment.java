@@ -249,6 +249,19 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 
 		this.views = view;
 
+		View customeProgressbar = headerView.findViewById(R.id.Button01);
+		customeProgressbar.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				/*
+				 * clear data and reload new data
+				 */
+
+				countryAdapter.clear();
+				loadData();
+			}
+		});
 	}
 
 	View.OnClickListener clickListener = new OnClickListener() {
@@ -447,14 +460,18 @@ public class TuongThuatTranLiveScoreFragment extends BaseFragment {
 			}
 		};
 		iID_MaTran = livecore.getId();
+		loadData();
+		
+	}
+
+	private void loadData(){
 		Object aobj[] = new Object[1];
 		aobj[0] = Integer.valueOf(iID_MaTran);
 		String param = String.format(ByUtils.wsFootBall_MatchDetail, aobj);
 		new APICaller(views.getContext()).callApi("", true, callbackAPI, param);
-
 		countryAdapter.notifyDataSetChanged();
 	}
-
+	
 	private void loadItem(JSONObject jsonobject, String s, int status) {
 //		Log.e("tuongthuat", "loadItem" + jsonobject.toString());
 		int doi = 1;

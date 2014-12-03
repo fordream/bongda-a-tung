@@ -188,6 +188,21 @@ public class GameDuDoanFragment extends BaseFragment {
 //		listView.setOnItemClickListener(onItemClickListener);
 
 		listView.setAdapter(countryAdapter);
+		View customeProgressbar = headerView.findViewById(R.id.Button01);
+		customeProgressbar.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				/*
+				 * clear data and reload new data
+				 */
+				page = 1;
+				totalpage = 1;
+				currentPage = 1;
+				countryAdapter.clear();
+				loadData();
+			}
+		});
 	}
 
 	ICallbackAPI callbackAPI, callbackAPIVote;
@@ -321,6 +336,10 @@ public class GameDuDoanFragment extends BaseFragment {
 			}
 		};
 		
+		loadData();
+	}
+	
+	private void loadData(){
 		String ws = ByUtils.wsFootBall_Lives_dudoan;
 		String page_load = ""+page;
 		ws =  ws.replace("pageload", page_load);

@@ -6,6 +6,7 @@ import org.json.JSONException;
 import android.database.Cursor;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -116,6 +117,15 @@ public class TyLeDuDoanFragment extends BaseFragment {
 				// id);
 			}
 		});
+		
+		View customeProgressbar = headerView.findViewById(R.id.Button01);
+		customeProgressbar.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				loadData();
+			}
+		});
 	}
 
 	private ICallbackAPI callbackAPI;
@@ -159,8 +169,12 @@ public class TyLeDuDoanFragment extends BaseFragment {
 				Log.e("ERR", message);
 			}
 		};
+		loadData();
+	}
+	
+	private void loadData(){
 		String matran = giaidau.getId();
 		String param = (ByUtils.wsFootBall_Lives_TyLeDuDoan).replace("matran", matran);
-		new APICaller(getActivity()).callApi("", false, callbackAPI, param);
+		new APICaller(getActivity()).callApi("", true, callbackAPI, param);
 	}
 }

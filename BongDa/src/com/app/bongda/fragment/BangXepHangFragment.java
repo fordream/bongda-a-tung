@@ -7,6 +7,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.app.bongda.R;
 import com.app.bongda.base.BaseFragment;
 import com.app.bongda.base.ImageLoaderUtils;
+import com.app.bongda.callback.APICaller;
 import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.model.BangXepHang;
 import com.app.bongda.model.GiaiDau;
@@ -98,10 +100,20 @@ public class BangXepHangFragment extends BaseFragment {
 				loadData();
 			}
 		}, 20);
-	}
+		View customeProgressbar = headerView.findViewById(R.id.Button01);
+		customeProgressbar.setOnClickListener(new OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				countryAdapter.clear();
+				onloadData();
+			}
+		});
+	}
+	
+	ICallbackAPI callbackAPI;
 	private void loadData() {
-		ICallbackAPI callbackAPI = new ICallbackAPI() {
+		callbackAPI = new ICallbackAPI() {
 			@Override
 			public void onSuccess(String response) {
 				String string_temp = CommonAndroid.parseXMLAction(response);
@@ -146,19 +158,23 @@ public class BangXepHangFragment extends BaseFragment {
 			public void onError(String message) {
 			}
 		};
+		onloadData();
+	}
+	
+	private void onloadData() {
 		String maGiaiDau = dau.getId();
 		if (maGiaiDau == null) {
 			maGiaiDau = "";
 		}
-		BongDaServiceManager
+		/*BongDaServiceManager
 				.getInstance()
 				.getBongDaService()
 				.callApi(
 						System.currentTimeMillis(),
 						callbackAPI,
 						ByUtils.wsFootBall_BangXepHang.replace("bangxephangId",
-								maGiaiDau));
-		countryAdapter.notifyDataSetChanged();
+								maGiaiDau));*/
+		new APICaller(getActivity()).callApi("", true, callbackAPI, ByUtils.wsFootBall_BangXepHang.replace("bangxephangId", maGiaiDau));
 	}
 
 	@Override
