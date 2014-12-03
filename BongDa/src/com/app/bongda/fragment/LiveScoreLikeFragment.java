@@ -70,6 +70,7 @@ public class LiveScoreLikeFragment extends Fragment {
 				views_err.setText(listView.getContext().getResources().getString(R.string.khongcodoiyeuthich));
 			}
 			listView.setSelection(first);
+			likeCusorAdapter.notifyDataSetChanged();
 		} catch (Exception exception) {
 		}
 	}

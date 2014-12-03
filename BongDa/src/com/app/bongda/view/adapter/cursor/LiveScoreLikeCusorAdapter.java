@@ -136,7 +136,7 @@ public class LiveScoreLikeCusorAdapter extends CursorAdapter {
 			}
 
 			// sTenDoiNha
-			setText(view, R.id.TextView02, arg1.getString(arg1.getColumnIndex("sTenDoiNha")));
+			setText(view, R.id.TextView02, /*arg1.getString(arg1.getColumnIndex("iID_MaTran")) + ":" +*/ arg1.getString(arg1.getColumnIndex("sTenDoiNha")));
 
 			// sTenDoiKhach
 			setText(view, R.id.TextView023, arg1.getString(arg1.getColumnIndex("sTenDoiKhach")));
@@ -186,6 +186,7 @@ public class LiveScoreLikeCusorAdapter extends CursorAdapter {
 				}
 			});
 		}
+		final String iID_MaTran = arg1.getString(arg1.getColumnIndex("iID_MaTran")) ;
 		view.setOnTouchListener(new OnTouchListener() {
 
 			@Override
@@ -199,11 +200,11 @@ public class LiveScoreLikeCusorAdapter extends CursorAdapter {
 					break;
 				case MotionEvent.ACTION_MOVE:
 					action_up_x = (int) event.getX();
-//					Log.e("action", "ACTION_MOVE :: " + action_down_x + ":::"+ action_up_x);
+//					Log.e("action", "ACTION_MOVE :: " + action_down_x + ":::"+ action_up_x + "::id::" + iID_MaTran);
 					
 					difference = action_down_x - action_up_x;
 					if(difference > delta1 || difference <  delta2){
-						calcuateDifference(liveScore);
+						calcuateDifference(iID_MaTran);
 					}
 					break;
 				case MotionEvent.ACTION_UP:
@@ -211,7 +212,7 @@ public class LiveScoreLikeCusorAdapter extends CursorAdapter {
 					 if(difference <= delta1 && difference >= delta2){
 						 callBackListenner.onCallBackListenner(5, liveScore);
 					 }else{
-						 calcuateDifference(liveScore);
+						 calcuateDifference(iID_MaTran);
 					 }
 					break;
 				}
@@ -228,7 +229,7 @@ public class LiveScoreLikeCusorAdapter extends CursorAdapter {
 	
 	private int delta1 = 20;
 	private int delta2 = -20;
-	private void calcuateDifference(final LiveScore liveScore) {
+	private void calcuateDifference(final String iID_MaTran) {
 		((Activity) ctx ).runOnUiThread(new Runnable() {
 
 			@Override
@@ -238,41 +239,25 @@ public class LiveScoreLikeCusorAdapter extends CursorAdapter {
 					CommonUtil.getdata(ctx);
 				}
 				
-				String check_quantam = liveScore.idmagiai() + "-" +  liveScore.getId() ;
-//				if(TypeView == null ){
-					Log.e("KKKKKKKKKK", "difference:::" + difference + ":::" + delta2);
-					String check_quantam2 = liveScore.getId() ;
-					if (difference > delta1) {
+				
+//				Log.e("KKKKKKKKKK", "difference:::" + difference + ":::" + delta2);
+				String check_quantam2 = iID_MaTran ;
+				if (difference > delta1) {
 //						if(BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLikeCheck( liveScore.getId())){
-							//TODO add live score
-							BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLike( liveScore.getId() , "0");
-							if (CommonUtil.listQuanTam.contains( check_quantam2 )) {
-								CommonUtil.listQuanTam.remove( check_quantam2 );
-								CommonUtil.savedata((Activity) ctx);
-								CommonUtil.getdata((Activity) ctx);
-							}	
+						//TODO add live score
+						long addfavorite = BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLike( iID_MaTran , "0");
+						if (CommonUtil.listQuanTam.contains( check_quantam2 ) && addfavorite != -1) {
+							CommonUtil.listQuanTam.remove( check_quantam2 );
+							CommonUtil.savedata((Activity) ctx);
+							CommonUtil.getdata((Activity) ctx);
+							Toast.makeText(ctx, "Remove favorite", Toast.LENGTH_SHORT).show();
+						}	
+						LiveScoreLikeFragment.reloadData();
 //							countryAdapter.notifyDataSetChanged();
-							LiveScoreLikeFragment.reloadData();
-							Toast.makeText(ctx, "Remove favorite", Toast.LENGTH_LONG).show();
+						
 //						}
-						
-					}/*else if (difference < delta2) {
-						if(!BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLikeCheck( liveScore.getId())){
-							Log.e("KKKKKKKKKK", "B*" + CommonUtil.listQuanTam.toString());
-							//TODO add live score
-							BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLike( liveScore.getId(), "1");
-							if (!CommonUtil.listQuanTam.contains( check_quantam2 )) {
-								CommonUtil.listQuanTam.add( check_quantam2 );
-								CommonUtil.savedata((Activity) ctx);
-								CommonUtil.getdata((Activity) ctx);
-							}
-//							countryAdapter.notifyDataSetChanged();
-							LiveScoreLikeFragment.reloadData();
-							Toast.makeText(ctx, "Add to Favorite", Toast.LENGTH_LONG).show();
-						}
-						
-					}*/
-//				}
+					
+				}
 				
 //				action_down_x = 0;
 //				action_up_x = 0;
