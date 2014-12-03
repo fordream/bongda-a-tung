@@ -17,6 +17,10 @@ package com.app.bongda;
 
 import java.io.IOException;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -30,6 +34,11 @@ import android.provider.Settings.Secure;
 import android.util.Log;
 
 import com.app.bongda.R;
+import com.app.bongda.callback.APICaller;
+import com.app.bongda.callback.APICaller.ICallbackAPI;
+import com.app.bongda.util.ByUtils;
+import com.app.bongda.util.CommonAndroid;
+import com.app.bongda.util.CommonUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 /**
@@ -86,34 +95,59 @@ public class GcmBroadcastReceiver extends BroadcastReceiver {
 	public static int ENABLE = 1;
 	public static int CANCEL = 2;
 	static final String TAGA = "register-push";
-
+	static ICallbackAPI callbackAPI;
 	public static void register(final Context context) {
 
 		// final SharedPreferences preferences = context.getSharedPreferences(
 		// TAGA, 0);
+		callbackAPI = new ICallbackAPI() {
+			@Override
+			public void onSuccess(String response) {
+				String string_temp = CommonAndroid.parseXMLAction(response);
+				if (!string_temp.equalsIgnoreCase("")) {
+					if("1".equalsIgnoreCase(string_temp)){
+						CommonUtil.savedata(context, "register_push", "1");
+						Log.e("reg push done", string_temp + "");
+					}
+					
+					
+				}
+			}
 
+			@Override
+			public void onError(String message) {
+				// CommonAndroid.showDialog(getActivity(), "data3err:" +
+				// message, null);
+				Log.e("ERR", message);
+			}
+		};
 		final String SENDER_ID = "430574585527";
 		final GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(context);
-		// if (!preferences.getBoolean(TAG, false))
-		new AsyncTask<Void, Void, String>() {
-			@Override
-			protected String doInBackground(Void... _params) {
-				try {
-					String regid = gcm.register(SENDER_ID);
-					String deviceId = Secure.getString(context.getContentResolver(), Secure.ANDROID_ID);
-					Log.e(TAGA, "regid:" + regid + "==::device::" + deviceId);
-				} catch (IOException ex) {
-
+		String register_push = CommonUtil.getdata(context , "register_push");
+		
+		if ( !"1".equalsIgnoreCase(register_push)){
+			new AsyncTask<Void, Void, String>() {
+				@Override
+				protected String doInBackground(Void... _params) {
+					try {
+						String regid = gcm.register(SENDER_ID);
+						String deviceId = Secure.getString(context.getContentResolver(), Secure.ANDROID_ID);
+						Log.e(TAGA, "regid:" + regid + "==::device::" + deviceId);
+						String param = (ByUtils.wsFootBall_Push).replace("deviceid", deviceId);
+						param.replace("tokenid", regid);
+						new APICaller(context).callApi("", false, callbackAPI, param);
+					} catch (IOException ex) {
+	
+					}
+					return null;
 				}
-				return null;
-			}
-
-			@Override
-			protected void onPostExecute(String msg) {
-
-//				LogUtils.e("ABCBCBCBC", msg + "");
-			}
-		}.execute(null, null, null);
+	
+				@Override
+				protected void onPostExecute(String msg) {
+	//				LogUtils.e("ABCBCBCBC", msg + "");
+				}
+			}.execute(null, null, null);
+		}
 	}
 
 }
