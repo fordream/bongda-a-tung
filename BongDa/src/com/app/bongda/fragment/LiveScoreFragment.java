@@ -14,6 +14,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.os.Handler;
@@ -157,6 +158,11 @@ public class LiveScoreFragment extends BaseFragment {
 					setText(convertView, R.id.tv1, String.format("%d/%d", arrayOfObject1));
 				} else {
 					setText(convertView, R.id.TextView01, liveScore.iPhut() + " '");// time
+					if(liveScore.gettrangthaitiso()){
+						((TextView) convertView.findViewById(R.id.TextView02_ketqua)).setBackgroundColor(Color.YELLOW);
+					}else{
+						((TextView) convertView.findViewById(R.id.TextView02_ketqua)).setBackgroundColor(Color.WHITE);
+					}
 				}
 			} else {
 				convertView.findViewById(R.id.TextView03).setVisibility(View.GONE);// live
@@ -410,6 +416,17 @@ public class LiveScoreFragment extends BaseFragment {
 
 								// update list of adapter
 								// FIXME TRUONGVV
+								
+								LiveScore liveupdate = (LiveScore) countryAdapter.getItem(i);
+								liveupdate.setiTrangThai(iTrangThai);
+								liveupdate.setiPhut(iPhut);
+								if( !tiso.equals(liveupdate.iTiso())){
+									liveupdate.settrangthaitiso(true);
+								}else{
+									liveupdate.settrangthaitiso(false);
+								}
+								liveupdate.setiTiso(tiso);
+								liveupdate.setHT(HT);
 							}
 						}
 					} catch (Exception e) {

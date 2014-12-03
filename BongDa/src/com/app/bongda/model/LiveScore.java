@@ -149,6 +149,7 @@ public class LiveScore extends PhongDo {
 	private String iID_MaDoiNha;
 	private String iID_MaDoiKhach;
 	private String sTyLe_ChapBong;
+	private boolean trangthaitiso;
 	public boolean isHeader() {
 		return isHeader;
 	}
@@ -187,6 +188,10 @@ public class LiveScore extends PhongDo {
 	
 	public String iPhut() {
 		return iPhut;
+	}
+	
+	public void setiPhut(String iPhut_) {
+		this.iPhut = iPhut_;
 	}
 	
 	public String iTiso() {
@@ -258,5 +263,28 @@ public class LiveScore extends PhongDo {
 	public String sTyLe_ChapBong() {
 		// TODO Auto-generated method stub
 		return sTyLe_ChapBong;
+	}
+
+	public void setiTrangThai(int iTrangThai2) {
+		// TODO Auto-generated method stub
+		this.iTrangThai = iTrangThai2;
+	}
+
+	public void setiTiso(String tiso) {
+		// TODO Auto-generated method stub
+		this.iTiso = tiso;
+	}
+	
+	public boolean gettrangthaitiso(){
+		return trangthaitiso;
+	}
+	
+	public void settrangthaitiso(boolean trangthaihienmau){
+		this.trangthaitiso = trangthaihienmau;
+	}
+
+	public void setHT(String hT2) {
+		// TODO Auto-generated method stub
+		this.HT = hT2;
 	}
 }
