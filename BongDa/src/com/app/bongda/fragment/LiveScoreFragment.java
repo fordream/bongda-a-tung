@@ -416,17 +416,22 @@ public class LiveScoreFragment extends BaseFragment {
 
 								// update list of adapter
 								// FIXME TRUONGVV
-								
-								LiveScore liveupdate = (LiveScore) countryAdapter.getItem(i);
-								liveupdate.setiTrangThai(iTrangThai);
-								liveupdate.setiPhut(iPhut);
-								if( !tiso.equals(liveupdate.iTiso())){
-									liveupdate.settrangthaitiso(true);
-								}else{
-									liveupdate.settrangthaitiso(false);
+								for(int j = 0;j < countryAdapter.getCount();j++){
+									LiveScore liveupdate = (LiveScore) countryAdapter.getItem(j);
+									if(iID_MaTran.equals(liveupdate.iID_MaTran())){
+										liveupdate.setiTrangThai(iTrangThai);
+										liveupdate.setiPhut(iPhut);
+										if( !tiso.equals(liveupdate.iTiso())){
+											liveupdate.settrangthaitiso(true);
+										}else{
+											liveupdate.settrangthaitiso(false);
+										}
+										liveupdate.setiTiso(tiso);
+										liveupdate.setHT(HT);
+										break;
+									}
 								}
-								liveupdate.setiTiso(tiso);
-								liveupdate.setHT(HT);
+								
 							}
 						}
 					} catch (Exception e) {
