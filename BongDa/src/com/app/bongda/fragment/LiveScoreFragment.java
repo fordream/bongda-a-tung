@@ -72,9 +72,9 @@ public class LiveScoreFragment extends BaseFragment {
 		this.TypeView = type;
 	}
 
-	private CountryAdapter countryAdapter = new CountryAdapter();
+	private LiveScoreAdapter countryAdapter = new LiveScoreAdapter();
 
-	private class CountryAdapter extends BongDaBaseAdapter {
+	private class LiveScoreAdapter extends BongDaBaseAdapter {
 		private boolean showdata = false;
 
 		@Override
