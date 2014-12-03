@@ -429,7 +429,7 @@ public class LiveScoreFragment extends BaseFragment {
 		String maGiaiDau = data == null ? null : data.getId();
 		String ws = ByUtils.wsFootBall_Lives_page; // ByUtils.wsFootBall_Lives
 		if (maGiaiDau == null) {
-			String page_load = "" + page;
+			String page_load = "" + (page + 1);
 			ws = ws.replace("pageload", page_load);
 		} else {
 			ws = (ByUtils.wsFootBall_Lives_Theo_Giai).replace("magiai", maGiaiDau);
