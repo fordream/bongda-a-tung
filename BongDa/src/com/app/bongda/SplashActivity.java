@@ -13,6 +13,7 @@ import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
 
+import com.app.bongda.hander.LiveScoreHander;
 import com.app.bongda.util.ByUtils;
 import com.app.bongda.view.IndivicatorView;
 import com.app.bongda.vl.X1VLayoutActivity;
@@ -36,12 +37,19 @@ public class SplashActivity extends TabActivity implements OnTabChangeListener {
 	}
 
 	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		LiveScoreHander.DESTROY = true;
+	}
+
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		LiveScoreHander.DESTROY = false;
 		setContentView(R.layout.tabexampleslide);
 		getTabHost().setOnTabChangedListener(this);
 		getTabHost().setVisibility(View.VISIBLE);
-		
+
 		if (ByUtils.USEGROUPVIEW) {
 			addTab(X1VLayoutActivity.class, "Home", "Home", R.drawable.menu_1);
 			addTab(X2VLayoutActivity.class, "M1", "M1", R.drawable.menu_2);

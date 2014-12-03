@@ -210,31 +210,6 @@ public class LiveScoreFragment extends BaseFragment {
 				img_favorite.setImageResource(R.drawable.ico_favorite_off);
 			}
 
-			/*
-			 * if (addfavorite) {
-			 * convertView.findViewById(R.id.iconlike).setVisibility
-			 * (View.VISIBLE);
-			 * convertView.findViewById(R.id.iconlike).setOnClickListener(new
-			 * OnClickListener() {
-			 * 
-			 * @Override public void onClick(View v) { //TODO add live score
-			 * BongDaServiceManager
-			 * .getInstance().getBongDaService().getDBManager().liveScoreLike(
-			 * liveScore.getId());
-			 * 
-			 * String check_quantam = liveScore.idmagiai() + "-" +
-			 * liveScore.getId() ; if (CommonUtil.listQuanTam.contains(
-			 * check_quantam )) { CommonUtil.listQuanTam.remove( check_quantam
-			 * ); CommonUtil.savedata(v.getContext());
-			 * img_favorite.setImageResource(R.drawable.ico_favorite_on); } else
-			 * { CommonUtil.listQuanTam.add( check_quantam );
-			 * CommonUtil.savedata(v.getContext());
-			 * img_favorite.setImageResource(R.drawable.ico_favorite_off); }
-			 * CommonUtil.getdata(listView.getContext());
-			 * countryAdapter.notifyDataSetChanged(); } }); } else {
-			 * convertView.findViewById(R.id.iconlike).setVisibility(View.GONE);
-			 * }
-			 */
 			// mOnTouchListener = new MyTouchListener(liveScore);
 			convertView.setOnTouchListener(new OnTouchListener() {
 
@@ -350,10 +325,6 @@ public class LiveScoreFragment extends BaseFragment {
 		views_err = (TextView) view.findViewById(R.id.error_txt);
 		imageLoader = new ImageLoader2(getActivity());
 
-		if (liveScoreHander != null) {
-			liveScoreHander.setNeedStop(true);
-		}
-
 		liveScoreHander = new LiveScoreHander() {
 			@Override
 			public void executeLiveScore() {
@@ -365,7 +336,7 @@ public class LiveScoreFragment extends BaseFragment {
 	}
 
 	// ** add load refresh
-	private static LiveScoreHander liveScoreHander;
+	private LiveScoreHander liveScoreHander;
 
 	private void refresh() {
 		// load all page
@@ -479,24 +450,6 @@ public class LiveScoreFragment extends BaseFragment {
 							views_err.setVisibility(View.GONE);
 						}
 
-						/*
-						 * for (int i = 0; i < jsonArray.length(); i++) { try {
-						 * if (TypeView != null) {
-						 * array.add(jsonArray.getJSONObject(i)); if
-						 * (TypeView.equalsIgnoreCase("quantam")) { String
-						 * check_quantam
-						 * =jsonArray.getJSONObject(i).getString("iID_MaGiai") +
-						 * "-" +
-						 * jsonArray.getJSONObject(i).getString("iID_MaTran");
-						 * // String matran =
-						 * jsonArray.getJSONObject(i).getString("iID_MaTran");
-						 * if (CommonUtil.listQuanTam.contains(check_quantam)) {
-						 * check_favorite = true; } } } else {
-						 * array.add(jsonArray.getJSONObject(i)); }
-						 * 
-						 * } catch (JSONException e) { // TODO Auto-generated
-						 * catch block e.printStackTrace(); } }
-						 */
 						if (TypeView != null) {
 							if (TypeView.equalsIgnoreCase("quantam") && !check_favorite) {
 								views_err.setVisibility(View.VISIBLE);
@@ -504,19 +457,6 @@ public class LiveScoreFragment extends BaseFragment {
 							}
 						}
 						listView_size = jsonArray.length();
-						/*
-						 * Collections.emptyList(); Collections.sort(array, new
-						 * Comparator<JSONObject>() {
-						 * 
-						 * @Override public int compare(JSONObject lhs,
-						 * JSONObject rhs) { // TODO Auto-generated method stub
-						 * 
-						 * try { return
-						 * (lhs.getString("sTenGiai").toLowerCase().
-						 * compareTo(rhs.getString("sTenGiai").toLowerCase()));
-						 * } catch (JSONException e) { // TODO Auto-generated
-						 * catch // block e.printStackTrace(); return 0; } } });
-						 */
 
 						for (int i = 0; i < jsonArray.length(); i++) {
 							boolean bNhanDinhChuyenGia = jsonArray.getJSONObject(i).getBoolean("bNhanDinhChuyenGia");

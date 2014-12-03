@@ -5,6 +5,7 @@ import android.os.Message;
 import android.util.Log;
 
 public abstract class LiveScoreHander extends Handler {
+	public static boolean DESTROY = false;
 	private boolean needStop = false;
 
 	public void setNeedStop(boolean needStop) {
@@ -17,10 +18,11 @@ public abstract class LiveScoreHander extends Handler {
 	public final void dispatchMessage(Message msg) {
 		super.dispatchMessage(msg);
 		if (!needStop) {
-			//
-			Log.e("REFRESH", "REFRESH");
-			executeLiveScore();
-			sendEmptyMessageDelayed(0, TIME);
+			if (!DESTROY) {
+				Log.e("REFRESH", "REFRESH");
+				executeLiveScore();
+				sendEmptyMessageDelayed(0, TIME);
+			}
 		}
 	}
 
