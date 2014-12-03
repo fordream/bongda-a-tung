@@ -45,6 +45,7 @@
     <string name="gamedudoan">GAME DỰ ĐOÁN</string>
     <string name="keo">Kèo</string>
     <string name="nhandinhchuyengia">Nhận định chuyên gia</string>
+    <string name="nhandinhchuyengia_list">Nhận định chuyên gia</string>
 
     <color name="cccccc">#cccccc</color>
 

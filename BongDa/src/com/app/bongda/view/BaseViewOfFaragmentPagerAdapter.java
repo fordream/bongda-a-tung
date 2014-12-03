@@ -22,6 +22,7 @@ import com.app.bongda.fragment.BangXepHangFragment;
 import com.app.bongda.fragment.CountryFragment;
 import com.app.bongda.fragment.DanhSachGiaiDauFragment;
 import com.app.bongda.fragment.GameDuDoanFragment;
+import com.app.bongda.fragment.LiveScoreCoNhanDinhChuyenGiaFragment;
 import com.app.bongda.fragment.LiveScoreFragment;
 import com.app.bongda.fragment.LiveScoreLikeFragment;
 import com.app.bongda.fragment.NhanDinhChuyenGiaFragment;
@@ -118,7 +119,8 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 		} else if (mpager.getContext() instanceof X3VLayoutActivity) {
 			addLiveScoreLiked();
 		} else if (mpager.getContext() instanceof NhanDinhChuyenGiaActivity){
-			showNhanDinhChuyenGia(null);
+//			showNhanDinhChuyenGia(null);
+			addLiveScoreCoNhanDinh(null,"nhandinhchuyengia");
 		}
 	}
 
@@ -223,6 +225,49 @@ public class BaseViewOfFaragmentPagerAdapter extends PagerAdapter {
 		addFragement(new LiveScoreFragment(liveScoreOnItemClickListener, callBackListenner, data, type));
 	}
 
+	public void addLiveScoreCoNhanDinh(GiaiDau data, String type) {
+		OnItemClickListener liveScoreOnItemClickListener = new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				LiveScore liveScore = (LiveScore) parent.getItemAtPosition(position);
+
+				// phong do doi dau
+
+				// xem tuong thuat a
+//				if (!liveScore.isHeader()) {
+////					addTuongThuatTranLiveScoreFragment(liveScore);
+//				}
+			}
+		};
+		CallBackListenner callBackListenner = new CallBackListenner() {
+			@Override
+			public void onCallBackListenner(int position, Object data) {
+				LiveScore liveScore = (LiveScore) data;
+				GiaiDau dau = new GiaiDau(liveScore.iID_MaGiai(), liveScore.sTenGiai(), liveScore.sMaGiai(), liveScore.madoinha(), liveScore.madoikhach(), liveScore.idmagiai(),
+						liveScore.iID_MaTran(), liveScore.sLogoDoiNha(), liveScore.sLogoDoiKhach(), liveScore.iID_MaDoiNha(), liveScore.iID_MaDoiKhach());
+				if (position == 0) {
+					dau.sLogoGiai(liveScore.sLogoGiai());
+					dau.iID_MaDoiNha(liveScore.iID_MaDoiNha());
+					dau.iID_MaDoiKhach(liveScore.iID_MaDoiKhach());
+					dau.sTenDoiNha(liveScore.sTenDoiNha());
+					dau.sTenDoiKhach(liveScore.sTenDoiKhach());
+					addPhongDoDoiDauFragment(dau);
+				} else if (position == 1) {
+					addGameDuDoan(null);
+				} else if (position == 2) {
+					dau.sLogoGiai(liveScore.sLogoGiai());
+					addBangXepHang(dau);
+				} else if (position == 3) {
+					// nhandinhchuyengia
+					showNhanDinhChuyenGia(dau);
+				} else {
+					showNhanDinhChuyenGia(dau);
+				}
+			}
+		};
+
+		addFragement(new LiveScoreCoNhanDinhChuyenGiaFragment(liveScoreOnItemClickListener, callBackListenner, data, type));
+	}
 	public void addLiveScoreLiked() {
 		OnItemClickListener liveScoreOnItemClickListener = new OnItemClickListener() {
 			@Override
