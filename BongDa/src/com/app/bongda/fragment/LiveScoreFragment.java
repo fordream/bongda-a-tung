@@ -335,53 +335,6 @@ public class LiveScoreFragment extends BaseFragment {
 
 	}
 
-	class LoadImage extends AsyncTask<Object, Void, Bitmap> {
-
-		private ImageView imv;
-		private String path;
-
-		public LoadImage(ImageView imv) {
-			this.imv = imv;
-			this.path = imv.getTag().toString();
-		}
-
-		public LoadImage(ImageView findViewById, String sLogoGiai) {
-			// TODO Auto-generated constructor stub
-			this.imv = findViewById;
-			this.path = sLogoGiai;
-		}
-
-		@Override
-		protected Bitmap doInBackground(Object... params) {
-			Bitmap bitmap = null;
-			File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + path);
-
-			if (file.exists()) {
-				bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-			}
-
-			return bitmap;
-		}
-
-		@Override
-		protected void onPostExecute(Bitmap result) {
-			// if (!imv.getTag().toString().equals(path)) {
-			// /* The path is not same. This means that this
-			// image view is handled by some other async task.
-			// We don't do anything and return. */
-			// return;
-			// }
-
-			if (result != null && imv != null) {
-				imv.setVisibility(View.VISIBLE);
-				imv.setImageBitmap(result);
-			} else {
-				imv.setVisibility(View.GONE);
-			}
-		}
-
-	}
-
 	@Override
 	public int getLayout() {
 		return R.layout.livesocre;
@@ -763,4 +716,52 @@ public class LiveScoreFragment extends BaseFragment {
 			}
 		});
 	}
+	//
+	// class LoadImage extends AsyncTask<Object, Void, Bitmap> {
+	//
+	// private ImageView imv;
+	// private String path;
+	//
+	// public LoadImage(ImageView imv) {
+	// this.imv = imv;
+	// this.path = imv.getTag().toString();
+	// }
+	//
+	// public LoadImage(ImageView findViewById, String sLogoGiai) {
+	// // TODO Auto-generated constructor stub
+	// this.imv = findViewById;
+	// this.path = sLogoGiai;
+	// }
+	//
+	// @Override
+	// protected Bitmap doInBackground(Object... params) {
+	// Bitmap bitmap = null;
+	// File file = new
+	// File(Environment.getExternalStorageDirectory().getAbsolutePath() + path);
+	//
+	// if (file.exists()) {
+	// bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+	// }
+	//
+	// return bitmap;
+	// }
+	//
+	// @Override
+	// protected void onPostExecute(Bitmap result) {
+	// // if (!imv.getTag().toString().equals(path)) {
+	// // /* The path is not same. This means that this
+	// // image view is handled by some other async task.
+	// // We don't do anything and return. */
+	// // return;
+	// // }
+	//
+	// if (result != null && imv != null) {
+	// imv.setVisibility(View.VISIBLE);
+	// imv.setImageBitmap(result);
+	// } else {
+	// imv.setVisibility(View.GONE);
+	// }
+	// }
+	//
+	// }
 }
