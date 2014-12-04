@@ -121,7 +121,7 @@ public class GcmBroadcastReceiver extends BroadcastReceiver {
 				Log.e("ERR", message);
 			}
 		};
-		final String SENDER_ID = "430574585527";
+		final String SENDER_ID = "291480077163";//"430574585527";
 		final GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(context);
 		String register_push = CommonUtil.getdata(context , "register_push");
 		
