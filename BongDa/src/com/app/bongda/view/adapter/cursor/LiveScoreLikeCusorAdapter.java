@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
+import android.provider.Settings.Secure;
 import android.support.v4.widget.CursorAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,10 +21,14 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import com.app.bongda.R;
 import com.app.bongda.base.ImageLoaderUtils;
+import com.app.bongda.callback.APICaller;
+import com.app.bongda.callback.APICaller.ICallbackAPI;
 import com.app.bongda.fragment.LiveScoreLikeFragment;
 import com.app.bongda.inter.CallBackListenner;
 import com.app.bongda.model.LiveScore;
 import com.app.bongda.service.BongDaServiceManager;
+import com.app.bongda.util.ByUtils;
+import com.app.bongda.util.CommonAndroid;
 import com.app.bongda.util.CommonUtil;
 
 public class LiveScoreLikeCusorAdapter extends CursorAdapter {
@@ -245,14 +250,15 @@ public class LiveScoreLikeCusorAdapter extends CursorAdapter {
 				if (difference > delta1) {
 //						if(BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLikeCheck( liveScore.getId())){
 						//TODO add live score
-						long addfavorite = BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLike( iID_MaTran , "0");
+						/*long addfavorite = BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLike( iID_MaTran , "0");
 						if (CommonUtil.listQuanTam.contains( check_quantam2 ) && addfavorite != -1) {
 							CommonUtil.listQuanTam.remove( check_quantam2 );
 							CommonUtil.savedata((Activity) ctx);
 							CommonUtil.getdata((Activity) ctx);
 							Toast.makeText(ctx, "Remove favorite", Toast.LENGTH_SHORT).show();
 						}	
-						LiveScoreLikeFragment.reloadData();
+						LiveScoreLikeFragment.reloadData();*/
+						RequestFavorite("0", iID_MaTran);
 //							countryAdapter.notifyDataSetChanged();
 						
 //						}
@@ -265,5 +271,61 @@ public class LiveScoreLikeCusorAdapter extends CursorAdapter {
 
 			}
 		});
+	}
+	
+	private void RequestFavorite(final String type, final String matranfavorite){
+		ICallbackAPI callbackAPIFavorite = new ICallbackAPI() {
+
+			@Override
+			public void onSuccess(String response) {
+				// save and compare data
+				String string_temp = CommonAndroid.parseXMLAction(response);
+				if (!string_temp.equalsIgnoreCase("")) {
+					try {
+						if("1".equals(string_temp)){
+							Favorite(type, matranfavorite);
+						}else{
+							Toast.makeText(ctx, ctx.getResources().getString(R.string.favorite_err), Toast.LENGTH_SHORT).show();
+						}
+					} catch (Exception e) {
+					}
+				}
+
+			}
+
+			@Override
+			public void onError(String message) {
+
+			}
+		};
+		String ws = ByUtils.wsFootBall_Device_Like;
+		String deviceId = Secure.getString(ctx.getContentResolver(), Secure.ANDROID_ID);
+		ws = ws.replace("deviceid", deviceId);
+		ws = ws.replace("matranfavorite", matranfavorite);
+		ws = ws.replace("typefavorite", type);
+		Log.e("favorite param", ws);
+		new APICaller(ctx).callApi("", true, callbackAPIFavorite, ws);
+	}
+	
+	private void Favorite(String type, String matranfavorite){
+		if("1".equals(type)){
+			BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLike(matranfavorite, "1");
+			if (!CommonUtil.listQuanTam.contains(matranfavorite)) {
+				CommonUtil.listQuanTam.add(matranfavorite);
+				CommonUtil.savedata((Activity) ctx);
+				CommonUtil.getdata((Activity) ctx);
+			}
+			LiveScoreLikeFragment.reloadData();
+			Toast.makeText(ctx, "Add to Favorite", Toast.LENGTH_LONG).show();
+		}else{
+			BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLike(matranfavorite, "0");
+			if (CommonUtil.listQuanTam.contains(matranfavorite)) {
+				CommonUtil.listQuanTam.remove(matranfavorite);
+				CommonUtil.savedata((Activity) ctx);
+				CommonUtil.getdata((Activity) ctx);
+			}
+			LiveScoreLikeFragment.reloadData();
+			Toast.makeText(ctx, "Remove favorite", Toast.LENGTH_LONG).show();
+		}
 	}
 }

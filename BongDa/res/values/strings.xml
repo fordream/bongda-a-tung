@@ -116,4 +116,5 @@
     <string name="user_napthe_error4">Không có tài khoản nhận</string>
     <string name="sobancotheghi">Số bàn có thể ghi:</string>
     <string name="gamedudoan_login">Vui lòng đăng nhập</string>
+    <string name="favorite_err">Có lỗi trong quá trình xử lý</string>
 </resources>
