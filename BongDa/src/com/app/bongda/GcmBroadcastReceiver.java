@@ -54,14 +54,14 @@ public class GcmBroadcastReceiver extends BroadcastReceiver {
 	public void onReceive(Context context, Intent intent) {
 		GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(context);
 		Log.e(TAGA, gcm.toString());
-
+		String message = intent.getExtras().getString("message");
+		Log.e(TAGA, message);
 		NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-		int icon = R.drawable.icon;
-		String title = "title";
-		String description = "description";
+		int icon = R.drawable.ic_launcher;
+		String description = message;
 		long time = System.currentTimeMillis();
 
-		String notificationTitle = "notificationTitle";
+		String notificationTitle = "Tyso24h";
 		Notification notification = new Notification(icon, notificationTitle, time);
 		notification.flags = notification.flags | Notification.FLAG_AUTO_CANCEL;
 		PendingIntent contentIntent = null;

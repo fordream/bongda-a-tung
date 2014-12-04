@@ -48,113 +48,122 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_5dp" >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right" >
-
-               <LinearLayout
-                android:id="@+id/gamedudoan_icon"
-                android:layout_width="@dimen/dimen_35dp"
-                android:layout_height="@dimen/dimen_35dp"
-                android:background="@null">
-                <ImageView
-                    android:layout_width="@dimen/size_button_live_score"
-                    android:layout_height="@dimen/size_button_live_score"
-                    android:layout_marginRight="@dimen/dimen_5dp"
-                    android:background="@drawable/game_dudoan_recovered_23" />
-               </LinearLayout> 
-               
-				<LinearLayout
-				android:id="@+id/persion"
-                android:layout_width="@dimen/dimen_35dp"
-                android:layout_height="@dimen/dimen_35dp"
-                android:background="@null">
-                <ImageView
-                    android:layout_width="@dimen/size_button_live_score"
-                    android:layout_height="@dimen/size_button_live_score"
-                    android:background="@drawable/game_dudoan_recovered_25" />
-				</LinearLayout>
-				<LinearLayout
-				android:id="@+id/phongdo_icon"
-                android:layout_width="@dimen/dimen_35dp"
-                android:layout_height="@dimen/dimen_35dp"
-                android:background="@null">
-                <ImageView
-                    android:layout_width="@dimen/size_button_live_score"
-                    android:layout_height="@dimen/size_button_live_score"
-                    android:layout_marginLeft="@dimen/dimen_5dp"
-                    android:layout_marginRight="@dimen/dimen_5dp"
-                    android:background="@drawable/game_dudoan_recovered_18" />
-				</LinearLayout>
-				<ImageView
-                    android:id="@+id/traitim"
-                    android:layout_width="@dimen/size_button_live_score"
-                    android:layout_height="@dimen/size_button_live_score"
-                    android:layout_marginRight="@dimen/dimen_5dp"
-                    android:visibility="gone"
-                    android:background="@drawable/game_dudoan_recovered_20" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/TextView01"
-                style="@style/bongda_text_item_small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:gravity="center"
-                android:text="Large Text"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#666666" />
-
-            <TextView
+			<TextView
                 android:id="@+id/TextView03"
                 style="@style/bongda_text_item_small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerInParent="true"
                 android:gravity="center"
                 android:text="Live"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#ff3333"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/TextView01"
+                style="@style/bongda_text_item_small"
+                android:layout_width="@dimen/dimen_80dp"
+                android:layout_height="@dimen/dimen_35dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="Large Text"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:background="#ffffff"
+                android:textColor="#666666" />
+
+            <LinearLayout
+                android:layout_width="@dimen/dimen_120dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="17dp"
+                android:gravity="right" >
+
+                <LinearLayout
+                    android:id="@+id/gamedudoan_icon"
+                    android:layout_width="@dimen/dimen_35dp"
+                    android:layout_height="@dimen/dimen_35dp"
+                    android:background="@null" >
+
+                    <ImageView
+                        android:layout_width="@dimen/size_button_live_score"
+                        android:layout_height="@dimen/size_button_live_score"
+                        android:layout_marginRight="@dimen/dimen_5dp"
+                        android:background="@drawable/game_dudoan_recovered_23" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/persion"
+                    android:layout_width="@dimen/dimen_35dp"
+                    android:layout_height="@dimen/dimen_35dp"
+                    android:background="@null" >
+
+                    <ImageView
+                        android:layout_width="@dimen/size_button_live_score"
+                        android:layout_height="@dimen/size_button_live_score"
+                        android:background="@drawable/game_dudoan_recovered_25" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/phongdo_icon"
+                    android:layout_width="@dimen/dimen_35dp"
+                    android:layout_height="@dimen/dimen_35dp"
+                    android:background="@null" >
+
+                    <ImageView
+                        android:layout_width="@dimen/size_button_live_score"
+                        android:layout_height="@dimen/size_button_live_score"
+                        android:layout_marginLeft="@dimen/dimen_5dp"
+                        android:layout_marginRight="@dimen/dimen_5dp"
+                        android:background="@drawable/game_dudoan_recovered_18" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/traitim"
+                    android:layout_width="@dimen/size_button_live_score"
+                    android:layout_height="@dimen/size_button_live_score"
+                    android:layout_marginRight="@dimen/dimen_5dp"
+                    android:background="@drawable/game_dudoan_recovered_20"
+                    android:visibility="gone" />
+            </LinearLayout>
+            
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dimen_5dp"
-            android:layout_marginTop="@dimen/dimen_5dp" >
+            android:layout_height="@dimen/dimen_30dp"
+            android:gravity="center">
 
             <LinearLayout
                 android:id="@+id/ImageView03"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dimen_20dp"
+                android:layout_width="@dimen/dimen_80dp"
+                android:layout_height="@dimen/dimen_30dp"
                 android:layout_alignParentTop="true"
+                android:layout_centerVertical="true"
+                android:background="#ffffff"
                 android:layout_centerHorizontal="true" >
 
                 <TextView
                     android:visibility="gone"
                     android:id="@+id/TextView02_ketqua"
                     style="@style/bongda_text_item_small"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/dimen_80dp"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/ImageView03"
-                    android:padding="0dp"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/dimen_10dp"
                     android:text="Large Text"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <ImageView
+                    android:visibility="visible"
                     android:id="@+id/ImageView031"
                     android:layout_width="@dimen/dimen_20dp"
                     android:layout_height="@dimen/dimen_20dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:background="@drawable/group122" >
-                </ImageView>
+                    android:layout_marginLeft="@dimen/dimen_30dp"
+                    android:layout_marginTop="@dimen/dimen_5dp"
+                    android:gravity="center"
+                    android:background="@drawable/group122" />
+
             </LinearLayout>
 
             <TextView
@@ -192,11 +201,12 @@
         <TextView
             android:id="@+id/tv1"
             style="@style/bongda_text_item_small"
-            android:layout_width="@dimen/dimen_225dp"
+            android:layout_width="@dimen/dimen_80dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Large Text"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:background="#ffffff"
             android:textColor="#666666" />
 
         <TextView

@@ -32,6 +32,7 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -159,9 +160,16 @@ public class LiveScoreFragment extends BaseFragment {
 				} else {
 					setText(convertView, R.id.TextView01, liveScore.iPhut() + " '");// time
 					if(liveScore.gettrangthaitiso()){
-						((TextView) convertView.findViewById(R.id.TextView02_ketqua)).setBackgroundColor(Color.YELLOW);
+						((TextView) convertView.findViewById(R.id.TextView01)).setBackgroundColor(Color.YELLOW);
+						LinearLayout ImageView03_ = (LinearLayout) convertView.findViewById(R.id.ImageView03);
+						ImageView03_.setBackgroundColor(Color.YELLOW);
+						((TextView) convertView.findViewById(R.id.tv1)).setBackgroundColor(Color.YELLOW);
+						
 					}else{
-						((TextView) convertView.findViewById(R.id.TextView02_ketqua)).setBackgroundColor(Color.WHITE);
+						((TextView) convertView.findViewById(R.id.TextView01)).setBackgroundColor(Color.WHITE);
+						LinearLayout ImageView03_ = (LinearLayout) convertView.findViewById(R.id.ImageView03);
+						ImageView03_.setBackgroundColor(Color.WHITE);
+						((TextView) convertView.findViewById(R.id.tv1)).setBackgroundColor(Color.WHITE);
 					}
 				}
 			} else {
