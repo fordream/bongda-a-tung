@@ -19,6 +19,7 @@ import android.os.AsyncTask;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings.Secure;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -32,6 +33,7 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -159,9 +161,16 @@ public class LiveScoreFragment extends BaseFragment {
 				} else {
 					setText(convertView, R.id.TextView01, liveScore.iPhut() + " '");// time
 					if(liveScore.gettrangthaitiso()){
-						((TextView) convertView.findViewById(R.id.TextView02_ketqua)).setBackgroundColor(Color.YELLOW);
+						((TextView) convertView.findViewById(R.id.TextView01)).setBackgroundColor(Color.YELLOW);
+						LinearLayout ImageView03_ = (LinearLayout) convertView.findViewById(R.id.ImageView03);
+						ImageView03_.setBackgroundColor(Color.YELLOW);
+						((TextView) convertView.findViewById(R.id.tv1)).setBackgroundColor(Color.YELLOW);
+						
 					}else{
-						((TextView) convertView.findViewById(R.id.TextView02_ketqua)).setBackgroundColor(Color.WHITE);
+						((TextView) convertView.findViewById(R.id.TextView01)).setBackgroundColor(Color.WHITE);
+						LinearLayout ImageView03_ = (LinearLayout) convertView.findViewById(R.id.ImageView03);
+						ImageView03_.setBackgroundColor(Color.WHITE);
+						((TextView) convertView.findViewById(R.id.tv1)).setBackgroundColor(Color.WHITE);
 					}
 				}
 			} else {
@@ -689,29 +698,15 @@ public class LiveScoreFragment extends BaseFragment {
 					String check_quantam2 = liveScore.getId();
 					if (difference > delta1) {
 						if (BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLikeCheck(liveScore.getId())) {
-							// TODO add live score
-							BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLike(liveScore.getId(), "0");
-							if (CommonUtil.listQuanTam.contains(check_quantam2)) {
-								CommonUtil.listQuanTam.remove(check_quantam2);
-								CommonUtil.savedata((Activity) listView.getContext());
-								CommonUtil.getdata((Activity) listView.getContext());
-							}
-							countryAdapter.notifyDataSetChanged();
-							Toast.makeText(listView.getContext(), "Remove favorite", Toast.LENGTH_LONG).show();
+							// TODO remove live score
+							RequestFavorite("0", liveScore.getId());
 						}
 
 					} else if (difference < delta2) {
 						if (!BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLikeCheck(liveScore.getId())) {
 							Log.e("KKKKKKKKKK", "B*" + CommonUtil.listQuanTam.toString());
 							// TODO add live score
-							BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLike(liveScore.getId(), "1");
-							if (!CommonUtil.listQuanTam.contains(check_quantam2)) {
-								CommonUtil.listQuanTam.add(check_quantam2);
-								CommonUtil.savedata((Activity) listView.getContext());
-								CommonUtil.getdata((Activity) listView.getContext());
-							}
-							countryAdapter.notifyDataSetChanged();
-							Toast.makeText(listView.getContext(), "Add to Favorite", Toast.LENGTH_LONG).show();
+							RequestFavorite("1", liveScore.getId());
 						}
 
 					}
@@ -723,6 +718,63 @@ public class LiveScoreFragment extends BaseFragment {
 
 			}
 		});
+	}
+	
+	private void RequestFavorite(final String type, final String matranfavorite){
+		ICallbackAPI callbackAPIFavorite = new ICallbackAPI() {
+
+			@Override
+			public void onSuccess(String response) {
+				// save and compare data
+				String string_temp = CommonAndroid.parseXMLAction(response);
+				if (!string_temp.equalsIgnoreCase("")) {
+					try {
+						Log.e("string_temp", string_temp);
+						if("1".equals(string_temp)){
+							Favorite(type, matranfavorite);
+						}else{
+							Toast.makeText(listView.getContext(), listView.getContext().getResources().getString(R.string.favorite_err) , Toast.LENGTH_SHORT).show();
+						}
+					} catch (Exception e) {
+					}
+				}
+
+			}
+
+			@Override
+			public void onError(String message) {
+
+			}
+		};
+		String ws = ByUtils.wsFootBall_Device_Like;
+		String deviceId = Secure.getString(listView.getContext().getContentResolver(), Secure.ANDROID_ID);
+		ws = ws.replace("deviceid", deviceId);
+		ws = ws.replace("matranfavorite", matranfavorite);
+		ws = ws.replace("typefavorite", type);
+		Log.e("favorite param", ws);
+		new APICaller(listView.getContext()).callApi("", true, callbackAPIFavorite, ws);
+	}
+	
+	private void Favorite(String type, String matranfavorite){
+		if("1".equals(type)){
+			BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLike(matranfavorite, "1");
+			if (!CommonUtil.listQuanTam.contains(matranfavorite)) {
+				CommonUtil.listQuanTam.add(matranfavorite);
+				CommonUtil.savedata((Activity) listView.getContext());
+				CommonUtil.getdata((Activity) listView.getContext());
+			}
+			countryAdapter.notifyDataSetChanged();
+			Toast.makeText(listView.getContext(), "Add to Favorite", Toast.LENGTH_SHORT).show();
+		}else{
+			BongDaServiceManager.getInstance().getBongDaService().getDBManager().liveScoreLike(matranfavorite, "0");
+			if (CommonUtil.listQuanTam.contains(matranfavorite)) {
+				CommonUtil.listQuanTam.remove(matranfavorite);
+				CommonUtil.savedata((Activity) listView.getContext());
+				CommonUtil.getdata((Activity) listView.getContext());
+			}
+			countryAdapter.notifyDataSetChanged();
+			Toast.makeText(listView.getContext(), "Remove favorite", Toast.LENGTH_SHORT).show();
+		}
 	}
 	//
 	// class LoadImage extends AsyncTask<Object, Void, Bitmap> {

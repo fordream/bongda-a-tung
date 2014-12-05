@@ -12,7 +12,7 @@ public abstract class LiveScoreHander extends Handler {
 		this.needStop = needStop;
 	}
 
-	public static final long TIME = 5 * 1000;
+	public static final long TIME = 30 * 1000;
 
 	@Override
 	public final void dispatchMessage(Message msg) {
